@@ -14,7 +14,7 @@ logging.disable(logging.INFO)
 
 
 parser = argparse.ArgumentParser(
-        description="A script for classifying toxic data (multiclass)",
+        description="A script for classifying toxic data (multilabel)",
         epilog="Made by Anni Eskelinen"
     )
 parser.add_argument('--train', required=True)
@@ -47,37 +47,32 @@ label_names = [
 ]
 
 
-# first I need to read the json lines
-with open(args.train, 'r') as json_file:
-    json_list = list(json_file)
-train_data = [json.loads(jline) for jline in json_list]
-with open(args.test, 'r') as json_file:
-    json_list = list(json_file)
-test_data = [json.loads(jline) for jline in json_list]
 
-print(train_data[:3])
-print(test_data[:3])
-# there is now a list of dictionaries
+def json_to_dataset(data):
+    # first I need to read the json lines
+    with open(data, 'r') as json_file:
+        json_list = list(json_file)
+    lines = [json.loads(jline) for jline in json_list]
+    print(lines[:3])
+    # there is now a list of dictionaries
 
-df1=pd.DataFrame(train_data)
-df2=pd.DataFrame(test_data)
-print(df1.head())
-print(df2.head())
+    df=pd.DataFrame(lines)
+    print(df.head())
+
+    df['labels'] = list(df[label_names].values)
+    print(df.head())
+
+    # only keep the columns text and one_hot_labels
+    df = df[['text', 'labels']]
+    print(df.head())
+
+    set = datasets.Dataset.from_pandas(df)
+
+    return set, df
 
 
-df1['labels'] = list(df1[label_names].values)
-df2['labels'] = list(df2[label_names].values)
-print(df1.head())
-print(df2.head())
-
-# only keep the columns text and one_hot_labels
-df1 = df1[['text', 'labels']]
-df2 = df2[['text', 'labels']]
-print(df1.head())
-print(df2.head())
-
-train = datasets.Dataset.from_pandas(df1)
-test = datasets.Dataset.from_pandas(df2)
+train, unnecessary = json_to_dataset(args.train)
+test, df = json_to_dataset(args.test)
 
 # then split train into train and dev
 train, dev = train.train_test_split(test_size=0.2).values()
@@ -87,7 +82,7 @@ dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
 print(dataset)
 
 
-model_name = args.model # finbert for Finnish and bert for english?
+model_name = args.model # finbert for Finnish and bert for english? xlmr-base or large also
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
 
 def tokenize(example):
@@ -115,6 +110,16 @@ trainer_args = transformers.TrainingArguments(
     per_device_eval_batch_size=32
 )
 
+
+
+
+
+# APPLYING TRESHOLD OPTIMIZATION COULD HELP WITH THE IMBALANCE ISSUE
+
+
+
+
+
 #compute accuracy and loss
 from transformers import EvalPrediction
 from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
@@ -132,10 +137,12 @@ def multi_label_metrics(predictions, labels):
     # finally, compute metrics
     y_true = labels
     f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
+    f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
     roc_auc = roc_auc_score(y_true, y_pred, average = 'micro')
     accuracy = accuracy_score(y_true, y_pred)
     # return as dictionary
-    metrics = {'f1': f1_micro_average,
+    metrics = {'f1_micro': f1_micro_average,
+                'f1_weighted': f1_weighted_average,
                'roc_auc': roc_auc,
                'accuracy': accuracy}
     return metrics
@@ -202,7 +209,8 @@ trainer.train()
 
 eval_results = trainer.evaluate(dataset["test"])
 pprint(eval_results)
-print('F1:', eval_results['eval_f1'])
+print('F1_micro:', eval_results['eval_f1_micro'])
+print('F1_weighted:', eval_results['eval_f1_weighted'])
 
 
 # see how the labels are predicted
@@ -252,7 +260,11 @@ for vals in pred_label_idxs:
     pred_label_texts.append(vals)
 
 #get the test texts to a list of their own 
-texts = df2[["text"]]
+texts = df[["text"]]
+# turn it into an actual list
+texts = texts.values.tolist()
+
+
 
 # Converting lists to df
 comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_label_texts, 'pred_labels':pred_label_texts})

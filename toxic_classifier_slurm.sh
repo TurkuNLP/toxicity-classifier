@@ -12,20 +12,28 @@
 
 module load pytorch 
 
-EPOCHS=3 
-LR=8e-6    # "1e-5 4e-6 5e-6 7e-5 8e-6"
+EPOCHS=4 
+LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"
 BATCH=8
 TR=0.5
-
-echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction treshold: $TR"
+MODEL='xlm-roberta-base'  #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-cased' # # "xlm-roberta-large" #'xlm-roberta-base'
+echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction treshold: $TR, model: $MODEL "
 
 #TRANSLATED
 # echo "Translated train and test"
-# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model TurkuNLP/bert-base-finnish-cased-v1 --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
-
-# should I use xlmr?
+# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
 
 
 #ORIGINAL
-echo "original train and test data"
-srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model bert-base-cased --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
+# echo "original train and test data"
+# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
+
+
+# transfer
+echo "transfer from english train to translated finnish test"
+srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
+
+
+
+
+echo "END: $(date)"
