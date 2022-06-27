@@ -2,7 +2,7 @@
 #SBATCH --job-name=toxicity
 #SBATCH --account=project_2000539
 #SBATCH --partition=gpu
-#SBATCH --time=04:00:00
+#SBATCH --time=05:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
@@ -21,17 +21,17 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 
 #TRANSLATED
 # echo "Translated train and test"
-# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
+# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR
 
 
 #ORIGINAL
 # echo "original train and test data"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
+# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR
 
 
 # transfer
 echo "transfer from english train to translated finnish test"
-srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --treshold $TR
+srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR
 
 
 

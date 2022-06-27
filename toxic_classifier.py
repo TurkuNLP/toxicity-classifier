@@ -30,7 +30,7 @@ parser.add_argument('--epochs', type=int, default=3,
 parser.add_argument('--learning', type=float, default=8e-6,
     help="The learning rate for the model"
 )
-parser.add_argument('--treshold', type=float, default=0.5,
+parser.add_argument('--threshold', type=float, default=None,
     help="The treshold which to use for predictions, used in evaluation"
 )
 args = parser.parse_args()
@@ -53,18 +53,18 @@ def json_to_dataset(data):
     with open(data, 'r') as json_file:
         json_list = list(json_file)
     lines = [json.loads(jline) for jline in json_list]
-    print(lines[:3])
+    # print(lines[:3])
     # there is now a list of dictionaries
 
     df=pd.DataFrame(lines)
-    print(df.head())
+    # print(df.head())
 
-    df['labels'] = list(df[label_names].values)
-    print(df.head())
+    df['labels'] = df[label_names].values.tolist()
+    # print(df.head())
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    print(df.head())
+    # print(df.head())
 
     set = datasets.Dataset.from_pandas(df)
 
@@ -73,6 +73,31 @@ def json_to_dataset(data):
 
 train, unnecessary = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
+
+
+
+# class weigths for the loss function
+#implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
+
+labels = unnecessary["labels"].values.tolist() # get all labels from train data
+n_samples = len(labels) # number of examples in train data
+n_classes = len(label_names)
+
+# Count each class frequency
+class_count = [0] * n_classes
+for classes in labels: # go through every label list (example)
+    for index in range(n_classes):
+        if classes[index] != 0:
+            class_count[index] += 1
+
+# Compute class weights using balanced method
+class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
+class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
+# multiply things if there is more than one
+# does this help at all when the problem is with examples that have no labels?
+# I believe this is somewhat based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
+
+
 
 # then split train into train and dev
 train, dev = train.train_test_split(test_size=0.2).values()
@@ -94,7 +119,7 @@ def tokenize(example):
     
 dataset = dataset.map(tokenize)
 
-model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=len(label_names), problem_type="multi_label_classification")
+model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=len(label_names), problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
 
 # Set training arguments CHANGE TO EPOCHS
 trainer_args = transformers.TrainingArguments(
@@ -111,23 +136,30 @@ trainer_args = transformers.TrainingArguments(
 )
 
 
-
-
-
 # APPLYING TRESHOLD OPTIMIZATION COULD HELP WITH THE IMBALANCE ISSUE
 
-
-
+# in case a threshold was not given, choose the one that works best with the evaluated data
+def optimize_threshold(predictions, labels):
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(predictions))
+    best_f1 = 0
+    best_f1_threshold = 0.5 # use 0.5 as a default threshold
+    y_true = labels
+    for th in np.arange(0.3, 0.7, 0.05):
+        y_pred = np.zeros(probs.shape)
+        y_pred[np.where(probs >= th)] = 1
+        f1 = f1_score(y_true=y_true, y_pred=y_pred, average='micro') # change this to weighted?
+        if f1 > best_f1:
+            best_f1 = f1
+            best_f1_threshold = th
+    return best_f1_threshold 
 
 
 #compute accuracy and loss
 from transformers import EvalPrediction
 from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
-def multi_label_metrics(predictions, labels):
-    # the treshold has to be really low because the probabilities of the predictions are not great, could even do without any treshold then? or find one that works best between 0.1 and 0.5
-    threshold=args.treshold
-
+def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels) # why is the sigmoid applies? could do without it
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(predictions))
@@ -150,9 +182,16 @@ def multi_label_metrics(predictions, labels):
 def compute_metrics(p: EvalPrediction):
     preds = p.predictions[0] if isinstance(p.predictions, 
             tuple) else p.predictions
+    if args.threshold == None:
+        best_f1_th = optimize_threshold(preds, p.label_ids)
+        threshold = best_f1_th
+        print("Best threshold:", threshold)
+    else:
+        threshold = args.threshold
     result = multi_label_metrics(
         predictions=preds, 
-        labels=p.label_ids)
+        labels=p.label_ids,
+        threshold=threshold)
     return result
 
 data_collator = transformers.DataCollatorWithPadding(tokenizer)
@@ -186,7 +225,7 @@ class MultilabelTrainer(transformers.Trainer):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
         logits = outputs.logits
-        loss_fct = torch.nn.BCEWithLogitsLoss()
+        loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=class_weights)
         loss = loss_fct(logits.view(-1, self.model.config.num_labels), 
                         labels.float().view(-1, self.model.config.num_labels))
         return (loss, outputs) if return_outputs else loss
@@ -196,7 +235,7 @@ trainer = MultilabelTrainer(
     model=model,
     args=trainer_args,
     train_dataset=dataset["train"],
-    eval_dataset=dataset["dev"],
+    eval_dataset=dataset["dev"], #["test"].select(range(20_000)), # just like topias does it
     compute_metrics=compute_metrics,
     data_collator=data_collator,
     tokenizer = tokenizer,
@@ -207,7 +246,7 @@ trainer.train()
 
 
 
-eval_results = trainer.evaluate(dataset["test"])
+eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1_micro'])
 print('F1_weighted:', eval_results['eval_f1_weighted'])

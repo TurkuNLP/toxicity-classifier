@@ -1,0 +1,29 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+Translated train and test
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2888, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.30135223269462585, 'eval_f1_micro': 0.5985719952399841, 'eval_f1_weighted': 0.6108565594159928, 'eval_roc_auc': 0.8254247794257578, 'eval_accuracy': 0.8906, 'eval_runtime': 174.0587, 'eval_samples_per_second': 114.904, 'eval_steps_per_second': 3.591, 'epoch': 1.0}
+{'loss': 0.242, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.24854692816734314, 'eval_f1_micro': 0.6104141605086785, 'eval_f1_weighted': 0.6126121011848629, 'eval_roc_auc': 0.8805681763018461, 'eval_accuracy': 0.87005, 'eval_runtime': 174.2679, 'eval_samples_per_second': 114.766, 'eval_steps_per_second': 3.586, 'epoch': 2.0}
+{'loss': 0.2067, 'learning_rate': 5e-06, 'epoch': 3.0}

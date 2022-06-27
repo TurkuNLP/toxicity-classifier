@@ -1,0 +1,60 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2193, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.20229828357696533, 'eval_f1_micro': 0.6386823529411765, 'eval_f1_weighted': 0.6503349737278182, 'eval_roc_auc': 0.8665309414409642, 'eval_accuracy': 0.88295, 'eval_runtime': 165.0851, 'eval_samples_per_second': 121.15, 'eval_steps_per_second': 3.786, 'epoch': 1.0}
+{'loss': 0.1626, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.20560991764068604, 'eval_f1_micro': 0.6508537148131056, 'eval_f1_weighted': 0.6562347378994062, 'eval_roc_auc': 0.8810314738031022, 'eval_accuracy': 0.8806, 'eval_runtime': 165.0182, 'eval_samples_per_second': 121.199, 'eval_steps_per_second': 3.787, 'epoch': 2.0}
+{'loss': 0.1201, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.22229672968387604, 'eval_f1_micro': 0.6418612757058209, 'eval_f1_weighted': 0.647078291429699, 'eval_roc_auc': 0.8964471396358176, 'eval_accuracy': 0.85735, 'eval_runtime': 165.5645, 'eval_samples_per_second': 120.799, 'eval_steps_per_second': 3.775, 'epoch': 3.0}
+{'loss': 0.0837, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.27702680230140686, 'eval_f1_micro': 0.6554559733900028, 'eval_f1_weighted': 0.6583892906711053, 'eval_roc_auc': 0.8835164914972997, 'eval_accuracy': 0.8718, 'eval_runtime': 165.26, 'eval_samples_per_second': 121.021, 'eval_steps_per_second': 3.782, 'epoch': 4.0}
+{'train_runtime': 11742.8545, 'train_samples_per_second': 54.355, 'train_steps_per_second': 6.795, 'train_loss': 0.14640995139806032, 'epoch': 4.0}
+{'epoch': 4.0,
+ 'eval_accuracy': 0.8718,
+ 'eval_f1_micro': 0.6554559733900028,
+ 'eval_f1_weighted': 0.6583892906711053,
+ 'eval_loss': 0.27702680230140686,
+ 'eval_roc_auc': 0.8835164914972997,
+ 'eval_runtime': 165.1536,
+ 'eval_samples_per_second': 121.099,
+ 'eval_steps_per_second': 3.784}
+F1_micro: 0.6554559733900028
+F1_weighted: 0.6583892906711053
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.54      0.65      0.59       712
+         label_insult       0.62      0.72      0.67      3427
+        label_obscene       0.60      0.77      0.67      3691
+label_severe_toxicity       0.27      0.58      0.37       367
+         label_threat       0.48      0.64      0.55       211
+       label_toxicity       0.54      0.86      0.66      6090
+
+            micro avg       0.56      0.78      0.65     14498
+            macro avg       0.51      0.70      0.59     14498
+         weighted avg       0.57      0.78      0.65     14498
+          samples avg       0.07      0.07      0.07     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+END: ma 27.6.2022 14.40.16 +0300

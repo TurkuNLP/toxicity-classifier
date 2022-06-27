@@ -1,0 +1,29 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+transfer from english train to translated finnish test
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2796, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.49803799390792847, 'eval_f1_micro': 0.3979643765903308, 'eval_f1_weighted': 0.3941372058235335, 'eval_roc_auc': 0.6665894312672379, 'eval_accuracy': 0.8842, 'eval_runtime': 171.2176, 'eval_samples_per_second': 116.81, 'eval_steps_per_second': 3.65, 'epoch': 1.0}
+{'loss': 0.2285, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.5644852519035339, 'eval_f1_micro': 0.3605064731825295, 'eval_f1_weighted': 0.35296370583748665, 'eval_roc_auc': 0.6357756399649328, 'eval_accuracy': 0.8814, 'eval_runtime': 171.2415, 'eval_samples_per_second': 116.794, 'eval_steps_per_second': 3.65, 'epoch': 2.0}
+{'loss': 0.2114, 'learning_rate': 5e-06, 'epoch': 3.0}
