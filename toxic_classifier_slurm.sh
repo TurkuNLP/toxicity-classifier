@@ -21,7 +21,7 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 
 #TRANSLATED
 # echo "Translated train and test"
-# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR
+# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
 
 
 #ORIGINAL
@@ -31,7 +31,7 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 
 # transfer
 echo "transfer from english train to translated finnish test"
-srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR
+srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
 
 
 

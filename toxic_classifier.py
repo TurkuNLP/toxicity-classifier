@@ -33,8 +33,13 @@ parser.add_argument('--learning', type=float, default=8e-6,
 parser.add_argument('--threshold', type=float, default=None,
     help="The treshold which to use for predictions, used in evaluation"
 )
+parser.add_argument('--loss', action='store_true', default=False,
+    help="Decide whether to use the loss function or not")
+parser.add_argument('--dev', action='store_true', default=False,
+    help="Decide whether to split the train into train and dev or not")
 args = parser.parse_args()
 
+print(args)
 
 # this I could instead parse from the data, now I got it manually
 label_names = [
@@ -98,12 +103,13 @@ class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a d
 # I believe this is somewhat based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
 
 
-
-# then split train into train and dev
-train, dev = train.train_test_split(test_size=0.2).values()
-
-# then make the dataset
-dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
+if args.dev == True:
+    # then split train into train and dev
+    train, dev = train.train_test_split(test_size=0.2).values()
+    # then make the dataset
+    dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
+else:
+    dataset = datasets.DatasetDict({"train":train, "test":test})
 print(dataset)
 
 
@@ -225,17 +231,24 @@ class MultilabelTrainer(transformers.Trainer):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
         logits = outputs.logits
-        loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=class_weights)
+        if args.loss == True:
+            loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=class_weights)
+        else:
+            loss_fct = torch.nn.BCEWithLogitsLoss()
         loss = loss_fct(logits.view(-1, self.model.config.num_labels), 
                         labels.float().view(-1, self.model.config.num_labels))
         return (loss, outputs) if return_outputs else loss
 
+if args.dev == True:
+    eval_dataset=dataset["dev"] 
+else:
+    eval_dataset=dataset["test"].select(range(20_000)) # just like topias does it
 
 trainer = MultilabelTrainer(
     model=model,
     args=trainer_args,
     train_dataset=dataset["train"],
-    eval_dataset=dataset["dev"], #["test"].select(range(20_000)), # just like topias does it
+    eval_dataset=eval_dataset,
     compute_metrics=compute_metrics,
     data_collator=data_collator,
     tokenizer = tokenizer,
@@ -246,7 +259,7 @@ trainer.train()
 
 
 
-eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
+eval_results = trainer.evaluate(dataset["test"].select(range(20_000)))
 pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1_micro'])
 print('F1_weighted:', eval_results['eval_f1_weighted'])
@@ -261,7 +274,7 @@ sigmoid = torch.nn.Sigmoid()
 probs = sigmoid(torch.Tensor(predictions))
 # next, use threshold to turn them into integer predictions
 preds = np.zeros(probs.shape)
-preds[np.where(probs >= args.treshold)] = 1
+preds[np.where(probs >= args.threshold)] = 1
 
 from sklearn.metrics import classification_report
 print(classification_report(trues, preds, target_names=label_names))
