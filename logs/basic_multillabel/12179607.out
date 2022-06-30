@@ -1,0 +1,84 @@
+[{'id': 'ee9697785fe41ff8', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '"\nThanks Xeno. -  • Talk • "'}, {'id': '29fec512f2ee929e', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '2009 (UTC)\nFixed    03:36, 8 June'}, {'id': '88944b29dde50648', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': 'Question\nWhat was wrong with the repair I did?'}]
+[{'id': 'ee9697785fe41ff8', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '"\nThanks Xeno. -  • Talk • "'}, {'id': '29fec512f2ee929e', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '2009 (UTC)\nFixed    03:36, 8 June'}, {'id': '88944b29dde50648', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': 'Question\nWhat was wrong with the repair I did?'}]
+                 id  ...                                               text
+0  ee9697785fe41ff8  ...                      "\nThanks Xeno. -  • Talk • "
+1  29fec512f2ee929e  ...                 2009 (UTC)\nFixed    03:36, 8 June
+2  88944b29dde50648  ...    Question\nWhat was wrong with the repair I did?
+3  c7bf1f59096102f3  ...  I agree myself now, actually. (Amazing how the...
+4  7d71ee0e8ea0794a  ...  Kisumu \n\nI saw that you contributed to Kisum...
+
+[5 rows x 9 columns]
+                 id  ...                                               text
+0  879ad7bdba4cedaa  ...  " \n\n Hi Pieter pietersen, and Welcome to Wik...
+1  8889526d5dccab4a  ...  " \n\n You have been temporarily blocked from ...
+2  3f49e23388bc4c07  ...  {{unblock| Come on!!!!! FUCK..... ok man, I'M ...
+3  2bf685b152948de4  ...  " \n\n ==Banning of Zeq== \n Under the remedy ...
+4  02511a5f1990bec2  ...   . This account is a sock puppet of Dantherocker1
+
+[5 rows x 9 columns]
+                 id  ...              labels
+0  ee9697785fe41ff8  ...  [0, 0, 0, 0, 0, 0]
+1  29fec512f2ee929e  ...  [0, 0, 0, 0, 0, 0]
+2  88944b29dde50648  ...  [0, 0, 0, 0, 0, 0]
+3  c7bf1f59096102f3  ...  [0, 0, 0, 0, 0, 0]
+4  7d71ee0e8ea0794a  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 10 columns]
+                 id  ...              labels
+0  879ad7bdba4cedaa  ...  [0, 0, 0, 0, 0, 0]
+1  8889526d5dccab4a  ...  [0, 0, 0, 0, 0, 0]
+2  3f49e23388bc4c07  ...  [0, 0, 1, 0, 0, 1]
+3  2bf685b152948de4  ...  [0, 0, 0, 0, 0, 0]
+4  02511a5f1990bec2  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 10 columns]
+                                                text              labels
+0                      "\nThanks Xeno. -  • Talk • "  [0, 0, 0, 0, 0, 0]
+1                 2009 (UTC)\nFixed    03:36, 8 June  [0, 0, 0, 0, 0, 0]
+2    Question\nWhat was wrong with the repair I did?  [0, 0, 0, 0, 0, 0]
+3  I agree myself now, actually. (Amazing how the...  [0, 0, 0, 0, 0, 0]
+4  Kisumu \n\nI saw that you contributed to Kisum...  [0, 0, 0, 0, 0, 0]
+                                                text              labels
+0  " \n\n Hi Pieter pietersen, and Welcome to Wik...  [0, 0, 0, 0, 0, 0]
+1  " \n\n You have been temporarily blocked from ...  [0, 0, 0, 0, 0, 0]
+2  {{unblock| Come on!!!!! FUCK..... ok man, I'M ...  [0, 0, 1, 0, 0, 1]
+3  " \n\n ==Banning of Zeq== \n Under the remedy ...  [0, 0, 0, 0, 0, 0]
+4   . This account is a sock puppet of Dantherocker1  [0, 0, 0, 0, 0, 0]
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.0504, 'learning_rate': 5.333333333333333e-06, 'epoch': 1.0}
+{'eval_loss': 0.041561760008335114, 'eval_f1': 0.7742478434672838, 'eval_roc_auc': 0.8916228178010003, 'eval_accuracy': 0.9207582641391195, 'eval_runtime': 270.399, 'eval_samples_per_second': 118.029, 'eval_steps_per_second': 3.691, 'epoch': 1.0}
+{'loss': 0.0344, 'learning_rate': 2.6666666666666664e-06, 'epoch': 2.0}
+{'eval_loss': 0.03926588594913483, 'eval_f1': 0.7904815544916926, 'eval_roc_auc': 0.898777484207602, 'eval_accuracy': 0.9255522481591728, 'eval_runtime': 270.9445, 'eval_samples_per_second': 117.792, 'eval_steps_per_second': 3.683, 'epoch': 2.0}
+{'loss': 0.0267, 'learning_rate': 0.0, 'epoch': 3.0}
+{'eval_loss': 0.04336301609873772, 'eval_f1': 0.789776357827476, 'eval_roc_auc': 0.895224469437127, 'eval_accuracy': 0.9256149146169512, 'eval_runtime': 270.0219, 'eval_samples_per_second': 118.194, 'eval_steps_per_second': 3.696, 'epoch': 3.0}
+{'train_runtime': 7622.8983, 'train_samples_per_second': 50.239, 'train_steps_per_second': 6.28, 'train_loss': 0.03713844227438715, 'epoch': 3.0}
+{'epoch': 3.0,
+ 'eval_accuracy': 0.8660477038982151,
+ 'eval_f1': 0.6699966136132747,
+ 'eval_loss': 0.07505064457654953,
+ 'eval_roc_auc': 0.8971276957342925,
+ 'eval_runtime': 547.7325,
+ 'eval_samples_per_second': 116.805,
+ 'eval_steps_per_second': 3.651}
+F1: 0.6699966136132747

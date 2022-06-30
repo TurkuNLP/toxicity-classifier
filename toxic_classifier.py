@@ -49,6 +49,7 @@ label_names = [
     'label_severe_toxicity',
     'label_threat',
     'label_toxicity',
+    'label_clean' # added new label for clean ones so that I can try taking the clean data into account with the class weights (no labels)
 ]
 
 
@@ -58,22 +59,27 @@ def json_to_dataset(data):
     with open(data, 'r') as json_file:
         json_list = list(json_file)
     lines = [json.loads(jline) for jline in json_list]
-    # print(lines[:3])
     # there is now a list of dictionaries
-
     df=pd.DataFrame(lines)
-    # print(df.head())
+    df['labels'] = df[label_names[:-1]].values.tolist() # don't take clean label into account because it doesn't exist yet
 
-    df['labels'] = df[label_names].values.tolist()
-    # print(df.head())
+
+
+    # add new column for clean data
+    df['sum'] = df.labels.map(sum) 
+    df.loc[df["sum"] > 0, "label_clean"] = 0
+    df.loc[df["sum"] == 0, "label_clean"] = 1
+    df['labels'] = df[label_names].values.tolist() # update labels column to include clean data
+
+
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    # print(df.head())
+    print(df.head())
+    dataset = datasets.Dataset.from_pandas(df)
+    print(dataset[:6])
 
-    set = datasets.Dataset.from_pandas(df)
-
-    return set, df
+    return dataset, df
 
 
 train, unnecessary = json_to_dataset(args.train)
@@ -101,7 +107,7 @@ class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a d
 # multiply things if there is more than one
 # does this help at all when the problem is with examples that have no labels?
 # I believe this is somewhat based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
-
+print(class_weights)
 
 if args.dev == True:
     # then split train into train and dev
@@ -242,7 +248,7 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"].select(range(20_000)) # just like topias does it
+    eval_dataset=dataset["test"] #.select(range(20_000)) # just like topias does it
 
 trainer = MultilabelTrainer(
     model=model,
@@ -259,8 +265,8 @@ trainer.train()
 
 
 
-eval_results = trainer.evaluate(dataset["test"].select(range(20_000)))
-pprint(eval_results)
+eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
+#pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1_micro'])
 print('F1_weighted:', eval_results['eval_f1_weighted'])
 

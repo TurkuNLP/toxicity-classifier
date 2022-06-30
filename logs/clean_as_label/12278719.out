@@ -1,0 +1,67 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, dev=False, epochs=4, learning=2e-05, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_fi_deepl.jsonl')
+                                                text                               labels
+0                         "\nKiitos Xeno. - Talk - "  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+1              2009 (UTC)\nKorjattu 03:36, 8 kesäkuu  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+2  Kysymys\nMitä vikaa tekemässäni korjauksessa oli?  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+3  Olen itse asiassa nyt samaa mieltä. (Uskomaton...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+4  Kisumu \n\nHuomasin, että olet osallistunut Ki...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+                                                text                               labels
+0  " \n\n Hei Pieter Pietersen, ja tervetuloa Wik...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+1  " \n\n Sinut on väliaikaisesti estetty muokkaa...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+2  {Tule!!!!! FUCK..... ok mies, olen todella tod...  [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0]
+3  " \n\n == Zeqin kieltäminen== \n Zeqin välimie...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+4         . Tämä tili on Dantherocker1:n sukkanukke.  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1719, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.16485555469989777, 'eval_f1_micro': 0.8722942388944813, 'eval_f1_weighted': 0.8873219341600788, 'eval_roc_auc': 0.9274178934719004, 'eval_accuracy': 0.8491512707493201, 'eval_runtime': 520.097, 'eval_samples_per_second': 123.012, 'eval_steps_per_second': 3.845, 'epoch': 1.0}
+{'loss': 0.1255, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.1539662778377533, 'eval_f1_micro': 0.8660222205732557, 'eval_f1_weighted': 0.8838800241831322, 'eval_roc_auc': 0.9285943831986667, 'eval_accuracy': 0.850448591703398, 'eval_runtime': 520.4787, 'eval_samples_per_second': 122.921, 'eval_steps_per_second': 3.843, 'epoch': 2.0}
+{'loss': 0.0911, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.18118484318256378, 'eval_f1_micro': 0.8556474052462382, 'eval_f1_weighted': 0.8749701668412732, 'eval_roc_auc': 0.9218672247419673, 'eval_accuracy': 0.8380849667073056, 'eval_runtime': 523.0553, 'eval_samples_per_second': 122.316, 'eval_steps_per_second': 3.824, 'epoch': 3.0}
+{'loss': 0.0636, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.2110474407672882, 'eval_f1_micro': 0.8793373292235352, 'eval_f1_weighted': 0.8908795685152989, 'eval_roc_auc': 0.9323192312907495, 'eval_accuracy': 0.8648597955547219, 'eval_runtime': 523.4337, 'eval_samples_per_second': 122.228, 'eval_steps_per_second': 3.821, 'epoch': 4.0}
+{'train_runtime': 13037.9198, 'train_samples_per_second': 48.956, 'train_steps_per_second': 6.12, 'train_loss': 0.11300157973561578, 'epoch': 4.0}
+F1_micro: 0.8660222205732557
+F1_weighted: 0.8838800241831322
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.51      0.74      0.61       712
+         label_insult       0.53      0.80      0.64      3427
+        label_obscene       0.54      0.79      0.64      3691
+label_severe_toxicity       0.22      0.81      0.35       367
+         label_threat       0.26      0.84      0.39       211
+       label_toxicity       0.56      0.84      0.67      6090
+          label_clean       0.99      0.91      0.95     57735
+
+            micro avg       0.84      0.89      0.87     72233
+            macro avg       0.51      0.82      0.61     72233
+         weighted avg       0.89      0.89      0.88     72233
+          samples avg       0.88      0.89      0.89     72233
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+END: ke 29.6.2022 19.34.58 +0300

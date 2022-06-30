@@ -1,0 +1,108 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+original train and test data
+[{'id': 'ee9697785fe41ff8', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '"\nThanks Xeno. -  • Talk • "'}, {'id': '29fec512f2ee929e', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '2009 (UTC)\nFixed    03:36, 8 June'}, {'id': '88944b29dde50648', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': 'Question\nWhat was wrong with the repair I did?'}]
+                 id  ...                                               text
+0  ee9697785fe41ff8  ...                      "\nThanks Xeno. -  • Talk • "
+1  29fec512f2ee929e  ...                 2009 (UTC)\nFixed    03:36, 8 June
+2  88944b29dde50648  ...    Question\nWhat was wrong with the repair I did?
+3  c7bf1f59096102f3  ...  I agree myself now, actually. (Amazing how the...
+4  7d71ee0e8ea0794a  ...  Kisumu \n\nI saw that you contributed to Kisum...
+
+[5 rows x 9 columns]
+                 id  ...              labels
+0  ee9697785fe41ff8  ...  [0, 0, 0, 0, 0, 0]
+1  29fec512f2ee929e  ...  [0, 0, 0, 0, 0, 0]
+2  88944b29dde50648  ...  [0, 0, 0, 0, 0, 0]
+3  c7bf1f59096102f3  ...  [0, 0, 0, 0, 0, 0]
+4  7d71ee0e8ea0794a  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 10 columns]
+                                                text              labels
+0                      "\nThanks Xeno. -  • Talk • "  [0, 0, 0, 0, 0, 0]
+1                 2009 (UTC)\nFixed    03:36, 8 June  [0, 0, 0, 0, 0, 0]
+2    Question\nWhat was wrong with the repair I did?  [0, 0, 0, 0, 0, 0]
+3  I agree myself now, actually. (Amazing how the...  [0, 0, 0, 0, 0, 0]
+4  Kisumu \n\nI saw that you contributed to Kisum...  [0, 0, 0, 0, 0, 0]
+[{'id': '879ad7bdba4cedaa', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '" \n\n Hi Pieter pietersen, and Welcome to Wikipedia!   \n\n Welcome to Wikipedia! I hope you enjoy the encyclopedia and want to stay. As a first step, you may wish to read the Introduction. \n\n If you have any questions, feel free to ask me at my talk page — I\'m happy to help. Or, you can ask your question at the New contributors\' help page. \n\n -   \n Here are some more resources to help you as you explore and contribute to the world\'s largest encyclopedia... \n\n  Finding your way around:  \n\n  \n * Table of Contents \n\n * Department directory \n\n  \n  Need help?  \n\n  \n * Questions — a guide on where to ask questions. \n * Cheatsheet — quick reference on Wikipedia\'s mark-up codes. \n\n * Wikipedia\'s 5 pillars — an overview of Wikipedia\'s foundations \n * The Simplified Ruleset — a summary of Wikipedia\'s most important rules. \n\n  \n  How you can help:  \n\n  \n * Contributing to Wikipedia — a guide on how you can help. \n\n * Community Portal — Wikipedia\'s hub of activity. \n\n  \n  Additional tips...   \n\n  \n * Please sign your messages on talk pages with four tildes (~~~~). This will automatically insert your ""signature"" (your username and a date stamp). The  button, on the tool bar above Wikipedia\'s text editing window, also does this.  \n\n * If you would like to play around with your new Wiki skills the Sandbox is for you.  \n\n  \n  Good luck, and have fun. "'}, {'id': '8889526d5dccab4a', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'en-orig', 'text': '" \n\n You have been temporarily blocked from editing for vandalism of Wikipedia. If you wish to make useful contributions, you may come back after the block expires. 123  "'}, {'id': '3f49e23388bc4c07', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 1, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 1, 'lang': 'en-orig', 'text': "{{unblock| Come on!!!!! FUCK..... ok man, I'M really really really really really really............ really really really really..... (deep breath).... really really really really SORRY! BLING!"}]
+                 id  ...                                               text
+0  879ad7bdba4cedaa  ...  " \n\n Hi Pieter pietersen, and Welcome to Wik...
+1  8889526d5dccab4a  ...  " \n\n You have been temporarily blocked from ...
+2  3f49e23388bc4c07  ...  {{unblock| Come on!!!!! FUCK..... ok man, I'M ...
+3  2bf685b152948de4  ...  " \n\n ==Banning of Zeq== \n Under the remedy ...
+4  02511a5f1990bec2  ...   . This account is a sock puppet of Dantherocker1
+
+[5 rows x 9 columns]
+                 id  ...              labels
+0  879ad7bdba4cedaa  ...  [0, 0, 0, 0, 0, 0]
+1  8889526d5dccab4a  ...  [0, 0, 0, 0, 0, 0]
+2  3f49e23388bc4c07  ...  [0, 0, 1, 0, 0, 1]
+3  2bf685b152948de4  ...  [0, 0, 0, 0, 0, 0]
+4  02511a5f1990bec2  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 10 columns]
+                                                text              labels
+0  " \n\n Hi Pieter pietersen, and Welcome to Wik...  [0, 0, 0, 0, 0, 0]
+1  " \n\n You have been temporarily blocked from ...  [0, 0, 0, 0, 0, 0]
+2  {{unblock| Come on!!!!! FUCK..... ok man, I'M ...  [0, 0, 1, 0, 0, 1]
+3  " \n\n ==Banning of Zeq== \n Under the remedy ...  [0, 0, 0, 0, 0, 0]
+4   . This account is a sock puppet of Dantherocker1  [0, 0, 0, 0, 0, 0]
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.0602, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.05213557928800583, 'eval_f1': 0.728513174404015, 'eval_roc_auc': 0.8328645946937224, 'eval_accuracy': 0.9188782704057653, 'eval_runtime': 263.6858, 'eval_samples_per_second': 121.034, 'eval_steps_per_second': 3.785, 'epoch': 1.0}
+{'loss': 0.0469, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.04723488911986351, 'eval_f1': 0.7626851086221152, 'eval_roc_auc': 0.8635010150944633, 'eval_accuracy': 0.9225755914146953, 'eval_runtime': 263.4004, 'eval_samples_per_second': 121.165, 'eval_steps_per_second': 3.789, 'epoch': 2.0}
+{'loss': 0.0405, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.04530840367078781, 'eval_f1': 0.7617840095465394, 'eval_roc_auc': 0.8657688891697488, 'eval_accuracy': 0.9212909290302366, 'eval_runtime': 263.4354, 'eval_samples_per_second': 121.149, 'eval_steps_per_second': 3.788, 'epoch': 3.0}
+{'loss': 0.0356, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.04677528142929077, 'eval_f1': 0.7689485655587351, 'eval_roc_auc': 0.8751542438663503, 'eval_accuracy': 0.9221995926680244, 'eval_runtime': 263.3418, 'eval_samples_per_second': 121.192, 'eval_steps_per_second': 3.79, 'epoch': 4.0}
+{'train_runtime': 11656.7043, 'train_samples_per_second': 43.805, 'train_steps_per_second': 5.476, 'train_loss': 0.04579730224226877, 'epoch': 4.0}
+{'epoch': 4.0,
+ 'eval_accuracy': 0.8892744380880928,
+ 'eval_f1': 0.6190940263490345,
+ 'eval_loss': 0.08027975261211395,
+ 'eval_roc_auc': 0.7894961511140915,
+ 'eval_runtime': 532.14,
+ 'eval_samples_per_second': 120.228,
+ 'eval_steps_per_second': 3.758}
+F1: 0.6190940263490345
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.84      0.22      0.35       712
+         label_insult       0.69      0.51      0.59      3427
+        label_obscene       0.68      0.63      0.66      3691
+label_severe_toxicity       0.46      0.11      0.17       367
+         label_threat       0.00      0.00      0.00       211
+       label_toxicity       0.62      0.70      0.66      6090
+
+            micro avg       0.65      0.59      0.62     14498
+            macro avg       0.55      0.36      0.40     14498
+         weighted avg       0.65      0.59      0.60     14498
+          samples avg       0.06      0.05      0.05     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+END: ke 22.6.2022 15.17.51 +0300

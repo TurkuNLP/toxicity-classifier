@@ -1,0 +1,110 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+Translated train and test
+[{'id': 'ee9697785fe41ff8', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'fi-deepl', 'text': '"\nKiitos Xeno. - Talk - "'}, {'id': '29fec512f2ee929e', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'fi-deepl', 'text': '2009 (UTC)\nKorjattu 03:36, 8 kesäkuu'}, {'id': '88944b29dde50648', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'fi-deepl', 'text': 'Kysymys\nMitä vikaa tekemässäni korjauksessa oli?'}]
+                 id  ...                                               text
+0  ee9697785fe41ff8  ...                         "\nKiitos Xeno. - Talk - "
+1  29fec512f2ee929e  ...              2009 (UTC)\nKorjattu 03:36, 8 kesäkuu
+2  88944b29dde50648  ...  Kysymys\nMitä vikaa tekemässäni korjauksessa oli?
+3  c7bf1f59096102f3  ...  Olen itse asiassa nyt samaa mieltä. (Uskomaton...
+4  7d71ee0e8ea0794a  ...  Kisumu \n\nHuomasin, että olet osallistunut Ki...
+
+[5 rows x 9 columns]
+                 id  ...              labels
+0  ee9697785fe41ff8  ...  [0, 0, 0, 0, 0, 0]
+1  29fec512f2ee929e  ...  [0, 0, 0, 0, 0, 0]
+2  88944b29dde50648  ...  [0, 0, 0, 0, 0, 0]
+3  c7bf1f59096102f3  ...  [0, 0, 0, 0, 0, 0]
+4  7d71ee0e8ea0794a  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 10 columns]
+                                                text              labels
+0                         "\nKiitos Xeno. - Talk - "  [0, 0, 0, 0, 0, 0]
+1              2009 (UTC)\nKorjattu 03:36, 8 kesäkuu  [0, 0, 0, 0, 0, 0]
+2  Kysymys\nMitä vikaa tekemässäni korjauksessa oli?  [0, 0, 0, 0, 0, 0]
+3  Olen itse asiassa nyt samaa mieltä. (Uskomaton...  [0, 0, 0, 0, 0, 0]
+4  Kisumu \n\nHuomasin, että olet osallistunut Ki...  [0, 0, 0, 0, 0, 0]
+[{'id': '879ad7bdba4cedaa', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'fi-deepl', 'text': '" \n\n Hei Pieter Pietersen, ja tervetuloa Wikipediaan!   \n\n Tervetuloa Wikipediaan! Toivottavasti viihdyt tietosanakirjassa ja haluat jäädä tänne. Ensimmäiseksi voit lukea johdannon. \n\n Jos sinulla on kysyttävää, voit kysyä minulta keskustelusivullani - autan mielelläni. Tai voit kysyä kysymyksesi Uusien avustajien ohjesivulla. \n\n - \n Seuraavassa on lisää resursseja, jotka auttavat sinua tutkimaan ja osallistumaan maailman suurinta tietosanakirjaa.... \n\n  Löydät perille:  \n\n  \n * Sisällysluettelo \n\n * Osastohakemisto \n\n  \n  Tarvitsetko apua?  \n\n  \n * Kysymykset - opas siitä, mistä voi esittää kysymyksiä. \n * Huijausluettelo - pikaohje Wikipedian merkintäkoodeista. \n\n * Wikipedian 5 pilaria - yleiskatsaus Wikipedian perustaan. \n * The Simplified Ruleset - yhteenveto Wikipedian tärkeimmistä säännöistä. \n\n  \n  Miten voit auttaa:  \n\n  \n * Wikipedian avustaminen - opas siitä, miten voit auttaa. \n\n * Yhteisöportaali - Wikipedian toiminnan keskus. \n\n  \n  Lisää vinkkejä...   \n\n  \n * Allekirjoita viestisi keskustelusivuilla neljällä tildillä (~~~~). Tämä lisää automaattisesti ""allekirjoituksesi"" (käyttäjänimesi ja päivämääräleima). Myös Wikipedian tekstinmuokkausikkunan yläpuolella olevassa työkalupalkissa oleva painike tekee tämän.  \n\n * Jos haluat leikkiä uusilla Wiki-taidoillasi, Hiekkalaatikko on sinua varten.  \n\n  \n  Onnea ja hauskaa. "'}, {'id': '8889526d5dccab4a', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 0, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 0, 'lang': 'fi-deepl', 'text': '" \n\n Sinut on väliaikaisesti estetty muokkaamasta Wikipediaa ilkivallan vuoksi. Jos haluat antaa hyödyllisiä panoksia, voit palata takaisin, kun esto päättyy. 123 "'}, {'id': '3f49e23388bc4c07', 'label_identity_attack': 0, 'label_insult': 0, 'label_obscene': 1, 'label_severe_toxicity': 0, 'label_threat': 0, 'label_toxicity': 1, 'lang': 'fi-deepl', 'text': '{Tule!!!!! FUCK..... ok mies, olen todella todella todella todella todella todella todella todella............ todella todella todella todella todella todella..... (hengittää syvään).... todella todella todella todella todella pahoillani! BLING!'}]
+                 id  ...                                               text
+0  879ad7bdba4cedaa  ...  " \n\n Hei Pieter Pietersen, ja tervetuloa Wik...
+1  8889526d5dccab4a  ...  " \n\n Sinut on väliaikaisesti estetty muokkaa...
+2  3f49e23388bc4c07  ...  {Tule!!!!! FUCK..... ok mies, olen todella tod...
+3  2bf685b152948de4  ...  " \n\n == Zeqin kieltäminen== \n Zeqin välimie...
+4  02511a5f1990bec2  ...         . Tämä tili on Dantherocker1:n sukkanukke.
+
+[5 rows x 9 columns]
+                 id  ...              labels
+0  879ad7bdba4cedaa  ...  [0, 0, 0, 0, 0, 0]
+1  8889526d5dccab4a  ...  [0, 0, 0, 0, 0, 0]
+2  3f49e23388bc4c07  ...  [0, 0, 1, 0, 0, 1]
+3  2bf685b152948de4  ...  [0, 0, 0, 0, 0, 0]
+4  02511a5f1990bec2  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 10 columns]
+                                                text              labels
+0  " \n\n Hei Pieter Pietersen, ja tervetuloa Wik...  [0, 0, 0, 0, 0, 0]
+1  " \n\n Sinut on väliaikaisesti estetty muokkaa...  [0, 0, 0, 0, 0, 0]
+2  {Tule!!!!! FUCK..... ok mies, olen todella tod...  [0, 0, 1, 0, 0, 1]
+3  " \n\n == Zeqin kieltäminen== \n Zeqin välimie...  [0, 0, 0, 0, 0, 0]
+4         . Tämä tili on Dantherocker1:n sukkanukke.  [0, 0, 0, 0, 0, 0]
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.0668, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.05544612556695938, 'eval_f1_micro': 0.7172118132740553, 'eval_f1_weighted': 0.6854617105402573, 'eval_roc_auc': 0.8178217851548301, 'eval_accuracy': 0.91950493498355, 'eval_runtime': 271.985, 'eval_samples_per_second': 117.341, 'eval_steps_per_second': 3.669, 'epoch': 1.0}
+{'loss': 0.0513, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.053783293813467026, 'eval_f1_micro': 0.7420504776843007, 'eval_f1_weighted': 0.7268349159713448, 'eval_roc_auc': 0.8645725518182809, 'eval_accuracy': 0.9167162776124079, 'eval_runtime': 271.8588, 'eval_samples_per_second': 117.395, 'eval_steps_per_second': 3.671, 'epoch': 2.0}
+{'loss': 0.0432, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.0488605834543705, 'eval_f1_micro': 0.7648696161734544, 'eval_f1_weighted': 0.754341873192083, 'eval_roc_auc': 0.8668391833763583, 'eval_accuracy': 0.9242675857747141, 'eval_runtime': 271.7983, 'eval_samples_per_second': 117.422, 'eval_steps_per_second': 3.672, 'epoch': 3.0}
+{'loss': 0.0366, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.05126377195119858, 'eval_f1_micro': 0.7638198303597543, 'eval_f1_weighted': 0.7554021023173086, 'eval_roc_auc': 0.8669215101178444, 'eval_accuracy': 0.9232649224502585, 'eval_runtime': 269.7943, 'eval_samples_per_second': 118.294, 'eval_steps_per_second': 3.699, 'epoch': 4.0}
+{'train_runtime': 12329.4129, 'train_samples_per_second': 41.415, 'train_steps_per_second': 5.177, 'train_loss': 0.04947148706931372, 'epoch': 4.0}
+{'epoch': 4.0,
+ 'eval_accuracy': 0.8788177185907656,
+ 'eval_f1_micro': 0.6499117629160835,
+ 'eval_f1_weighted': 0.6411905826823024,
+ 'eval_loss': 0.07950325310230255,
+ 'eval_roc_auc': 0.8579197566856248,
+ 'eval_runtime': 547.4003,
+ 'eval_samples_per_second': 116.876,
+ 'eval_steps_per_second': 3.654}
+F1_micro: 0.6499117629160835
+F1_weighted: 0.6411905826823024
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.69      0.38      0.49       712
+         label_insult       0.61      0.72      0.66      3427
+        label_obscene       0.59      0.75      0.66      3691
+label_severe_toxicity       0.34      0.41      0.37       367
+         label_threat       0.00      0.00      0.00       211
+       label_toxicity       0.57      0.83      0.67      6090
+
+            micro avg       0.58      0.74      0.65     14498
+            macro avg       0.47      0.51      0.48     14498
+         weighted avg       0.58      0.74      0.64     14498
+          samples avg       0.07      0.07      0.07     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+END: ke 22.6.2022 19.23.00 +0300

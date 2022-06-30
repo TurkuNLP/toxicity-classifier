@@ -1,0 +1,60 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+transfer from english train to translated finnish test
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.0551, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.1482987254858017, 'eval_f1_micro': 0.2711198428290766, 'eval_f1_weighted': 0.26248023207819177, 'eval_roc_auc': 0.5831079069525823, 'eval_accuracy': 0.89775, 'eval_runtime': 171.9531, 'eval_samples_per_second': 116.311, 'eval_steps_per_second': 3.635, 'epoch': 1.0}
+{'loss': 0.043, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.10591322183609009, 'eval_f1_micro': 0.42022911427773124, 'eval_f1_weighted': 0.3961733441079645, 'eval_roc_auc': 0.6626762956871789, 'eval_accuracy': 0.87435, 'eval_runtime': 171.5764, 'eval_samples_per_second': 116.566, 'eval_steps_per_second': 3.643, 'epoch': 2.0}
+{'loss': 0.0361, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.1179768517613411, 'eval_f1_micro': 0.43017329255861364, 'eval_f1_weighted': 0.39583240339201126, 'eval_roc_auc': 0.6810081137508277, 'eval_accuracy': 0.85355, 'eval_runtime': 171.5442, 'eval_samples_per_second': 116.588, 'eval_steps_per_second': 3.643, 'epoch': 3.0}
+{'loss': 0.0299, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.1308969110250473, 'eval_f1_micro': 0.427181842745204, 'eval_f1_weighted': 0.395005924201296, 'eval_roc_auc': 0.6705414574636172, 'eval_accuracy': 0.8651, 'eval_runtime': 171.8016, 'eval_samples_per_second': 116.413, 'eval_steps_per_second': 3.638, 'epoch': 4.0}
+{'train_runtime': 14122.0079, 'train_samples_per_second': 45.198, 'train_steps_per_second': 5.65, 'train_loss': 0.04102464931115307, 'epoch': 4.0}
+{'epoch': 4.0,
+ 'eval_accuracy': 0.8651,
+ 'eval_f1_micro': 0.427181842745204,
+ 'eval_f1_weighted': 0.395005924201296,
+ 'eval_loss': 0.1308969110250473,
+ 'eval_roc_auc': 0.6705414574636172,
+ 'eval_runtime': 171.7081,
+ 'eval_samples_per_second': 116.477,
+ 'eval_steps_per_second': 3.64}
+F1_micro: 0.427181842745204
+F1_weighted: 0.395005924201296
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.62      0.21      0.32       712
+         label_insult       0.71      0.21      0.32      3427
+        label_obscene       0.62      0.17      0.27      3691
+label_severe_toxicity       0.33      0.05      0.09       367
+         label_threat       0.27      0.01      0.03       211
+       label_toxicity       0.50      0.57      0.53      6090
+
+            micro avg       0.53      0.34      0.42     14498
+            macro avg       0.51      0.20      0.26     14498
+         weighted avg       0.58      0.34      0.39     14498
+          samples avg       0.05      0.03      0.04     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+END: ma 27.6.2022 14.13.17 +0300
