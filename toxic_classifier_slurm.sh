@@ -16,24 +16,22 @@ EPOCHS=4
 LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"
 BATCH=8
 TR=0.5
-MODEL="TurkuNLP/bert-base-finnish-cased-v1"   #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-cased' # # "xlm-roberta-large" #'xlm-roberta-base'
+MODEL='xlm-roberta-base'   #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-cased' # # "xlm-roberta-large" #'xlm-roberta-base'
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction treshold: $TR, model: $MODEL "
 
-#TRANSLATED
-echo "Translated train and test"
-srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
+#translated
+# echo "Translated train and test"
+# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
 
-
-#ORIGINAL
+#original
 # echo "original train and test data"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR
+# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
+
 
 
 # transfer
-# echo "transfer from english train to translated finnish test"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
-
-
+echo "transfer from english train to translated finnish test"
+srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
 
 
 echo "END: $(date)"

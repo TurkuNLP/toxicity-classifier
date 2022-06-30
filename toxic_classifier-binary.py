@@ -33,20 +33,17 @@ parser.add_argument('--learning', type=float, default=8e-6,
 parser.add_argument('--dev', action='store_true', default=False,
     help="Decide whether to split the train into train and dev or not")
 args = parser.parse_args()
-
 print(args)
 
-# this I could instead parse from the data, now I got it manually
+
 label_names = [
     'label_identity_attack',
     'label_insult',
     'label_obscene',
     'label_severe_toxicity',
     'label_threat',
-    'label_toxicity',
+    'label_toxicity'
 ]
-
-
 
 def json_to_dataset(data):
     # first I need to read the json lines
@@ -69,7 +66,7 @@ def json_to_dataset(data):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    # print(df.head())
+    print(df.head())
 
     dataset = datasets.Dataset.from_pandas(df)
 
@@ -79,6 +76,22 @@ def json_to_dataset(data):
 train, unnecessary = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
 
+# class weights
+from sklearn.utils import compute_class_weight
+# get all labels from train
+labels = unnecessary["labels"].values.tolist()
+n_samples = (len(labels))
+n_classes = 2
+from collections import Counter
+c=Counter(labels)
+w1=n_samples / (n_classes * c[0])
+w2=n_samples / (n_classes * c[1])
+weights = [w1,w2]
+class_weights = torch.tensor(weights).to("cuda:0") # have to decide on a device
+print(class_weights)
+
+
+
 if args.dev == True:
     # then split train into train and dev
     train, dev = train.train_test_split(test_size=0.2).values()
@@ -87,8 +100,6 @@ if args.dev == True:
 else:
     dataset = datasets.DatasetDict({"train":train, "test":test})
 print(dataset)
-
-
 
 
 model_name = args.model # finbert for Finnish and bert for english? xlmr-base or large also
@@ -124,7 +135,9 @@ trainer_args = transformers.TrainingArguments(
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 def compute_metrics(pred):
     labels = pred.label_ids
+    #print(labels)
     preds = pred.predictions.argmax(-1)
+    #print(preds)
     precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary')
     acc = accuracy_score(labels, preds)
     return {
@@ -160,6 +173,18 @@ class LogSavingCallback(transformers.TrainerCallback):
 training_logs = LogSavingCallback()
 
 
+# make own loss function with cross entropy loss
+class newTrainer(transformers.Trainer):
+    def compute_loss(self, model, inputs, return_outputs=False):
+        labels = inputs.pop("labels")
+        outputs = model(**inputs)
+        logits = outputs.logits
+        loss = nn.CrossEntropyLoss(weight=class_weights)
+        loss = loss_fct(logits.view(-1, self.model.config.num_labels), 
+            labels.float().view(-1, self.model.config.num_labels))
+        return (loss, outputs) if return_outputs else loss
+
+
 
 if args.dev == True:
     eval_dataset=dataset["dev"] 
@@ -185,3 +210,14 @@ eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
 
+
+
+# see how the labels are predicted
+test_pred = trainer.predict(dataset['test'])
+trues = test_pred.label_ids
+predictions = test_pred.predictions
+preds = pred.predictions.argmax(-1)
+
+
+from sklearn.metrics import classification_report
+print(classification_report(trues, preds, target_names=["clean", "toxic"]))

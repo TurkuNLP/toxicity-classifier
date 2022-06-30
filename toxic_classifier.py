@@ -64,7 +64,7 @@ def json_to_dataset(data):
     df['labels'] = df[label_names[:-1]].values.tolist() # don't take clean label into account because it doesn't exist yet
 
 
-
+    # TODO make argparse argument for this so I don't have to come here to use this everytime
     # add new column for clean data
     df['sum'] = df.labels.map(sum) 
     df.loc[df["sum"] > 0, "label_clean"] = 0
@@ -75,9 +75,7 @@ def json_to_dataset(data):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    print(df.head())
     dataset = datasets.Dataset.from_pandas(df)
-    print(dataset[:6])
 
     return dataset, df
 
@@ -180,8 +178,18 @@ def multi_label_metrics(predictions, labels, threshold):
     y_pred[np.where(probs >= threshold)] = 1
     # finally, compute metrics
     y_true = labels
-    f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
-    f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
+
+
+    # CHANGE TO NOT TAKE THE CLEAN LABEL INTO ACCOUNT WHEN COMPUTING THE SCORE
+    new_pred, new_true = [], []    
+    for i in range(len(y_pred)):
+        new_pred.append(y_pred[i][:-1])
+    for i in range(len(y_true)):
+        new_true.append(y_true[i][:-1])
+
+
+    f1_micro_average = f1_score(y_true=new_true, y_pred=new_pred, average='micro')
+    f1_weighted_average = f1_score(y_true=new_true, y_pred=new_pred, average='weighted')
     roc_auc = roc_auc_score(y_true, y_pred, average = 'micro')
     accuracy = accuracy_score(y_true, y_pred)
     # return as dictionary
@@ -282,8 +290,14 @@ probs = sigmoid(torch.Tensor(predictions))
 preds = np.zeros(probs.shape)
 preds[np.where(probs >= args.threshold)] = 1
 
+new_pred, new_true = [], []
+for i in range(len(preds)):
+    new_pred.append(preds[i][:-1])
+for i in range(len(trues)):
+    new_true.append(trues[i][:-1])
+
 from sklearn.metrics import classification_report
-print(classification_report(trues, preds, target_names=label_names))
+print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))
 
 
 
@@ -293,7 +307,7 @@ print(classification_report(trues, preds, target_names=label_names))
 # modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
 # COULD ALSO BE USED WITH REGISTER LABELING
 
-idx2label = dict(zip(range(6), label_names))
+idx2label = dict(zip(range(6), label_names[:-1]))
 print(idx2label)
 
 # Getting indices of where boolean one hot vector true_bools is True so we can use idx2label to gather label names

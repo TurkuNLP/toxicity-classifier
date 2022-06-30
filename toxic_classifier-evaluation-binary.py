@@ -156,7 +156,7 @@ def optimize_threshold(predictions, labels):
 
 #compute accuracy and loss
 from transformers import EvalPrediction
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels) # why is the sigmoid applies? could do without it
@@ -167,28 +167,32 @@ def multi_label_metrics(predictions, labels, threshold):
     y_pred[np.where(probs >= threshold)] = 1
     # finally, compute metrics
     y_true = labels
+    # print(y_true)
+    # print(y_pred)
+
+    # BINARY EVALUATION
+    new_pred=[]
+    new_true=[]
+    for i in range(len(y_pred)):
+        if y_pred[i].sum() > 0:
+            new_pred.append(1)
+        else:
+            new_pred.append(0)
+    for i in range(len(y_true)):
+        if y_true[i].sum() > 0:
+            new_true.append(1)
+        else:
+            new_true.append(0)
 
 
-    # TODO JUST DO BINARY EVALUATION HERE?
-    if y_pred.sum() > 0:
-        y.pred = 1
-    else:
-        y.pred = 0
-    if y_true.sum() > 0:
-         y.true = 1
-    else:
-        y.true = 0
-
-
-    f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
-    f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
-    roc_auc = roc_auc_score(y_true, y_pred, average = 'micro')
-    accuracy = accuracy_score(y_true, y_pred)
-    # return as dictionary
-    metrics = {'f1_micro': f1_micro_average,
-                'f1_weighted': f1_weighted_average,
-               'roc_auc': roc_auc,
-               'accuracy': accuracy}
+    precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='binary')
+    acc = accuracy_score(new_true, new_pred)
+    return {
+        'accuracy': acc,
+        'f1': f1,
+        'precision': precision,
+        'recall': recall
+    }
     return metrics
 
 def compute_metrics(p: EvalPrediction):
@@ -267,6 +271,5 @@ trainer.train()
 
 eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
-print('F1_micro:', eval_results['eval_f1_micro'])
-print('F1_weighted:', eval_results['eval_f1_weighted'])
+print('F1_micro:', eval_results['eval_f1'])
 

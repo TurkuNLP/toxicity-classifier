@@ -1,0 +1,41 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+transfer from english train to translated finnish test
+Namespace(batch=8, dev=False, epochs=4, learning=2e-05, loss=True, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_en.jsonl')
+                                                text                               labels
+0                      "\nThanks Xeno. -  • Talk • "  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+1                 2009 (UTC)\nFixed    03:36, 8 June  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+2    Question\nWhat was wrong with the repair I did?  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+3  I agree myself now, actually. (Amazing how the...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+4  Kisumu \n\nI saw that you contributed to Kisum...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+{'text': ['"\nThanks Xeno. -  • Talk • "', '2009 (UTC)\nFixed    03:36, 8 June', 'Question\nWhat was wrong with the repair I did?', "I agree myself now, actually. (Amazing how the deniars can't admit their mistakes!!)", 'Kisumu \n\nI saw that you contributed to Kisumu, I was wondering whether we could work together to update the Kisumu page which currently reads like a travel brochure, which is very undeserving for a leading town in East Africa. If possible could you constructively help me make it better, I am hoping to get together a work group of contributers to help out so that it is something close to the Nairobi page. I will be working on this for the next week or two, if you have some spare time I will be glad if you could help me open up Kisumu to the world. Thanks!', 'Asian Supremacy\nYou voted to delete the article Asian supremacy because you felt it was unverifiable.  It is verifiable.   The organization Goldsea supports Asian supremacy.'], 'labels': [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]]}
+                                                text                               labels
+0  " \n\n Hei Pieter Pietersen, ja tervetuloa Wik...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+1  " \n\n Sinut on väliaikaisesti estetty muokkaa...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+2  {Tule!!!!! FUCK..... ok mies, olen todella tod...  [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0]
+3  " \n\n == Zeqin kieltäminen== \n Zeqin välimie...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+4         . Tämä tili on Dantherocker1:n sukkanukke.  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+{'text': ['" \n\n Hei Pieter Pietersen, ja tervetuloa Wikipediaan!   \n\n Tervetuloa Wikipediaan! Toivottavasti viihdyt tietosanakirjassa ja haluat jäädä tänne. Ensimmäiseksi voit lukea johdannon. \n\n Jos sinulla on kysyttävää, voit kysyä minulta keskustelusivullani - autan mielelläni. Tai voit kysyä kysymyksesi Uusien avustajien ohjesivulla. \n\n - \n Seuraavassa on lisää resursseja, jotka auttavat sinua tutkimaan ja osallistumaan maailman suurinta tietosanakirjaa.... \n\n  Löydät perille:  \n\n  \n * Sisällysluettelo \n\n * Osastohakemisto \n\n  \n  Tarvitsetko apua?  \n\n  \n * Kysymykset - opas siitä, mistä voi esittää kysymyksiä. \n * Huijausluettelo - pikaohje Wikipedian merkintäkoodeista. \n\n * Wikipedian 5 pilaria - yleiskatsaus Wikipedian perustaan. \n * The Simplified Ruleset - yhteenveto Wikipedian tärkeimmistä säännöistä. \n\n  \n  Miten voit auttaa:  \n\n  \n * Wikipedian avustaminen - opas siitä, miten voit auttaa. \n\n * Yhteisöportaali - Wikipedian toiminnan keskus. \n\n  \n  Lisää vinkkejä...   \n\n  \n * Allekirjoita viestisi keskustelusivuilla neljällä tildillä (~~~~). Tämä lisää automaattisesti ""allekirjoituksesi"" (käyttäjänimesi ja päivämääräleima). Myös Wikipedian tekstinmuokkausikkunan yläpuolella olevassa työkalupalkissa oleva painike tekee tämän.  \n\n * Jos haluat leikkiä uusilla Wiki-taidoillasi, Hiekkalaatikko on sinua varten.  \n\n  \n  Onnea ja hauskaa. "', '" \n\n Sinut on väliaikaisesti estetty muokkaamasta Wikipediaa ilkivallan vuoksi. Jos haluat antaa hyödyllisiä panoksia, voit palata takaisin, kun esto päättyy. 123 "', '{Tule!!!!! FUCK..... ok mies, olen todella todella todella todella todella todella todella todella............ todella todella todella todella todella todella..... (hengittää syvään).... todella todella todella todella todella pahoillani! BLING!', '" \n\n == Zeqin kieltäminen== \n Zeqin välimiesoikeudenkäynnissä sovitun oikeussuojakeinon mukaan kuka tahansa ylläpitäjä voi perustellusta syystä kieltää häntä käyttämästä mitä tahansa artikkelia, jota hän häiritsee taipumuksellisella (aggressiivisella puolueellisella) muokkaamisella. Vaikka en itse olisi kieltänyt Zeqia käyttämästä tätä artikkelia (hän ei ollut tehnyt paljon muokkaussotia ja käytti keskustelusivua keskustellakseen asioista), on (mielestäni) riittävät perusteet kieltää häntä. Hänet pitäisi estää vain, jos hän rikkoo kieltoa yrittämällä muokata artikkelia.   \n\n Mielestäni hän on oikeassa siinä, että artikkelissa on propagandistisia elementtejä, koska on hyvin vaikea nähdä, miten vastakkainen näkemys voitaisiin ilmaista muulla tavoin kuin kieltämällä. Se vastaa enemmän tai vähemmän ""[[israelilainen fasismi]]""  "', '. Tämä tili on Dantherocker1:n sukkanukke.', '**Kiitos. Päivä, jolloin menin, oli ulkona niin kaunis, että jätin jalustani Lontooseen. Kun pääsin sinne ja näin joitakin saleja ja kappeleita, tajusin, että se oli virhe... - -'], 'labels': [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]]}
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)

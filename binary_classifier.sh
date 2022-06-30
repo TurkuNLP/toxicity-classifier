@@ -7,7 +7,7 @@
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
 #SBATCH --gres=gpu:v100:1
-#SBATCH --output=logs/%j.out
+#SBATCH --output=logs/binary/%j.out
 #SBATCH --error=../logs/%j.err
 
 module load pytorch 
@@ -15,6 +15,7 @@ module load pytorch
 EPOCHS=4 
 LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"
 BATCH=8
+TR=0.5
 MODEL='xlm-roberta-base'  #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-cased' # # "xlm-roberta-large" #'xlm-roberta-base'
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 
@@ -22,15 +23,25 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 # echo "Translated train and test"
 # srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR  #--dev
 
+# TRANSFER
+# echo "transfer from english train to translated finnish test"
+# srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR #--dev
 
-#ORIGINAL
-# echo "original train and test data"
-# srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR -
 
+
+
+# JUST THE EVALUATION IN BINARY
+#translated
+# echo "Translated train and test"
+# echo "binary evaluation"
+# srun python3 toxic_classifier-evaluation-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
 
 # transfer
 echo "transfer from english train to translated finnish test"
-srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR #--dev
+echo "binary evaluation"
+srun python3 toxic_classifier-evaluation-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
+
+
 
 
 
