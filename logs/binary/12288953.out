@@ -26,3 +26,19 @@ To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
 {'loss': 0.2938, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+[[0 0 0 0 0 0]
+ [0 0 0 0 0 0]
+ [0 0 1 0 0 1]
+ ...
+ [0 0 0 0 0 0]
+ [0 0 0 0 0 0]
+ [0 0 0 0 0 0]]
+[[0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]
+ [0. 1. 1. 0. 0. 1.]
+ ...
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]]
+{'eval_loss': 0.29605454206466675, 'eval_accuracy': 0.9327268748632342, 'eval_f1': 0.6670276961163545, 'eval_precision': 0.6450695795301511, 'eval_recall': 0.6905333974050937, 'eval_runtime': 544.8, 'eval_samples_per_second': 117.434, 'eval_steps_per_second': 3.671, 'epoch': 1.0}
+{'loss': 0.2398, 'learning_rate': 1e-05, 'epoch': 2.0}

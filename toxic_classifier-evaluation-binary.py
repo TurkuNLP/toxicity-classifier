@@ -156,7 +156,7 @@ def optimize_threshold(predictions, labels):
 
 #compute accuracy and loss
 from transformers import EvalPrediction
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels) # why is the sigmoid applies? could do without it
@@ -187,8 +187,10 @@ def multi_label_metrics(predictions, labels, threshold):
 
     precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='binary')
     acc = accuracy_score(new_true, new_pred)
+    wacc = balanced_accuracy_score(new_true, new_pred)
     return {
         'accuracy': acc,
+        'weighted_accuracy': wacc,
         'f1': f1,
         'precision': precision,
         'recall': recall

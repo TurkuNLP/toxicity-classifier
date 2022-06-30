@@ -42,3 +42,7 @@ To disable this warning, you can either:
 [0 0 1 ... 0 0 0]
 {'eval_loss': 0.3753783404827118, 'eval_accuracy': 0.9159398543249242, 'eval_f1': 0.48926875593542263, 'eval_precision': 0.6008864007464427, 'eval_recall': 0.4126221367932084, 'eval_runtime': 541.3835, 'eval_samples_per_second': 118.175, 'eval_steps_per_second': 3.694, 'epoch': 1.0}
 {'loss': 0.1217, 'learning_rate': 1e-05, 'epoch': 2.0}
+[0 0 1 ... 0 0 0]
+[0 0 1 ... 0 0 0]
+{'eval_loss': 0.3201363980770111, 'eval_accuracy': 0.9177217168401638, 'eval_f1': 0.47881188118811874, 'eval_precision': 0.6269121078558465, 'eval_recall': 0.38731379144642, 'eval_runtime': 541.8229, 'eval_samples_per_second': 118.079, 'eval_steps_per_second': 3.691, 'epoch': 2.0}
+{'loss': 0.0989, 'learning_rate': 5e-06, 'epoch': 3.0}

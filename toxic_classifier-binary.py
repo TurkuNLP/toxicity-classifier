@@ -132,7 +132,7 @@ trainer_args = transformers.TrainingArguments(
 
 
 # COMPUTE METRICS
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score
 def compute_metrics(pred):
     labels = pred.label_ids
     #print(labels)
@@ -140,8 +140,10 @@ def compute_metrics(pred):
     #print(preds)
     precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary')
     acc = accuracy_score(labels, preds)
+    wacc = balanced_accuracy_score(new_true, new_pred)
     return {
         'accuracy': acc,
+        'weighted_accuracy': wacc,
         'f1': f1,
         'precision': precision,
         'recall': recall
