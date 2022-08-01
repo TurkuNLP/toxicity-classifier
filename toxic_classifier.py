@@ -66,7 +66,6 @@ def json_to_dataset(data):
     df['labels'] = df[label_names[:-1]].values.tolist() # don't take clean label into account because it doesn't exist yet
 
 
-    # TODO make argparse argument for this so I don't have to come here to use this everytime
     if args.clean_as_label == True:
         # add new column for clean data
         df['sum'] = df.labels.map(sum) 
@@ -107,7 +106,7 @@ class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in c
 class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
 # multiply things if there is more than one
 # does this help at all when the problem is with examples that have no labels?
-# I believe this is somewhat based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
+# I believe this is based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
 print(class_weights)
 
 if args.dev == True:
@@ -120,7 +119,7 @@ else:
 print(dataset)
 
 
-model_name = args.model # finbert for Finnish and bert for english? xlmr-base or large also
+model_name = args.model 
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
 
 def tokenize(example):
@@ -134,7 +133,7 @@ dataset = dataset.map(tokenize)
 
 model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=len(label_names), problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
 
-# Set training arguments CHANGE TO EPOCHS
+# Set training arguments
 trainer_args = transformers.TrainingArguments(
     "checkpoints",
     evaluation_strategy="epoch",
@@ -173,7 +172,7 @@ from transformers import EvalPrediction
 from sklearn.metrics import f1_score, roc_auc_score, accuracy_score, balanced_accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
-    # first, apply sigmoid on predictions which are of shape (batch_size, num_labels) # why is the sigmoid applies? could do without it
+    # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(predictions))
     #next, use threshold to turn them into integer predictions
@@ -183,9 +182,8 @@ def multi_label_metrics(predictions, labels, threshold):
     y_true = labels
 
 
-    # TODO take this into if clause if I make the clean label an argument for argparse
     if args.clean_as_label == True:
-        # CHANGE TO NOT TAKE THE CLEAN LABEL INTO ACCOUNT WHEN COMPUTING THE SCORE
+        # change to not take clean label into account when computing metrics
         new_pred, new_true = [], []    
         for i in range(len(y_pred)):
             new_pred.append(y_pred[i][:-1])
@@ -264,7 +262,7 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"] #.select(range(20_000)) # just like topias does it
+    eval_dataset=dataset["test"] #.select(range(20_000))
 
 trainer = MultilabelTrainer(
     model=model,

@@ -1,6 +1,10 @@
 epochs: 4, learning rate: 2e-5, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
 Translated train and test
 Namespace(batch=8, dev=False, epochs=4, learning=2e-05, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', train='data/train_fi_deepl.jsonl')
+toxic:  16225
+clean:  143346
+toxic:  6243
+clean:  57735
 tensor([0.5566, 4.9174], device='cuda:0')
 DatasetDict({
     train: Dataset({

@@ -60,9 +60,16 @@ def json_to_dataset(data):
 
     # change to binary: if toxic 1 if clean 0
     # first get sum of labels
-    df['labels'] = df.labels.map(sum)
+    df['labels'] = df.labels.map(sum) #df[label_names].sum(axis=1)
+
+    # check that the ratio between clean and toxic is still the same! (it is)
+    train_toxic = df[df["labels"] > 0]
+    train_clean = df[df["labels"] == 0]
+    print("toxic: ", len(train_toxic))
+    print("clean: ", len(train_clean))
+
     # then change bigger than 0 to 1 and 0 stays 0
-    df.loc[df["labels"] > 0, "labels"] = 1
+    df.loc[df["labels"] > 0, "labels"] = 1 #, "labels"
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
@@ -101,7 +108,7 @@ else:
 print(dataset)
 
 
-model_name = args.model # finbert for Finnish and bert for english? xlmr-base or large also
+model_name = args.model
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
 
 def tokenize(example):
@@ -115,7 +122,7 @@ dataset = dataset.map(tokenize)
 
 model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2, cache_dir="../new_cache_dir/")
 
-# Set training arguments CHANGE TO EPOCHS
+# Set training arguments 
 trainer_args = transformers.TrainingArguments(
     "checkpoints",
     evaluation_strategy="epoch",
@@ -124,14 +131,14 @@ trainer_args = transformers.TrainingArguments(
     load_best_model_at_end=True,
     num_train_epochs=args.epochs,
     learning_rate=args.learning,
-    #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) loss
+    #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) TRAINING loss (NOT EVAL LOSS)
     per_device_train_batch_size=args.batch,
     per_device_eval_batch_size=32
 )
 
 
 # COMPUTE METRICS
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score, roc_auc_score
 def compute_metrics(pred):
     labels = pred.label_ids
     #print(labels)
@@ -139,7 +146,8 @@ def compute_metrics(pred):
     #print(preds)
     precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary')
     acc = accuracy_score(labels, preds)
-    wacc = balanced_accuracy_score(new_true, new_pred)
+    roc_auc = roc_auc_score(labels, preds, average = 'micro')
+    wacc = balanced_accuracy_score(labels, preds)
     return {
         'accuracy': acc,
         'weighted_accuracy': wacc,
@@ -210,7 +218,7 @@ trainer.train()
 eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
-print('weighted accuracy', eval_results['eval_weighted_accuracy'])
+#print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
 
 

@@ -34,7 +34,7 @@ def json_to_df(data):
 
 
 dftrain = json_to_df(args.train)
-dftest = json_to_df(args.test)
+#dftest = json_to_df(args.test)
 
 plot1 = dftrain[label_names].sum().sort_values().plot(kind="barh")
 fig = plot1.get_figure()
@@ -42,6 +42,8 @@ fig.savefig('toxic_labels.jpg')
 
 train_toxic = dftrain[dftrain[label_names].sum(axis=1) > 0]
 train_clean = dftrain[dftrain[label_names].sum(axis=1) == 0]
+print("toxic: ", len(train_toxic))
+print("clean: ", len(train_clean))
 
 plot2 = pd.DataFrame(dict(
   toxic=[len(train_toxic)], 
