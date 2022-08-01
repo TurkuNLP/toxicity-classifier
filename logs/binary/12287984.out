@@ -50,3 +50,11 @@ To disable this warning, you can either:
 [0 0 1 ... 0 0 0]
 {'eval_loss': 0.3786861002445221, 'eval_accuracy': 0.9114383069180031, 'eval_f1': 0.6546806435884934, 'eval_precision': 0.5283817019183473, 'eval_recall': 0.8603235623898766, 'eval_runtime': 523.5153, 'eval_samples_per_second': 122.208, 'eval_steps_per_second': 3.82, 'epoch': 3.0}
 {'loss': 0.0744, 'learning_rate': 0.0, 'epoch': 4.0}
+[0 0 1 ... 0 0 0]
+[0 0 1 ... 0 0 0]
+{'eval_loss': 0.36152100563049316, 'eval_accuracy': 0.9199568601706837, 'eval_f1': 0.6715834028089528, 'eval_precision': 0.56, 'eval_recall': 0.8386993432644562, 'eval_runtime': 523.6092, 'eval_samples_per_second': 122.187, 'eval_steps_per_second': 3.82, 'epoch': 4.0}
+{'train_runtime': 13623.752, 'train_samples_per_second': 46.851, 'train_steps_per_second': 5.857, 'train_loss': 0.11409725977698322, 'epoch': 4.0}
+[0 0 1 ... 0 0 0]
+[0 0 1 ... 0 0 0]
+F1_micro: 0.6715834028089528
+END: to 30.6.2022 16.07.11 +0300

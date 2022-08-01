@@ -14,7 +14,7 @@ logging.disable(logging.INFO)
 
 
 parser = argparse.ArgumentParser(
-        description="A script for classifying toxic data (multilabel)",
+        description="A script for classifying toxic data and turning a multilabel problem to a binary one",
         epilog="Made by Anni Eskelinen"
     )
 parser.add_argument('--train', required=True)
@@ -274,4 +274,8 @@ trainer.train()
 eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
+print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
+
+
+# is it possible to do a classification report from the labels to binary? would take the same effort as in the metrics I guess

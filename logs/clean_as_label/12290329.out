@@ -1,13 +1,13 @@
-epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
-transfer from english train to translated finnish test
-Namespace(batch=8, dev=False, epochs=4, learning=2e-05, loss=True, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_en.jsonl')
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, dev=False, epochs=4, learning=2e-05, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_fi_deepl.jsonl')
                                                 text                               labels
-0                      "\nThanks Xeno. -  • Talk • "  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-1                 2009 (UTC)\nFixed    03:36, 8 June  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-2    Question\nWhat was wrong with the repair I did?  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-3  I agree myself now, actually. (Amazing how the...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-4  Kisumu \n\nI saw that you contributed to Kisum...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-{'text': ['"\nThanks Xeno. -  • Talk • "', '2009 (UTC)\nFixed    03:36, 8 June', 'Question\nWhat was wrong with the repair I did?', "I agree myself now, actually. (Amazing how the deniars can't admit their mistakes!!)", 'Kisumu \n\nI saw that you contributed to Kisumu, I was wondering whether we could work together to update the Kisumu page which currently reads like a travel brochure, which is very undeserving for a leading town in East Africa. If possible could you constructively help me make it better, I am hoping to get together a work group of contributers to help out so that it is something close to the Nairobi page. I will be working on this for the next week or two, if you have some spare time I will be glad if you could help me open up Kisumu to the world. Thanks!', 'Asian Supremacy\nYou voted to delete the article Asian supremacy because you felt it was unverifiable.  It is verifiable.   The organization Goldsea supports Asian supremacy.'], 'labels': [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]]}
+0                         "\nKiitos Xeno. - Talk - "  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+1              2009 (UTC)\nKorjattu 03:36, 8 kesäkuu  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+2  Kysymys\nMitä vikaa tekemässäni korjauksessa oli?  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+3  Olen itse asiassa nyt samaa mieltä. (Uskomaton...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+4  Kisumu \n\nHuomasin, että olet osallistunut Ki...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+{'text': ['"\nKiitos Xeno. - Talk - "', '2009 (UTC)\nKorjattu 03:36, 8 kesäkuu', 'Kysymys\nMitä vikaa tekemässäni korjauksessa oli?', 'Olen itse asiassa nyt samaa mieltä. (Uskomatonta, miten kieltäjät eivät pysty myöntämään virheitään!!)', 'Kisumu \n\nHuomasin, että olet osallistunut Kisumun julkaisemiseen, ja mietin, voisimmeko yhdessä päivittää Kisumun sivua, joka on tällä hetkellä kuin matkaesite, mikä ei ole kovinkaan sopivaa Itä-Afrikan johtavalle kaupungille. Jos mahdollista, voisitko auttaa minua rakentavasti parantamaan sivua, toivon saavani kokoon työryhmän, joka auttaisi minua, jotta se olisi lähellä Nairobin sivua. Työskentelen tämän parin seuraavan viikon ajan, ja jos teillä on hieman vapaa-aikaa, olisin iloinen, jos voisitte auttaa minua avaamaan Kisumun maailmalle. Kiitos!', 'Aasian ylivalta\nÄänestitte artikkelin Aasian ylivalta poistamisen puolesta, koska se oli mielestänne tarkistamaton.  Se on todennettavissa.   Goldsea-järjestö tukee aasialaista ylivaltaa.'], 'labels': [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]]}
                                                 text                               labels
 0  " \n\n Hei Pieter Pietersen, ja tervetuloa Wik...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
 1  " \n\n Sinut on väliaikaisesti estetty muokkaa...  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
@@ -39,3 +39,30 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1722, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.1724381446838379, 'eval_f1_micro': 0.6104493264137245, 'eval_f1_weighted': 0.6340751006878341, 'eval_roc_auc': 0.9287993841372404, 'eval_accuracy': 0.8492763137328456, 'eval_runtime': 528.5516, 'eval_samples_per_second': 121.044, 'eval_steps_per_second': 3.784, 'epoch': 1.0}
+{'loss': 0.1283, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.15239104628562927, 'eval_f1_micro': 0.6247995583712311, 'eval_f1_weighted': 0.6326220404841948, 'eval_roc_auc': 0.9263934419336646, 'eval_accuracy': 0.8456969583294257, 'eval_runtime': 531.8141, 'eval_samples_per_second': 120.301, 'eval_steps_per_second': 3.761, 'epoch': 2.0}
+{'loss': 0.0948, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.17721185088157654, 'eval_f1_micro': 0.6357870049570918, 'eval_f1_weighted': 0.6416125960907462, 'eval_roc_auc': 0.924948595196821, 'eval_accuracy': 0.8445872018506362, 'eval_runtime': 530.488, 'eval_samples_per_second': 120.602, 'eval_steps_per_second': 3.77, 'epoch': 3.0}
+{'loss': 0.068, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.20583727955818176, 'eval_f1_micro': 0.6556946111206354, 'eval_f1_weighted': 0.6580636918878346, 'eval_roc_auc': 0.9332326750917134, 'eval_accuracy': 0.8661727468817406, 'eval_runtime': 532.2571, 'eval_samples_per_second': 120.201, 'eval_steps_per_second': 3.758, 'epoch': 4.0}
+{'train_runtime': 13144.2033, 'train_samples_per_second': 48.56, 'train_steps_per_second': 6.07, 'train_loss': 0.11582739700881163, 'epoch': 4.0}
+F1_micro: 0.6556946111206354
+F1_weighted: 0.6580636918878346
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.53      0.70      0.60       712
+         label_insult       0.62      0.73      0.67      3427
+        label_obscene       0.60      0.76      0.67      3691
+label_severe_toxicity       0.29      0.65      0.40       367
+         label_threat       0.47      0.69      0.56       211
+       label_toxicity       0.54      0.87      0.67      6090
+
+            micro avg       0.56      0.79      0.66     14498
+            macro avg       0.51      0.73      0.60     14498
+         weighted avg       0.57      0.79      0.66     14498
+          samples avg       0.07      0.07      0.07     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+END: to 30.6.2022 19.05.44 +0300

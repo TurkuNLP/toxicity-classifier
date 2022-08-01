@@ -14,7 +14,7 @@ logging.disable(logging.INFO)
 
 
 parser = argparse.ArgumentParser(
-        description="A script for classifying toxic data (multilabel)",
+        description="A script for classifying toxic data in a binary manner",
         epilog="Made by Anni Eskelinen"
     )
 parser.add_argument('--train', required=True)
@@ -66,7 +66,7 @@ def json_to_dataset(data):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    print(df.head())
+    #print(df.head())
 
     dataset = datasets.Dataset.from_pandas(df)
 
@@ -77,7 +77,6 @@ train, unnecessary = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
 
 # class weights
-from sklearn.utils import compute_class_weight
 # get all labels from train
 labels = unnecessary["labels"].values.tolist()
 n_samples = (len(labels))
@@ -211,6 +210,7 @@ trainer.train()
 eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
+print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
 
 

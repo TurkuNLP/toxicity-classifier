@@ -46,3 +46,11 @@ To disable this warning, you can either:
 [0 0 1 ... 0 0 0]
 {'eval_loss': 0.3201363980770111, 'eval_accuracy': 0.9177217168401638, 'eval_f1': 0.47881188118811874, 'eval_precision': 0.6269121078558465, 'eval_recall': 0.38731379144642, 'eval_runtime': 541.8229, 'eval_samples_per_second': 118.079, 'eval_steps_per_second': 3.691, 'epoch': 2.0}
 {'loss': 0.0989, 'learning_rate': 5e-06, 'epoch': 3.0}
+[0 0 1 ... 0 0 0]
+[0 0 1 ... 0 0 0]
+{'eval_loss': 0.331867516040802, 'eval_accuracy': 0.90667104317109, 'eval_f1': 0.5256216731548422, 'eval_precision': 0.521437578814628, 'eval_recall': 0.529873458273266, 'eval_runtime': 542.246, 'eval_samples_per_second': 117.987, 'eval_steps_per_second': 3.688, 'epoch': 3.0}
+{'loss': 0.0754, 'learning_rate': 0.0, 'epoch': 4.0}
+[0 0 1 ... 0 0 0]
+[0 0 1 ... 0 0 0]
+{'eval_loss': 0.4752960205078125, 'eval_accuracy': 0.8953390227890837, 'eval_f1': 0.5308953341740227, 'eval_precision': 0.4717967874486365, 'eval_recall': 0.6069197501201345, 'eval_runtime': 544.5834, 'eval_samples_per_second': 117.481, 'eval_steps_per_second': 3.673, 'epoch': 4.0}
+END: to 30.6.2022 16.26.57 +0300

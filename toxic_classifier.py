@@ -37,6 +37,8 @@ parser.add_argument('--loss', action='store_true', default=False,
     help="Decide whether to use the loss function or not")
 parser.add_argument('--dev', action='store_true', default=False,
     help="Decide whether to split the train into train and dev or not")
+parser.add_argument('--clean_as_label', action='store_true', default=False,
+    help="Decide whether to label the clean examples (no labels) as clean instead for class weights purposes")
 args = parser.parse_args()
 
 print(args)
@@ -65,11 +67,12 @@ def json_to_dataset(data):
 
 
     # TODO make argparse argument for this so I don't have to come here to use this everytime
-    # add new column for clean data
-    df['sum'] = df.labels.map(sum) 
-    df.loc[df["sum"] > 0, "label_clean"] = 0
-    df.loc[df["sum"] == 0, "label_clean"] = 1
-    df['labels'] = df[label_names].values.tolist() # update labels column to include clean data
+    if args.clean_as_label == True:
+        # add new column for clean data
+        df['sum'] = df.labels.map(sum) 
+        df.loc[df["sum"] > 0, "label_clean"] = 0
+        df.loc[df["sum"] == 0, "label_clean"] = 1
+        df['labels'] = df[label_names].values.tolist() # update labels column to include clean data
 
 
 
@@ -167,7 +170,7 @@ def optimize_threshold(predictions, labels):
 
 #compute accuracy and loss
 from transformers import EvalPrediction
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
+from sklearn.metrics import f1_score, roc_auc_score, accuracy_score, balanced_accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels) # why is the sigmoid applies? could do without it
@@ -180,23 +183,28 @@ def multi_label_metrics(predictions, labels, threshold):
     y_true = labels
 
 
-    # CHANGE TO NOT TAKE THE CLEAN LABEL INTO ACCOUNT WHEN COMPUTING THE SCORE
-    new_pred, new_true = [], []    
-    for i in range(len(y_pred)):
-        new_pred.append(y_pred[i][:-1])
-    for i in range(len(y_true)):
-        new_true.append(y_true[i][:-1])
+    # TODO take this into if clause if I make the clean label an argument for argparse
+    if args.clean_as_label == True:
+        # CHANGE TO NOT TAKE THE CLEAN LABEL INTO ACCOUNT WHEN COMPUTING THE SCORE
+        new_pred, new_true = [], []    
+        for i in range(len(y_pred)):
+            new_pred.append(y_pred[i][:-1])
+        for i in range(len(y_true)):
+            new_true.append(y_true[i][:-1])
+        y_true = new_true
+        y_pred = new_pred
 
-
-    f1_micro_average = f1_score(y_true=new_true, y_pred=new_pred, average='micro')
-    f1_weighted_average = f1_score(y_true=new_true, y_pred=new_pred, average='weighted')
+    f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
+    f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
     roc_auc = roc_auc_score(y_true, y_pred, average = 'micro')
     accuracy = accuracy_score(y_true, y_pred)
+    balanced_accuracy = balanced_accuracy_score(y_true, y_pred)
     # return as dictionary
     metrics = {'f1_micro': f1_micro_average,
                 'f1_weighted': f1_weighted_average,
                'roc_auc': roc_auc,
-               'accuracy': accuracy}
+               'accuracy': accuracy,
+               'balanced_accuracy': balanced_accuracy}
     return metrics
 
 def compute_metrics(p: EvalPrediction):
@@ -277,6 +285,7 @@ eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1_micro'])
 print('F1_weighted:', eval_results['eval_f1_weighted'])
+print('weighted accuracy', eval_results['eval_balanced_accuracy'])
 
 
 # see how the labels are predicted
@@ -312,9 +321,9 @@ print(idx2label)
 
 # Getting indices of where boolean one hot vector true_bools is True so we can use idx2label to gather label names
 true_label_idxs, pred_label_idxs=[],[]
-for vals in trues:
+for vals in trues[:-1]:
   true_label_idxs.append(np.where(vals)[0].flatten().tolist())
-for vals in preds:
+for vals in preds[:-1]:
   pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
 
 # Gathering vectors of label names using idx2label
