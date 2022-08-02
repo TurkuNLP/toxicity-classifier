@@ -8,6 +8,8 @@ import numpy as np
 import json
 import torch
 
+# this should prevent any caching problems I might have because caching does not happen anymore
+datasets.disable_caching()
 
 pprint = PrettyPrinter(compact=True).pprint
 logging.disable(logging.INFO)
@@ -226,7 +228,7 @@ print('F1_micro:', eval_results['eval_f1'])
 test_pred = trainer.predict(dataset['test'])
 trues = test_pred.label_ids
 predictions = test_pred.predictions
-preds = pred.predictions.argmax(-1)
+preds = predictions.argmax(-1)
 
 
 from sklearn.metrics import classification_report

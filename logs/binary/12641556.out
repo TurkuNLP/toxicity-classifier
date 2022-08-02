@@ -1,0 +1,16 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+binary evaluation
+Namespace(batch=8, clean_as_label=True, dev=False, epochs=4, learning=2e-05, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_fi_deepl.jsonl')
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})

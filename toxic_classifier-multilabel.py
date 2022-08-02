@@ -9,6 +9,9 @@ import json
 import torch
 
 
+# this should prevent any caching problems I might have because caching does not happen anymore
+datasets.disable_caching()
+
 pprint = PrettyPrinter(compact=True).pprint
 logging.disable(logging.INFO)
 
@@ -82,32 +85,39 @@ def json_to_dataset(data):
     return dataset, df
 
 
-train, unnecessary = json_to_dataset(args.train)
+train, traindf = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
 
 
 
 # class weigths for the loss function
 #implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
+def class_weights(traindf, label_names):
+    labels = traindf["labels"].values.tolist() # get all rows (examples) from train data
+    n_samples = len(labels) # number of examples (rows) in train data
+    if args.clean_as_label == True: # number of labels
+        n_classes = len(label_names)
+    else:
+        n_classes = len(label_names) -1
 
-labels = unnecessary["labels"].values.tolist() # get all labels from train data
-n_samples = len(labels) # number of examples in train data
-n_classes = len(label_names)
+    # Count each class frequency
+    class_count = [0] * n_classes
+    for classes in labels: # go through every label list (example)
+        for index in range(n_classes):
+            if classes[index] != 0:
+                class_count[index] += 1
 
-# Count each class frequency
-class_count = [0] * n_classes
-for classes in labels: # go through every label list (example)
-    for index in range(n_classes):
-        if classes[index] != 0:
-            class_count[index] += 1
+    # Compute class weights using balanced method
+    class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
+    class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
+    # multiply things if there is more than one
+    # does this help at all when the problem is with examples that have no labels?
+    # I believe this is based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
+    print(class_weights)
+    return class_weights
 
-# Compute class weights using balanced method
-class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
-class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
-# multiply things if there is more than one
-# does this help at all when the problem is with examples that have no labels?
-# I believe this is based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
-print(class_weights)
+class_weights = class_weights(traindf, label_names)
+
 
 if args.dev == True:
     # then split train into train and dev
@@ -131,7 +141,11 @@ def tokenize(example):
     
 dataset = dataset.map(tokenize)
 
-model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=len(label_names), problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
+if args.clean_as_label == True: # number of labels
+    num_labels=len(label_names)
+else:
+    num_labels=len(label_names) - 1
+model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels, problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
 
 # Set training arguments
 trainer_args = transformers.TrainingArguments(
@@ -194,15 +208,13 @@ def multi_label_metrics(predictions, labels, threshold):
 
     f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
     f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
-    roc_auc = roc_auc_score(y_true, y_pred, average = 'micro')
-    accuracy = accuracy_score(y_true, y_pred)
-    balanced_accuracy = balanced_accuracy_score(y_true, y_pred)
+    roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
+    accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
     # return as dictionary
     metrics = {'f1_micro': f1_micro_average,
                 'f1_weighted': f1_weighted_average,
                'roc_auc': roc_auc,
-               'accuracy': accuracy,
-               'balanced_accuracy': balanced_accuracy}
+               'accuracy': accuracy}
     return metrics
 
 def compute_metrics(p: EvalPrediction):
@@ -252,6 +264,7 @@ class MultilabelTrainer(transformers.Trainer):
         outputs = model(**inputs)
         logits = outputs.logits
         if args.loss == True:
+            # include class weights in loss computing
             loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=class_weights)
         else:
             loss_fct = torch.nn.BCEWithLogitsLoss()
@@ -262,7 +275,7 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"] #.select(range(20_000))
+    eval_dataset=dataset["test"] #.select(range(100))
 
 trainer = MultilabelTrainer(
     model=model,
@@ -278,76 +291,79 @@ trainer = MultilabelTrainer(
 trainer.train()
 
 
-
-eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
+eval_results = trainer.evaluate(dataset["test"])
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1_micro'])
 print('F1_weighted:', eval_results['eval_f1_weighted'])
-print('weighted accuracy', eval_results['eval_balanced_accuracy'])
 
 
-# see how the labels are predicted
-test_pred = trainer.predict(dataset['test'])
-trues = test_pred.label_ids
-predictions = test_pred.predictions
+def get_classification_report(trainer):
+    # see how the labels are predicted
+    test_pred = trainer.predict(dataset['test'])
+    trues = test_pred.label_ids
+    predictions = test_pred.predictions
 
-sigmoid = torch.nn.Sigmoid()
-probs = sigmoid(torch.Tensor(predictions))
-# next, use threshold to turn them into integer predictions
-preds = np.zeros(probs.shape)
-preds[np.where(probs >= args.threshold)] = 1
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(predictions))
+    # next, use threshold to turn them into integer predictions
+    preds = np.zeros(probs.shape)
+    preds[np.where(probs >= args.threshold)] = 1
 
-new_pred, new_true = [], []
-for i in range(len(preds)):
-    new_pred.append(preds[i][:-1])
-for i in range(len(trues)):
-    new_true.append(trues[i][:-1])
+    # take the clean label away from the metrics
+    if args.clean_as_label == True:
+        new_pred, new_true = [], []
+        for i in range(len(preds)):
+            new_pred.append(preds[i][:-1])
+        for i in range(len(trues)):
+            new_true.append(trues[i][:-1])
+        trues = new_true
+        preds = new_pred
 
-from sklearn.metrics import classification_report
-print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))
+    from sklearn.metrics import classification_report
+    print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))
 
-
-
+    return trues, preds
 
 
 # output dataframe to see what went wrong and what went right
 # modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
 # COULD ALSO BE USED WITH REGISTER LABELING
+def predictions_to_csv(trues, preds):
+    idx2label = dict(zip(range(6), label_names[:-1]))
+    print(idx2label)
 
-idx2label = dict(zip(range(6), label_names[:-1]))
-print(idx2label)
+    # Getting indices of where boolean one hot vector true_bools is True so we can use idx2label to gather label names
+    true_label_idxs, pred_label_idxs=[],[]
+    for vals in trues:
+        true_label_idxs.append(np.where(vals)[0].flatten().tolist())
+    for vals in preds:
+        pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
 
-# Getting indices of where boolean one hot vector true_bools is True so we can use idx2label to gather label names
-true_label_idxs, pred_label_idxs=[],[]
-for vals in trues[:-1]:
-  true_label_idxs.append(np.where(vals)[0].flatten().tolist())
-for vals in preds[:-1]:
-  pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
+    # Gathering vectors of label names using idx2label
+    true_label_texts, pred_label_texts = [], []
+    for vals in true_label_idxs:
+        if vals:
+            true_label_texts.append([idx2label[val] for val in vals])
+        else:
+            true_label_texts.append(vals)
 
-# Gathering vectors of label names using idx2label
-true_label_texts, pred_label_texts = [], []
-for vals in true_label_idxs:
-  if vals:
-    true_label_texts.append([idx2label[val] for val in vals])
-  else:
-    true_label_texts.append(vals)
+    for vals in pred_label_idxs:
+        if vals:
+            pred_label_texts.append([idx2label[val] for val in vals])
+        else:
+            pred_label_texts.append(vals)
 
-for vals in pred_label_idxs:
-  if vals:
-    pred_label_texts.append([idx2label[val] for val in vals])
-  else:
-    pred_label_texts.append(vals)
+    #get the test texts to a list of their own 
+    texts = df[["text"]]
+    # turn it into an actual list
+    texts = texts.values.tolist()
+    #texts = texts[:100]
+    print(len(texts), len(true_label_texts), len(pred_label_texts))
 
-#get the test texts to a list of their own 
-texts = df[["text"]]
-# turn it into an actual list
-texts = texts.values.tolist()
+    # Converting lists to df
+    comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_label_texts, 'pred_labels':pred_label_texts})
+    comparisons_df.to_csv('comparisons.csv')
+    #print(comparisons_df.head())
 
-
-
-# Converting lists to df
-comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_label_texts, 'pred_labels':pred_label_texts})
-comparisons_df.to_csv('comparisons.csv')
-comparisons_df.head()
-
-
+trues, preds = get_classification_report(trainer)
+predictions_to_csv(trues, preds)

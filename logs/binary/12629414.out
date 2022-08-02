@@ -28,3 +28,14 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1577, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.271023690700531, 'eval_accuracy': 0.9284441526774829, 'eval_weighted_accuracy': 0.8570663648352406, 'eval_f1': 0.6769686706181203, 'eval_precision': 0.604994324631101, 'eval_recall': 0.7683805862566074, 'eval_runtime': 524.6567, 'eval_samples_per_second': 121.943, 'eval_steps_per_second': 3.812, 'epoch': 1.0}
+{'loss': 0.1342, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.29364117980003357, 'eval_accuracy': 0.9200662727812685, 'eval_weighted_accuracy': 0.8767104769188725, 'eval_f1': 0.6676631141148948, 'eval_precision': 0.5617277200656097, 'eval_recall': 0.8228415825724812, 'eval_runtime': 522.7668, 'eval_samples_per_second': 122.383, 'eval_steps_per_second': 3.826, 'epoch': 2.0}
+{'loss': 0.1037, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.39371106028556824, 'eval_accuracy': 0.8945887648879303, 'eval_weighted_accuracy': 0.8974518241412455, 'eval_f1': 0.6252084028009336, 'eval_precision': 0.4786826653050804, 'eval_recall': 0.9010091302258529, 'eval_runtime': 522.6691, 'eval_samples_per_second': 122.406, 'eval_steps_per_second': 3.827, 'epoch': 3.0}
+{'loss': 0.0814, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.3717596232891083, 'eval_accuracy': 0.9141111006908624, 'eval_weighted_accuracy': 0.8887682487056326, 'eval_f1': 0.660781529724057, 'eval_precision': 0.5375652872639615, 'eval_recall': 0.8572801537722249, 'eval_runtime': 522.6111, 'eval_samples_per_second': 122.42, 'eval_steps_per_second': 3.827, 'epoch': 4.0}
+{'train_runtime': 13202.0925, 'train_samples_per_second': 48.347, 'train_steps_per_second': 6.044, 'train_loss': 0.11923250055028638, 'epoch': 4.0}
+F1_micro: 0.6769686706181203
+END: ma 1.8.2022 20.29.04 +0300

@@ -8,6 +8,8 @@ import numpy as np
 import json
 import torch
 
+# this should prevent any caching problems I might have because caching does not happen anymore
+datasets.disable_caching()
 
 pprint = PrettyPrinter(compact=True).pprint
 logging.disable(logging.INFO)
@@ -37,6 +39,8 @@ parser.add_argument('--loss', action='store_true', default=False,
     help="Decide whether to use the loss function or not")
 parser.add_argument('--dev', action='store_true', default=False,
     help="Decide whether to split the train into train and dev or not")
+parser.add_argument('--clean_as_label', action='store_true', default=False,
+    help="Decide whether to label the clean examples (no labels) as clean instead for class weights purposes")
 args = parser.parse_args()
 
 print(args)
@@ -49,6 +53,7 @@ label_names = [
     'label_severe_toxicity',
     'label_threat',
     'label_toxicity',
+    'label_clean' #extra label for weights 
 ]
 
 
@@ -60,7 +65,16 @@ def json_to_dataset(data):
     lines = [json.loads(jline) for jline in json_list]
     # there is now a list of dictionaries
     df=pd.DataFrame(lines)
-    df['labels'] = df[label_names].values.tolist()
+    df['labels'] = df[label_names[:-1]].values.tolist() # don't take clean label into account because it doesn't exist yet
+
+    if args.clean_as_label == True:
+        # add new column for clean data
+        df['sum'] = df.labels.map(sum) 
+        df.loc[df["sum"] > 0, "label_clean"] = 0
+        df.loc[df["sum"] == 0, "label_clean"] = 1
+        df['labels'] = df[label_names].values.tolist() # update labels column to include clean data
+
+
      # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
 
@@ -69,32 +83,37 @@ def json_to_dataset(data):
     return dataset, df
 
 
-train, unnecessary = json_to_dataset(args.train)
+train, traindf = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
 
 
 
-# class weigths for the loss function
+# class weigths for the loss function (from train data split)
 #implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
+def class_weights(traindf, label_names):
+    labels = traindf["labels"].values.tolist() # get all labels from train data
+    n_samples = len(labels) # number of examples in train data
+    if args.clean_as_label == True: # number of labels
+        n_classes = len(label_names)
+    else:
+        n_classes = len(label_names) -1
 
-labels = unnecessary["labels"].values.tolist() # get all labels from train data
-n_samples = len(labels) # number of examples in train data
-n_classes = len(label_names)
+    # Count each class frequency
+    class_count = [0] * n_classes
+    for classes in labels: # go through every label list (example)
+        for index in range(n_classes):
+            if classes[index] != 0:
+                class_count[index] += 1
 
-# Count each class frequency
-class_count = [0] * n_classes
-for classes in labels: # go through every label list (example)
-    for index in range(n_classes):
-        if classes[index] != 0:
-            class_count[index] += 1
+    # Compute class weights using balanced method
+    class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
+    class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
+    # multiply things if there is more than one
+    # does this help at all when the problem is with examples that have no labels?
+    # I believe this is somewhat based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
+    print(class_weights)
 
-# Compute class weights using balanced method
-class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
-class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
-# multiply things if there is more than one
-# does this help at all when the problem is with examples that have no labels?
-# I believe this is somewhat based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
-print(class_weights)
+class_weights = class_weights(traindf, label_names)
 
 if args.dev == True:
     # then split train into train and dev
@@ -118,7 +137,11 @@ def tokenize(example):
     
 dataset = dataset.map(tokenize)
 
-model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=len(label_names), problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
+if args.clean_as_label == True: # number of labels
+    num_labels=len(label_names)
+else:
+    num_labels=len(label_names) - 1
+model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels, problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
 
 # Set training arguments
 trainer_args = transformers.TrainingArguments(
@@ -156,7 +179,7 @@ def optimize_threshold(predictions, labels):
 
 #compute accuracy and loss
 from transformers import EvalPrediction
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, roc_auc_score, balanced_accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
@@ -170,9 +193,9 @@ def multi_label_metrics(predictions, labels, threshold):
     # print(y_true)
     # print(y_pred)
 
+
     # BINARY EVALUATION
-    new_pred=[]
-    new_true=[]
+    new_pred, new_true = [], []
     for i in range(len(y_pred)):
         if y_pred[i].sum() > 0:
             new_pred.append(1)
@@ -255,12 +278,12 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"] #.select(range(20_000))
+    eval_dataset=dataset["test"].select(range(100)) #.select(range(20_000))
 
 trainer = MultilabelTrainer(
     model=model,
     args=trainer_args,
-    train_dataset=dataset["train"],
+    train_dataset=dataset["train"].select(range(100)),
     eval_dataset=eval_dataset,
     compute_metrics=compute_metrics,
     data_collator=data_collator,
@@ -272,36 +295,38 @@ trainer.train()
 
 
 
-eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
+eval_results = trainer.evaluate(dataset["test"]).select(range(100)) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
 print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
 
-# see how the labels are predicted
-test_pred = trainer.predict(dataset['test'])
-trues = test_pred.label_ids
-predictions = test_pred.predictions
+def get_classification_report(trainer):
+    # see how the labels are predicted
+    test_pred = trainer.predict(dataset['test'].select(range(100)))
+    trues = test_pred.label_ids
+    predictions = test_pred.predictions
 
-sigmoid = torch.nn.Sigmoid()
-probs = sigmoid(torch.Tensor(predictions))
-# next, use threshold to turn them into integer predictions
-preds = np.zeros(probs.shape)
-preds[np.where(probs >= args.threshold)] = 1
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(predictions))
+    # next, use threshold to turn them into integer predictions
+    preds = np.zeros(probs.shape)
+    preds[np.where(probs >= args.threshold)] = 1
 
-# BINARY EVALUATION
-new_pred=[]
-new_true=[]
-for i in range(len(y_pred)):
-    if y_pred[i].sum() > 0:
-        new_pred.append(1)
-    else:
-        new_pred.append(0)
-for i in range(len(y_true)):
-    if y_true[i].sum() > 0:
-        new_true.append(1)
-    else:
-        new_true.append(0)
+    # BINARY EVALUATION
+    new_pred, new_true = [], []
+    for i in range(len(y_pred)):
+        if y_pred[i].sum() > 0:
+            new_pred.append(1)
+        else:
+            new_pred.append(0)
+    for i in range(len(y_true)):
+        if y_true[i].sum() > 0:
+            new_true.append(1)
+        else:
+            new_true.append(0)
 
-from sklearn.metrics import classification_report
-print(classification_report(trues, preds, target_names=["clean", "toxic"]))
+    from sklearn.metrics import classification_report
+    print(classification_report(new_true, new_pred, target_names=["clean", "toxic"]))
+
+get_classification_report(trainer)

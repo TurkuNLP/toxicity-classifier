@@ -34,7 +34,7 @@ def json_to_df(data):
 
 
 dftrain = json_to_df(args.train)
-#dftest = json_to_df(args.test)
+dftest = json_to_df(args.test)
 
 plot1 = dftrain[label_names].sum().sort_values().plot(kind="barh")
 fig = plot1.get_figure()
@@ -42,12 +42,20 @@ fig.savefig('toxic_labels.jpg')
 
 train_toxic = dftrain[dftrain[label_names].sum(axis=1) > 0]
 train_clean = dftrain[dftrain[label_names].sum(axis=1) == 0]
-print("toxic: ", len(train_toxic))
-print("clean: ", len(train_clean))
+test_toxic = dftest[dftest[label_names].sum(axis=1) > 0]
+test_clean = dftest[dftest[label_names].sum(axis=1) == 0]
+print("toxic train: ", len(train_toxic))
+print("clean train: ", len(train_clean))
+print("train toxic percent:" , len(train_toxic) / len(train_clean))
+print("toxic test: ", len(test_toxic))
+print("clean test: ", len(test_clean))
+print("test toxic percent:", len(test_toxic) / len(test_clean))
 
 plot2 = pd.DataFrame(dict(
-  toxic=[len(train_toxic)], 
-  clean=[len(train_clean)]
+  train_toxic=[len(train_toxic)], 
+  train_clean=[len(train_clean)],
+  test_toxic=[len(test_toxic)], 
+  test_clean=[len(test_clean)]
 )).plot(kind='barh')
 fig = plot2.get_figure()
 fig.savefig('clean_toxic.jpg')
