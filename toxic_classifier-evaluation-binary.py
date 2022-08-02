@@ -179,7 +179,7 @@ def optimize_threshold(predictions, labels):
 
 #compute accuracy and loss
 from transformers import EvalPrediction
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score, roc_auc_score, balanced_accuracy_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
@@ -209,7 +209,6 @@ def multi_label_metrics(predictions, labels, threshold):
 
 
     precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='binary')
-    roc_auc = roc_auc_score(new_true, new_pred, average = 'micro')
     acc = accuracy_score(new_true, new_pred)
     wacc = balanced_accuracy_score(new_true, new_pred)
     return {
@@ -219,7 +218,6 @@ def multi_label_metrics(predictions, labels, threshold):
         'precision': precision,
         'recall': recall
     }
-    return metrics
 
 def compute_metrics(p: EvalPrediction):
     preds = p.predictions[0] if isinstance(p.predictions, 
@@ -278,12 +276,12 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"].select(range(100)) #.select(range(20_000))
+    eval_dataset=dataset["test"] #.select(range(20_000))
 
 trainer = MultilabelTrainer(
     model=model,
     args=trainer_args,
-    train_dataset=dataset["train"].select(range(100)),
+    train_dataset=dataset["train"],
     eval_dataset=eval_dataset,
     compute_metrics=compute_metrics,
     data_collator=data_collator,
@@ -295,7 +293,7 @@ trainer.train()
 
 
 
-eval_results = trainer.evaluate(dataset["test"]).select(range(100)) #.select(range(20_000)))
+eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
 print('weighted accuracy', eval_results['eval_weighted_accuracy'])
@@ -303,7 +301,7 @@ print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
 def get_classification_report(trainer):
     # see how the labels are predicted
-    test_pred = trainer.predict(dataset['test'].select(range(100)))
+    test_pred = trainer.predict(dataset['test'])
     trues = test_pred.label_ids
     predictions = test_pred.predictions
 
@@ -315,13 +313,13 @@ def get_classification_report(trainer):
 
     # BINARY EVALUATION
     new_pred, new_true = [], []
-    for i in range(len(y_pred)):
-        if y_pred[i].sum() > 0:
+    for i in range(len(preds)):
+        if preds[i].sum() > 0:
             new_pred.append(1)
         else:
             new_pred.append(0)
-    for i in range(len(y_true)):
-        if y_true[i].sum() > 0:
+    for i in range(len(trues)):
+        if trues[i].sum() > 0:
             new_true.append(1)
         else:
             new_true.append(0)

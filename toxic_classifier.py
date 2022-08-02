@@ -17,7 +17,7 @@ logging.disable(logging.INFO)
 
 
 parser = argparse.ArgumentParser(
-        description="A script for classifying toxic data (multilabel)",
+        description="A script for classifying toxic data (multi-label, includes binary evaluation on top)",
         epilog="Made by Anni Eskelinen"
     )
 parser.add_argument('--train', required=True)
@@ -34,19 +34,21 @@ parser.add_argument('--learning', type=float, default=8e-6,
     help="The learning rate for the model"
 )
 parser.add_argument('--threshold', type=float, default=None,
-    help="The treshold which to use for predictions, used in evaluation"
+    help="The treshold which to use for predictions, used in evaluation. If no threshold is given threshold optimization is used."
 )
 parser.add_argument('--loss', action='store_true', default=False,
-    help="Decide whether to use the loss function or not")
+    help="If used different class weights are used for the loss function")
 parser.add_argument('--dev', action='store_true', default=False,
-    help="Decide whether to split the train into train and dev or not")
+    help="If used the train set is split into train and dev sets")
 parser.add_argument('--clean_as_label', action='store_true', default=False,
-    help="Decide whether to label the clean examples (no labels) as clean instead for class weights purposes")
+    help="If used the clean examples (no label) are marked as having a label instead for class weights purposes")
+parser.add_argument('--binary', action='store_true', default=False,
+    help="If used the evaluation uses a binary classification (toxic or not) based on the multi-label predictions.")
 args = parser.parse_args()
 
 print(args)
 
-# this I could instead parse from the data, now I got it manually
+# this I could instead parse from the data, now I have it here manually
 label_names = [
     'label_identity_attack',
     'label_insult',
@@ -54,9 +56,8 @@ label_names = [
     'label_severe_toxicity',
     'label_threat',
     'label_toxicity',
-    'label_clean' # added new label for clean ones so that I can try taking the clean data into account with the class weights (no labels)
+    'label_clean' # added new label for clean examples (no label previously) because the no label ones were not taken into account in the class weights
 ]
-
 
 
 def json_to_dataset(data):
@@ -77,7 +78,6 @@ def json_to_dataset(data):
         df['labels'] = df[label_names].values.tolist() # update labels column to include clean data
 
 
-
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
     dataset = datasets.Dataset.from_pandas(df)
@@ -89,9 +89,9 @@ train, traindf = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
 
 
-
-# class weigths for the loss function
+# class weigths for the loss function (from train data split)
 #implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
+# based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
 def class_weights(traindf, label_names):
     labels = traindf["labels"].values.tolist() # get all rows (examples) from train data
     n_samples = len(labels) # number of examples (rows) in train data
@@ -111,8 +111,6 @@ def class_weights(traindf, label_names):
     class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
     class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
     # multiply things if there is more than one
-    # does this help at all when the problem is with examples that have no labels?
-    # I believe this is based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
     print(class_weights)
     return class_weights
 
@@ -129,7 +127,7 @@ else:
 print(dataset)
 
 
-model_name = args.model 
+model_name = args.model
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
 
 def tokenize(example):
@@ -183,7 +181,7 @@ def optimize_threshold(predictions, labels):
 
 #compute accuracy and loss
 from transformers import EvalPrediction
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score, balanced_accuracy_score
+from sklearn.metrics import f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support
 # source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
@@ -205,16 +203,43 @@ def multi_label_metrics(predictions, labels, threshold):
             new_true.append(y_true[i][:-1])
         y_true = new_true
         y_pred = new_pred
+    
+    if args.binary == True:
+        # binary evaluation
+        new_pred, new_true = [], []
+        for i in range(len(y_pred)):
+            if y_pred[i].sum() > 0:
+                new_pred.append(1)
+            else:
+                new_pred.append(0)
+        for i in range(len(y_true)):
+            if y_true[i].sum() > 0:
+                new_true.append(1)
+            else:
+                new_true.append(0)
+        y_true = new_true
+        y_pred = new_pred
 
-    f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
-    f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
-    roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
-    accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
-    # return as dictionary
-    metrics = {'f1_micro': f1_micro_average,
-                'f1_weighted': f1_weighted_average,
-               'roc_auc': roc_auc,
-               'accuracy': accuracy}
+        precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='binary')
+        accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
+        metrics = {
+            'accuracy': accuracy,
+            'f1': f1,
+            'precision': precision,
+            'recall': recall
+        }
+    else:
+        precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='micro')
+        f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
+        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
+        accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
+        # return as dictionary
+        metrics = {'f1': f1,
+                    'f1_weighted': f1_weighted_average,
+                    'precision': precision,
+                    'recall': recall,
+                    'roc_auc': roc_auc,
+                    'accuracy': accuracy}
     return metrics
 
 def compute_metrics(p: EvalPrediction):
@@ -275,12 +300,12 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"] #.select(range(100))
+    eval_dataset=dataset["test"].select(range(100))
 
 trainer = MultilabelTrainer(
     model=model,
     args=trainer_args,
-    train_dataset=dataset["train"],
+    train_dataset=dataset["train"].select(range(100)),
     eval_dataset=eval_dataset,
     compute_metrics=compute_metrics,
     data_collator=data_collator,
@@ -291,15 +316,15 @@ trainer = MultilabelTrainer(
 trainer.train()
 
 
-eval_results = trainer.evaluate(dataset["test"])
+eval_results = trainer.evaluate(dataset["test"].select(range(100)))
 #pprint(eval_results)
-print('F1_micro:', eval_results['eval_f1_micro'])
-print('F1_weighted:', eval_results['eval_f1_weighted'])
+print('F1:', eval_results['eval_f1'])
 
 
+from sklearn.metrics import classification_report
 def get_classification_report(trainer):
     # see how the labels are predicted
-    test_pred = trainer.predict(dataset['test'])
+    test_pred = trainer.predict(dataset['test'].select(range(100)))
     trues = test_pred.label_ids
     predictions = test_pred.predictions
 
@@ -309,8 +334,22 @@ def get_classification_report(trainer):
     preds = np.zeros(probs.shape)
     preds[np.where(probs >= args.threshold)] = 1
 
+    if args.binary == True:
+        # binary evaluation
+        new_pred, new_true = [], []
+        for i in range(len(preds)):
+            if preds[i].sum() > 0:
+                new_pred.append(1)
+            else:
+                new_pred.append(0)
+        for i in range(len(trues)):
+            if trues[i].sum() > 0:
+                new_true.append(1)
+            else:
+                new_true.append(0)
+        print(classification_report(new_true, new_pred, target_names=["clean", "toxic"]))
     # take the clean label away from the metrics
-    if args.clean_as_label == True:
+    elif args.clean_as_label == True:
         new_pred, new_true = [], []
         for i in range(len(preds)):
             new_pred.append(preds[i][:-1])
@@ -319,7 +358,7 @@ def get_classification_report(trainer):
         trues = new_true
         preds = new_pred
 
-    from sklearn.metrics import classification_report
+    # this report shows up even with binary evaluation but I don't think it matters much
     print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))
 
     return trues, preds
@@ -357,7 +396,6 @@ def predictions_to_csv(trues, preds):
     texts = df[["text"]]
     # turn it into an actual list
     texts = texts.values.tolist()
-    #texts = texts[:100]
     print(len(texts), len(true_label_texts), len(pred_label_texts))
 
     # Converting lists to df
@@ -366,4 +404,6 @@ def predictions_to_csv(trues, preds):
     #print(comparisons_df.head())
 
 trues, preds = get_classification_report(trainer)
-predictions_to_csv(trues, preds)
+if args.binary == False:
+    # if I have energy I could modify this to work with binary as well
+    predictions_to_csv(trues, preds)

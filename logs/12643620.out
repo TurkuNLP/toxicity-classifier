@@ -1,0 +1,15 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+binary evaluation
+Translated train and test
+Namespace(batch=8, binary=False, clean_as_label=False, dev=False, epochs=4, learning=2e-05, loss=True, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_fi_deepl.jsonl')
+tensor([18.9289,  3.3763,  3.1477, 16.6741, 55.6384,  1.7389], device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
