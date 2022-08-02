@@ -28,22 +28,4 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 # srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR #--dev
 
 
-
-
-# JUST THE EVALUATION IN BINARY
-#translated
-echo "Translated train and test"
-echo "binary evaluation"
-srun python3 toxic_classifier-evaluation-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss --clean_as_label #--dev
-
-# transfer
-# echo "transfer from english train to translated finnish test"
-# echo "binary evaluation"
-# srun python3 toxic_classifier-evaluation-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
-
-
-
-
-
-
 echo "END: $(date)"

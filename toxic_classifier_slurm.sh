@@ -37,7 +37,7 @@ echo "binary evaluation"
 
 #translated
 echo "Translated train and test"
-srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss --clean_as_label #--binary #--dev
+srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss --clean_as_label --binary #--dev
 
 # transfer
 # echo "transfer from english train to translated finnish test"

@@ -220,7 +220,7 @@ def multi_label_metrics(predictions, labels, threshold):
         y_true = new_true
         y_pred = new_pred
 
-        precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='binary')
+        precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='binary')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
         metrics = {
             'accuracy': accuracy,
@@ -229,7 +229,7 @@ def multi_label_metrics(predictions, labels, threshold):
             'recall': recall
         }
     else:
-        precision, recall, f1, _ = precision_recall_fscore_support(y_true=new_true, y_pred=new_pred, average='micro')
+        precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro')
         f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
         roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
@@ -300,12 +300,12 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"].select(range(100))
+    eval_dataset=dataset["test"] #.select(range(100))
 
 trainer = MultilabelTrainer(
     model=model,
     args=trainer_args,
-    train_dataset=dataset["train"].select(range(100)),
+    train_dataset=dataset["train"],
     eval_dataset=eval_dataset,
     compute_metrics=compute_metrics,
     data_collator=data_collator,
@@ -316,7 +316,7 @@ trainer = MultilabelTrainer(
 trainer.train()
 
 
-eval_results = trainer.evaluate(dataset["test"].select(range(100)))
+eval_results = trainer.evaluate(dataset["test"])
 #pprint(eval_results)
 print('F1:', eval_results['eval_f1'])
 
@@ -324,7 +324,7 @@ print('F1:', eval_results['eval_f1'])
 from sklearn.metrics import classification_report
 def get_classification_report(trainer):
     # see how the labels are predicted
-    test_pred = trainer.predict(dataset['test'].select(range(100)))
+    test_pred = trainer.predict(dataset['test'])
     trues = test_pred.label_ids
     predictions = test_pred.predictions
 
