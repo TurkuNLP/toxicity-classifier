@@ -114,7 +114,8 @@ def class_weights(traindf, label_names):
     print(class_weights)
     return class_weights
 
-class_weights = class_weights(traindf, label_names)
+if args.loss == True:
+    class_weights = class_weights(traindf, label_names)
 
 
 if args.dev == True:
@@ -150,7 +151,7 @@ model = transformers.AutoModelForSequenceClassification.from_pretrained(model_na
 
 # Set training arguments
 trainer_args = transformers.TrainingArguments(
-    "checkpoints",
+    "checkpoints/multilabel",
     evaluation_strategy="epoch",
     logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
     save_strategy="epoch",
@@ -206,7 +207,8 @@ def multi_label_metrics(predictions, labels, threshold):
             new_true.append(y_true[i][:-1])
         y_true = new_true
         y_pred = new_pred
-    
+
+    # technically there can be a clean label and a toxic label at the same time but this just checks whether there is a toxic label present
     if args.binary == True:
         # binary evaluation
         new_pred, new_true = [], []
@@ -352,6 +354,7 @@ def get_classification_report(trainer):
             new_true.append(trues[i][:-1])
         trues = new_true
         preds = new_pred
+    # technically there can be a clean label and a toxic label at the same time but this just checks whether there is a toxic label present
     if args.binary == True:
         # binary evaluation
         new_pred, new_true = [], []

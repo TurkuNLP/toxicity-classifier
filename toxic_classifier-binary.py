@@ -130,7 +130,7 @@ model = transformers.AutoModelForSequenceClassification.from_pretrained(model_na
 
 # Set training arguments 
 trainer_args = transformers.TrainingArguments(
-    "checkpoints",
+    "checkpoints/binary",
     evaluation_strategy="epoch",
     logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
     save_strategy="epoch",
