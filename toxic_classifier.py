@@ -118,11 +118,14 @@ class_weights = class_weights(traindf, label_names)
 
 
 if args.dev == True:
-    # then split train into train and dev
-    train, dev = train.train_test_split(test_size=0.2).values()
+    # then split test into test and dev
+    test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
+    train = train.shuffle(seed=42) # test shuffling of the train set
     # then make the dataset
     dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
 else:
+    train = train.shuffle(seed=42) # test shuffling of the train set
+    test = test.shuffle(seed=42) # test shuffling of the test set
     dataset = datasets.DatasetDict({"train":train, "test":test})
 print(dataset)
 
