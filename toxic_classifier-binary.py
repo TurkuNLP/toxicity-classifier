@@ -82,23 +82,24 @@ def json_to_dataset(data):
     return dataset, df
 
 
-train, unnecessary = json_to_dataset(args.train)
+train, traindf = json_to_dataset(args.train)
 test, df = json_to_dataset(args.test)
 
 # class weights
-# get all labels from train
-labels = unnecessary["labels"].values.tolist()
-n_samples = (len(labels))
-n_classes = 2
-from collections import Counter
-c=Counter(labels)
-w1=n_samples / (n_classes * c[0])
-w2=n_samples / (n_classes * c[1])
-weights = [w1,w2]
-class_weights = torch.tensor(weights).to("cuda:0") # have to decide on a device
-print(class_weights)
+def class_weights(traindf):
+    # get all labels from train
+    labels = traindf["labels"].values.tolist()
+    n_samples = (len(labels))
+    n_classes = 2
+    from collections import Counter
+    c=Counter(labels)
+    w1=n_samples / (n_classes * c[0])
+    w2=n_samples / (n_classes * c[1])
+    weights = [w1,w2]
+    class_weights = torch.tensor(weights).to("cuda:0") # have to decide on a device
+    print(class_weights)
 
-
+class_weights = class_weights(traindf)
 
 if args.dev == True:
     # then split train into train and dev
@@ -220,8 +221,6 @@ eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
 #pprint(eval_results)
 print('F1_micro:', eval_results['eval_f1'])
 #print('weighted accuracy', eval_results['eval_weighted_accuracy'])
-
-
 
 # see how the labels are predicted
 test_pred = trainer.predict(dataset['test'])

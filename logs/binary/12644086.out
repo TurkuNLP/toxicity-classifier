@@ -1,0 +1,61 @@
+epochs: 4, learning rate: 5e-5, batch size: 8, prediction treshold: 0.4, model: TurkuNLP/bert-base-finnish-cased-v1 
+binary evaluation
+Translated train and test
+Namespace(batch=8, binary=True, clean_as_label=False, dev=False, epochs=4, learning=5e-05, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', threshold=0.4, train='data/train_fi_deepl.jsonl')
+tensor([18.9289,  3.3763,  3.1477, 16.6741, 55.6384,  1.7389], device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.531, 'learning_rate': 3.7500000000000003e-05, 'epoch': 1.0}
+{'eval_loss': 0.5333034992218018, 'eval_accuracy': 0.9070149113757854, 'eval_f1': 0.21816270206334604, 'eval_precision': 0.6076134699853587, 'eval_recall': 0.13294890277110363, 'eval_runtime': 519.3403, 'eval_samples_per_second': 123.191, 'eval_steps_per_second': 3.851, 'epoch': 1.0}
+{'loss': 0.616, 'learning_rate': 2.5e-05, 'epoch': 2.0}
+{'eval_loss': 0.6308940052986145, 'eval_accuracy': 0.90241958173122, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 518.4053, 'eval_samples_per_second': 123.413, 'eval_steps_per_second': 3.858, 'epoch': 2.0}
+{'loss': 0.6287, 'learning_rate': 1.25e-05, 'epoch': 3.0}
+{'eval_loss': 0.6287857294082642, 'eval_accuracy': 0.90241958173122, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 518.4483, 'eval_samples_per_second': 123.403, 'eval_steps_per_second': 3.858, 'epoch': 3.0}
+{'loss': 0.6261, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.6374903321266174, 'eval_accuracy': 0.90241958173122, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 518.0561, 'eval_samples_per_second': 123.496, 'eval_steps_per_second': 3.861, 'epoch': 4.0}
+{'train_runtime': 13680.8344, 'train_samples_per_second': 46.655, 'train_steps_per_second': 5.832, 'train_loss': 0.600462906389432, 'epoch': 4.0}
+F1: 0.0
+              precision    recall  f1-score   support
+
+       clean       0.90      1.00      0.95     57735
+       toxic       0.00      0.00      0.00      6243
+
+    accuracy                           0.90     63978
+   macro avg       0.45      0.50      0.47     63978
+weighted avg       0.81      0.90      0.86     63978
+
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       712
+         label_insult       0.00      0.00      0.00      3427
+        label_obscene       0.00      0.00      0.00      3691
+label_severe_toxicity       0.00      0.00      0.00       367
+         label_threat       0.00      0.00      0.00       211
+       label_toxicity       0.00      0.00      0.00      6090
+
+            micro avg       0.00      0.00      0.00     14498
+            macro avg       0.00      0.00      0.00     14498
+         weighted avg       0.00      0.00      0.00     14498
+          samples avg       0.00      0.00      0.00     14498
+
+END: ti 2.8.2022 20.18.03 +0300

@@ -208,12 +208,12 @@ def multi_label_metrics(predictions, labels, threshold):
         # binary evaluation
         new_pred, new_true = [], []
         for i in range(len(y_pred)):
-            if y_pred[i].sum() > 0:
+            if sum(y_pred[i]) > 0:
                 new_pred.append(1)
             else:
                 new_pred.append(0)
         for i in range(len(y_true)):
-            if y_true[i].sum() > 0:
+            if sum(y_true[i]) > 0:
                 new_true.append(1)
             else:
                 new_true.append(0)
@@ -300,7 +300,7 @@ class MultilabelTrainer(transformers.Trainer):
 if args.dev == True:
     eval_dataset=dataset["dev"] 
 else:
-    eval_dataset=dataset["test"] #.select(range(100))
+    eval_dataset=dataset["test"]
 
 trainer = MultilabelTrainer(
     model=model,
@@ -332,24 +332,16 @@ def get_classification_report(trainer):
     probs = sigmoid(torch.Tensor(predictions))
     # next, use threshold to turn them into integer predictions
     preds = np.zeros(probs.shape)
-    preds[np.where(probs >= args.threshold)] = 1
+    if args.threshold == None:
+        best_f1_th = optimize_threshold(preds, trues)
+        threshold = best_f1_th
+        print("Best threshold:", threshold)
+    else:
+        threshold = args.threshold
+    preds[np.where(probs >= threshold)] = 1
 
-    if args.binary == True:
-        # binary evaluation
-        new_pred, new_true = [], []
-        for i in range(len(preds)):
-            if preds[i].sum() > 0:
-                new_pred.append(1)
-            else:
-                new_pred.append(0)
-        for i in range(len(trues)):
-            if trues[i].sum() > 0:
-                new_true.append(1)
-            else:
-                new_true.append(0)
-        print(classification_report(new_true, new_pred, target_names=["clean", "toxic"]))
     # take the clean label away from the metrics
-    elif args.clean_as_label == True:
+    if args.clean_as_label == True:
         new_pred, new_true = [], []
         for i in range(len(preds)):
             new_pred.append(preds[i][:-1])
@@ -357,6 +349,20 @@ def get_classification_report(trainer):
             new_true.append(trues[i][:-1])
         trues = new_true
         preds = new_pred
+    if args.binary == True:
+        # binary evaluation
+        new_pred, new_true = [], []
+        for i in range(len(preds)):
+            if sum(preds[i]) > 0:
+                new_pred.append(1)
+            else:
+                new_pred.append(0)
+        for i in range(len(trues)):
+            if sum(trues[i]) > 0:
+                new_true.append(1)
+            else:
+                new_true.append(0)
+        print(classification_report(new_true, new_pred, target_names=["clean", "toxic"], labels=list(range(2))))
 
     # this report shows up even with binary evaluation but I don't think it matters much
     print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))

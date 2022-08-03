@@ -1,0 +1,62 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
+binary evaluation
+Translated train and test
+Namespace(batch=8, binary=True, clean_as_label=True, dev=False, epochs=4, learning=2e-05, loss=True, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_fi_deepl.jsonl')
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2232, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.20939354598522186, 'eval_accuracy': 0.9345868892431773, 'eval_f1': 0.6702907114157409, 'eval_precision': 0.6595348837209303, 'eval_recall': 0.6814031715521384, 'eval_runtime': 552.2408, 'eval_samples_per_second': 115.852, 'eval_steps_per_second': 3.622, 'epoch': 1.0}
+{'loss': 0.182, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.18348655104637146, 'eval_accuracy': 0.9195035793554034, 'eval_f1': 0.6697447736308838, 'eval_precision': 0.558442947278366, 'eval_recall': 0.8364568316514496, 'eval_runtime': 552.0118, 'eval_samples_per_second': 115.9, 'eval_steps_per_second': 3.623, 'epoch': 2.0}
+{'loss': 0.1499, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.18587042391300201, 'eval_accuracy': 0.9054518740817156, 'eval_f1': 0.6448241442076214, 'eval_precision': 0.5089914720059325, 'eval_recall': 0.8795450905013615, 'eval_runtime': 551.222, 'eval_samples_per_second': 116.066, 'eval_steps_per_second': 3.628, 'epoch': 3.0}
+{'loss': 0.1279, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.19573922455310822, 'eval_accuracy': 0.9160180061896277, 'eval_f1': 0.6648368785478136, 'eval_precision': 0.5444421740907234, 'eval_recall': 0.853596027550857, 'eval_runtime': 551.3316, 'eval_samples_per_second': 116.043, 'eval_steps_per_second': 3.628, 'epoch': 4.0}
+{'train_runtime': 16147.9543, 'train_samples_per_second': 39.527, 'train_steps_per_second': 4.941, 'train_loss': 0.17075066430924762, 'epoch': 4.0}
+F1: 0.6697447736308838
+              precision    recall  f1-score   support
+
+       clean       0.00      0.00      0.00         0
+       toxic       1.00      0.97      0.99     63978
+
+    accuracy                           0.97     63978
+   macro avg       0.50      0.49      0.49     63978
+weighted avg       1.00      0.97      0.99     63978
+
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.41      0.71      0.53       712
+         label_insult       0.52      0.77      0.62      3427
+        label_obscene       0.54      0.77      0.63      3691
+label_severe_toxicity       0.25      0.71      0.36       367
+         label_threat       0.00      0.00      0.00       211
+       label_toxicity       0.55      0.84      0.66      6090
+
+            micro avg       0.52      0.79      0.62     14498
+            macro avg       0.38      0.63      0.47     14498
+         weighted avg       0.52      0.79      0.62     14498
+          samples avg       0.07      0.07      0.07     14498
+
+END: ti 2.8.2022 21.14.57 +0300
