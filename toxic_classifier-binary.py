@@ -29,7 +29,7 @@ The labels of the dataset are:
 
 The script includes a binary classification where if there is a label for the text it is considered toxic and it there are no labels the text is clean/non-toxic.
 
-List for necessary packages to be installed is above in the import list.
+List for necessary packages to be installed (could also check import list):
 - pandas
 - transformers
 - datasets
@@ -119,10 +119,9 @@ def json_to_dataset(data):
 
 
 def class_weights(train):
-     """Calculates class weights for the loss function based on the train split. """
+    """Calculates class weights for the loss function based on the train split. """
 
-    # get all labels from train
-    labels = train["labels"]
+    labels = train["labels"] # get all labels from train
     n_samples = (len(labels))
     n_classes = 2
     c=Counter(labels)
@@ -132,6 +131,7 @@ def class_weights(train):
     class_weights = torch.tensor(weights).to("cuda:0") # have to decide on a device
 
     print(class_weights)
+    return class_weights
 
 
 def compute_metrics(pred):
@@ -277,3 +277,6 @@ def main():
     preds = predictions.argmax(-1)
 
     print(classification_report(trues, preds, target_names=["clean", "toxic"]))
+
+if __name__ == "__main__":
+    main()

@@ -33,7 +33,7 @@ The script includes mainly four use cases:
 - using the 6 labels for classification but evaluating it in a binary manner (toxic, clean/non-toxic)
 - using the 7 labels for classification and evaluating in a binary manner
 
-List for necessary packages to be installed is above in the import list.
+List for necessary packages to be installed (could also check import list): 
 - pandas
 - transformers
 - datasets
