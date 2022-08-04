@@ -28,3 +28,23 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1413, 'learning_rate': 7.500000000000001e-06, 'epoch': 1.0}
+{'eval_loss': 0.3151366114616394, 'eval_accuracy': 0.9182375191472069, 'eval_weighted_accuracy': 0.888125949699673, 'eval_f1': 0.670030908976219, 'eval_precision': 0.5526534859521331, 'eval_recall': 0.8507127983341343, 'eval_runtime': 529.5705, 'eval_samples_per_second': 120.811, 'eval_steps_per_second': 3.777, 'epoch': 1.0}
+{'loss': 0.105, 'learning_rate': 5e-06, 'epoch': 2.0}
+{'eval_loss': 0.32430967688560486, 'eval_accuracy': 0.9208477914283035, 'eval_weighted_accuracy': 0.8931436849177548, 'eval_f1': 0.6792094260737361, 'eval_precision': 0.56177302734989, 'eval_recall': 0.8587217683805862, 'eval_runtime': 529.9679, 'eval_samples_per_second': 120.721, 'eval_steps_per_second': 3.774, 'epoch': 2.0}
+{'loss': 0.071, 'learning_rate': 2.5e-06, 'epoch': 3.0}
+{'eval_loss': 0.4628412127494812, 'eval_accuracy': 0.9156272468661102, 'eval_weighted_accuracy': 0.8971798146321905, 'eval_f1': 0.669118548485963, 'eval_precision': 0.5419521398073677, 'eval_recall': 0.8742591702707032, 'eval_runtime': 529.9668, 'eval_samples_per_second': 120.721, 'eval_steps_per_second': 3.774, 'epoch': 3.0}
+{'loss': 0.0413, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.5219852328300476, 'eval_accuracy': 0.912891931601488, 'eval_weighted_accuracy': 0.8940213922940017, 'eval_f1': 0.6610715806118105, 'eval_precision': 0.532843137254902, 'eval_recall': 0.8705750440493353, 'eval_runtime': 530.1641, 'eval_samples_per_second': 120.676, 'eval_steps_per_second': 3.772, 'epoch': 4.0}
+{'train_runtime': 13229.2395, 'train_samples_per_second': 48.248, 'train_steps_per_second': 6.031, 'train_loss': 0.08966500713585338, 'epoch': 4.0}
+F1_micro: 0.670030908976219
+              precision    recall  f1-score   support
+
+       clean       0.98      0.93      0.95     57735
+       toxic       0.55      0.85      0.67      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.77      0.89      0.81     63978
+weighted avg       0.94      0.92      0.93     63978
+
+END: ke 3.8.2022 19.42.31 +0300

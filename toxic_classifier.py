@@ -7,60 +7,99 @@ import pandas as pd
 import numpy as np
 import json
 import torch
+from sklearn.metrics import classification_report, f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support
+from collections import defaultdict
+from transformers import EvalPrediction
+
+""" Toxicity classifier
+
+This script is to be used for toxicity classification with jigsaw toxicity dataset in English which is the original language
+ and Finnish to which the data was translated using DeepL. The data is accepted in a .jsonl format and the data can be found in the data folder.
+
+The labels of the dataset are:
+- label_identity_attack
+- label_insult
+- label_obscene
+- label_severe_toxicity
+- label_threat
+- label_toxicity
+- label_clean
+- no labels means that the text is clean
 
 
-# this should prevent any caching problems I might have because caching does not happen anymore
-datasets.disable_caching()
+The script includes mainly four use cases:
+- use the original intended way of the data: multi-label classification with the original labels
+- adding the clean (no-labels) as a label of it's own for class weights for the loss function and evaluating with the original 6 labels
+- using the 6 labels for classification but evaluating it in a binary manner (toxic, clean/non-toxic)
+- using the 7 labels for classification and evaluating in a binary manner
 
-pprint = PrettyPrinter(compact=True).pprint
-logging.disable(logging.INFO)
+List for necessary packages to be installed is above in the import list.
+- pandas
+- transformers
+- datasets
+- numpy
+- torch
 
+Information about the arguments to use with script can be found by looking at the argparse arguments with 'python3 toxic_classifier.py -h'.
+"""
 
-parser = argparse.ArgumentParser(
-        description="A script for classifying toxic data (multi-label, includes binary evaluation on top)",
-        epilog="Made by Anni Eskelinen"
+def arguments():
+    """Uses argparser to get "optional" arguments from the command line. Use 'python3 toxic_classifier.py -h' to get information abou them.
+
+    Returns
+    ------
+    args: Namespace(objects)
+        arguments as objects of a namespace, usage as args.VARIABLENAME
+    """
+
+    parser = argparse.ArgumentParser(
+            description="A script for classifying toxic data (multi-label, includes binary evaluation on top)",
+            epilog="Made by Anni Eskelinen"
+        )
+    parser.add_argument('--train', required=True)
+    parser.add_argument('--test', required=True)
+    parser.add_argument('--model', required=True)
+
+    parser.add_argument('--batch', type=int, default=8,
+        help="The batch size for the model"
     )
-parser.add_argument('--train', required=True)
-parser.add_argument('--test', required=True)
-parser.add_argument('--model', required=True)
+    parser.add_argument('--epochs', type=int, default=3,
+        help="The number of epochs to train for"
+    )
+    parser.add_argument('--learning', type=float, default=8e-6,
+        help="The learning rate for the model"
+    )
+    parser.add_argument('--threshold', type=float, default=None,
+        help="The treshold which to use for predictions, used in evaluation. If no threshold is given threshold optimization is used."
+    )
+    parser.add_argument('--loss', action='store_true', default=False,
+        help="If used different class weights are used for the loss function")
+    parser.add_argument('--dev', action='store_true', default=False,
+        help="If used the train set is split into train and dev sets")
+    parser.add_argument('--clean_as_label', action='store_true', default=False,
+        help="If used the clean examples (no label) are marked as having a label instead for class weights purposes")
+    parser.add_argument('--binary', action='store_true', default=False,
+        help="If used the evaluation uses a binary classification (toxic or not) based on the multi-label predictions.")
+    args = parser.parse_args()
 
-parser.add_argument('--batch', type=int, default=8,
-    help="The batch size for the model"
-)
-parser.add_argument('--epochs', type=int, default=3,
-    help="The number of epochs to train for"
-)
-parser.add_argument('--learning', type=float, default=8e-6,
-    help="The learning rate for the model"
-)
-parser.add_argument('--threshold', type=float, default=None,
-    help="The treshold which to use for predictions, used in evaluation. If no threshold is given threshold optimization is used."
-)
-parser.add_argument('--loss', action='store_true', default=False,
-    help="If used different class weights are used for the loss function")
-parser.add_argument('--dev', action='store_true', default=False,
-    help="If used the train set is split into train and dev sets")
-parser.add_argument('--clean_as_label', action='store_true', default=False,
-    help="If used the clean examples (no label) are marked as having a label instead for class weights purposes")
-parser.add_argument('--binary', action='store_true', default=False,
-    help="If used the evaluation uses a binary classification (toxic or not) based on the multi-label predictions.")
-args = parser.parse_args()
-
-print(args)
-
-# this I could instead parse from the data, now I have it here manually
-label_names = [
-    'label_identity_attack',
-    'label_insult',
-    'label_obscene',
-    'label_severe_toxicity',
-    'label_threat',
-    'label_toxicity',
-    'label_clean' # added new label for clean examples (no label previously) because the no label ones were not taken into account in the class weights
-]
+    print(args)
+    return args
 
 
 def json_to_dataset(data):
+    """ Reads the data from .jsonl format and turns it into a dataset using pandas.
+    
+    Parameters
+    ----------
+    data: str
+        path to the file from which to get the data
+
+    Returns
+    -------
+    dataset: Dataset
+        the data in dataset format
+    """
+
     # first I need to read the json lines
     with open(data, 'r') as json_file:
         json_list = list(json_file)
@@ -82,18 +121,30 @@ def json_to_dataset(data):
     df = df[['text', 'labels']]
     dataset = datasets.Dataset.from_pandas(df)
 
-    return dataset, df
+    return dataset
 
 
-train, traindf = json_to_dataset(args.train)
-test, df = json_to_dataset(args.test)
+def class_weights(train, label_names):
+    """Calculates class weights for the loss function based on the train split.
 
+    implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
+    based on scikit learns compute_class_weight method (which does not work for one hot encoded labels)
+    
+    Parameters
+    ---------
+    train: Dataset
+        train split of the dataset
+    label_names: list
+        list of the labels
 
-# class weigths for the loss function (from train data split)
-#implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
-# based on scikit learns compute_class_weight method (which does not work for one hot encdded labels)
-def class_weights(traindf, label_names):
-    labels = traindf["labels"].values.tolist() # get all rows (examples) from train data
+    Returns
+    ------
+    class_weights: list
+        a list of the class weights
+
+    """
+
+    labels = train["labels"] # get all rows (examples) from train data
     n_samples = len(labels) # number of examples (rows) in train data
     if args.clean_as_label == True: # number of labels
         n_classes = len(label_names)
@@ -114,60 +165,22 @@ def class_weights(traindf, label_names):
     print(class_weights)
     return class_weights
 
-if args.loss == True:
-    class_weights = class_weights(traindf, label_names)
-
-
-if args.dev == True:
-    # then split test into test and dev
-    test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
-    train = train.shuffle(seed=42) # test shuffling of the train set
-    # then make the dataset
-    dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
-else:
-    train = train.shuffle(seed=42) # test shuffling of the train set
-    test = test.shuffle(seed=42) # test shuffling of the test set
-    dataset = datasets.DatasetDict({"train":train, "test":test})
-print(dataset)
-
-
-model_name = args.model
-tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
-
-def tokenize(example):
-    return tokenizer(
-        example["text"],
-        max_length=512,
-        truncation=True
-    )
-    
-dataset = dataset.map(tokenize)
-
-if args.clean_as_label == True: # number of labels
-    num_labels=len(label_names)
-else:
-    num_labels=len(label_names) - 1
-model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels, problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
-
-# Set training arguments
-trainer_args = transformers.TrainingArguments(
-    "checkpoints/multilabel",
-    evaluation_strategy="epoch",
-    logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
-    save_strategy="epoch",
-    load_best_model_at_end=True,
-    num_train_epochs=args.epochs,
-    learning_rate=args.learning,
-    #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) loss
-    per_device_train_batch_size=args.batch,
-    per_device_eval_batch_size=32
-)
-
-
-# APPLYING TRESHOLD OPTIMIZATION COULD HELP WITH THE IMBALANCE ISSUE
-
-# in case a threshold was not given, choose the one that works best with the evaluated data
 def optimize_threshold(predictions, labels):
+    """A method for getting the best threshold according to the best micro f1-score in case a threshold was not given. Made by Anna Salmela. Documentation by me.
+    
+    Parameters
+    --------
+    predictions
+        the predictions for the labels
+    labels: list
+        the correct labels for the examples
+
+    Returns
+    ------
+    best_f1_threshold: int
+        the best threshold value, global value for all the labels
+    """
+
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(predictions))
     best_f1 = 0
@@ -176,18 +189,34 @@ def optimize_threshold(predictions, labels):
     for th in np.arange(0.3, 0.7, 0.05):
         y_pred = np.zeros(probs.shape)
         y_pred[np.where(probs >= th)] = 1
-        f1 = f1_score(y_true=y_true, y_pred=y_pred, average='micro') # change this to weighted?
+        f1 = f1_score(y_true=y_true, y_pred=y_pred, average='micro') # this metric could be changed to something else
         if f1 > best_f1:
             best_f1 = f1
             best_f1_threshold = th
     return best_f1_threshold 
 
 
-#compute accuracy and loss
-from transformers import EvalPrediction
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support
-# source: https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
 def multi_label_metrics(predictions, labels, threshold):
+    """A method for measuring different metrics depending on what type of classification is to be done according to the arguments given to the script.
+    
+    Modified from https://jesusleal.io/2021/04/21/Longformer-multilabel-classification/
+
+    Parameters
+    ---------
+    predictions
+        the predictions for the labels
+    labels
+        the correct labels
+    threshold
+        the threshold value to use to get the predicted labels
+
+    Returns
+    ------
+    metrics
+        a dictionary which includes the metrics to print out
+
+    """
+
     # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(predictions))
@@ -248,6 +277,8 @@ def multi_label_metrics(predictions, labels, threshold):
     return metrics
 
 def compute_metrics(p: EvalPrediction):
+    """Computes the metrics and calls threshold optimizer and multi-label metrics"""
+    
     preds = p.predictions[0] if isinstance(p.predictions, 
             tuple) else p.predictions
     if args.threshold == None:
@@ -261,15 +292,6 @@ def compute_metrics(p: EvalPrediction):
         labels=p.label_ids,
         threshold=threshold)
     return result
-
-data_collator = transformers.DataCollatorWithPadding(tokenizer)
-
-# Argument gives the number of steps of patience before early stopping
-early_stopping = transformers.EarlyStoppingCallback(
-    early_stopping_patience=5
-)
-
-from collections import defaultdict
 
 class LogSavingCallback(transformers.TrainerCallback):
     def on_train_begin(self, *args, **kwargs):
@@ -285,11 +307,13 @@ class LogSavingCallback(transformers.TrainerCallback):
                 if k != "epoch" or v not in self.logs[k]:
                     self.logs[k].append(v)
 
-training_logs = LogSavingCallback()
-
 
 class MultilabelTrainer(transformers.Trainer):
+    """A custom trainer to use a different loss"""
+
     def compute_loss(self, model, inputs, return_outputs=False):
+        """Computes the loss and uses the class weights if --loss was used as an argument"""
+
         labels = inputs.pop("labels")
         outputs = model(**inputs)
         logits = outputs.logits
@@ -302,32 +326,23 @@ class MultilabelTrainer(transformers.Trainer):
                         labels.float().view(-1, self.model.config.num_labels))
         return (loss, outputs) if return_outputs else loss
 
-if args.dev == True:
-    eval_dataset=dataset["dev"] 
-else:
-    eval_dataset=dataset["test"]
 
-trainer = MultilabelTrainer(
-    model=model,
-    args=trainer_args,
-    train_dataset=dataset["train"],
-    eval_dataset=eval_dataset,
-    compute_metrics=compute_metrics,
-    data_collator=data_collator,
-    tokenizer = tokenizer,
-    callbacks=[early_stopping, training_logs]
-)
-
-trainer.train()
-
-
-eval_results = trainer.evaluate(dataset["test"])
-#pprint(eval_results)
-print('F1:', eval_results['eval_f1'])
-
-
-from sklearn.metrics import classification_report
 def get_classification_report(trainer):
+    """Prints the classification report for the predictions. Different reports based on whether using binary evaluation or multi-label classification.
+    
+    Parameters
+    --------
+    trainer: Trainer
+        the fully trained model used to make predictions
+
+    Returns
+    ------
+    trues
+        list of the correct labels
+    preds
+        list of the predicted labels
+    """
+
     # see how the labels are predicted
     test_pred = trainer.predict(dataset['test'])
     trues = test_pred.label_ids
@@ -376,10 +391,12 @@ def get_classification_report(trainer):
     return trues, preds
 
 
-# output dataframe to see what went wrong and what went right
-# modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
-# COULD ALSO BE USED WITH REGISTER LABELING
-def predictions_to_csv(trues, preds):
+def predictions_to_csv(trues, preds, dataset):
+    """ Saves a dataframe with texts, correct labels and predicted labels to see what went right and what went wrong.
+    
+    Modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
+    """
+
     idx2label = dict(zip(range(6), label_names[:-1]))
     print(idx2label)
 
@@ -405,9 +422,7 @@ def predictions_to_csv(trues, preds):
             pred_label_texts.append(vals)
 
     #get the test texts to a list of their own 
-    texts = df[["text"]]
-    # turn it into an actual list
-    texts = texts.values.tolist()
+    texts = dataset["test"]["text"]
     print(len(texts), len(true_label_texts), len(pred_label_texts))
 
     # Converting lists to df
@@ -415,7 +430,122 @@ def predictions_to_csv(trues, preds):
     comparisons_df.to_csv('comparisons.csv')
     #print(comparisons_df.head())
 
-trues, preds = get_classification_report(trainer)
-if args.binary == False:
-    # if I have energy I could modify this to work with binary as well
-    predictions_to_csv(trues, preds)
+
+
+
+def main()
+    # this should prevent any caching problems I might have because caching does not happen anymore
+    datasets.disable_caching()
+
+    pprint = PrettyPrinter(compact=True).pprint
+    logging.disable(logging.INFO)
+
+    # get commandline arguments
+    args = arguments()
+
+    label_names = [
+        'label_identity_attack',
+        'label_insult',
+        'label_obscene',
+        'label_severe_toxicity',
+        'label_threat',
+        'label_toxicity',
+        'label_clean' # added new label for clean examples (no label previously) because the no label ones were not taken into account in the class weights
+    ]
+
+    # data to dataset format
+    train= json_to_dataset(args.train)
+    test = json_to_dataset(args.test)
+
+    # use loss if so specified
+    if args.loss == True:
+        class_weights = class_weights(train, label_names)
+
+    # use dev set or not
+    if args.dev == True:
+        # then split test into test and dev
+        test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
+        train = train.shuffle(seed=42) # test shuffling of the train set
+        # then make the dataset
+        dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
+    else:
+        #train = train.shuffle(seed=42) # test shuffling of the train set
+        #test = test.shuffle(seed=42) # test shuffling of the test set
+        dataset = datasets.DatasetDict({"train":train, "test":test})
+
+    print(dataset)
+
+
+    # build the model
+
+    model_name = args.model
+    tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
+
+    def tokenize(example):
+        return tokenizer(
+            example["text"],
+            max_length=512,
+            truncation=True
+        )
+        
+    dataset = dataset.map(tokenize)
+
+    if args.clean_as_label == True: # number of labels
+        num_labels=len(label_names)
+    else:
+        num_labels=len(label_names) - 1
+    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels, problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
+
+    # Set training arguments
+    trainer_args = transformers.TrainingArguments(
+        "checkpoints/multilabeltransfer", #output_dir for checkpoints, not necessary to mention what it is
+        evaluation_strategy="epoch",
+        logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
+        save_strategy="epoch",
+        load_best_model_at_end=True,
+        num_train_epochs=args.epochs,
+        learning_rate=args.learning,
+        #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) loss
+        per_device_train_batch_size=args.batch,
+        per_device_eval_batch_size=32
+    )
+
+    data_collator = transformers.DataCollatorWithPadding(tokenizer)
+    # Argument gives the number of steps of patience before early stopping
+    early_stopping = transformers.EarlyStoppingCallback(
+        early_stopping_patience=5
+    )
+    training_logs = LogSavingCallback()
+
+    # which evaluation set to use
+    if args.dev == True:
+        eval_dataset=dataset["dev"] 
+    else:
+        eval_dataset=dataset["test"]
+
+    trainer = MultilabelTrainer(
+        model=model,
+        args=trainer_args,
+        train_dataset=dataset["train"],
+        eval_dataset=eval_dataset,
+        compute_metrics=compute_metrics,
+        data_collator=data_collator,
+        tokenizer = tokenizer,
+        callbacks=[early_stopping, training_logs]
+    )
+
+    trainer.train()
+
+
+    eval_results = trainer.evaluate(dataset["test"])
+    #pprint(eval_results)
+    print('F1:', eval_results['eval_f1'])
+
+    trues, preds = get_classification_report(trainer)
+    if args.binary == False:
+        # if I have energy I could modify this to work with binary as well
+        predictions_to_csv(trues, preds, dataset)
+
+
+if __name__ == "__main__":
+    main()

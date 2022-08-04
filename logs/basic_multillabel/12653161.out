@@ -1,0 +1,60 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.5, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, binary=False, clean_as_label=False, dev=False, epochs=4, learning=2e-05, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', threshold=None, train='data/train_fi_deepl.jsonl')
+tensor([18.9289,  3.3763,  3.1477, 16.6741, 55.6384,  1.7389], device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2213, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.21860302984714508, 'eval_f1': 0.6624007060900264, 'eval_f1_weighted': 0.6697972912557749, 'eval_precision': 0.6099500754673168, 'eval_recall': 0.724720651124293, 'eval_roc_auc': 0.8532651093832474, 'eval_accuracy': 0.8985745099878083, 'eval_runtime': 525.4397, 'eval_samples_per_second': 121.761, 'eval_steps_per_second': 3.806, 'epoch': 1.0}
+{'loss': 0.1596, 'learning_rate': 1e-05, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.19087088108062744, 'eval_f1': 0.6399807604948828, 'eval_f1_weighted': 0.6466452755260149, 'eval_precision': 0.5223555070883316, 'eval_recall': 0.8259759966891985, 'eval_roc_auc': 0.8981654626757577, 'eval_accuracy': 0.869470755572228, 'eval_runtime': 526.184, 'eval_samples_per_second': 121.589, 'eval_steps_per_second': 3.801, 'epoch': 2.0}
+{'loss': 0.1167, 'learning_rate': 5e-06, 'epoch': 3.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.22171327471733093, 'eval_f1': 0.6506630086877, 'eval_f1_weighted': 0.6529940323874417, 'eval_precision': 0.5554796525812433, 'eval_recall': 0.785211753345289, 'eval_roc_auc': 0.8802740684586585, 'eval_accuracy': 0.8660008127793929, 'eval_runtime': 525.8539, 'eval_samples_per_second': 121.665, 'eval_steps_per_second': 3.803, 'epoch': 3.0}
+{'loss': 0.0836, 'learning_rate': 0.0, 'epoch': 4.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.25912368297576904, 'eval_f1': 0.6555894786284642, 'eval_f1_weighted': 0.6571191243534945, 'eval_precision': 0.5706838393130942, 'eval_recall': 0.7701751965788385, 'eval_roc_auc': 0.8737168859955134, 'eval_accuracy': 0.8729875894838851, 'eval_runtime': 526.0273, 'eval_samples_per_second': 121.625, 'eval_steps_per_second': 3.802, 'epoch': 4.0}
+{'train_runtime': 13152.1998, 'train_samples_per_second': 48.531, 'train_steps_per_second': 6.067, 'train_loss': 0.14528160575231394, 'epoch': 4.0}
+Best threshold: 0.6499999999999999
+F1: 0.6399807604948828
+Best threshold: 0.6499999999999999
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.36      0.84      0.50       712
+         label_insult       0.45      0.88      0.60      3427
+        label_obscene       0.47      0.88      0.62      3691
+label_severe_toxicity       0.15      0.91      0.26       367
+         label_threat       0.31      0.78      0.45       211
+       label_toxicity       0.50      0.90      0.64      6090
+
+            micro avg       0.45      0.88      0.59     14498
+            macro avg       0.38      0.86      0.51     14498
+         weighted avg       0.46      0.88      0.61     14498
+          samples avg       0.06      0.08      0.07     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+63978 63978 63978
+END: ke 3.8.2022 20.06.23 +0300
