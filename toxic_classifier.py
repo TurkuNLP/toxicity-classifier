@@ -13,8 +13,8 @@ from transformers import EvalPrediction
 
 """ Toxicity classifier
 
-This script is to be used for toxicity classification with jigsaw toxicity dataset in English which is the original language
- and Finnish to which the data was translated using DeepL. The data is accepted in a .jsonl format and the data can be found in the data folder.
+This script is to be used for toxicity classification with jigsaw toxicity dataset in English (which is the original language)
+ and Finnish (to which the data was translated using DeepL).The data is accepted in a .jsonl format and the data can be found in the data folder.
 
 The labels of the dataset are:
 - label_identity_attack
@@ -44,7 +44,7 @@ Information about the arguments to use with script can be found by looking at th
 """
 
 def arguments():
-    """Uses argparser to get "optional" arguments from the command line. Use 'python3 toxic_classifier.py -h' to get information abou them.
+    """Uses argparser to get "optional" arguments from the command line. Use 'python3 toxic_classifier.py -h' to get information about them.
 
     Returns
     ------
@@ -85,14 +85,20 @@ def arguments():
     print(args)
     return args
 
+# keep arguments out of main method to keep it as a global variable
+# get commandline arguments
+args = arguments()
 
-def json_to_dataset(data):
+
+def json_to_dataset(data, label_names):
     """ Reads the data from .jsonl format and turns it into a dataset using pandas.
     
     Parameters
     ----------
     data: str
         path to the file from which to get the data
+    label_names: list
+        list of the labels
 
     Returns
     -------
@@ -135,7 +141,7 @@ def class_weights(train, label_names):
     train: Dataset
         train split of the dataset
     label_names: list
-        list of the labels
+        list of the labels used in the data
 
     Returns
     ------
@@ -146,7 +152,8 @@ def class_weights(train, label_names):
 
     labels = train["labels"] # get all rows (examples) from train data
     n_samples = len(labels) # number of examples (rows) in train data
-    if args.clean_as_label == True: # number of labels
+    # number of labels
+    if args.clean_as_label == True:
         n_classes = len(label_names)
     else:
         n_classes = len(label_names) -1
@@ -161,8 +168,8 @@ def class_weights(train, label_names):
     # Compute class weights using balanced method
     class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
     class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
-    # multiply things if there is more than one
     print(class_weights)
+
     return class_weights
 
 def optimize_threshold(predictions, labels):
@@ -228,7 +235,7 @@ def multi_label_metrics(predictions, labels, threshold):
 
 
     if args.clean_as_label == True:
-        # change to not take clean label into account when computing metrics
+        # change to not take clean label into account when computing metrics (delete last prediction)
         new_pred, new_true = [], []    
         for i in range(len(y_pred)):
             new_pred.append(y_pred[i][:-1])
@@ -240,6 +247,7 @@ def multi_label_metrics(predictions, labels, threshold):
     # technically there can be a clean label and a toxic label at the same time but this just checks whether there is a toxic label present
     if args.binary == True:
         # binary evaluation
+        # if there are labels the text is toxic = 1
         new_pred, new_true = [], []
         for i in range(len(y_pred)):
             if sum(y_pred[i]) > 0:
@@ -327,13 +335,15 @@ class MultilabelTrainer(transformers.Trainer):
         return (loss, outputs) if return_outputs else loss
 
 
-def get_classification_report(trainer):
+def get_classification_report(trainer, label_names):
     """Prints the classification report for the predictions. Different reports based on whether using binary evaluation or multi-label classification.
     
     Parameters
     --------
     trainer: Trainer
         the fully trained model used to make predictions
+    label_names: list
+        list of the labels used in the data
 
     Returns
     ------
@@ -372,6 +382,7 @@ def get_classification_report(trainer):
     # technically there can be a clean label and a toxic label at the same time but this just checks whether there is a toxic label present
     if args.binary == True:
         # binary evaluation
+        # if there are labels the text is toxic = 1
         new_pred, new_true = [], []
         for i in range(len(preds)):
             if sum(preds[i]) > 0:
@@ -391,10 +402,21 @@ def get_classification_report(trainer):
     return trues, preds
 
 
-def predictions_to_csv(trues, preds, dataset):
+def predictions_to_csv(trues, preds, dataset, label_names):
     """ Saves a dataframe with texts, correct labels and predicted labels to see what went right and what went wrong.
     
     Modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
+
+    Parameters
+    ---------
+    trues: list
+        list of correct labels
+    preds: list
+        list of predicted labels
+    dataset: Dataset
+        the dataset from which to predict
+    label_names: list
+        list of the labels used in the data
     """
 
     idx2label = dict(zip(range(6), label_names[:-1]))
@@ -431,17 +453,12 @@ def predictions_to_csv(trues, preds, dataset):
     #print(comparisons_df.head())
 
 
-
-
-def main()
+def main():
     # this should prevent any caching problems I might have because caching does not happen anymore
     datasets.disable_caching()
 
     pprint = PrettyPrinter(compact=True).pprint
     logging.disable(logging.INFO)
-
-    # get commandline arguments
-    args = arguments()
 
     label_names = [
         'label_identity_attack',
@@ -454,8 +471,8 @@ def main()
     ]
 
     # data to dataset format
-    train= json_to_dataset(args.train)
-    test = json_to_dataset(args.test)
+    train= json_to_dataset(args.train, label_names)
+    test = json_to_dataset(args.test, label_names)
 
     # use loss if so specified
     if args.loss == True:
@@ -465,12 +482,12 @@ def main()
     if args.dev == True:
         # then split test into test and dev
         test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
-        train = train.shuffle(seed=42) # test shuffling of the train set
+        train = train.shuffle(seed=42) # shuffle the train set
         # then make the dataset
         dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
     else:
-        #train = train.shuffle(seed=42) # test shuffling of the train set
-        #test = test.shuffle(seed=42) # test shuffling of the test set
+        #train = train.shuffle(seed=42) # shuffle the train set
+        #test = test.shuffle(seed=42) # shuffle the test set
         dataset = datasets.DatasetDict({"train":train, "test":test})
 
     print(dataset)
@@ -541,10 +558,10 @@ def main()
     #pprint(eval_results)
     print('F1:', eval_results['eval_f1'])
 
-    trues, preds = get_classification_report(trainer)
+    trues, preds = get_classification_report(trainer, label_names)
     if args.binary == False:
         # if I have energy I could modify this to work with binary as well
-        predictions_to_csv(trues, preds, dataset)
+        predictions_to_csv(trues, preds, dataset, label_names)
 
 
 if __name__ == "__main__":
