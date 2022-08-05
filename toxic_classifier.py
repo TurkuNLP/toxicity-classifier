@@ -130,7 +130,7 @@ def json_to_dataset(data, label_names):
     return dataset
 
 
-def class_weights(train, label_names):
+def make_class_weights(train, label_names):
     """Calculates class weights for the loss function based on the train split.
 
     implemented from https://gist.github.com/angeligareta/83d9024c5e72ac9ebc34c9f0b073c64c
@@ -317,7 +317,11 @@ class LogSavingCallback(transformers.TrainerCallback):
 
 
 class MultilabelTrainer(transformers.Trainer):
-    """A custom trainer to use a different loss"""
+    """A custom trainer to use a different loss and to use different class weights"""
+
+    def __init__(self, class_weights, **kwargs):
+        super().__init__(**kwargs)
+        self.class_weights = class_weights
 
     def compute_loss(self, model, inputs, return_outputs=False):
         """Computes the loss and uses the class weights if --loss was used as an argument"""
@@ -327,7 +331,7 @@ class MultilabelTrainer(transformers.Trainer):
         logits = outputs.logits
         if args.loss == True:
             # include class weights in loss computing
-            loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=class_weights)
+            loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight= self.class_weights)
         else:
             loss_fct = torch.nn.BCEWithLogitsLoss()
         loss = loss_fct(logits.view(-1, self.model.config.num_labels), 
@@ -335,7 +339,7 @@ class MultilabelTrainer(transformers.Trainer):
         return (loss, outputs) if return_outputs else loss
 
 
-def get_classification_report(trainer, label_names):
+def get_classification_report(trainer, label_names, dataset):
     """Prints the classification report for the predictions. Different reports based on whether using binary evaluation or multi-label classification.
     
     Parameters
@@ -344,6 +348,8 @@ def get_classification_report(trainer, label_names):
         the fully trained model used to make predictions
     label_names: list
         list of the labels used in the data
+    dataset: Dataset
+        the dataset from which to predict the labels
 
     Returns
     ------
@@ -419,7 +425,7 @@ def predictions_to_csv(trues, preds, dataset, label_names):
         list of the labels used in the data
     """
 
-    idx2label = dict(zip(range(6), label_names[:-1]))
+    idx2label = dict(zip(range(6), label_names[:-1]))   
     print(idx2label)
 
     # Getting indices of where boolean one hot vector true_bools is True so we can use idx2label to gather label names
@@ -476,7 +482,7 @@ def main():
 
     # use loss if so specified
     if args.loss == True:
-        class_weights = class_weights(train, label_names)
+        class_weights = make_class_weights(train, label_names)
 
     # use dev set or not
     if args.dev == True:
@@ -486,8 +492,8 @@ def main():
         # then make the dataset
         dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
     else:
-        #train = train.shuffle(seed=42) # shuffle the train set
-        #test = test.shuffle(seed=42) # shuffle the test set
+        train = train.shuffle(seed=42) # shuffle the train set
+        test = test.shuffle(seed=42) # shuffle the test set
         dataset = datasets.DatasetDict({"train":train, "test":test})
 
     print(dataset)
@@ -541,6 +547,7 @@ def main():
         eval_dataset=dataset["test"]
 
     trainer = MultilabelTrainer(
+        class_weights = class_weights,
         model=model,
         args=trainer_args,
         train_dataset=dataset["train"],
@@ -558,10 +565,10 @@ def main():
     #pprint(eval_results)
     print('F1:', eval_results['eval_f1'])
 
-    trues, preds = get_classification_report(trainer, label_names)
-    if args.binary == False:
-        # if I have energy I could modify this to work with binary as well
-        predictions_to_csv(trues, preds, dataset, label_names)
+    trues, preds = get_classification_report(trainer, label_names, dataset)
+
+if args.binary == False:
+    predictions_to_csv(trues, preds, dataset, label_names)
 
 
 if __name__ == "__main__":

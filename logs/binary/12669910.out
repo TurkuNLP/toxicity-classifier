@@ -1,6 +1,11 @@
-epochs: 4, learning rate: 8e-6, batch size: 8, prediction treshold: 0.5, model: xlm-roberta-base 
-transfer from english train to translated finnish test
-Namespace(batch=8, binary=False, clean_as_label=False, dev=False, epochs=4, learning=8e-06, loss=False, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', threshold=0.5, train='data/train_en.jsonl')
+epochs: 4, learning rate: 2e-5, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, dev=False, epochs=4, learning=2e-05, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', train='data/train_fi_deepl.jsonl')
+toxic:  16225
+clean:  143346
+toxic:  6243
+clean:  57735
+tensor([0.5566, 4.9174], device='cuda:0')
 DatasetDict({
     train: Dataset({
         features: ['text', 'labels'],

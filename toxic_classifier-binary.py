@@ -59,6 +59,8 @@ parser.add_argument('--learning', type=float, default=8e-6,
 )
 parser.add_argument('--dev', action='store_true', default=False,
     help="Decide whether to split the train into train and dev or not")
+parser.add_argument('--loss', action='store_true', default=False,
+        help="If used different class weights are used for the loss function")
 args = parser.parse_args()
 print(args)
 #usage as args.VARIABLENAME
@@ -118,7 +120,7 @@ def json_to_dataset(data):
     return dataset
 
 
-def class_weights(train):
+def make_class_weights(train):
     """Calculates class weights for the loss function based on the train split. """
 
     labels = train["labels"] # get all labels from train
@@ -168,7 +170,11 @@ class LogSavingCallback(transformers.TrainerCallback):
 
 
 class newTrainer(transformers.Trainer):
-    """Custom trainer to use class weights for loss"""
+    """A custom trainer to use a different loss and to use different class weights"""
+
+    def __init__(self, class_weights, **kwargs):
+        super().__init__(**kwargs)
+        self.class_weights = class_weights
 
     def compute_loss(self, model, inputs, return_outputs=False):
         """Computes loss with different class weights"""
@@ -176,11 +182,50 @@ class newTrainer(transformers.Trainer):
         labels = inputs.pop("labels")
         outputs = model(**inputs)
         logits = outputs.logits
-        loss = nn.CrossEntropyLoss(weight=class_weights)
+        # include class weights in loss computing
+        if args.loss == True:
+            loss_fct = torch.nn.CrossEntropyLoss(weight = self.class_weights)
+        else:
+            loss_fct = torch.nn.CrossEntropyLoss()
         loss = loss_fct(logits.view(-1, self.model.config.num_labels), 
-            labels.float().view(-1, self.model.config.num_labels))
+            labels.view(-1))
         return (loss, outputs) if return_outputs else loss
 
+
+def predictions_to_csv(trues, preds, dataset):
+    """ Saves a dataframe with texts, correct labels and predicted labels to see what went right and what went wrong.
+    
+    Modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
+
+    Parameters
+    ---------
+    trues: list
+        list of correct labels
+    preds: list
+        list of predicted labels
+    dataset: Dataset
+        the dataset from which to predict
+
+    """
+
+    idx2label = dict(zip(range(2), list("clean", "toxic")))
+    print(idx2label)
+
+    # Gathering vectors of label names using idx2label (modified single-label version)
+    true_labels, pred_labels = [], []
+    for vals in trues:
+        true_labels.append(idx2label[val])
+    for vals in preds:
+        pred_labels.append(idx2label[val])
+
+    #get the test texts to a list of their own 
+    texts = dataset["test"]["text"]
+    print(len(texts), len(true_label_texts), len(pred_label_texts))
+
+    # Converting lists to df
+    comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_labels, 'pred_labels':pred_labels})
+    comparisons_df.to_csv('binary_comparisons.csv')
+    #print(comparisons_df.head())
 
 
 def main():
@@ -193,7 +238,9 @@ def main():
     train = json_to_dataset(args.train)
     test = json_to_dataset(args.test)
 
-    class_weights = class_weights(train)
+    # use loss if so specified
+    if args.loss == True:
+        class_weights = make_class_weights(train)
 
     if args.dev == True:
         # then split test into test and dev
@@ -251,7 +298,8 @@ def main():
     else:
         eval_dataset=dataset["test"] #.select(range(20_000))
 
-    trainer = transformers.Trainer(
+    trainer = newTrainer(
+        class_weights = class_weights,
         model=model,
         args=trainer_args,
         train_dataset=dataset["train"],
@@ -277,6 +325,8 @@ def main():
     preds = predictions.argmax(-1)
 
     print(classification_report(trues, preds, target_names=["clean", "toxic"]))
+
+    predictions_to_csv(trues, preds, dataset)
 
 if __name__ == "__main__":
     main()
