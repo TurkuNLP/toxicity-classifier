@@ -14,7 +14,7 @@ from transformers import EvalPrediction
 """ Toxicity classifier
 
 This script is to be used for toxicity classification with jigsaw toxicity dataset in English (which is the original language)
- and Finnish (to which the data was translated using DeepL).The data is accepted in a .jsonl format and the data can be found in the data folder.
+ and Finnish (to which the data was translated using DeepL).The data is accepted in a .jsonl format and the data can be found in the data folder of the repository.
 
 The labels of the dataset are:
 - label_identity_attack
@@ -24,12 +24,13 @@ The labels of the dataset are:
 - label_threat
 - label_toxicity
 - label_clean
-- no labels means that the text is clean
++ no labels means that the text is clean
 
 
 The script includes mainly four use cases:
 - use the original intended way of the data: multi-label classification with the original labels
-- adding the clean (no-labels) as a label of it's own for class weights for the loss function and evaluating with the original 6 labels
+- adding the clean (no-labels) as a label (= 7 labels) of it's own to get class weights for the loss function 
+and then evaluating the performance with the original 6 labels
 - using the 6 labels for classification but evaluating it in a binary manner (toxic, clean/non-toxic)
 - using the 7 labels for classification and evaluating in a binary manner
 
@@ -118,6 +119,7 @@ def json_to_dataset(data, label_names):
     if args.clean_as_label == True:
         # add new column for clean data
         df['sum'] = df.labels.map(sum) 
+        # if there are no labels it is clean 1, and if there are none it is 0
         df.loc[df["sum"] > 0, "label_clean"] = 0
         df.loc[df["sum"] == 0, "label_clean"] = 1
         df['labels'] = df[label_names].values.tolist() # update labels column to include clean data
@@ -150,9 +152,9 @@ def make_class_weights(train, label_names):
 
     """
 
-    labels = train["labels"] # get all rows (examples) from train data
+    labels = train["labels"] # get all rows (examples) from train data, labels only
     n_samples = len(labels) # number of examples (rows) in train data
-    # number of labels
+    # number of unique labels
     if args.clean_as_label == True:
         n_classes = len(label_names)
     else:
@@ -230,12 +232,12 @@ def multi_label_metrics(predictions, labels, threshold):
     #next, use threshold to turn them into integer predictions
     y_pred = np.zeros(probs.shape)
     y_pred[np.where(probs >= threshold)] = 1
-    # finally, compute metrics
     y_true = labels
 
 
     if args.clean_as_label == True:
         # change to not take clean label into account when computing metrics (delete last prediction)
+        # technically there can be a clean label and a toxic label at the same time but this just takes the toxic labels
         new_pred, new_true = [], []    
         for i in range(len(y_pred)):
             new_pred.append(y_pred[i][:-1])
@@ -244,7 +246,6 @@ def multi_label_metrics(predictions, labels, threshold):
         y_true = new_true
         y_pred = new_pred
 
-    # technically there can be a clean label and a toxic label at the same time but this just checks whether there is a toxic label present
     if args.binary == True:
         # binary evaluation
         # if there are labels the text is toxic = 1
@@ -385,7 +386,7 @@ def get_classification_report(trainer, label_names, dataset):
             new_true.append(trues[i][:-1])
         trues = new_true
         preds = new_pred
-    # technically there can be a clean label and a toxic label at the same time but this just checks whether there is a toxic label present
+    
     if args.binary == True:
         # binary evaluation
         # if there are labels the text is toxic = 1
@@ -402,14 +403,14 @@ def get_classification_report(trainer, label_names, dataset):
                 new_true.append(0)
         print(classification_report(new_true, new_pred, target_names=["clean", "toxic"], labels=list(range(2))))
 
-    # this report shows up even with binary evaluation but I don't think it matters much
+    # this report shows up even with binary evaluation but I don't think it matters, good info nonetheless
     print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))
 
     return trues, preds
 
 
 def predictions_to_csv(trues, preds, dataset, label_names):
-    """ Saves a dataframe with texts, correct labels and predicted labels to see what went right and what went wrong.
+    """ Saves a dataframe to .csv with texts, correct labels and predicted labels to see what went right and what went wrong.
     
     Modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
 
@@ -420,7 +421,7 @@ def predictions_to_csv(trues, preds, dataset, label_names):
     preds: list
         list of predicted labels
     dataset: Dataset
-        the dataset from which to predict
+        the dataset from which to get the texts
     label_names: list
         list of the labels used in the data
     """
@@ -513,7 +514,8 @@ def main():
         
     dataset = dataset.map(tokenize)
 
-    if args.clean_as_label == True: # number of labels
+    # number of labels
+    if args.clean_as_label == True: 
         num_labels=len(label_names)
     else:
         num_labels=len(label_names) - 1
@@ -521,7 +523,7 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/multilabeltransfer", #output_dir for checkpoints, not necessary to mention what it is
+        "checkpoints/multilabel", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="epoch",
         logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
         save_strategy="epoch",
@@ -567,8 +569,8 @@ def main():
 
     trues, preds = get_classification_report(trainer, label_names, dataset)
 
-if args.binary == False:
-    predictions_to_csv(trues, preds, dataset, label_names)
+    if args.binary == False:
+        predictions_to_csv(trues, preds, dataset, label_names)
 
 
 if __name__ == "__main__":

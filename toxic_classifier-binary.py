@@ -14,7 +14,7 @@ from collections import defaultdict
 """ Toxicity classifier
 
 This script is to be used for toxicity classification with jigsaw toxicity dataset in English (which is the original language)
- and Finnish (to which the data was translated using DeepL). The data is accepted in a .jsonl format and the data can be found in the data folder.
+ and Finnish (to which the data was translated using DeepL). The data is accepted in a .jsonl format and the data can be found in the data folder of the repository.
 
 The labels of the dataset are:
 - label_identity_attack
@@ -24,10 +24,10 @@ The labels of the dataset are:
 - label_threat
 - label_toxicity
 - label_clean
-- no labels means that the text is clean
++ no labels means that the text is clean
 
 
-The script includes a binary classification where if there is a label for the text it is considered toxic and it there are no labels the text is clean/non-toxic.
+The script includes a binary classification where if there is a label for the text it is considered toxic and if there are no labels the text is clean/non-toxic.
 
 List for necessary packages to be installed (could also check import list):
 - pandas
@@ -123,7 +123,7 @@ def json_to_dataset(data):
 def make_class_weights(train):
     """Calculates class weights for the loss function based on the train split. """
 
-    labels = train["labels"] # get all labels from train
+    labels = train["labels"] # get all labels from train split
     n_samples = (len(labels))
     n_classes = 2
     c=Counter(labels)
@@ -193,7 +193,7 @@ class newTrainer(transformers.Trainer):
 
 
 def predictions_to_csv(trues, preds, dataset):
-    """ Saves a dataframe with texts, correct labels and predicted labels to see what went right and what went wrong.
+    """ Saves a dataframe to .csv with texts, correct labels and predicted labels to see what went right and what went wrong.
     
     Modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
 
@@ -204,7 +204,7 @@ def predictions_to_csv(trues, preds, dataset):
     preds: list
         list of predicted labels
     dataset: Dataset
-        the dataset from which to predict
+        the dataset from which to get texts
 
     """
 
@@ -238,9 +238,7 @@ def main():
     train = json_to_dataset(args.train)
     test = json_to_dataset(args.test)
 
-    # use loss if so specified
-    if args.loss == True:
-        class_weights = make_class_weights(train)
+    class_weights = make_class_weights(train)
 
     if args.dev == True:
         # then split test into test and dev
@@ -279,7 +277,8 @@ def main():
         load_best_model_at_end=True,
         num_train_epochs=args.epochs,
         learning_rate=args.learning,
-        #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) TRAINING loss (NOT EVAL LOSS)
+        #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of the default: 
+        #best (smallest) training or eval loss (seems to be random?)
         per_device_train_batch_size=args.batch,
         per_device_eval_batch_size=32
     )
@@ -299,7 +298,7 @@ def main():
         eval_dataset=dataset["test"] #.select(range(20_000))
 
     trainer = newTrainer(
-        class_weights = class_weights,
+        class_weights=class_weights,
         model=model,
         args=trainer_args,
         train_dataset=dataset["train"],
