@@ -30,3 +30,8 @@ To disable this warning, you can either:
 {'loss': 0.1572, 'learning_rate': 4e-06, 'epoch': 2.0}
 {'eval_loss': 0.16602617502212524, 'eval_accuracy': 0.9193629059989371, 'eval_f1': 0.6744905041327528, 'eval_precision': 0.5564230689152613, 'eval_recall': 0.8561588979657216, 'eval_runtime': 540.5448, 'eval_samples_per_second': 118.358, 'eval_steps_per_second': 3.7, 'epoch': 2.0}
 {'loss': 0.1286, 'learning_rate': 2e-06, 'epoch': 3.0}
+{'eval_loss': 0.16668038070201874, 'eval_accuracy': 0.9239426052705617, 'eval_f1': 0.6834916092103552, 'eval_precision': 0.5754024750848757, 'eval_recall': 0.841582572481179, 'eval_runtime': 539.7078, 'eval_samples_per_second': 118.542, 'eval_steps_per_second': 3.706, 'epoch': 3.0}
+{'loss': 0.1118, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.18471358716487885, 'eval_accuracy': 0.9204882928506675, 'eval_f1': 0.6758840395030264, 'eval_precision': 0.5611510791366906, 'eval_recall': 0.8495915425276309, 'eval_runtime': 539.8759, 'eval_samples_per_second': 118.505, 'eval_steps_per_second': 3.705, 'epoch': 4.0}
+{'train_runtime': 15950.2614, 'train_samples_per_second': 40.017, 'train_steps_per_second': 5.002, 'train_loss': 0.1530493399060244, 'epoch': 4.0}
+F1: 0.6744905041327528

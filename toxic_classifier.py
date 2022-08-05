@@ -264,9 +264,11 @@ def multi_label_metrics(predictions, labels, threshold):
         y_pred = new_pred
 
         precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='binary')
+        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
         metrics = {
             'accuracy': accuracy,
+            'roc_auc': roc_auc,
             'f1': f1,
             'precision': precision,
             'recall': recall

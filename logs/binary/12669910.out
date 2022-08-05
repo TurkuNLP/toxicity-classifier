@@ -33,3 +33,5 @@ To disable this warning, you can either:
 {'loss': 0.3269, 'learning_rate': 1e-05, 'epoch': 2.0}
 {'eval_loss': 0.5104519128799438, 'eval_accuracy': 0.9016536934571259, 'eval_weighted_accuracy': 0.8936518810134642, 'eval_f1': 0.63684635807457, 'eval_precision': 0.4977894072002165, 'eval_recall': 0.8837097549255166, 'eval_runtime': 511.1661, 'eval_samples_per_second': 125.161, 'eval_steps_per_second': 3.913, 'epoch': 2.0}
 {'loss': 0.2627, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.4662293493747711, 'eval_accuracy': 0.9152364875425928, 'eval_weighted_accuracy': 0.8898203639414154, 'eval_f1': 0.6639816593345313, 'eval_precision': 0.5414308811641068, 'eval_recall': 0.8582412301777992, 'eval_runtime': 509.7586, 'eval_samples_per_second': 125.506, 'eval_steps_per_second': 3.923, 'epoch': 3.0}
+{'loss': 0.1938, 'learning_rate': 0.0, 'epoch': 4.0}

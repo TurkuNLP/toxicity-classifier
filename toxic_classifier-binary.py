@@ -8,7 +8,7 @@ import numpy as np
 import json
 import torch
 from collections import Counter
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score, classification_report
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score, classification_report, roc_auc_score
 from collections import defaultdict
 
 """ Toxicity classifier
@@ -144,10 +144,12 @@ def compute_metrics(pred):
 
     precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary')
     acc = accuracy_score(labels, preds)
+    roc_auc = roc_auc_score(y_true=labels, y_score=preds, average = 'micro')
     wacc = balanced_accuracy_score(labels, preds)
     return {
         'accuracy': acc,
         'weighted_accuracy': wacc,
+        'roc_auc': roc_auc,
         'f1': f1,
         'precision': precision,
         'recall': recall
@@ -208,7 +210,7 @@ def predictions_to_csv(trues, preds, dataset):
 
     """
 
-    idx2label = dict(zip(range(2), list("clean", "toxic")))
+    idx2label = dict(zip(range(2)), list("clean", "toxic"))
     print(idx2label)
 
     # Gathering vectors of label names using idx2label (modified single-label version)
