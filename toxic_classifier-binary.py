@@ -230,6 +230,41 @@ def predictions_to_csv(trues, preds, dataset):
     comparisons_df.to_csv('binary_comparisons.csv')
     #print(comparisons_df.head())
 
+def get_predictions(dataset, trainer):
+    test_pred = trainer.predict(dataset['test'])
+    # this actually has metrics because the labels are available so evaluating is technically unnecessary since this does both! (checked documentation)
+    #trues = test_pred.label_ids # the original labels of test, won't exist with new data
+    # print(test_pred.metrics) # metrics if the data has labels
+    predictions = test_pred.predictions # logits
+    print(predictions) # to look at what they look like
+
+    from scipy.special import softmax
+    probabilities = softmax(preds_output[0], axis=1) # turn to probabilities using softmax
+    print(probabilities) # there should now be two probabilities because there are two labels
+
+    # OOOR pipeline with return_all_scores would do the same thing as above
+    # TODO set label2id and id2label when instantiating the model
+    # label2id={"clean": 0, "toxic": 1},
+    # id2label={0: "clean", 1: "toxic"}
+    # https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextClassificationPipeline 
+
+
+
+    # TODO now it's possible to change the threshold? binary takes the one with the best probability by default
+    # TODO get predictions to a list with the probabilities (most toxic first, most non-toxic last) OR two lists, one toxic and one clean
+    # e.g. list comprehension with condition that either has to be certain or it becomes clean?/toxic? whichever they prefer
+    # have to know which one the result is though so maybe an if clause instead with a list (all examples) of lists (label, probability)
+
+    # This can be achieved by mapping all values equal to or greater than the threshold to 1 and all values less than the threshold to 0. We will define a to_labels()
+    #  function to do this that will take the probabilities and threshold as an argument and return an array of integers in {0, 1}.
+    # THAT ^ CAN BE CHANGED TO BE THE OTHER WAY IF WE SO WANT
+    # https://machinelearningmastery.com/threshold-moving-for-imbalanced-classification/
+    # # apply threshold to positive probabilities to create labels
+    # def to_labels(pos_probs, threshold):
+    #     return (pos_probs >= threshold).astype('int')
+
+
+
 
 def main():
     # this should prevent any caching problems I might have because caching does not happen anymore
@@ -273,7 +308,7 @@ def main():
 
     # Set training arguments 
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/binary",
+        "checkpoints/binarytransfer",
         evaluation_strategy="epoch",
         logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
         save_strategy="epoch",

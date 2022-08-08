@@ -13,10 +13,10 @@
 module load pytorch 
 
 EPOCHS=4 
-LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"
+LR=8e-6    # "1e-5 4e-6 5e-6 7e-5 8e-6"
 BATCH=8
 TR=0.6
-MODEL="TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-cased' # "xlm-roberta-large" #'xlm-roberta-base'
+MODEL='xlm-roberta-base' #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-cased' # "xlm-roberta-large" #'xlm-roberta-base'
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction treshold: $TR, model: $MODEL "
 
 #translated

@@ -19,12 +19,12 @@ MODEL='xlm-roberta-base' #"TurkuNLP/bert-base-finnish-cased-v1" #'bert-base-case
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 
 #TRANSLATED
-echo "Translated train and test"
-srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
+# echo "Translated train and test"
+# srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
 
 # TRANSFER
-# echo "transfer from english train to translated finnish test"
-# srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
+echo "transfer from english train to translated finnish test"
+srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
 
 
 echo "END: $(date)"

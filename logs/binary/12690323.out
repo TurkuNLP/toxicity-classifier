@@ -1,6 +1,6 @@
 epochs: 4, learning rate: 8e-6, batch size: 8, model: xlm-roberta-base 
-Translated train and test
-Namespace(batch=8, dev=False, epochs=4, learning=8e-06, loss=True, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', train='data/train_fi_deepl.jsonl')
+transfer from english train to translated finnish test
+Namespace(batch=8, dev=False, epochs=4, learning=8e-06, loss=True, model='xlm-roberta-base', test='data/test_fi_deepl.jsonl', train='data/train_en.jsonl')
 toxic:  16225
 clean:  143346
 toxic:  6243

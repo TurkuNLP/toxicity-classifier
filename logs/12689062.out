@@ -1,3 +1,0 @@
-epochs: 4, learning rate: 8e-6, batch size: 8, prediction treshold: 0.6, model: xlm-roberta-base 
-transfer from english train to translated finnish test
-END: ma 8.8.2022 14.41.03 +0300

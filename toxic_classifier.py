@@ -88,7 +88,7 @@ def arguments():
 
 # keep arguments out of main method to keep it as a global variable
 # get commandline arguments
-#args = arguments()
+args = arguments()
 
 
 def json_to_dataset(data, label_names):
@@ -403,6 +403,23 @@ def get_classification_report(trainer, label_names, dataset):
                 new_true.append(1)
             else:
                 new_true.append(0)
+                
+        # calculate precision-recall curve
+        precision, recall, thresholds = precision_recall_curve(trues, preds)
+
+        #create precision recall curve using matplotlib
+        fig, ax = plt.subplots()
+        ax.plot(recall, precision, color='red')
+
+        #add axis labels to plot
+        ax.set_title('Precision-Recall Curve')
+        ax.set_ylabel('Precision')
+        ax.set_xlabel('Recall')
+
+        #display plot
+        plt.show()
+        plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
+
         print(classification_report(new_true, new_pred, target_names=["clean", "toxic"], labels=list(range(2))))
 
     # this report shows up even with binary evaluation but I don't think it matters, good info nonetheless
@@ -525,7 +542,7 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/multilabeltranslated", #output_dir for checkpoints, not necessary to mention what it is
+        "checkpoints/multilabel", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="epoch",
         logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
         save_strategy="epoch",
