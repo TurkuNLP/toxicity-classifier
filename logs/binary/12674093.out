@@ -28,3 +28,23 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.3488, 'learning_rate': 6e-06, 'epoch': 1.0}
+{'eval_loss': 0.4646167457103729, 'eval_accuracy': 0.9153615305261183, 'eval_weighted_accuracy': 0.8930325414711294, 'eval_f1': 0.6661323139527714, 'eval_precision': 0.5414995990376904, 'eval_recall': 0.865289123818677, 'eval_runtime': 537.4148, 'eval_samples_per_second': 119.048, 'eval_steps_per_second': 3.722, 'epoch': 1.0}
+{'loss': 0.2542, 'learning_rate': 4e-06, 'epoch': 2.0}
+{'eval_loss': 0.5099050402641296, 'eval_accuracy': 0.9225671324517803, 'eval_weighted_accuracy': 0.89231057724636, 'eval_f1': 0.6829642902854217, 'eval_precision': 0.5686880528615581, 'eval_recall': 0.8547172833573602, 'eval_runtime': 534.9427, 'eval_samples_per_second': 119.598, 'eval_steps_per_second': 3.739, 'epoch': 2.0}
+{'loss': 0.1708, 'learning_rate': 2e-06, 'epoch': 3.0}
+{'eval_loss': 0.5489739179611206, 'eval_accuracy': 0.913564037637938, 'eval_weighted_accuracy': 0.9003938565519181, 'eval_f1': 0.6662240463544181, 'eval_precision': 0.5345278450363196, 'eval_recall': 0.8840301137273746, 'eval_runtime': 535.1807, 'eval_samples_per_second': 119.545, 'eval_steps_per_second': 3.737, 'epoch': 3.0}
+{'loss': 0.1016, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.6875001788139343, 'eval_accuracy': 0.9116102410203507, 'eval_weighted_accuracy': 0.8957398521730152, 'eval_f1': 0.6591936358705479, 'eval_precision': 0.5284057971014493, 'eval_recall': 0.8760211436809227, 'eval_runtime': 533.2343, 'eval_samples_per_second': 119.981, 'eval_steps_per_second': 3.751, 'epoch': 4.0}
+{'train_runtime': 13834.9478, 'train_samples_per_second': 46.136, 'train_steps_per_second': 5.767, 'train_loss': 0.21885778685587118, 'epoch': 4.0}
+F1_micro: 0.6661323139527714
+              precision    recall  f1-score   support
+
+       clean       0.98      0.92      0.95     57735
+       toxic       0.54      0.87      0.67      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.76      0.89      0.81     63978
+weighted avg       0.94      0.92      0.92     63978
+
+END: pe 5.8.2022 18.15.08 +0300

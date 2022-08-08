@@ -88,7 +88,7 @@ def arguments():
 
 # keep arguments out of main method to keep it as a global variable
 # get commandline arguments
-args = arguments()
+#args = arguments()
 
 
 def json_to_dataset(data, label_names):
@@ -288,7 +288,7 @@ def multi_label_metrics(predictions, labels, threshold):
     return metrics
 
 def compute_metrics(p: EvalPrediction):
-    """Computes the metrics and calls threshold optimizer and multi-label metrics"""
+    """ Computes the metrics and calls threshold optimizer and multi-label metrics. """
     
     preds = p.predictions[0] if isinstance(p.predictions, 
             tuple) else p.predictions

@@ -35,3 +35,16 @@ To disable this warning, you can either:
 {'loss': 0.2627, 'learning_rate': 5e-06, 'epoch': 3.0}
 {'eval_loss': 0.4662293493747711, 'eval_accuracy': 0.9152364875425928, 'eval_weighted_accuracy': 0.8898203639414154, 'eval_f1': 0.6639816593345313, 'eval_precision': 0.5414308811641068, 'eval_recall': 0.8582412301777992, 'eval_runtime': 509.7586, 'eval_samples_per_second': 125.506, 'eval_steps_per_second': 3.923, 'epoch': 3.0}
 {'loss': 0.1938, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.5821698307991028, 'eval_accuracy': 0.9192534933883523, 'eval_weighted_accuracy': 0.8816173516780987, 'eval_f1': 0.6686337395766516, 'eval_precision': 0.5576120680432224, 'eval_recall': 0.8348550376421592, 'eval_runtime': 509.6341, 'eval_samples_per_second': 125.537, 'eval_steps_per_second': 3.924, 'epoch': 4.0}
+{'train_runtime': 13015.5633, 'train_samples_per_second': 49.04, 'train_steps_per_second': 6.13, 'train_loss': 0.2954048993994241, 'epoch': 4.0}
+F1_micro: 0.6639816593345313
+              precision    recall  f1-score   support
+
+       clean       0.98      0.92      0.95     57735
+       toxic       0.54      0.86      0.66      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.76      0.89      0.81     63978
+weighted avg       0.94      0.92      0.92     63978
+
+END: pe 5.8.2022 15.02.51 +0300
