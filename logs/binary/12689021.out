@@ -31,3 +31,20 @@ To disable this warning, you can either:
 {'loss': 0.3883, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
 {'eval_loss': 0.4437713921070099, 'eval_accuracy': 0.9162680921566788, 'eval_weighted_accuracy': 0.8685345316034291, 'eval_roc_auc': 0.868534531603429, 'eval_f1': 0.6535152965526162, 'eval_precision': 0.5480581471034932, 'eval_recall': 0.8092263334935127, 'eval_runtime': 512.4982, 'eval_samples_per_second': 124.836, 'eval_steps_per_second': 3.902, 'epoch': 1.0}
 {'loss': 0.3172, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.5514505505561829, 'eval_accuracy': 0.9099690518615774, 'eval_weighted_accuracy': 0.8843303970439098, 'eval_roc_auc': 0.8843303970439097, 'eval_f1': 0.6488661302121433, 'eval_precision': 0.5237673457336877, 'eval_recall': 0.8524747717443537, 'eval_runtime': 511.9824, 'eval_samples_per_second': 124.961, 'eval_steps_per_second': 3.906, 'epoch': 2.0}
+{'loss': 0.2643, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.4881856441497803, 'eval_accuracy': 0.923051674012942, 'eval_weighted_accuracy': 0.8782931567689405, 'eval_roc_auc': 0.8782931567689405, 'eval_f1': 0.6760118460019743, 'eval_precision': 0.5737265415549598, 'eval_recall': 0.8226814031715521, 'eval_runtime': 510.8522, 'eval_samples_per_second': 125.238, 'eval_steps_per_second': 3.915, 'epoch': 3.0}
+{'loss': 0.2044, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.5552651882171631, 'eval_accuracy': 0.9140485791990997, 'eval_weighted_accuracy': 0.8868050127288315, 'eval_roc_auc': 0.8868050127288315, 'eval_f1': 0.6594835593535203, 'eval_precision': 0.5375529981829195, 'eval_recall': 0.8529553099471407, 'eval_runtime': 511.7603, 'eval_samples_per_second': 125.016, 'eval_steps_per_second': 3.908, 'epoch': 4.0}
+{'train_runtime': 13029.3159, 'train_samples_per_second': 48.988, 'train_steps_per_second': 6.124, 'train_loss': 0.29355304373973845, 'epoch': 4.0}
+F1_micro: 0.6535152965526162
+              precision    recall  f1-score   support
+
+       clean       0.98      0.93      0.95     57735
+       toxic       0.55      0.81      0.65      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.76      0.87      0.80     63978
+weighted avg       0.94      0.92      0.92     63978
+
+END: ma 8.8.2022 18.34.17 +0300

@@ -28,3 +28,23 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.391, 'learning_rate': 6e-06, 'epoch': 1.0}
+{'eval_loss': 1.1541821956634521, 'eval_accuracy': 0.9188158429460127, 'eval_weighted_accuracy': 0.7611591129115791, 'eval_roc_auc': 0.7611591129115791, 'eval_f1': 0.5760692131896833, 'eval_precision': 0.5872857380595773, 'eval_recall': 0.565273105878584, 'eval_runtime': 538.1363, 'eval_samples_per_second': 118.888, 'eval_steps_per_second': 3.717, 'epoch': 1.0}
+{'loss': 0.2753, 'learning_rate': 4e-06, 'epoch': 2.0}
+{'eval_loss': 1.2543530464172363, 'eval_accuracy': 0.9229266310294164, 'eval_weighted_accuracy': 0.7513651850217736, 'eval_roc_auc': 0.7513651850217735, 'eval_f1': 0.5767745257917775, 'eval_precision': 0.621301775147929, 'eval_recall': 0.5382027871215762, 'eval_runtime': 537.2733, 'eval_samples_per_second': 119.079, 'eval_steps_per_second': 3.723, 'epoch': 2.0}
+{'loss': 0.2239, 'learning_rate': 2e-06, 'epoch': 3.0}
+{'eval_loss': 1.0938433408737183, 'eval_accuracy': 0.9126731063803183, 'eval_weighted_accuracy': 0.7991847080733538, 'eval_roc_auc': 0.7991847080733538, 'eval_f1': 0.5952915610286129, 'eval_precision': 0.5433747685797408, 'eval_recall': 0.6581771584174275, 'eval_runtime': 538.5874, 'eval_samples_per_second': 118.789, 'eval_steps_per_second': 3.713, 'epoch': 3.0}
+{'loss': 0.1587, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 1.2505735158920288, 'eval_accuracy': 0.9070305417487261, 'eval_weighted_accuracy': 0.8051298940914109, 'eval_roc_auc': 0.8051298940914109, 'eval_f1': 0.5875173370319001, 'eval_precision': 0.5180384003913415, 'eval_recall': 0.6785199423354157, 'eval_runtime': 537.1874, 'eval_samples_per_second': 119.098, 'eval_steps_per_second': 3.723, 'epoch': 4.0}
+{'train_runtime': 15318.4093, 'train_samples_per_second': 41.668, 'train_steps_per_second': 5.209, 'train_loss': 0.2622385937725206, 'epoch': 4.0}
+F1_micro: 0.5952915610286129
+              precision    recall  f1-score   support
+
+       clean       0.96      0.94      0.95     57735
+       toxic       0.54      0.66      0.60      6243
+
+    accuracy                           0.91     63978
+   macro avg       0.75      0.80      0.77     63978
+weighted avg       0.92      0.91      0.92     63978
+
+END: ma 8.8.2022 20.49.39 +0300

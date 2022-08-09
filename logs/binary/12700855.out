@@ -1,0 +1,636 @@
+epochs: 4, learning rate: 8e-6, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, dev=False, epochs=4, learning=8e-06, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', train='data/train_fi_deepl.jsonl')
+toxic:  16225
+clean:  143346
+toxic:  6243
+clean:  57735
+tensor([0.5566, 4.9174], device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 100
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 200
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.5705, 'learning_rate': 6e-06, 'epoch': 1.0}
+{'eval_loss': 0.7016274929046631, 'eval_accuracy': 0.925, 'eval_weighted_accuracy': 0.5, 'eval_roc_auc': 0.5, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 1.7069, 'eval_samples_per_second': 117.173, 'eval_steps_per_second': 4.101, 'epoch': 1.0}
+{'loss': 0.4536, 'learning_rate': 4e-06, 'epoch': 2.0}
+{'eval_loss': 0.9659245014190674, 'eval_accuracy': 0.925, 'eval_weighted_accuracy': 0.5, 'eval_roc_auc': 0.5, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 1.6795, 'eval_samples_per_second': 119.081, 'eval_steps_per_second': 4.168, 'epoch': 2.0}
+{'loss': 0.4771, 'learning_rate': 2e-06, 'epoch': 3.0}
+{'eval_loss': 1.0491089820861816, 'eval_accuracy': 0.925, 'eval_weighted_accuracy': 0.5, 'eval_roc_auc': 0.5, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 1.6882, 'eval_samples_per_second': 118.473, 'eval_steps_per_second': 4.147, 'epoch': 3.0}
+{'loss': 0.4792, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 1.1020960807800293, 'eval_accuracy': 0.925, 'eval_weighted_accuracy': 0.5, 'eval_roc_auc': 0.5, 'eval_f1': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_runtime': 1.6871, 'eval_samples_per_second': 118.544, 'eval_steps_per_second': 4.149, 'epoch': 4.0}
+{'train_runtime': 38.6658, 'train_samples_per_second': 10.345, 'train_steps_per_second': 1.345, 'train_loss': 0.49510612854590785, 'epoch': 4.0}
+F1_micro: 0.0
+              precision    recall  f1-score   support
+
+       clean       0.92      1.00      0.96        92
+       toxic       0.00      0.00      0.00         8
+
+    accuracy                           0.92       100
+   macro avg       0.46      0.50      0.48       100
+weighted avg       0.85      0.92      0.88       100
+
+[[ 0.9640715  -0.6270744 ]
+ [ 0.7044439  -0.4619831 ]
+ [ 1.0003943  -0.66194683]
+ [ 1.0553429  -0.8366013 ]
+ [ 0.81416637 -0.96089655]
+ [ 1.0616775  -0.7804042 ]
+ [ 1.1748586  -0.644934  ]
+ [ 1.0884998  -0.91136223]
+ [ 0.5807355  -0.74610054]
+ [ 0.6881674  -0.7568958 ]
+ [ 0.62943107 -0.52415955]
+ [ 1.0440724  -1.0954082 ]
+ [ 0.4265427  -0.7938734 ]
+ [ 0.8875519  -0.9738019 ]
+ [ 0.86131316 -0.8504264 ]
+ [ 0.7889967  -0.9363202 ]
+ [ 0.5709411  -0.7307478 ]
+ [ 0.5678529  -0.8836858 ]
+ [ 0.81505376 -0.98444885]
+ [ 0.48617718 -0.92731243]
+ [ 0.86038375 -0.8201141 ]
+ [ 0.5524928  -0.58144844]
+ [ 0.6073733  -0.7855297 ]
+ [ 0.37506026 -0.92677236]
+ [ 0.48269007 -0.62849724]
+ [ 1.4056756  -0.8101902 ]
+ [ 0.727046   -0.8788319 ]
+ [ 0.9963271  -0.83232105]
+ [ 0.79637057 -0.6968231 ]
+ [ 0.43164504 -0.65940106]
+ [ 0.826421   -0.6064176 ]
+ [ 1.2267358  -0.7188679 ]
+ [ 0.662965   -0.8362115 ]
+ [ 0.73014474 -0.8696556 ]
+ [ 0.70060277 -0.48540583]
+ [ 0.69008327 -0.93117464]
+ [ 0.5806363  -0.66612095]
+ [ 1.0975577  -0.7927195 ]
+ [ 0.67734903 -0.64521885]
+ [ 1.1776705  -0.8086054 ]
+ [ 1.2437491  -0.77393454]
+ [ 0.98954093 -0.7627892 ]
+ [ 1.0672317  -1.1137551 ]
+ [ 0.13662113 -0.7305115 ]
+ [ 1.231947   -0.8020904 ]
+ [ 1.043946   -0.80239815]
+ [ 0.77508914 -0.8349684 ]
+ [ 0.66889286 -0.9852061 ]
+ [ 1.3006724  -1.0708497 ]
+ [ 0.7796305  -0.7167567 ]
+ [ 1.192143   -0.7426396 ]
+ [ 0.9299051  -0.74852914]
+ [ 0.9717703  -0.78315204]
+ [ 1.1649362  -0.80185455]
+ [ 1.3816738  -0.8774915 ]
+ [ 0.5438271  -0.84898937]
+ [ 1.3493216  -0.7277856 ]
+ [ 0.5022163  -0.88453966]
+ [ 1.4809791  -0.92752206]
+ [ 0.7884502  -0.7466477 ]
+ [ 1.0779902  -1.0223435 ]
+ [ 0.6856364  -0.2703464 ]
+ [ 0.7544442  -0.9144575 ]
+ [ 0.6757925  -0.6073441 ]
+ [ 0.4439791  -0.58793193]
+ [ 0.8657616  -0.74535143]
+ [ 0.4957051  -0.8553834 ]
+ [ 0.687492   -0.8705451 ]
+ [ 1.0165832  -1.1894    ]
+ [ 0.6942623  -1.0285856 ]
+ [ 1.1870065  -0.8608584 ]
+ [ 0.8961298  -0.73008037]
+ [ 0.9090422  -0.6964188 ]
+ [ 0.5485932  -0.7639179 ]
+ [ 0.9462315  -0.52757806]
+ [ 1.0507393  -1.0668573 ]
+ [ 0.74796706 -0.6877206 ]
+ [ 0.5718457  -0.8417874 ]
+ [ 0.59847325 -0.44660968]
+ [ 0.5943574  -0.7100582 ]
+ [ 0.43518224 -0.70651805]
+ [ 0.7190453  -0.9749006 ]
+ [ 0.5734561  -0.8699957 ]
+ [ 0.632369   -0.9414004 ]
+ [ 0.6281609  -0.3982955 ]
+ [ 1.1748732  -0.8220497 ]
+ [ 0.89090365 -0.8838228 ]
+ [ 0.9533394  -0.8275565 ]
+ [ 1.3177681  -0.3425099 ]
+ [ 0.8870972  -0.9326083 ]
+ [ 1.2395244  -1.0357428 ]
+ [ 1.2941333  -0.7361335 ]
+ [ 0.925353   -0.82617277]
+ [ 0.44132856 -0.58636475]
+ [ 0.5612826  -1.0119599 ]
+ [ 0.7476086  -1.0602417 ]
+ [ 0.17775613 -0.68300515]
+ [ 0.13709763 -0.89772487]
+ [ 0.21289921 -1.2325553 ]
+ [ 1.2070252  -0.84209347]
+ [ 0.9863277  -0.8602471 ]
+ [ 0.1852835  -1.0219772 ]
+ [ 1.0564501  -0.919847  ]
+ [ 1.1759819  -0.9594952 ]
+ [ 1.3720727  -0.9114079 ]
+ [ 1.4295603  -0.8813119 ]
+ [ 0.34534994 -0.75948036]
+ [ 0.94247276 -0.7099951 ]
+ [ 0.9609732  -0.69991195]
+ [ 0.5541161  -0.70931566]
+ [ 1.4064751  -0.8700814 ]
+ [ 0.24606265 -1.0153942 ]
+ [ 1.2133847  -0.9497375 ]
+ [ 0.31118798 -0.4491804 ]
+ [ 1.1156108  -0.90943784]
+ [ 0.7956888  -0.48637888]
+ [ 0.84692276 -0.7709545 ]
+ [ 0.9200901  -0.50120306]
+ [ 0.29341462 -0.4806727 ]
+ [ 0.47968262 -0.66657937]
+ [ 0.9225783  -0.94511205]
+ [ 0.6707992  -0.6961299 ]
+ [ 0.7621586  -1.1168009 ]
+ [ 0.7596506  -0.6348769 ]
+ [ 0.6538289  -0.71588635]
+ [ 0.22499537 -0.5553466 ]
+ [ 0.5682322  -0.6770378 ]
+ [ 0.4127525  -0.849131  ]
+ [ 1.1727962  -0.7331253 ]
+ [ 0.7075218  -0.4687899 ]
+ [ 0.5558527  -0.82801604]
+ [ 1.112435   -0.83551854]
+ [ 0.43579254 -0.6423905 ]
+ [ 0.8321359  -0.92360765]
+ [ 0.41556922 -0.8328732 ]
+ [ 0.949138   -0.80421966]
+ [ 1.212859   -0.9576662 ]
+ [ 0.93158066 -1.1199081 ]
+ [ 0.8114766  -0.63482255]
+ [ 0.8302242  -0.86143476]
+ [ 0.9375153  -1.0404603 ]
+ [ 0.4141397  -0.82257545]
+ [ 0.5667121  -0.97868043]
+ [ 0.6545421  -0.5905783 ]
+ [ 1.2798842  -1.006855  ]
+ [ 0.3231078  -0.66486835]
+ [ 0.6895241  -0.6871321 ]
+ [ 1.3292012  -0.80884206]
+ [ 1.1272361  -1.0800272 ]
+ [ 0.88731426 -0.8553167 ]
+ [ 0.58644074 -0.672864  ]
+ [ 1.2834469  -0.6577648 ]
+ [ 0.57025814 -0.6304592 ]
+ [ 0.2638922  -0.31434318]
+ [ 0.8092771  -0.6554291 ]
+ [ 0.94790393 -0.8818054 ]
+ [ 1.3882327  -0.777485  ]
+ [ 0.77154607 -1.0036508 ]
+ [ 1.3226901  -0.7410244 ]
+ [ 0.5462405  -0.37977993]
+ [ 0.746829   -0.77421683]
+ [ 0.18873592 -0.6115215 ]
+ [ 0.5658874  -0.9573916 ]
+ [ 0.8511582  -0.89569473]
+ [ 0.94012684 -0.97308207]
+ [ 0.40164563 -0.54914325]
+ [ 0.624069   -0.83914423]
+ [ 0.69425786 -1.0248163 ]
+ [ 0.22101828 -0.7652639 ]
+ [ 1.1125318  -0.90150005]
+ [ 0.52706987 -0.26935613]
+ [ 0.3572432  -0.6420741 ]
+ [ 1.239963   -0.7046634 ]
+ [ 1.1848298  -0.70515364]
+ [ 1.0239087  -0.89979774]
+ [ 0.23161645 -0.79536474]
+ [ 0.4860516  -0.9028892 ]
+ [ 0.4627408  -0.4761796 ]
+ [ 0.24091412 -0.63338494]
+ [ 0.96961814 -0.6932104 ]
+ [ 1.0262675  -0.734534  ]
+ [ 0.65630615 -0.74161804]
+ [ 1.090219   -0.88884735]
+ [ 0.1621382  -0.49654028]
+ [ 0.540329   -0.78311896]
+ [ 0.57129157 -0.78845686]
+ [ 0.5219131  -0.66865206]
+ [ 0.6950795  -0.87116224]
+ [ 0.7191793  -0.46927458]
+ [ 0.71381044 -0.76478994]
+ [ 0.29460517 -1.0476995 ]
+ [ 0.46671522 -0.5844354 ]
+ [ 1.261101   -0.7291935 ]
+ [ 1.1732343  -0.8408533 ]
+ [ 0.44385463 -0.9555484 ]
+ [ 0.8227496  -0.8030229 ]
+ [ 1.0340297  -0.787794  ]
+ [ 0.6805506  -0.7159189 ]
+ [ 0.4939609  -0.80930394]
+ [ 1.5219892  -0.25548548]]
+tensor([[0.8308, 0.1692],
+        [0.7625, 0.2375],
+        [0.8406, 0.1594],
+        [0.8690, 0.1310],
+        [0.8551, 0.1449],
+        [0.8632, 0.1368],
+        [0.8605, 0.1395],
+        [0.8808, 0.1192],
+        [0.7903, 0.2097],
+        [0.8092, 0.1908],
+        [0.7602, 0.2398],
+        [0.8947, 0.1053],
+        [0.7721, 0.2279],
+        [0.8655, 0.1345],
+        [0.8471, 0.1529],
+        [0.8488, 0.1512],
+        [0.7861, 0.2139],
+        [0.8102, 0.1898],
+        [0.8581, 0.1419],
+        [0.8043, 0.1957],
+        [0.8430, 0.1570],
+        [0.7566, 0.2434],
+        [0.8011, 0.1989],
+        [0.7861, 0.2139],
+        [0.7524, 0.2476],
+        [0.9017, 0.0983],
+        [0.8328, 0.1672],
+        [0.8616, 0.1384],
+        [0.8166, 0.1834],
+        [0.7486, 0.2514],
+        [0.8073, 0.1927],
+        [0.8750, 0.1250],
+        [0.8175, 0.1825],
+        [0.8320, 0.1680],
+        [0.7660, 0.2340],
+        [0.8350, 0.1650],
+        [0.7767, 0.2233],
+        [0.8688, 0.1312],
+        [0.7896, 0.2104],
+        [0.8793, 0.1207],
+        [0.8826, 0.1174],
+        [0.8522, 0.1478],
+        [0.8985, 0.1015],
+        [0.7041, 0.2959],
+        [0.8843, 0.1157],
+        [0.8637, 0.1363],
+        [0.8334, 0.1666],
+        [0.8394, 0.1606],
+        [0.9146, 0.0854],
+        [0.8170, 0.1830],
+        [0.8738, 0.1262],
+        [0.8427, 0.1573],
+        [0.8526, 0.1474],
+        [0.8773, 0.1227],
+        [0.9054, 0.0946],
+        [0.8010, 0.1990],
+        [0.8887, 0.1113],
+        [0.8001, 0.1999],
+        [0.9175, 0.0825],
+        [0.8228, 0.1772],
+        [0.8909, 0.1091],
+        [0.7223, 0.2777],
+        [0.8414, 0.1586],
+        [0.7830, 0.2170],
+        [0.7373, 0.2627],
+        [0.8336, 0.1664],
+        [0.7943, 0.2057],
+        [0.8261, 0.1739],
+        [0.9008, 0.0992],
+        [0.8485, 0.1515],
+        [0.8857, 0.1143],
+        [0.8356, 0.1644],
+        [0.8328, 0.1672],
+        [0.7879, 0.2121],
+        [0.8136, 0.1864],
+        [0.8926, 0.1074],
+        [0.8078, 0.1922],
+        [0.8043, 0.1957],
+        [0.7398, 0.2602],
+        [0.7866, 0.2134],
+        [0.7580, 0.2420],
+        [0.8447, 0.1553],
+        [0.8090, 0.1910],
+        [0.8283, 0.1717],
+        [0.7362, 0.2638],
+        [0.8805, 0.1195],
+        [0.8550, 0.1450],
+        [0.8558, 0.1442],
+        [0.8403, 0.1597],
+        [0.8605, 0.1395],
+        [0.9068, 0.0932],
+        [0.8839, 0.1161],
+        [0.8521, 0.1479],
+        [0.7365, 0.2635],
+        [0.8282, 0.1718],
+        [0.8591, 0.1409],
+        [0.7028, 0.2972],
+        [0.7378, 0.2622],
+        [0.8093, 0.1907],
+        [0.8859, 0.1141],
+        [0.8637, 0.1363],
+        [0.7698, 0.2302],
+        [0.8783, 0.1217],
+        [0.8943, 0.1057],
+        [0.9075, 0.0925],
+        [0.9098, 0.0902],
+        [0.7512, 0.2488],
+        [0.8392, 0.1608],
+        [0.8404, 0.1596],
+        [0.7796, 0.2204],
+        [0.9069, 0.0931],
+        [0.7793, 0.2207],
+        [0.8969, 0.1031],
+        [0.6814, 0.3186],
+        [0.8834, 0.1166],
+        [0.7828, 0.2172],
+        [0.8345, 0.1655],
+        [0.8055, 0.1945],
+        [0.6844, 0.3156],
+        [0.7588, 0.2412],
+        [0.8662, 0.1338],
+        [0.7969, 0.2031],
+        [0.8675, 0.1325],
+        [0.8013, 0.1987],
+        [0.7973, 0.2027],
+        [0.6858, 0.3142],
+        [0.7765, 0.2235],
+        [0.7794, 0.2206],
+        [0.8706, 0.1294],
+        [0.7643, 0.2357],
+        [0.7996, 0.2004],
+        [0.8752, 0.1248],
+        [0.7462, 0.2539],
+        [0.8527, 0.1473],
+        [0.7770, 0.2230],
+        [0.8524, 0.1476],
+        [0.8976, 0.1024],
+        [0.8861, 0.1139],
+        [0.8094, 0.1906],
+        [0.8444, 0.1556],
+        [0.8785, 0.1215],
+        [0.7750, 0.2250],
+        [0.8242, 0.1758],
+        [0.7765, 0.2235],
+        [0.9078, 0.0922],
+        [0.7287, 0.2713],
+        [0.7985, 0.2015],
+        [0.8945, 0.1055],
+        [0.9009, 0.0991],
+        [0.8510, 0.1490],
+        [0.7789, 0.2211],
+        [0.8745, 0.1255],
+        [0.7687, 0.2313],
+        [0.6407, 0.3593],
+        [0.8123, 0.1877],
+        [0.8617, 0.1383],
+        [0.8971, 0.1029],
+        [0.8551, 0.1449],
+        [0.8873, 0.1127],
+        [0.7163, 0.2837],
+        [0.8207, 0.1793],
+        [0.6900, 0.3100],
+        [0.8210, 0.1790],
+        [0.8516, 0.1484],
+        [0.8714, 0.1286],
+        [0.7213, 0.2787],
+        [0.8120, 0.1880],
+        [0.8480, 0.1520],
+        [0.7284, 0.2716],
+        [0.8823, 0.1177],
+        [0.6892, 0.3108],
+        [0.7309, 0.2691],
+        [0.8749, 0.1251],
+        [0.8688, 0.1312],
+        [0.8726, 0.1274],
+        [0.7363, 0.2637],
+        [0.8004, 0.1996],
+        [0.7189, 0.2811],
+        [0.7056, 0.2944],
+        [0.8406, 0.1594],
+        [0.8533, 0.1467],
+        [0.8019, 0.1981],
+        [0.8786, 0.1214],
+        [0.6590, 0.3410],
+        [0.7898, 0.2102],
+        [0.7957, 0.2043],
+        [0.7668, 0.2332],
+        [0.8272, 0.1728],
+        [0.7665, 0.2335],
+        [0.8144, 0.1856],
+        [0.7929, 0.2071],
+        [0.7410, 0.2590],
+        [0.8798, 0.1202],
+        [0.8823, 0.1177],
+        [0.8021, 0.1979],
+        [0.8356, 0.1644],
+        [0.8608, 0.1392],
+        [0.8016, 0.1984],
+        [0.7864, 0.2136],
+        [0.8554, 0.1446]])
+[]
+[('Hei Kaldari, \n'
+  ' Ymmärrän. \n'
+  ' Vastaan ensimmäiseen kysymykseesi: Ei, minulle ei tällä hetkellä makseta '
+  'minkään artikkelin muokkaamisesta. \n'
+  ' Ymmärrän huolenaiheet, joten käyn vain läpi osallistumishistoriani. \n'
+  ' *Mark Portmann: Luotu 2 vuotta sitten nuoruuden riemusta. \n'
+  ' *Babtunde Rotimi: En ole ottanut häneen yhteyttä, mutta koska olen itsekin '
+  'voittanut kirjoituspalkinnon, olin kiinnostunut uutisartikkelista ja etsin '
+  'tietoa hänestä Wikipediasta. Kun huomasin, että siellä ei ollut mitään. '
+  'Päätin luoda sivun. \n'
+  ' *EmbroidMe. Maksoin sivun luomisesta, jonka lähetin AFC:n kautta '
+  'varmistaakseni, että se sopii Wikin ohjeisiin. \n'
+  ' *Gailen David. Kuten Babtunde, olin kiinnostunut aiheesta, koska olin '
+  'nähnyt pari hänen pilkkavideotaan. \n'
+  ' *UassistMe. Minuun otti yhteyttä EmbroidMe-projektia tarjonnut taho '
+  'kysyäkseen, voisinko auttaa sivun luomisessa. Toimitin sen AFC:lle, se '
+  'hylättiin, joten ilmoitin kohteliaasti osapuolelle, että hanke oli '
+  'epäonnistunut. \n'
+  ' *Mariana Bierkna. Se oli listattu Wiki Commonsissa artikkeliksi pyynnöstä, '
+  'joka oli päivätty yli vuodella. Aloitin sen työstämisen IRC:n jäsenten '
+  'avustuksella, jotka lähettivät PDF-tiedostoja ja pääsyn '
+  'kirjastonhoitajalle.  \n'
+  ' *IonRoad: C-luokan arvoinen sivu. Valitsin aiheen, koska se vaikutti hyvin '
+  'käsitellyltä ja selvästi Wikipedian merkintävaatimusten mukaiselta. \n'
+  '\n'
+  ' Tein jonkin verran työtä PhotographyTalkin omistajalle, mutta kun minua '
+  'varoitettiin, että työni oli roskapostia, hylkäsin projektin, eikä minulle '
+  'maksettu. Uskon, että hän palkkasi jonkun toisen sen jälkeen. Ennen kuin '
+  'minut palkattiin työskentelemään UassistMe- ja EmbroidMe-projektissa, minun '
+  'oli allekirjoitettava NDA-sopimus. Ottaen huomioon, että tämä on avoin '
+  'foorumi, toivon, että nämä paljastukset poistetaan. \n'
+  ' Ulkopuoliset tahot ovat myös lähestyneet minua ainakin neljä kertaa ja '
+  'halunneet sisällyttää artikkelinsa Wikipediaan. Tutustuttuani heidän '
+  'yrityksiinsä ilmoitin heille, että ne eivät täytä Wikipedian '
+  'vaatimuksia.  \n'
+  '\n'
+  ' Uskon, että tämä vastaa kahteen Seraphimin kysymyksistä, ja viimeiseen '
+  'kysymykseen "miksi olet luonut niin paljon artikkeleita, jotka näyttävät '
+  'olevan myynninedistämistarkoituksessa, ja mitä suunnitelmia sinulla on '
+  'niiden korjaamiseksi" ainoa puolustukseni on, että en tiennyt, että '
+  'artikkelit näyttivät myynninedistämistarkoituksessa, koska useat '
+  'IRC-kanavalla olevat toimittajat vakuuttivat minulle, että ne eivät olleet '
+  'myynninedistämistarkoituksessa, kun pyysin tarkistusta. \n'
+  ' Mitä tulee suunnitelmiini tämän ongelman ratkaisemiseksi, uskon, että '
+  'ehdottamani koeaikaehdot yhdessä Kaldarin ja Nickin ehdottamien ehtojen '
+  'kanssa antavat minulle enemmän kuin tarpeeksi aikaa hioa toimituksellisia '
+  'taitojani. \n'
+  '\n'
+  ' Terveisin',
+  'clean', 0.917473316192627),
+ ('Jälleen kerran kopioin keskustelusivulleni sopimattomasti jätetyt kommentit '
+  'tälle keskustelusivulle, jonne ne kuuluvat: \n'
+  '\n'
+  ' == toukokuu 2010 == \n'
+  '\n'
+  ' Olet jo hyvin epäviisaasti vihjaillut, että muut toimittajat ovat '
+  'käyttäneet nokkamiehiä. Saanko ehdottaa, että olisit hyvin varovainen ja '
+  'välttäisit myös muokkaussotaa. Katso WP:BRD - jos jatkat palauttelua '
+  'keskustelun sijaan, sinut todennäköisesti estetään.    \n'
+  '\n'
+  ' ::Mistä sinä puhut? Sitaattini poistettiin ja korvattiin sellaisella, joka '
+  'ei viittaa alaviitteeseen vaan artikkelin sisällä olevaan uuteen, '
+  'puolueelliseen kappaleeseen. Mistä lähtien sitaatti on linkittänyt '
+  'artikkelin sisällä olevaan kappaleeseen? En ole käynyt muokkaussotaa, '
+  'päinvastoin. Olen puolustanut itseäni muokkaussotaa vastaan sekä artikkelin '
+  'ja sen keskustelusivun jatkuvaa manipulointia vastaan viimeisen viikon '
+  'aikana. Sitaattieni poistamisesta ei koskaan edes keskusteltu, ja vaikka '
+  'niistä olisi keskustellut kaksi tai kolme ihmistä, se ei silti olisi ollut '
+  'perusteltu syy niiden poistamiseen. Lopettakaa sillä välin lainausteni '
+  'vandalisointi ja kommenttieni poistaminen keskustelusivulta.',
+  'clean', 0.9146297574043274),
+ ('" \n'
+  '\n'
+  ' == Kuunnelkaa te tietämättömät kusipäät... == \n'
+  '\n'
+  ' 1.WHO on Yhdistyneiden Kansakuntien järjestelmän terveysalan ohjaava ja '
+  'koordinoiva viranomainen. Sen tehtävänä on toimia johtavana tahona '
+  'maailmanlaajuisissa terveysasioissa, muotoilla terveystutkimusohjelmaa, '
+  'asettaa normeja ja standardeja, esittää näyttöön perustuvia '
+  'toimintavaihtoehtoja, antaa teknistä tukea maille sekä seurata ja arvioida '
+  'terveyden kehityssuuntauksia. \n'
+  '\n'
+  ' 2.Infektio on patogeenisten mikro-organismien kasvua elimistössä '
+  'riippumatta siitä, onko elimistön toiminta heikentynyt vai ei. Henkilöllä, '
+  'jolla on sukupuolitauti, ei välttämättä ole oireita tai merkkejä siitä, '
+  'että kehossa on jokin taudinaiheuttaja, eikä hän välttämättä edes tunne '
+  'itseään sairaaksi. Joku, jolla on sukupuolitauti, voi tietämättään välittää '
+  'infektion eteenpäin - jos hänellä ei ole mitään oireita, hän ei '
+  'todennäköisesti tiedä kantavansa infektiota eikä ehkä ryhdy asianmukaisiin '
+  'varotoimiin kumppaninsa suojaamiseksi. \n'
+  '\n'
+  ' 3.Sairaus on mikä tahansa muutos terveydentilasta; heikentynyt kehon '
+  'toiminta. Tautitila liittyy oireiden, kuten kuumeen, kivun, särkyjen jne. '
+  'ilmenemiseen, koska immuunijärjestelmä ei pysty hallitsemaan '
+  'tartunnanaiheuttajan (-aiheuttajien) kasvua ensimmäisellä kierroksella. \n'
+  '\n'
+  '  \n'
+  ' Nämä ihmiset eivät juokse koko päivää etsimässä kiertoilmaisuja. Sanan '
+  '"infektio" käyttö sanan "sairaus" sijasta perustuu todellisiin tietoihin, '
+  'todelliseen leimautumiseen ja todelliseen määritelmään. Tärkein ja tärkein '
+  'seikka on se, että Joku, jolla on sukupuolitauti, ei välttämättä saa '
+  'oireita tai merkkejä siitä, että elimistössä on jokin taudinaiheuttaja, '
+  'eikä välttämättä edes tunne itseään sairaaksi.   \n'
+  '\n'
+  ' Vertaa tätä HIV:hen ja AIDSiin. Käytämmekö molempia termejä vaihdellen? \n'
+  '\n'
+  '  \n'
+  ' Johdannossa olisi mainittava hyvin selvästi, että infektio ei tarkoita '
+  'oireita. Ehkä silloin tämä artikkeli ei olisi täysin vitun hyödytön. \n'
+  '\n'
+  '  \n'
+  ' PS:Ei ole mitään syytä lukita tätä tai mitään muutakaan artikkelia. '
+  'Tuntemattomat tuntemattomat paskiaiset tekevät paljon enemmän vahinkoa kuin '
+  'yksikään ""vandaali"". Itse asiassa tämän artikkelin nimi muutettiin 6 '
+  'vuotta sitten, koska joku ""anti-establishment"" paskakasa ei tiennyt eroa '
+  'tartunnan ja taudin välillä. (Katsokaa arkistosta tuon idiootin - '
+  '""rekisteröityneen"" käyttäjän - kohdalla) Joku - rekisteröimätön henkilö - '
+  'jolla on vähän järkeä: '
+  'http://en.wikipedia.org/wiki/Talk:Sexually_transmitted_disease/Archive_3#Infection_vs._Disease.) \n'
+  '\n'
+  ' Tämän koko artikkelin pitäisi olla tapaustutkimus siitä, miksi tämä hanke '
+  'epäonnistuu ja epäonnistuu edelleen. Jos minun pitäisi tehdä villi arvaus - '
+  'arvelisin, että useimmat ihmiset eivät lue koko artikkelia, vaan etsivät '
+  'nopeasti erittäin tärkeää tietoa ja lähtevät sitten pois. Hanke olisi '
+  'rakennettava heidän ympärilleen. \n'
+  '\n'
+  ' Olen hämmästynyt tämän artikkelin arkistoista paljastuvasta '
+  'hämmästyttävästä tietämättömyydestä. Järkeilyllä, että tuttua sanaa '
+  'käytetään perusteluna sitä vastaan, että se on muutos.... jesus vittu '
+  'kirst.  \n'
+  '\n'
+  '  \n'
+  ' Vaihda tämä artikkeli STI:ksi tai vielä parempi tehdä kaksi erillistä '
+  'artikkelia, kuten HIV:n ja AIDSin kohdalla.  \n'
+  '\n'
+  '  \n'
+  '\n'
+  ' Joskus lääke on hieman karvas."',
+  'clean', 0.9097734689712524),
+ ('== Mitt Romneyn FEMA-kommentit vuodelta 2011 == \n'
+  '\n'
+  ' Kaikella kunnioituksella, tämä on vuodelta 2011 ja koskee FEMAa. Kun '
+  'laitoin sinne jotain viime vuodesta, toimittaja otti sen pois ja sanoi, '
+  'että se oli viime vuonna... vaikka minusta sillä oli painoarvoa, jotta se '
+  'olisi voitu laittaa artikkeliin, kuten juliste teki. Minusta se on vain '
+  'liian poliittista artikkeliin, jonka on tarkoitus kertoa hurrikaanista. '
+  'Luulisi, että se, mitä siinä oli, sopisi hyvin FEMA-osiossa jonkinlaisten '
+  'kiistojen alle. En vain halua, että Sandy-artikkelin kaltaista kaunista '
+  'teosta sotketaan mihinkään poliittisiin juttuihin. Siksi en halunnut siihen '
+  'globaalia varoitusta. Uskon ilmastonmuutokseen, mutta se ei ole pääasia. '
+  'Voidaan spekuloida niin paljon kuin halutaan, JOS lämpeneminen aiheutti '
+  'jotain milloin tahansa. Se ei silti tee siitä faktaa. Wikipedian on '
+  'tarkoitus olla epäpuhdas, ja tuon merkinnän kohdalla uskon, että se '
+  'kallistuu, vaikka Romney sanoikin niin. Poistin sen kahdesti, ja muuta en '
+  'tee. Olkaa hyvä ja avatkaa keskustelu tästä. Respectfully Submitted.',
+  'clean', 0.9077728390693665),
+ ('" \n'
+  '\n'
+  ' == Tarvitsee työtä == \n'
+  '\n'
+  ' Tämä artikkeli on täynnä kielioppivirheitä, epäjohdonmukaisuuksia ja muita '
+  'kielellisiä ongelmia. Poistin juuri Kenneth Timmermanin artikkelista '
+  'lainauksen, jonka mukaan AN jäi kiinni "samanlaisten" aseiden kanssa, mutta '
+  'josta puuttui a) maininta siitä, minkälaisia aseet olivat, ja b) se, että '
+  'Timmerman on konservatiivinen yhdysvaltalainen poliitikko, joten hän on '
+  'kyseenalainen RS.  \n'
+  '\n'
+  ' En tiedä, mitä tälle pitäisi tehdä; tämä on sairaus, josta monet '
+  'Wikipedia-artikkelit kärsivät, ja se johtuu ehkä siitä, että eri ihmiset '
+  'kirjoittavat eri lauseita samaan kappaleeseen ja toiset ihmiset muuttavat '
+  'muutamaa sanaa lauseessa. Jonkun aiheen asiantuntijan pitäisi ehkä yrittää '
+  'kirjoittaa artikkeli uudelleen, säilyttää lähdeaineisto ja purkaa englannin '
+  'kieli.  \n'
+  '\n'
+  ' Kuvailisin tätä varmasti huonoksi artikkeliksi - ehkä se pitäisi ehdottaa '
+  'poistettavaksi? Tästä ryhmästä tarvitaan artikkeli, mutta tämä artikkeli ei '
+  'vaikuta lainkaan luotettavalta. \n'
+  '\n'
+  ' Harvat Lähi-itää koskevat wikipedia-artikkelit ovat ""hyviä"" siinä '
+  'mielessä, että ne ovat sekä hyvin kirjoitettuja että luotettavia - liian '
+  'monet englantia huonosti hallitsevat kirveenhiomakoneet tekevät huonosti '
+  'harkittuja muokkauksia, joten ehkä asialle ei voi tehdä mitään. \n'
+  '\n'
+  '   "',
+  'clean', 0.9074996113777161)]
+END: ti 9.8.2022 15.55.57 +0300

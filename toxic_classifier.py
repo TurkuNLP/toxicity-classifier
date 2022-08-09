@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 import json
 import torch
-from sklearn.metrics import classification_report, f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support
+from sklearn.metrics import classification_report, f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve
 from collections import defaultdict
 from transformers import EvalPrediction
 
@@ -263,7 +263,7 @@ def multi_label_metrics(predictions, labels, threshold):
         y_true = new_true
         y_pred = new_pred
 
-        precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='binary')
+        precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='binary') # micro or binary? BINARY
         roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
         metrics = {
@@ -342,7 +342,7 @@ class MultilabelTrainer(transformers.Trainer):
         return (loss, outputs) if return_outputs else loss
 
 
-def get_classification_report(trainer, label_names, dataset):
+def get_classification_report(trainer, label_names, dataset, pprint):
     """Prints the classification report for the predictions. Different reports based on whether using binary evaluation or multi-label classification.
     
     Parameters
@@ -388,6 +388,64 @@ def get_classification_report(trainer, label_names, dataset):
             new_true.append(trues[i][:-1])
         trues = new_true
         preds = new_pred
+
+
+
+
+    print(probs)
+    print(preds)
+    # # get indexes from the preds to get the probabilities
+    # probs_picked = []
+    # for i in range(len(preds)):
+    #     temp = []
+    #     for j in range(len(pred[i])):
+    #         if pred[i][j] == 1:
+    #             temp.append(probs[i][j])
+    #     if not temp: 
+    #         # list is empty, still add it (although here it would make sense to have the clean label or just simply get all probabilities with their labels
+    #         prob_label_idxs.append(temp)
+
+    #     prob_label_idxs.append(temp) # here is then probability for every label appearing in the prediction
+    
+    # for vals in preds:
+    #     pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
+
+    # labels = []
+    # idx2label = dict(zip(range(6), label_names[:-1]))   # could add clean
+    # for vals in pred_label_idxs:
+    #     if vals:
+    #         labels.append([idx2label[val] for val in vals])
+    #     else:
+    #         labels.append(vals)
+
+    texts = dataset["test"]["text"]
+    prob_label_tuples = []
+    probs = probs.tolist()
+    for prob in probs:
+        prob_label_tuples.append(tuple(zip(prob, label_names[:-1])))
+
+    pred_label = []
+    for i in range(len(preds)):
+        if sum(preds[i]) > 0:
+            pred_label.append("toxic")
+        else:
+            pred_label.append("clean")
+
+    all = tuple(zip(texts, prob_label_tuples, pred_label)) # added label which signifies binary classification
+    pprint(all[:10])
+
+    toxic = [item for item in all if item[2] == "toxic"]
+    clean = [item for item in all if item[2] == "clean"]
+
+    pprint(toxic[:5])
+    pprint(clean[:5])
+    # TODO find biggest number in prob_values and sort the tuple using that number?
+    # have to do for loop and then zip and add the biggest number to the tuple? and then sort 
+    # I should do this for both clean and toxic
+
+
+
+
     
     if args.binary == True:
         # binary evaluation
@@ -418,7 +476,7 @@ def get_classification_report(trainer, label_names, dataset):
 
         #display plot
         plt.show()
-        plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
+        plt.savefig("binary-eval_precision-recall-curve") # set file name where to save the plots
 
         print(classification_report(new_true, new_pred, target_names=["clean", "toxic"], labels=list(range(2))))
 
@@ -514,7 +572,7 @@ def main():
     else:
         train = train.shuffle(seed=42) # shuffle the train set
         test = test.shuffle(seed=42) # shuffle the test set
-        dataset = datasets.DatasetDict({"train":train, "test":test})
+        dataset = datasets.DatasetDict({"train":train.select(range(100)), "test":test.select(range(100))})
 
     print(dataset)
 
@@ -586,7 +644,7 @@ def main():
     #pprint(eval_results)
     print('F1:', eval_results['eval_f1'])
 
-    trues, preds = get_classification_report(trainer, label_names, dataset)
+    trues, preds = get_classification_report(trainer, label_names, dataset, pprint)
 
     if args.binary == False:
         predictions_to_csv(trues, preds, dataset, label_names)

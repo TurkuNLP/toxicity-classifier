@@ -114,36 +114,27 @@ def json_to_dataset(data):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
+    df['labels'] = df['labels'].astype(float)
     #print(df.head())
 
-    dataset = datasets.Dataset.from_pandas(df)
+    dataset = datasets.Dataset.from_pandas(df).cast_column("labels", datasets.ClassLabel(num_classes=2, names=['toxic', 'clean']))
 
     return dataset
-
-
-def make_class_weights(train):
-    """Calculates class weights for the loss function based on the train split. """
-
-    labels = train["labels"] # get all labels from train split
-    n_samples = (len(labels))
-    n_classes = 2
-    c=Counter(labels)
-    w1=n_samples / (n_classes * c[0])
-    w2=n_samples / (n_classes * c[1])
-    weights = [w1,w2]
-    class_weights = torch.tensor(weights).to("cuda:0") # have to decide on a device
-
-    print(class_weights)
-    return class_weights
 
 
 def compute_metrics(pred):
     """Computes the metrics"""
 
     labels = pred.label_ids
-    preds = pred.predictions.argmax(-1)
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(pred.predictions))
+    # change the threshold here
+    threshold = 0.6
+    print(probs)
+    y_pred = [1 if prob >= threshold else 0 for prob in probs] 
+    preds = y_pred
 
-    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary') # micro or binary?? BINARY
+    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary') # micro or binary??
     acc = accuracy_score(labels, preds)
     roc_auc = roc_auc_score(y_true=labels, y_score=preds, average = 'micro')
     wacc = balanced_accuracy_score(labels, preds)
@@ -170,29 +161,6 @@ class LogSavingCallback(transformers.TrainerCallback):
             for k, v in logs.items():
                 if k != "epoch" or v not in self.logs[k]:
                     self.logs[k].append(v)
-
-
-class newTrainer(transformers.Trainer):
-    """A custom trainer to use a different loss and to use different class weights"""
-
-    def __init__(self, class_weights, **kwargs):
-        super().__init__(**kwargs)
-        self.class_weights = class_weights
-
-    def compute_loss(self, model, inputs, return_outputs=False):
-        """Computes loss with different class weights"""
-
-        labels = inputs.pop("labels")
-        outputs = model(**inputs)
-        logits = outputs.logits
-        # include class weights in loss computing
-        if args.loss == True:
-            loss_fct = torch.nn.CrossEntropyLoss(weight = self.class_weights)
-        else:
-            loss_fct = torch.nn.CrossEntropyLoss()
-        loss = loss_fct(logits.view(-1, self.model.config.num_labels), 
-            labels.view(-1))
-        return (loss, outputs) if return_outputs else loss
 
 
 def predictions_to_csv(trues, preds, dataset):
@@ -231,16 +199,13 @@ def predictions_to_csv(trues, preds, dataset):
 
 
 
-def get_predictions(dataset, trainer, pprint):
+def get_predictions(dataset, trainer):
     test_pred = trainer.predict(dataset['test'])
     # this actually has metrics because the labels are available so evaluating is technically unnecessary since this does both! (checked documentation)
 
     predictions = test_pred.predictions # logits
     print(predictions) # to look at what they look like
 
-    import torch.nn.functional as F
-    tensor = torch.from_numpy(predictions)
-    probabilities = F.softmax(tensor, dim=1) # turn to probabilities using softmax
 
     # OOOR pipeline with 'return_all_scores' as parameter would do the same thing as above
     # TODO set label2id and id2label when instantiating the model
@@ -250,8 +215,18 @@ def get_predictions(dataset, trainer, pprint):
 
     print(probabilities) # this is now a tensor with two probabilities per example (two labels)
 
-    preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
-     # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
+
+
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(predictions))
+    # change the threshold here
+    threshold = 0.6
+    y_pred = np.zeros(probs.shape)
+    y_pred[np.where(probs >= threshold)] = 1
+    preds = y_pred
+
+
+
 
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
@@ -266,7 +241,7 @@ def get_predictions(dataset, trainer, pprint):
 
     texts = dataset["test"]["text"]
     # lastly use zip to get tuples with (text, label, probability)
-    prediction_tuple = tuple(zip(texts, labels, probs))
+    prediction_tuple = zip(texts, labels, probs)
 
     toxic = [item for item in prediction_tuple
           if item[1] == "toxic"]
@@ -281,8 +256,8 @@ def get_predictions(dataset, trainer, pprint):
     # beginning most toxic, middle "neutral", end most clean
     # all = toxic + clean2
 
-    pprint(toxic[:5])
-    pprint(clean[:5])
+    print(toxic[:5])
+    print(clean[:5])
 
 
 def main():
@@ -294,8 +269,6 @@ def main():
 
     train = json_to_dataset(args.train)
     test = json_to_dataset(args.test)
-
-    class_weights = make_class_weights(train)
 
     if args.dev == True:
         # then split test into test and dev
@@ -323,7 +296,7 @@ def main():
         
     dataset = dataset.map(tokenize)
 
-    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2, cache_dir="../new_cache_dir/")
+    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1, cache_dir="../new_cache_dir/")
 
     # Set training arguments 
     trainer_args = transformers.TrainingArguments(
@@ -354,8 +327,7 @@ def main():
     else:
         eval_dataset=dataset["test"] #.select(range(20_000))
 
-    trainer = newTrainer(
-        class_weights=class_weights,
+    trainer = transformers.Trainer(
         model=model,
         args=trainer_args,
         train_dataset=dataset["train"],
@@ -369,16 +341,29 @@ def main():
     trainer.train()
 
 
-    eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
+    eval_results = trainer.evaluate(dataset["test"].select(range(100))) #.select(range(20_000)))
     #pprint(eval_results)
     print('F1_micro:', eval_results['eval_f1'])
     #print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
     # see how the labels are predicted
-    test_pred = trainer.predict(dataset['test'])
+    test_pred = trainer.predict(dataset['test'].select(range(100)))
     trues = test_pred.label_ids
     predictions = test_pred.predictions
-    preds = predictions.argmax(-1)
+
+
+
+
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(predictions))
+    # change the threshold here
+    threshold = 0.6
+    y_pred = np.zeros(probs.shape)
+    y_pred[np.where(probs >= threshold)] = 1
+    preds = y_pred
+
+
+
 
     print(classification_report(trues, preds, target_names=["clean", "toxic"]))
 
@@ -398,7 +383,6 @@ def main():
     plt.show()
     plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
 
-    get_predictions(dataset, trainer, pprint)
     #predictions_to_csv(trues, preds, dataset)
 
 if __name__ == "__main__":
