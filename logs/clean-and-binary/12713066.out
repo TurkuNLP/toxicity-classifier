@@ -39,3 +39,4 @@ To disable this warning, you can either:
 {'eval_loss': 0.19935865700244904, 'eval_accuracy': 0.9198186933416693, 'eval_roc_auc': 0.8869208812120325, 'eval_f1': 0.6707317073170732, 'eval_precision': 0.5555555555555556, 'eval_recall': 0.8461538461538461, 'eval_runtime': 104.6279, 'eval_samples_per_second': 122.3, 'eval_steps_per_second': 3.823, 'epoch': 4.0}
 {'train_runtime': 12452.9651, 'train_samples_per_second': 51.256, 'train_steps_per_second': 6.407, 'train_loss': 0.11579189337829232, 'epoch': 4.0}
 F1: 0.682162955713237
+END: to 11.8.2022 15.32.07 +0300

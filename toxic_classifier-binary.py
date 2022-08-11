@@ -391,21 +391,22 @@ def main():
 
     print(classification_report(trues, preds, target_names=["clean", "toxic"]))
 
-    # calculate precision-recall curve
-    precision, recall, thresholds = precision_recall_curve(trues, preds)
+    # NOT SUPPORTED
+    # # calculate precision-recall curve
+    # precision, recall, thresholds = precision_recall_curve(trues, preds)
 
-    #create precision recall curve using matplotlib
-    fig, ax = plt.subplots()
-    ax.plot(recall, precision, color='red')
+    # #create precision recall curve using matplotlib
+    # fig, ax = plt.subplots()
+    # ax.plot(recall, precision, color='red')
 
-    #add axis labels to plot
-    ax.set_title('Precision-Recall Curve')
-    ax.set_ylabel('Precision')
-    ax.set_xlabel('Recall')
+    # #add axis labels to plot
+    # ax.set_title('Precision-Recall Curve')
+    # ax.set_ylabel('Precision')
+    # ax.set_xlabel('Recall')
 
-    #display plot
-    plt.show()
-    plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
+    # #display plot
+    # plt.show()
+    # plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
 
     #get_predictions(dataset, trainer, pprint)
     predictions_to_csv(trues, preds, dataset)
