@@ -253,6 +253,14 @@ def get_predictions(dataset, trainer, pprint):
     preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
      # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
 
+
+    # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
+    threshold = 0.5
+    # set p[0] or p[1] depending on which we wanna concentrate on
+    preds = [1 if p[0] < threshold else np.argmax(p) for p in preds] 
+    # don't know if this makes much of a difference anyway but hey it's there for testing
+    # TODO could implement in regular evaluation as well to see whether it improves the results or not
+
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
     for val in preds: # index
@@ -268,6 +276,7 @@ def get_predictions(dataset, trainer, pprint):
     # lastly use zip to get tuples with (text, label, probability)
     prediction_tuple = tuple(zip(texts, labels, probs))
 
+    # make into list of tuples
     toxic = [item for item in prediction_tuple
           if item[1] == "toxic"]
     clean = [item for item in prediction_tuple
@@ -306,7 +315,7 @@ def main():
     else:
         train = train.shuffle(seed=42) # shuffle the train set
         test = test.shuffle(seed=42) # shuffle the test set
-        dataset = datasets.DatasetDict({"train":train.select(range(100)), "test":test.select(range(200))})
+        dataset = datasets.DatasetDict({"train":train, "test":test})
     print(dataset)
 
     #build model
@@ -398,8 +407,8 @@ def main():
     plt.show()
     plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
 
-    get_predictions(dataset, trainer, pprint)
-    #predictions_to_csv(trues, preds, dataset)
+    #get_predictions(dataset, trainer, pprint)
+    predictions_to_csv(trues, preds, dataset)
 
 if __name__ == "__main__":
     main()

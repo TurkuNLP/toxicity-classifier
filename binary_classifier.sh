@@ -2,7 +2,7 @@
 #SBATCH --job-name=toxicity
 #SBATCH --account=project_2000539
 #SBATCH --partition=gpu
-#SBATCH --time=00:30:00 # 5h
+#SBATCH --time=05:00:00 # 5h
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
@@ -19,8 +19,8 @@ MODEL="TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-base-finnish-cased-v
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 
 #TRANSLATED
-echo "Translated train and test"
-srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
+# echo "Translated train and test"
+# srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev
 
 # TRANSFER
 # echo "transfer from english train to translated finnish test"
@@ -32,8 +32,8 @@ srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test
 
 
 
-# echo "Translated train and test"
-# srun python3 true-binary-classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
+echo "Translated train and test"
+srun python3 true-binary-classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
 
 
 

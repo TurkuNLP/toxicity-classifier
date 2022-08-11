@@ -114,11 +114,10 @@ def json_to_dataset(data):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    df['labels'] = df['labels'].astype(float)
+    df['labels'] = torch.tensor(df['labels'], dtype=torch.float) # this works but somehow there is still an error
     #print(df.head())
 
-    dataset = datasets.Dataset.from_pandas(df).cast_column("labels", datasets.ClassLabel(num_classes=2, names=['toxic', 'clean']))
-
+    dataset = datasets.Dataset.from_pandas(df)
     return dataset
 
 
@@ -128,9 +127,11 @@ def compute_metrics(pred):
     labels = pred.label_ids
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(pred.predictions))
-    # change the threshold here
+    print(pred.predictions[:5])
+    print(probs[:5])
+
+    # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
     threshold = 0.6
-    print(probs)
     y_pred = [1 if prob >= threshold else 0 for prob in probs] 
     preds = y_pred
 
@@ -199,33 +200,21 @@ def predictions_to_csv(trues, preds, dataset):
 
 
 
-def get_predictions(dataset, trainer):
+def get_predictions(dataset, trainer, pprint):
     test_pred = trainer.predict(dataset['test'])
     # this actually has metrics because the labels are available so evaluating is technically unnecessary since this does both! (checked documentation)
 
     predictions = test_pred.predictions # logits
-    print(predictions) # to look at what they look like
-
-
-    # OOOR pipeline with 'return_all_scores' as parameter would do the same thing as above
-    # TODO set label2id and id2label when instantiating the model
-    # label2id={"clean": 0, "toxic": 1},
-    # id2label={0: "clean", 1: "toxic"}
-    # https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextClassificationPipeline 
-
-    print(probabilities) # this is now a tensor with two probabilities per example (two labels)
-
-
 
     sigmoid = torch.nn.Sigmoid()
-    probs = sigmoid(torch.Tensor(predictions))
-    # change the threshold here
+    probabilities = sigmoid(torch.Tensor(predictions))
+    print(predictions[:5])
+    print(probabilities[:5])
+
+    # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
     threshold = 0.6
-    y_pred = np.zeros(probs.shape)
-    y_pred[np.where(probs >= threshold)] = 1
+    y_pred = [1 if prob >= threshold else 0 for prob in probabilities] 
     preds = y_pred
-
-
 
 
     labels = []
@@ -233,15 +222,11 @@ def get_predictions(dataset, trainer):
     for val in preds: # index
         labels.append(idx2label[val])
 
-    # now just loop to a list, get the probability with the indexes from preds
-    probabilities = probabilities.tolist()
-    probs = []
-    for i in range(len(probabilities)):
-        probs.append(probabilities[i][preds[i]]) # preds[i] gives the correct index for the current probability
-
     texts = dataset["test"]["text"]
     # lastly use zip to get tuples with (text, label, probability)
-    prediction_tuple = zip(texts, labels, probs)
+    prediction_tuple = tuple(zip(texts, labels, probabilities))
+
+    #pprint(prediction_tuple)
 
     toxic = [item for item in prediction_tuple
           if item[1] == "toxic"]
@@ -254,10 +239,12 @@ def get_predictions(dataset, trainer):
     clean2 = sorted(clean, key = lambda x: float(x[2])) # ascending
 
     # beginning most toxic, middle "neutral", end most clean
-    # all = toxic + clean2
+    all = toxic + clean2
 
-    print(toxic[:5])
-    print(clean[:5])
+    pprint(toxic[:5])
+    pprint(toxic[-5:])
+    pprint(clean[:5])
+
 
 
 def main():
@@ -279,7 +266,7 @@ def main():
     else:
         train = train.shuffle(seed=42) # shuffle the train set
         test = test.shuffle(seed=42) # shuffle the test set
-        dataset = datasets.DatasetDict({"train":train.select(range(100)), "test":test.select(range(200))})
+        dataset = datasets.DatasetDict({"train":train, "test":test})
     print(dataset)
 
     #build model
@@ -341,21 +328,19 @@ def main():
     trainer.train()
 
 
-    eval_results = trainer.evaluate(dataset["test"].select(range(100))) #.select(range(20_000)))
+    eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
     #pprint(eval_results)
     print('F1_micro:', eval_results['eval_f1'])
     #print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
     # see how the labels are predicted
-    test_pred = trainer.predict(dataset['test'].select(range(100)))
+    test_pred = trainer.predict(dataset['test'])
     trues = test_pred.label_ids
     predictions = test_pred.predictions
 
-
-
-
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(predictions))
+
     # change the threshold here
     threshold = 0.6
     y_pred = np.zeros(probs.shape)
@@ -383,6 +368,7 @@ def main():
     plt.show()
     plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
 
+    get_predictions(dataset, trainer, pprint)
     #predictions_to_csv(trues, preds, dataset)
 
 if __name__ == "__main__":

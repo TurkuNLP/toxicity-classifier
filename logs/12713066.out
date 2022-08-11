@@ -1,0 +1,41 @@
+epochs: 4, learning rate: 2e-5, batch size: 8, prediction treshold: 0.6, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, binary=True, clean_as_label=True, dev=True, epochs=4, learning=2e-05, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', threshold=0.6, train='data/train_fi_deepl.jsonl')
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 12796
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 51182
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1759, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.16977646946907043, 'eval_accuracy': 0.9306814629571741, 'eval_roc_auc': 0.8600260123471098, 'eval_f1': 0.6826475849731665, 'eval_precision': 0.6115384615384616, 'eval_recall': 0.7724696356275303, 'eval_runtime': 104.7382, 'eval_samples_per_second': 122.171, 'eval_steps_per_second': 3.819, 'epoch': 1.0}
+{'loss': 0.127, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.15705808997154236, 'eval_accuracy': 0.9227883713660519, 'eval_roc_auc': 0.8788008826268128, 'eval_f1': 0.6732804232804231, 'eval_precision': 0.5690329793180547, 'eval_recall': 0.8242914979757086, 'eval_runtime': 104.731, 'eval_samples_per_second': 122.18, 'eval_steps_per_second': 3.819, 'epoch': 2.0}
+{'loss': 0.0938, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.1655479371547699, 'eval_accuracy': 0.9145826820881525, 'eval_roc_auc': 0.891255396914168, 'eval_f1': 0.6608749612162581, 'eval_precision': 0.5357142857142857, 'eval_recall': 0.8623481781376519, 'eval_runtime': 104.6247, 'eval_samples_per_second': 122.304, 'eval_steps_per_second': 3.823, 'epoch': 3.0}
+{'loss': 0.0665, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.19935865700244904, 'eval_accuracy': 0.9198186933416693, 'eval_roc_auc': 0.8869208812120325, 'eval_f1': 0.6707317073170732, 'eval_precision': 0.5555555555555556, 'eval_recall': 0.8461538461538461, 'eval_runtime': 104.6279, 'eval_samples_per_second': 122.3, 'eval_steps_per_second': 3.823, 'epoch': 4.0}
+{'train_runtime': 12452.9651, 'train_samples_per_second': 51.256, 'train_steps_per_second': 6.407, 'train_loss': 0.11579189337829232, 'epoch': 4.0}
+F1: 0.682162955713237
