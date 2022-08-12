@@ -143,7 +143,8 @@ def compute_metrics(pred):
     labels = pred.label_ids
     preds = pred.predictions.argmax(-1)
 
-    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary') # micro or binary?? BINARY
+    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='micro') 
+    # micro or binary?? binary only considers "positive"? chooses 1 so it reports only for toxic?
     acc = accuracy_score(labels, preds)
     roc_auc = roc_auc_score(y_true=labels, y_score=preds, average = 'micro')
     wacc = balanced_accuracy_score(labels, preds)
@@ -345,7 +346,7 @@ def main():
         load_best_model_at_end=True,
         num_train_epochs=args.epochs,
         learning_rate=args.learning,
-        #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of the default: 
+        metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of the default: 
         #best (smallest) training or eval loss (seems to be random?)
         per_device_train_batch_size=args.batch,
         per_device_eval_batch_size=32
@@ -378,6 +379,9 @@ def main():
     )
 
     trainer.train()
+
+    trainer.model.save_pretrained("models/binary-toxic")
+    print("saved")
 
 
     eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))

@@ -30,3 +30,33 @@ To disable this warning, you can either:
 {'loss': 0.1256, 'learning_rate': 1e-05, 'epoch': 2.0}
 {'eval_loss': 0.1736755222082138, 'eval_accuracy': 0.9164556566319673, 'eval_roc_auc': 0.8862815269703783, 'eval_f1': 0.6647431474628364, 'eval_precision': 0.5462886597938145, 'eval_recall': 0.8487906455229858, 'eval_runtime': 530.1537, 'eval_samples_per_second': 120.678, 'eval_steps_per_second': 3.772, 'epoch': 2.0}
 {'loss': 0.0952, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.17338354885578156, 'eval_accuracy': 0.9172840663978242, 'eval_roc_auc': 0.8909548577493308, 'eval_f1': 0.669415292353823, 'eval_precision': 0.5486943164362519, 'eval_recall': 0.8582412301777992, 'eval_runtime': 530.1152, 'eval_samples_per_second': 120.687, 'eval_steps_per_second': 3.773, 'epoch': 3.0}
+{'loss': 0.0685, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.20921175181865692, 'eval_accuracy': 0.9156116164931696, 'eval_roc_auc': 0.8873853207668453, 'eval_f1': 0.6634249735053924, 'eval_precision': 0.5430700142886303, 'eval_recall': 0.8523145923434247, 'eval_runtime': 533.6287, 'eval_samples_per_second': 119.892, 'eval_steps_per_second': 3.748, 'epoch': 4.0}
+{'train_runtime': 14145.71, 'train_samples_per_second': 45.122, 'train_steps_per_second': 5.64, 'train_loss': 0.11638733421153949, 'epoch': 4.0}
+saved
+F1: 0.6912375264039625
+              precision    recall  f1-score   support
+
+       clean       0.97      0.95      0.96     57735
+       toxic       0.63      0.76      0.69      6243
+
+    accuracy                           0.93     63978
+   macro avg       0.80      0.86      0.83     63978
+weighted avg       0.94      0.93      0.94     63978
+
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.54      0.71      0.62       712
+         label_insult       0.59      0.73      0.65      3427
+        label_obscene       0.58      0.76      0.66      3691
+label_severe_toxicity       0.25      0.71      0.37       367
+         label_threat       0.40      0.63      0.49       211
+       label_toxicity       0.63      0.76      0.69      6090
+
+            micro avg       0.58      0.75      0.65     14498
+            macro avg       0.50      0.72      0.58     14498
+         weighted avg       0.59      0.75      0.66     14498
+          samples avg       0.06      0.07      0.06     14498
+
+END: pe 12.8.2022 12.57.11 +0300

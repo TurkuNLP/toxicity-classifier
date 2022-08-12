@@ -120,6 +120,34 @@ def json_to_dataset(data):
     dataset = datasets.Dataset.from_pandas(df)
     return dataset
 
+def optimize_threshold(predictions, labels):
+    """A method for getting the best threshold according to the best micro f1-score in case a threshold was not given. Made by Anna Salmela. Documentation by me.
+    
+    Parameters
+    --------
+    predictions
+        the predictions for the labels
+    labels: list
+        the correct labels for the examples
+
+    Returns
+    ------
+    best_f1_threshold: int
+        the best threshold value, global value for all the labels
+    """
+
+    sigmoid = torch.nn.Sigmoid()
+    probs = sigmoid(torch.Tensor(predictions))
+    best_f1 = 0
+    best_f1_threshold = 0.5 # use 0.5 as a default threshold
+    y_true = labels
+    for th in np.arange(0.3, 0.7, 0.05):
+        y_pred = [1 if prob >= threshold else 0 for prob in probs] 
+        f1 = f1_score(y_true=y_true, y_pred=y_pred, average='binary') # this metric could be changed to something else
+        if f1 > best_f1:
+            best_f1 = f1
+            best_f1_threshold = th
+    return best_f1_threshold 
 
 def compute_metrics(pred):
     """Computes the metrics"""
@@ -131,7 +159,10 @@ def compute_metrics(pred):
     print(probs[:5])
 
     # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
-    threshold = 0.6
+
+    #threshold = 0.6
+    # threshold optimization here
+    threshold = optimize_threshold(pred.predictions, labels)
     y_pred = [1 if prob >= threshold else 0 for prob in probs] 
     preds = y_pred
 
@@ -305,7 +336,7 @@ def main():
         load_best_model_at_end=True,
         num_train_epochs=args.epochs,
         learning_rate=args.learning,
-        #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of the default: 
+        metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of the default: 
         #best (smallest) training or eval loss (seems to be random?)
         per_device_train_batch_size=args.batch,
         per_device_eval_batch_size=32
@@ -338,6 +369,9 @@ def main():
 
     trainer.train()
 
+    trainer.model.save_pretrained("models/true-binary-toxic")
+    print("saved")
+
 
     eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
     #pprint(eval_results)
@@ -357,8 +391,6 @@ def main():
     y_pred = np.zeros(probs.shape)
     y_pred[np.where(probs >= threshold)] = 1
     preds = y_pred
-
-
 
 
     print(classification_report(trues, preds, target_names=["clean", "toxic"]))

@@ -1,0 +1,308 @@
+epochs: 4, learning rate: 8e-6, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, dev=False, epochs=4, learning=8e-06, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', train='data/train_fi_deepl.jsonl')
+toxic:  16225
+clean:  143346
+toxic:  6243
+clean:  57735
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.138, 'learning_rate': 6e-06, 'epoch': 1.0}
+[[-8.085929 ]
+ [-3.594913 ]
+ [-4.1065035]
+ [-8.017777 ]
+ [ 1.8929663]]
+tensor([[3.0775e-04],
+        [2.6729e-02],
+        [1.6199e-02],
+        [3.2944e-04],
+        [8.6909e-01]])
+{'eval_loss': 0.2853121757507324, 'eval_accuracy': 0.9200506424083279, 'eval_weighted_accuracy': 0.8909877051385626, 'eval_roc_auc': 0.8909877051385626, 'eval_f1': 0.6760402812084363, 'eval_precision': 0.5590823381521056, 'eval_recall': 0.8548774627582892, 'eval_runtime': 527.2244, 'eval_samples_per_second': 121.349, 'eval_steps_per_second': 3.793, 'epoch': 1.0}
+{'loss': 0.1023, 'learning_rate': 4e-06, 'epoch': 2.0}
+[[-9.004958 ]
+ [-7.4530826]
+ [-4.9998393]
+ [-8.963286 ]
+ [-3.0058002]]
+tensor([[0.0001],
+        [0.0006],
+        [0.0067],
+        [0.0001],
+        [0.0472]])
+{'eval_loss': 0.3197019398212433, 'eval_accuracy': 0.9242239519834943, 'eval_weighted_accuracy': 0.8874427797688881, 'eval_roc_auc': 0.8874427797688882, 'eval_f1': 0.6843338976429223, 'eval_precision': 0.5765222161272627, 'eval_recall': 0.841742751882108, 'eval_runtime': 526.3851, 'eval_samples_per_second': 121.542, 'eval_steps_per_second': 3.799, 'epoch': 2.0}
+{'loss': 0.072, 'learning_rate': 2e-06, 'epoch': 3.0}
+[[-8.954121 ]
+ [-7.3195143]
+ [-5.0768743]
+ [-9.264715 ]
+ [-4.239852 ]]
+tensor([[1.2919e-04],
+        [6.6205e-04],
+        [6.2007e-03],
+        [9.4699e-05],
+        [1.4205e-02]])
+{'eval_loss': 0.4167362451553345, 'eval_accuracy': 0.9180343242989778, 'eval_weighted_accuracy': 0.8929419978695183, 'eval_roc_auc': 0.8929419978695182, 'eval_f1': 0.6723319170207448, 'eval_precision': 0.5511730355496363, 'eval_recall': 0.8617651769982381, 'eval_runtime': 526.8591, 'eval_samples_per_second': 121.433, 'eval_steps_per_second': 3.796, 'epoch': 3.0}
+{'loss': 0.0444, 'learning_rate': 0.0, 'epoch': 4.0}
+[[-9.857766 ]
+ [-8.627687 ]
+ [ 4.9306955]
+ [-9.890607 ]
+ [-7.099929 ]]
+tensor([[5.2336e-05],
+        [1.7905e-04],
+        [9.9283e-01],
+        [5.0646e-05],
+        [8.2448e-04]])
+{'eval_loss': 0.5246706008911133, 'eval_accuracy': 0.9104379630497984, 'eval_weighted_accuracy': 0.8924474434489518, 'eval_roc_auc': 0.8924474434489517, 'eval_f1': 0.6546944678799567, 'eval_precision': 0.5247802144720317, 'eval_recall': 0.8700945058465481, 'eval_runtime': 526.9863, 'eval_samples_per_second': 121.404, 'eval_steps_per_second': 3.795, 'epoch': 4.0}
+{'train_runtime': 13447.408, 'train_samples_per_second': 47.465, 'train_steps_per_second': 5.933, 'train_loss': 0.08917454573100161, 'epoch': 4.0}
+[[-8.085929 ]
+ [-3.594913 ]
+ [-4.1065035]
+ [-8.017777 ]
+ [ 1.8929663]]
+tensor([[3.0775e-04],
+        [2.6729e-02],
+        [1.6199e-02],
+        [3.2944e-04],
+        [8.6909e-01]])
+F1_micro: 0.6760402812084363
+[[-8.085929 ]
+ [-3.594913 ]
+ [-4.1065035]
+ [-8.017777 ]
+ [ 1.8929663]]
+tensor([[3.0775e-04],
+        [2.6729e-02],
+        [1.6199e-02],
+        [3.2944e-04],
+        [8.6909e-01]])
+              precision    recall  f1-score   support
+
+       clean       0.98      0.93      0.95     57735
+       toxic       0.56      0.85      0.68      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.77      0.89      0.82     63978
+weighted avg       0.94      0.92      0.93     63978
+
+[[-8.085929 ]
+ [-3.594913 ]
+ [-4.1065035]
+ [-8.017777 ]
+ [ 1.8929663]]
+tensor([[3.0775e-04],
+        [2.6729e-02],
+        [1.6199e-02],
+        [3.2944e-04],
+        [8.6909e-01]])
+[[-8.085929 ]
+ [-3.594913 ]
+ [-4.1065035]
+ [-8.017777 ]
+ [ 1.8929663]]
+tensor([[3.0775e-04],
+        [2.6729e-02],
+        [1.6199e-02],
+        [3.2944e-04],
+        [8.6909e-01]])
+[('>  \n'
+  '\n'
+  " 's-kommenttien palauttaminen sen jälkeen, kun keskustelusivun tyhjennys on "
+  'palautettu: \n'
+  '\n'
+  '  \n'
+  ' JoshuaZ esti minut. Tämä on perseestä. \n'
+  '\n'
+  ' == JoshuaZ on perseestä == \n'
+  '\n'
+  ' Hän on surkea, koska hän esti minut. Niin, hän on surkea. Mainitsinko jo, '
+  'että hän on surkea? Koska hän on surkea. Hän on todella surkea. '
+  'Wikipediassa on paljon ihmisiä, jotka ovat surkeita. Ylläpitäjät ovat '
+  'surkeita. Niin, he ovat surkeita.',
+  'toxic', tensor([0.9987])),
+ ('Älä ole tuollainen ämmä, anna manginasi roikkua alhaalla. Ehkä sinun '
+  'pitäisi ottaa steroideja tasoittamaan sitä korkean estrogeenitasosi kanssa. '
+  'Ota se narttu',
+  'toxic', tensor([0.9986])),
+ ('" \n'
+  '\n'
+  ' ::Jeesus Kristus, mulkku. Ota se tikku pois perseestäsi. Se on vain '
+  "wiki-freakin'-pedia. Käytä sääntöjä, kun haluat olla paskiainen, mutta et "
+  'pysty todistamaan yhtään mitään. Keskustelemme itse sivusta, emme yleisestä '
+  'keskustelusta. Lue mitä sanomme. Suuraakkosin, ehkä sitten kuuntelette: LUE '
+  'MITÄ SANOMME, SENKIN JÄÄRÄPÄINEN KUSIPÄÄ. En näytä haluavan osoittaa '
+  'paskaakaan. Näyttää siltä, että haluan osoittaa tarkkoja totuuksia. Olet '
+  'turhauttava kusipää, koska et vain kuuntele. Sivu kuvastaa nyt sitä, mitä '
+  'väitätte olevanne ""enemmistön näkemys"", eikä se perustu lähteisiin, vaan '
+  'omaan paskanjauhantaan, tietämättömään näkemykseenne. Väität, etten ole '
+  'tietosanakirjamainen, mutta sinä olet vielä vähemmän tietosanakirjamainen. '
+  'Ole kiltti ja kuuntele omaa paskapuheesi, ole kiltti ja ole kiltti, minä '
+  'pyydän sinua. Jos et aio kuunnella meitä, kuuntele itseäsi. Noudata omia '
+  'jumalanmiehen sääntöjäsi tai pidä turpasi kiinni. Ihan totta.  "',
+  'toxic', tensor([0.9986])),
+ ('*George and the Giant Pussy faggot, japanilainen versio Amerikan suosikki '
+  'tv-sarjasta THE HILLS, jonka pääosissa on joukko hulluja, huumeita '
+  'käyttäviä neekereitä ja yksi valkoinen kaveri, jolla on pieni kulli. Sen '
+  'valkoisen on täytynyt tehdä jotain hullua päästäkseen siihen jengiin. '
+  'Tykkään syödä paskaa. Oikeasti, se näyttää ja maistuu suklaalta. George and '
+  'the Giant Pussy Faggot -sarjan kauden ensi-ilta alkoi sillä, että '
+  'päähenkilö George Harry Balls imi valtavaa mustaa munaa päästäkseen Pussy '
+  'Faggots -nimiseen jengiin. Tämä 70-vuotiaiden mustien miesten ryhmä '
+  'raiskasi toisinaan pikkueläimiä, kuten kaneja ja villejä bansseja. George '
+  'oli aina haaveillut olevansa ainoa cracka vanhojen ryppyisten neekerien '
+  'ryhmässä ja oli vain yhden iskun päässä siitä. Mutta kun hän oli ottamassa '
+  'sitä 69. neekerihuoran persereikään, huoneeseen astui pitkä, lihaksikas '
+  'transvestiitti, joka piiskasi heitä jättimäisellä vaginapillillään. '
+  'Jatkuu... \n'
+  '\n'
+  ' TIEDÄTKÖ MITÄ, SENKIN TYPERÄ HINTTI?! MINÄ VITTU VIHAAN SINUA! PAINU '
+  'HELVETTIIN SENKIN PIENI VALKOINEN KEKÄLE JA MENE NUSSIMAAN JOTAIN RYPPYISTÄ '
+  'VALKOISTA MUMMONPERSETTÄ!!!!!!!!!!!!! ).',
+  'toxic', tensor([0.9986])),
+ ('Haluaisin nähdä tämän elämän tuhlaajan koskaan näyttävän uneliaita vitun '
+  'naamojaan Amerikassa..emme välitä paljoa jalkapallosta, mutta kun ryöstät '
+  'Yhdysvalloilta MITÄÄN, massat saavat sinut maksamaan.',
+  'toxic', tensor([0.9986])),
+ ('Mitä eroa on vauvalla ja vanhuksella? \n'
+  ' Vanhus ei kuole, kun häntä nussitaan perseeseen. \n'
+  ' Miten vauva on samanlainen kuin vanha ihminen? \n'
+  ' Molempia on mukava heittää liikkuvasta ajoneuvosta. \n'
+  ' HEI, KUOLLUT VAUVA! \n'
+  ' -Dylan Sun',
+  'toxic', tensor([0.9986])),
+ ('== Wikipedia on perseestä ja kaikki tietävät sen. == \n'
+  '\n'
+  " Kaikille 'kemiklooppien salaliittoteorian' toimittajille, voitte ottaa "
+  'juutalaisten omistamat luotettavat lähteenne ja tunkea ne perseeseenne. '
+  'Olette säälittäviä luusereita, ja tiedätte tämän jo, joten minun ei '
+  'tarvitse mennä tarkemmin yksityiskohtiin. Mitä kovemmin yritätte esittää '
+  'itseänne puolueettomina ja reiluina, sitä enemmän paljastatte, kuinka '
+  'tyhmiä ja kontrollipakkomielteisiä todella olette. Ette huijaa ketään. '
+  'Hyvää päivänjatkoa teillekin, ääliöt! PS Wikipedia on myös '
+  'salaliittoteoria! (me vihaamme teitä) .',
+  'toxic', tensor([0.9986])),
+ ('s \n'
+  '\n'
+  '  \n'
+  '\n'
+  '  thetanmancan on pössyttelevä homoseksuaali, joka etsii pulleaa kaveria '
+  'koskettamaan penistään. hän etsii myös jotakuta, jota hakata ja saada '
+  'spermaa suuhunsa.',
+  'toxic', tensor([0.9986])),
+ ('" \n'
+  '\n'
+  ' Halveksin Wikipediaa, ""GiantSnowman"". Tämä on luultavasti 20. tai 30. '
+  'sukkani viiden vuoden aikana, enkä ole varma, miten Wikipedia saadaan '
+  'takaisin sellaiseksi kuin se oli ennen kuin kusipäät ottivat vallan ja '
+  'Jimbosta tuli vallanhimoinen diktaattori.  \n'
+  '\n'
+  ' Enkä voi lopettaa, koska aina kun menen Googleen, siellä on teitä vitun '
+  'ihmisiä. Aina kun menen internetiin, siellä on teitä vitun ihmisiä. '
+  'Helvetti, jopa offlinessa, te vitun ihmiset olette siellä. Helvetti, '
+  'näyttää siltä, että teistä on tullut vielä pahempia nyt, kun '
+  'mielenvalvontapoliisi ei anna teidän hallita edes omaa '
+  'keskustelusivuanne.  \n'
+  '\n'
+  ' Jos ette olisi pahoja fasistihirviöitä, sanoisin paljon enemmän, mutta ei '
+  'ole mitään järkeä. Tämä tili ei toiminut, se tullaan joka tapauksessa '
+  'estämään lopulta tällä vauhdilla, voitte yhtä hyvin tehdä uuden tilin '
+  'muutaman päivän tai tunnin tai kuukauden tai viikon tai milloin tahansa."',
+  'toxic', tensor([0.9986])),
+ ('== Luulin, että aioit estää minut.  LMAO! == \n'
+  '\n'
+  ' Typerä paskiainen.  Taidat olla pelkkää puhetta!  Puhumattakaan '
+  'idiootista.  Mene hankkimaan aivosoluimplantti.  LOL!',
+  'toxic', tensor([0.9986]))]
+[('ne ovat verenimijöitä', 'toxic', tensor([0.6056])),
+ ('In den deutschen Artikeln habe ich die Quelle eingefügt.', 'toxic',
+  tensor([0.6053])),
+ ('" \n ::LOL! Sen on täytynyt olla helvettiä! - "', 'toxic', tensor([0.6050])),
+ ('Hävitä Kaikki aiemmin sanottu... Rakastamme sinua Carlos... RAKASTAN SINUA! '
+  'HALUAN RAPEUTTAA SINUT O Just kidding ;)',
+  'toxic', tensor([0.6049])),
+ ('Oletko todella Fonzie Fan, vai oletko huijari? -', 'toxic',
+  tensor([0.6044])),
+ ('==Tammikuu 2010== \n'
+  '\n'
+  '  Lopettakaa häiritsevä editointinne. Jos jatkat Wikipedian tuhoamista, '
+  'sinua estetään muokkaamasta.  Tämä koskee UFC 110:n ilkivaltaa. Fedor vs '
+  'Brock -vitsi. Oooo, omaperäinen! Kirjoita edes Fedorin nimi oikein, ääliö.',
+  'toxic', tensor([0.6036])),
+ ('STFU NOOB! LOLOLOLOLOLOLOLOL DUNT POSTAA TÄNNE NO MOAR KEKE?', 'toxic',
+  tensor([0.6029])),
+ ('== Lopettakaa MADONNAn MUSIIKIN VANDALISOINTI == \n'
+  '\n'
+  ' Lopettakaa VANDALISOINTI ja levymyynnin paisuttaminen yli 3 miljoonalla '
+  'kappaleella. \n'
+  ' Wikipedia ei arvosta kaltaisiasi ihmisiä, jotka valehtelevat FAKTAISTA ja '
+  'mokaavat kaikkien muiden kannalta.',
+  'toxic', tensor([0.6027])),
+ ('== huh? == \n'
+  '\n'
+  ' Joitakin kiusaamista koskevia väitteitä.  Koko osio vaikuttaa minusta '
+  'täysin paskamaiselta.  Voiko joku perustella, miksi tämä osio pitäisi '
+  'säilyttää artikkelissa?',
+  'toxic', tensor([0.6023])),
+ ('Random /u/ täällä, halusin vain kertoa kaikille, että tämä koko juttu on '
+  'säälittävä, ja toivon, että kaikki, jotka kielsivät FearOfReprisalia '
+  'tekemästä OIKEAJA MUOKKAUKSIA mielettömään ja tietämättömään asiaasi, '
+  'menettävät muokkausoikeutensa.',
+  'toxic', tensor([0.6022]))]
+[('== Hoax-luokka ? == \n WTF?', 'clean', tensor([0.5992])),
+ (':Saanen ensimmäisenä sanoa, että tämä on jälkeenjäänyttä.', 'clean',
+  tensor([0.5988])),
+ ('bgv hujvolhvhjbvol nouybvgouy gfv uygljvuy bvolhg vuycvlo gh', 'clean',
+  tensor([0.5983])),
+ ('***InShanee on lyönyt minut KanuniSSilla, minä olen lyönyt hänet '
+  'Mizrakilla.',
+  'clean', tensor([0.5979])),
+ ('Muslimit. Se on kaikkien aikojen suurin huijaus.', 'clean',
+  tensor([0.5973])),
+ ('" \n'
+  '\n'
+  ' == Tuotekaavan suhde == \n'
+  '\n'
+  ' ""Dirichlet\'n sarja, joka tuottaa Möbius-funktion, on Riemannin '
+  'zeta-funktion (multiplikatiivinen) käänteisluku. \n'
+  '\n'
+  ' \\sum_{n=1}^\\infty \\frac{\\mu(n)}{n^s}=\\frac{1}{\\zeta(s)}. \n'
+  ' Tämä on helppo havaita sen Eulerin tuotteesta" "" \n'
+  '\n'
+  ' Miksi se on selvää? Olenko minä tässä tyhmä?"',
+  'clean', tensor([0.5966])),
+ ('Aion vainota teitä virtuaalimaailmassanne, jossa pyritte harjoittamaan '
+  'valon kirousta tähän ihastuttavan likaiseen tietämättömyyskerrokseen!',
+  'clean', tensor([0.5956])),
+ ('Thids \n  ed asdfa s \n df wsdufiuehsdoiuh uhei fsiduh fiuhe ouasdh fouwsd',
+  'clean', tensor([0.5951])),
+ ('JA KAIPAAT VESSAA KUN PISSAAT \n'
+  ' '
+  '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! '
+  'HI- - ° ″ ′ ′ ≈ ≠ ≤ ≥ ± - × ÷ ← → - § ) ) ) ) ) ) ) ) ) ) ) ) '
+  ';000000000000000000000000000000000000000000000FDGKJA',
+  'clean', tensor([0.5928])),
+ ('Luulen, että roikkumisen alkuperä juontaa juurensa siihen, että ihmisen '
+  'typeryydellä ei ole rajoja...',
+  'clean', tensor([0.5922]))]
+END: pe 12.8.2022 14.04.20 +0300

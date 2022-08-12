@@ -20,7 +20,7 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 
 #TRANSLATED
 # echo "Translated train and test"
-# srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev
+# srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
 
 # TRANSFER
 # echo "transfer from english train to translated finnish test"

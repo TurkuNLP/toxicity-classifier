@@ -533,7 +533,7 @@ def main():
         load_best_model_at_end=True,
         num_train_epochs=args.epochs,
         learning_rate=args.learning,
-        #metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) loss
+        metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) loss
         per_device_train_batch_size=args.batch,
         per_device_eval_batch_size=32
     )

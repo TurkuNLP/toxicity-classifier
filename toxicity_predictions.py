@@ -1,12 +1,15 @@
 import transformers
 import torch
 import numpy as np
-import argparser
-
+import argparse
+from pprint import PrettyPrinter
+import json
+import datasets
+import pandas as pd
 
 
 parser = argparse.ArgumentParser(
-            description="A script for classifying toxic data (multi-label, includes binary evaluation on top)",
+            description="A script for predicting toxic texts based on a toxicity classifier",
             epilog="Made by Anni Eskelinen"
         )
 parser.add_argument('--model', required=True,
@@ -19,24 +22,55 @@ parser.add_argument('--data', required=True,
     help="the file name of the raw text to use for predictions")
 args = parser.parse_args()
 
+pprint = PrettyPrinter(compact=True).pprint
+
 
 model=transformers.AutoModelForSequenceClassification.from_pretrained(args.model)
 
 trainer = transformers.Trainer(
     model=model
 ) 
-    
+
+data = args.data
+
 # here set list of texts to use for new predictions
 with open(data, 'r') as json_file:
         json_list = list(json_file)
-texts = [json.loads(jline) for jline in json_list]
-print(len(texts))
-texts = texts[:1000] # try with a little batch first because there are so many lines
+lines = [json.loads(jline) for jline in json_list]
+# use pandas to look at each column
+df=pd.DataFrame(lines)
+df = df[['body']]
+pprint(df[:5])
+# keep every row except ones with deleted text
+#df = df[df["body"].str.contains("[deleted]") == False]
+
+
+
+#random.shuffle(texts) # not necessary
+print(len(lines))
+
+tokenizer = transformers.AutoTokenizer.from_pretrained("TurkuNLP/bert-base-finnish-cased-v1")
+
+def tokenize(example):
+    return tokenizer(
+        example["body"],
+        max_length=512,
+        truncation=True,
+    )
+
+dataset = datasets.Dataset.from_pandas(df)
+
+pprint(dataset[:10])
+
+#map all the examples
+tokenized = dataset.map(tokenize)
+
+texts = dataset["body"].select(range(200))
 
 threshold = args.threshold
 
 # see how the labels are predicted
-test_pred = trainer.predict(texts)
+test_pred = trainer.predict(tokenized)
 predictions = test_pred.predictions
 
 # what to do with the predictions depending on the type
@@ -71,7 +105,6 @@ if args.type == "binary":
     for i in range(len(probabilities)):
         probs.append(probabilities[i][preds[i]]) # preds[i] gives the correct index for the current probability
 
-    texts = dataset["test"]["text"]
     # lastly use zip to get tuples with (text, label, probability)
     prediction_tuple = tuple(zip(texts, labels, probs))
 
@@ -157,36 +190,38 @@ elif args.type == "multi":
         highest = 0
 
 
-    # # set label whether the text is toxic or clean
-    # pred_label = []
-    # for i in range(len(preds)):
-    #     if sum(preds[i]) > 0:
-    #         pred_label.append("toxic")
-    #     else:
-    #         pred_label.append("clean")
+    # set label whether the text is toxic or clean
+    pred_label = []
+    for i in range(len(preds)):
+        if sum(preds[i]) > 0:
+            pred_label.append("toxic")
+        else:
+            pred_label.append("clean")
 
-    # label_prob = tuple(zip(pred_label, templist))
+    label_prob = tuple(zip(pred_label, templist))
 
 
     all = tuple(zip(texts, prob_label_tuples, templist, predicted)) 
     pprint(all[:10])
 
     # lists of tuples
-    # toxic = [item for item in all if item[2][1] == "toxic"]
-    # clean = [item for item in all if item[2][1] == "clean"]
+    toxic = [item for item in all if item[2][1] == "toxic"]
+    clean = [item for item in all if item[2][1] == "clean"]
 
-    # now sort by probability, descending
-    # toxic.sort(key = lambda x: float(x[2][2]), reverse=True)
-    # clean.sort(key = lambda x: float(x[2][2]), reverse=True)
-    #clean2 = sorted(clean, key = lambda x: float(x[2])) # ascending
+    #now sort by probability, descending
+    toxic.sort(key = lambda x: float(x[2][2]), reverse=True)
+    clean.sort(key = lambda x: float(x[2][2]), reverse=True)
+    clean2 = sorted(clean, key = lambda x: float(x[2])) # ascending
 
     all.sort(key = lambda x: float(x[2]), reverse=True)
 
-    # pprint(toxic[:5])
-    # pprint(clean[:5])
+    pprint(toxic[:10])
+    pprint(toxic[-10:]) # these two in the middle are the most neutral things
+    pprint(clean[-10:])
+    pprint(clean[:10])
 
-    pprint(all[:5])
-    pprint(all[-5:])
+    # pprint(all[:10])
+    # pprint(all[-10:])
 
 elif args.type == "true-binary":
     sigmoid = torch.nn.Sigmoid()
@@ -202,7 +237,6 @@ elif args.type == "true-binary":
     for val in preds: # index
         labels.append(idx2label[val])
 
-    texts = dataset["test"]["text"]
     # lastly use zip to get tuples with (text, label, probability)
     prediction_tuple = tuple(zip(texts, labels, probabilities))
 
