@@ -404,21 +404,22 @@ def get_classification_report(trainer, label_names, dataset, pprint):
             else:
                 new_true.append(0)
                 
-        # calculate precision-recall curve
-        precision, recall, thresholds = precision_recall_curve(trues, preds)
+        # NOT SUPPORTED
+        # # calculate precision-recall curve
+        # precision, recall, thresholds = precision_recall_curve(trues, preds)
 
-        #create precision recall curve using matplotlib
-        fig, ax = plt.subplots()
-        ax.plot(recall, precision, color='red')
+        # #create precision recall curve using matplotlib
+        # fig, ax = plt.subplots()
+        # ax.plot(recall, precision, color='red')
 
-        #add axis labels to plot
-        ax.set_title('Precision-Recall Curve')
-        ax.set_ylabel('Precision')
-        ax.set_xlabel('Recall')
+        # #add axis labels to plot
+        # ax.set_title('Precision-Recall Curve')
+        # ax.set_ylabel('Precision')
+        # ax.set_xlabel('Recall')
 
-        #display plot
-        plt.show()
-        plt.savefig("binary-eval_precision-recall-curve") # set file name where to save the plots
+        # #display plot
+        # plt.show()
+        # plt.savefig("binary-eval_precision-recall-curve") # set file name where to save the plots
 
         print(classification_report(new_true, new_pred, target_names=["clean", "toxic"], labels=list(range(2))))
 
@@ -542,7 +543,7 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/multilabeldev", #output_dir for checkpoints, not necessary to mention what it is
+        "checkpoints/multilabeltr", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="epoch",
         logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
         save_strategy="epoch",
@@ -581,7 +582,8 @@ def main():
 
     trainer.train()
 
-    #trainer.model.save_pretrained("models/multi-toxic")
+    trainer.model.save_pretrained("models/multi-toxic-tr-optimized")
+    print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])
     #pprint(eval_results)

@@ -27,3 +27,183 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.0375, 'learning_rate': 6e-06, 'epoch': 1.0}
+[[-0.00475326]
+ [ 0.01513461]
+ [ 0.07870723]
+ [-0.00586545]
+ [ 0.61898214]]
+tensor([[0.4988],
+        [0.5038],
+        [0.5197],
+        [0.4985],
+        [0.6500]])
+{'eval_loss': 0.06665930151939392, 'eval_accuracy': 0.9201131639000907, 'eval_weighted_accuracy': 0.8865222913003692, 'eval_roc_auc': 0.8865222913003692, 'eval_f1': 0.673606232837346, 'eval_precision': 0.5601104502973662, 'eval_recall': 0.8447861604997597, 'eval_runtime': 519.8479, 'eval_samples_per_second': 123.071, 'eval_steps_per_second': 3.847, 'epoch': 1.0}
+{'loss': 0.0264, 'learning_rate': 4e-06, 'epoch': 2.0}
+[[0.01276586]
+ [0.01945464]
+ [0.08530837]
+ [0.01237062]
+ [0.08319485]]
+tensor([[0.5032],
+        [0.5049],
+        [0.5213],
+        [0.5031],
+        [0.5208]])
+{'eval_loss': 0.07659586519002914, 'eval_accuracy': 0.9231767169964675, 'eval_weighted_accuracy': 0.8847196592061519, 'eval_roc_auc': 0.8847196592061518, 'eval_f1': 0.6801171493654409, 'eval_precision': 0.5727910545932909, 'eval_recall': 0.8369373698542367, 'eval_runtime': 520.3847, 'eval_samples_per_second': 122.944, 'eval_steps_per_second': 3.843, 'epoch': 2.0}
+{'loss': 0.0204, 'learning_rate': 2e-06, 'epoch': 3.0}
+[[0.00609579]
+ [0.02428955]
+ [0.11191628]
+ [0.00627425]
+ [0.07752163]]
+tensor([[0.5015],
+        [0.5061],
+        [0.5279],
+        [0.5016],
+        [0.5194]])
+{'eval_loss': 0.07372631132602692, 'eval_accuracy': 0.9218325049235675, 'eval_weighted_accuracy': 0.8911178212505254, 'eval_roc_auc': 0.8911178212505254, 'eval_f1': 0.6804677017442975, 'eval_precision': 0.5660076530612245, 'eval_recall': 0.8529553099471407, 'eval_runtime': 520.6193, 'eval_samples_per_second': 122.888, 'eval_steps_per_second': 3.842, 'epoch': 3.0}
+{'loss': 0.0157, 'learning_rate': 0.0, 'epoch': 4.0}
+[[-6.2091602e-04]
+ [ 1.2065269e-02]
+ [ 9.2150038e-01]
+ [-1.2771306e-03]
+ [ 5.4846343e-02]]
+tensor([[0.4998],
+        [0.5030],
+        [0.7153],
+        [0.4997],
+        [0.5137]])
+{'eval_loss': 0.08150319755077362, 'eval_accuracy': 0.913720341367345, 'eval_weighted_accuracy': 0.893337514893792, 'eval_roc_auc': 0.893337514893792, 'eval_f1': 0.662550434038391, 'eval_precision': 0.5357390014829461, 'eval_recall': 0.8680121736344706, 'eval_runtime': 520.4435, 'eval_samples_per_second': 122.93, 'eval_steps_per_second': 3.843, 'epoch': 4.0}
+{'train_runtime': 13073.9047, 'train_samples_per_second': 48.821, 'train_steps_per_second': 6.103, 'train_loss': 0.025013911070880804, 'epoch': 4.0}
+[[-0.00475326]
+ [ 0.01513461]
+ [ 0.07870723]
+ [-0.00586545]
+ [ 0.61898214]]
+tensor([[0.4988],
+        [0.5038],
+        [0.5197],
+        [0.4985],
+        [0.6500]])
+F1_micro: 0.673606232837346
+[[-0.00475326]
+ [ 0.01513461]
+ [ 0.07870723]
+ [-0.00586545]
+ [ 0.61898214]]
+tensor([[0.4988],
+        [0.5038],
+        [0.5197],
+        [0.4985],
+        [0.6500]])
+              precision    recall  f1-score   support
+
+       clean       0.98      0.93      0.95     57735
+       toxic       0.56      0.84      0.67      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.77      0.89      0.81     63978
+weighted avg       0.94      0.92      0.93     63978
+
+[[-0.00475326]
+ [ 0.01513461]
+ [ 0.07870723]
+ [-0.00586545]
+ [ 0.61898214]]
+tensor([[0.4988],
+        [0.5038],
+        [0.5197],
+        [0.4985],
+        [0.6500]])
+[[-0.00475326]
+ [ 0.01513461]
+ [ 0.07870723]
+ [-0.00586545]
+ [ 0.61898214]]
+tensor([[0.4988],
+        [0.5038],
+        [0.5197],
+        [0.4985],
+        [0.6500]])
+[('vitun ämmä olet kuin äitisi', 'toxic', tensor([0.7529])),
+ ('Sinä paskat niin vittu U', 'toxic', tensor([0.7524])),
+ ('vittu te vitun neekerit', 'toxic', tensor([0.7517])),
+ ('homo homo homo homo olet niin homo', 'toxic', tensor([0.7517])),
+ ('Hei vitun paska noob', 'toxic', tensor([0.7516]))]
+[('Taulu saattoi olla tyhjä... mutta katsoin juuri tuon kohtauksen, ja Samuel '
+  'L Jackson ja eräs "harlemilaisjoukoista" viittasivat John Mclaneen, joka '
+  'vihaa neekereitä. Olen hieman teknofoobikko, joten en ole varma, miten he '
+  'olisivat muokanneet tuon, varsinkin kun molemmilla kerroilla näkee sanojen '
+  'lähtevän näyttelijän suusta.',
+  'toxic', tensor([0.6001])),
+ ('KUKAAN MUU EI VOI TUNTEA SITÄ PUOLESTASI \n'
+  ' VAIN SINÄ VOIT PÄÄSTÄÄ SEN SISÄÄN  \n'
+  ' KUKAAN MUU EI VOI PUHUA SANOJA HUULILTASI. \n'
+  ' HEMMOTTELE ITSEÄSI SANATTOMILLA SANOILLA \n'
+  ' ELÄ ELÄMÄÄSI KÄDET LEVÄLLÄÄN \n'
+  ' TÄNÄÄN KIRJASI ALKAA \n'
+  ' LOPPU ON VIELÄ KIRJOITTAMATTA!!!',
+  'toxic', tensor([0.6001])),
+ ('Koira, joka on siamilainen; tästä johtuu nimi Siamilainen koira...ÄLYKÄS!',
+  'toxic', tensor([0.6000])),
+ ('" \n'
+  '\n'
+  ' == Tarvitaanko tähän artikkeliin todella ""penis shot""? == \n'
+  '\n'
+  ' Minusta alkuperäinen kuva Miesstrippari-osiossa oli täysin riittävä, mutta '
+  'näyttää siltä, että olette eri mieltä. BMK lisäsi alun perin ja on '
+  'sittemmin lisännyt useita kertoja uudelleen kuvan täysin alastomasta '
+  'miestanssijasta, josta näkyy hänen sukupuolielimensä. Minun mielestäni '
+  'Wikipediaa ei sensuroida, mutta minusta meidän ei myöskään tarvitse '
+  'pakottaa keskivertolukijalle jotain, mikä on yksinkertaisesti mautonta. '
+  'Ylimmässä kuvassa on useita naisia, joista kolme on yläosattomissa, mutta '
+  'heidän sukupuolielimensä on peitetty. Alkuperäinen miesstripparin kuva oli '
+  'pääosin samanlainen. Onko joku sitä mieltä, että tässä artikkelissa on '
+  'oltava peniskuva, kuten BMK väittää?   "',
+  'toxic', tensor([0.6000])),
+ ('== Vakava sattumanvaraisuus! == \n'
+  '\n'
+  ' Internet on pornoa varten! \n'
+  ' Anteeksi, Kate! \n'
+  ' Internet on pornoa varten \n'
+  ' Masturboin \n'
+  '\n'
+  ' Se piti saada pois.',
+  'toxic', tensor([0.6000]))]
+[('Ja muuten, en ole mikään sairas outo lapsi, jota ei häiritsisi tosielämän '
+  'murhapaikka. Olen vain tavallinen 14-vuotias tyttö, joka tekee '
+  'koulutehtävää, jolla on hyvin heikko vatsa ja jonka mielestä koko '
+  'Viiltäjä-Jackin tapaus on ällöttävä!',
+  'clean', tensor([0.6000])),
+ ('kris draper ilman kid raperia!!!!', 'clean', tensor([0.6000])),
+ ('== Uudet taulukot == \n'
+  '\n'
+  ' Jumalan tähden... älkää v*ttuilko uusien pöytien kanssa, jotka laitan '
+  'Sodomaan ja Gomorraan.',
+  'clean', tensor([0.6000])),
+ ('" \n'
+  '\n'
+  ' Joten, 9/11:n kymmenentenä vuosipäivänä, ""New York Times"" '
+  '""kolumnisti""" Paul Krugman toimitti vastenmielisimmän pätkän, jonka hän '
+  'on koskaan kirjoittanut hyökkäyksestä, ainakin sen jälkeen, kun hän '
+  'viimeksi kirjoitti siitä. Otsikko on: "Häpeän vuodet", lainaus päättyy. Ja '
+  'ei, se ei ole suunnattu radikaalia islamia vastaan. Sen sijaan hän '
+  'kohdistuu Amerikkaan ja, quote, ""valesankareihin"". Krugman väittää, että '
+  'hirmuteko on kaapattu. Sairas sana, kun otetaan huomioon, että hän ei '
+  'oikeastaan puhu oikeista kaappaajista, jotka tappoivat noin 3 000 '
+  'amerikkalaista. Ei, hän viittaa George Bushin ja Rudy Giulianin kaltaisiin '
+  'ihmisiin, jotka hänen mielestään hyödynsivät hirvittäviä rikoksia. Mutta '
+  'pahinta on, että kolumnin lopussa hyypiö kirjoittaa: ""En salli kommentteja '
+  'postaukseen ilmeisistä syistä.""" Tuosta ilmeisestä syystä, hän on pelkuri. '
+  'Tarkoitan, miksi muuten kieltäisit vastaukset? Hän on kuin 10-vuotias '
+  'poika, joka soittaa meille kaikille kurkkupuhelun vain luuriin jo ennen '
+  'kuin kuulee vastauksen, kuullessaan häpeänsä omasta ilkeydestään. Nyt '
+  'katson muistotilaisuuksia ja tunnen surua perheiden puolesta, joiden suru '
+  'ei koskaan lopu. Mutta koska olen surkea tunteiden pohtimisessa, vältän '
+  'sitä yleensä. Mutta ainakin voin tiivistää yhdeksään sanaan sen, mitä monet '
+  'tuntevat tänään: painu helvettiin, Paul Krugman, senkin parrakas, katkera '
+  'pelle."',
+  'clean', tensor([0.5999])),
+ ('Typeryys internetissä', 'clean', tensor([0.5998]))]
+END: to 11.8.2022 19.27.10 +0300

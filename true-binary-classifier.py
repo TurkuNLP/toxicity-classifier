@@ -235,16 +235,27 @@ def get_predictions(dataset, trainer, pprint):
 
     # now sort by probability, descending
     toxic.sort(key = lambda x: float(x[2]), reverse=True)
-    clean.sort(key = lambda x: float(x[2]), reverse=True)
-    clean2 = sorted(clean, key = lambda x: float(x[2])) # ascending
+    clean.sort(key = lambda x: float(x[2]))
+    clean2 = sorted(clean, key = lambda x: float(x[2]), reverse=True)
 
     # beginning most toxic, middle "neutral", end most clean
     all = toxic + clean2
 
-    pprint(toxic[:5])
-    pprint(toxic[-5:])
-    pprint(clean[:5])
+    pprint(toxic[:10]) # most toxic
+    pprint(toxic[-10:]) # least toxic # this and the next is where the threshold can be seen and changed
+    pprint(clean2[:10]) # "least clean"
 
+
+class NewTrainer(transformers.Trainer):
+    def compute_loss(self, model, inputs, return_outputs=False):
+        labels = inputs.pop("labels")
+        outputs = model(**inputs)
+        logits = outputs.logits
+        m = torch.nn.Sigmoid() # added this
+        loss_fct = torch.nn.BCELoss()
+        loss = loss_fct(m(logits.view(-1, self.model.config.num_labels)), 
+            labels.view(-1, self.model.config.num_labels))
+        return (loss, outputs) if return_outputs else loss
 
 
 def main():
@@ -287,7 +298,7 @@ def main():
 
     # Set training arguments 
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/binarytransfer",
+        "checkpoints/binarytrue",
         evaluation_strategy="epoch",
         logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
         save_strategy="epoch",
@@ -314,7 +325,7 @@ def main():
     else:
         eval_dataset=dataset["test"] #.select(range(20_000))
 
-    trainer = transformers.Trainer(
+    trainer = NewTrainer(
         model=model,
         args=trainer_args,
         train_dataset=dataset["train"],

@@ -26,3 +26,13 @@ To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
 {'loss': 0.1746, 'learning_rate': 1.5000000000000002e-05, 'epoch': 1.0}
+{'eval_loss': 0.16830158233642578, 'eval_accuracy': 0.9348057144643471, 'eval_roc_auc': 0.8521624156701647, 'eval_f1': 0.6916993125877744, 'eval_precision': 0.6421905023332418, 'eval_recall': 0.7494794169469806, 'eval_runtime': 527.8898, 'eval_samples_per_second': 121.196, 'eval_steps_per_second': 3.789, 'epoch': 1.0}
+{'loss': 0.1282, 'learning_rate': 1e-05, 'epoch': 2.0}
+{'eval_loss': 0.1627080887556076, 'eval_accuracy': 0.9177060864672231, 'eval_roc_auc': 0.8899029547543755, 'eval_f1': 0.6698024459078081, 'eval_precision': 0.5504019789734076, 'eval_recall': 0.8553580009610764, 'eval_runtime': 529.2001, 'eval_samples_per_second': 120.896, 'eval_steps_per_second': 3.779, 'epoch': 2.0}
+{'loss': 0.0972, 'learning_rate': 5e-06, 'epoch': 3.0}
+{'eval_loss': 0.18325212597846985, 'eval_accuracy': 0.9189877770483603, 'eval_roc_auc': 0.8949702919023008, 'eval_f1': 0.67575852361589, 'eval_precision': 0.5544036132211045, 'eval_recall': 0.8651289444177479, 'eval_runtime': 528.0334, 'eval_samples_per_second': 121.163, 'eval_steps_per_second': 3.788, 'epoch': 3.0}
+{'loss': 0.0663, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.2132544219493866, 'eval_accuracy': 0.9174872612460533, 'eval_roc_auc': 0.8908531527771483, 'eval_f1': 0.6698355119144411, 'eval_precision': 0.549456187153704, 'eval_recall': 0.857760691975012, 'eval_runtime': 529.448, 'eval_samples_per_second': 120.839, 'eval_steps_per_second': 3.778, 'epoch': 4.0}
+{'train_runtime': 13739.3502, 'train_samples_per_second': 46.457, 'train_steps_per_second': 5.807, 'train_loss': 0.11655116099166699, 'epoch': 4.0}
+F1: 0.6698024459078081
+END: to 11.8.2022 18.11.16 +0300
