@@ -404,23 +404,6 @@ def get_classification_report(trainer, label_names, dataset, pprint):
             else:
                 new_true.append(0)
                 
-        # NOT SUPPORTED
-        # # calculate precision-recall curve
-        # precision, recall, thresholds = precision_recall_curve(trues, preds)
-
-        # #create precision recall curve using matplotlib
-        # fig, ax = plt.subplots()
-        # ax.plot(recall, precision, color='red')
-
-        # #add axis labels to plot
-        # ax.set_title('Precision-Recall Curve')
-        # ax.set_ylabel('Precision')
-        # ax.set_xlabel('Recall')
-
-        # #display plot
-        # plt.show()
-        # plt.savefig("binary-eval_precision-recall-curve") # set file name where to save the plots
-
         print(classification_report(new_true, new_pred, target_names=["clean", "toxic"], labels=list(range(2))))
 
     # this report shows up even with binary evaluation but I don't think it matters, good info nonetheless
@@ -476,7 +459,7 @@ def predictions_to_csv(trues, preds, dataset, label_names):
 
     # Converting lists to df
     comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_label_texts, 'pred_labels':pred_label_texts})
-    comparisons_df.to_csv('comparisons.csv')
+    comparisons_df.to_csv('comparisons/comparisons.csv')
     #print(comparisons_df.head())
 
 

@@ -27,3 +27,16 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.138, 'learning_rate': 6e-06, 'epoch': 1.0}
+[[-8.085929 ]
+ [-3.594913 ]
+ [-4.1065035]
+ [-8.017777 ]
+ [ 1.8929663]]
+tensor([[3.0775e-04],
+        [2.6729e-02],
+        [1.6199e-02],
+        [3.2944e-04],
+        [8.6909e-01]])
+{'eval_loss': 0.2853121757507324, 'eval_accuracy': 0.9200506424083279, 'eval_weighted_accuracy': 0.8909877051385626, 'eval_roc_auc': 0.8909877051385626, 'eval_f1': 0.6760402812084363, 'eval_precision': 0.5590823381521056, 'eval_recall': 0.8548774627582892, 'eval_runtime': 527.2244, 'eval_samples_per_second': 121.349, 'eval_steps_per_second': 3.793, 'epoch': 1.0}
+{'loss': 0.1023, 'learning_rate': 4e-06, 'epoch': 2.0}

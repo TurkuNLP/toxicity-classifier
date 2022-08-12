@@ -226,7 +226,7 @@ def predictions_to_csv(trues, preds, dataset):
 
     # Converting lists to df
     comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_labels, 'pred_labels':pred_labels})
-    comparisons_df.to_csv('binary_comparisons.csv')
+    comparisons_df.to_csv('comparisons/binary_comparisons.csv')
     #print(comparisons_df.head())
 
 
@@ -291,6 +291,8 @@ def get_predictions(dataset, trainer, pprint):
     # all = toxic + clean2
 
     pprint(toxic[:5])
+    pprint(toxic[-5:]) # these two middle are the closest to "neutral" where the threshold is
+    pprint(clean[-5:])
     pprint(clean[:5])
 
 
@@ -407,7 +409,7 @@ def main():
     plt.show()
     plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
 
-    #get_predictions(dataset, trainer, pprint)
+    get_predictions(dataset, trainer, pprint)
     predictions_to_csv(trues, preds, dataset)
 
 if __name__ == "__main__":
