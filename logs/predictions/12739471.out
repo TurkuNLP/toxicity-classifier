@@ -1,0 +1,364 @@
+START: ma 15.8.2022 10.52.06 +0300
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200
+[[0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003897532296832651, 0.0004632089694496244, 0.000721478252671659, 0.0002836358326021582, 0.00035105267306789756, 0.0022771540097892284], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.00045404903357848525, 0.00048304488882422447, 0.0007229059701785445, 0.00036631355760619044, 0.00040300682303495705, 0.0018954221159219742], [0.00043031148379668593, 0.0004691947251558304, 0.000716006790753454, 0.0003431848017498851, 0.0003935889108106494, 0.0019802208989858627], [0.0004548829747363925, 0.0004805800272151828, 0.0007240900886245072, 0.00037598892231471837, 0.000416283291997388, 0.0019155126065015793]]
+[array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.])]
+[([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), (['label_obscene', 'label_toxicity'], [0.6096214056015015, 0.822920560836792]), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], [])]
+(('clean', 0.003066040575504303), ('clean', 0.003066040575504303), ('clean', 0.003066040575504303), ('clean', 0.003066040575504303), ('clean', 0.003066040575504303))
+TOXIC
+[('Mitä vittua..',
+  ((0.011120733805000782, 'label_identity_attack'),
+   (0.3582516014575958, 'label_insult'), (0.9625566601753235, 'label_obscene'),
+   (0.09293300658464432, 'label_severe_toxicity'),
+   (0.01100611500442028, 'label_threat'),
+   (0.9606655836105347, 'label_toxicity')),
+  ('toxic', 0.9625566601753235),
+  (['label_obscene', 'label_toxicity'],
+   [0.9625566601753235, 0.9606655836105347])),
+ ('Olipa rasittavaa paskaa koko artikkeli.',
+  ((0.007573154754936695, 'label_identity_attack'),
+   (0.262982577085495, 'label_insult'), (0.8194076418876648, 'label_obscene'),
+   (0.013435198925435543, 'label_severe_toxicity'),
+   (0.005443437024950981, 'label_threat'),
+   (0.8779153227806091, 'label_toxicity')),
+  ('toxic', 0.8779153227806091),
+  (['label_obscene', 'label_toxicity'],
+   [0.8194076418876648, 0.8779153227806091])),
+ ('etsiin seksin seura joka päivä',
+  ((0.01398150809109211, 'label_identity_attack'),
+   (0.16181106865406036, 'label_insult'), (0.6096214056015015, 'label_obscene'),
+   (0.012215356342494488, 'label_severe_toxicity'),
+   (0.004662386607378721, 'label_threat'),
+   (0.822920560836792, 'label_toxicity')),
+  ('toxic', 0.822920560836792),
+  (['label_obscene', 'label_toxicity'],
+   [0.6096214056015015, 0.822920560836792])),
+ ('Hämmentävän paska quote, sehän menee "Motoristeja on kahdenlaisia, niitä '
+  'jotka ovat kaatuneet ja niitä jotka tulevat kaatumaan."\n'
+  '\n'
+  'Hyvä vinkki kypärän sovitukseen on että jos poskitiivisteet eivät nosta '
+  'poskia niin että näyttää possulta niin potta on liian löysä.',
+  ((0.008372674696147442, 'label_identity_attack'),
+   (0.289721816778183, 'label_insult'), (0.7101369500160217, 'label_obscene'),
+   (0.008011558093130589, 'label_severe_toxicity'),
+   (0.0034963504876941442, 'label_threat'),
+   (0.8155806064605713, 'label_toxicity')),
+  ('toxic', 0.8155806064605713),
+  (['label_obscene', 'label_toxicity'],
+   [0.7101369500160217, 0.8155806064605713])),
+ ('"Motoristilla usein liian iso kyrpä"\n'
+  '\n'
+  'Piti pari kertaa lukea että sain sen oikein.',
+  ((0.006046977359801531, 'label_identity_attack'),
+   (0.17301045358181, 'label_insult'), (0.5978796482086182, 'label_obscene'),
+   (0.005556811112910509, 'label_severe_toxicity'),
+   (0.002293976256623864, 'label_threat'),
+   (0.7240467667579651, 'label_toxicity')),
+  ('toxic', 0.7240467667579651), (['label_toxicity'], [0.7240467667579651]))]
+NEUTRAL
+[('Mitä vittua..',
+  ((0.011120733805000782, 'label_identity_attack'),
+   (0.3582516014575958, 'label_insult'), (0.9625566601753235, 'label_obscene'),
+   (0.09293300658464432, 'label_severe_toxicity'),
+   (0.01100611500442028, 'label_threat'),
+   (0.9606655836105347, 'label_toxicity')),
+  ('toxic', 0.9625566601753235),
+  (['label_obscene', 'label_toxicity'],
+   [0.9625566601753235, 0.9606655836105347])),
+ ('Olipa rasittavaa paskaa koko artikkeli.',
+  ((0.007573154754936695, 'label_identity_attack'),
+   (0.262982577085495, 'label_insult'), (0.8194076418876648, 'label_obscene'),
+   (0.013435198925435543, 'label_severe_toxicity'),
+   (0.005443437024950981, 'label_threat'),
+   (0.8779153227806091, 'label_toxicity')),
+  ('toxic', 0.8779153227806091),
+  (['label_obscene', 'label_toxicity'],
+   [0.8194076418876648, 0.8779153227806091])),
+ ('etsiin seksin seura joka päivä',
+  ((0.01398150809109211, 'label_identity_attack'),
+   (0.16181106865406036, 'label_insult'), (0.6096214056015015, 'label_obscene'),
+   (0.012215356342494488, 'label_severe_toxicity'),
+   (0.004662386607378721, 'label_threat'),
+   (0.822920560836792, 'label_toxicity')),
+  ('toxic', 0.822920560836792),
+  (['label_obscene', 'label_toxicity'],
+   [0.6096214056015015, 0.822920560836792])),
+ ('Hämmentävän paska quote, sehän menee "Motoristeja on kahdenlaisia, niitä '
+  'jotka ovat kaatuneet ja niitä jotka tulevat kaatumaan."\n'
+  '\n'
+  'Hyvä vinkki kypärän sovitukseen on että jos poskitiivisteet eivät nosta '
+  'poskia niin että näyttää possulta niin potta on liian löysä.',
+  ((0.008372674696147442, 'label_identity_attack'),
+   (0.289721816778183, 'label_insult'), (0.7101369500160217, 'label_obscene'),
+   (0.008011558093130589, 'label_severe_toxicity'),
+   (0.0034963504876941442, 'label_threat'),
+   (0.8155806064605713, 'label_toxicity')),
+  ('toxic', 0.8155806064605713),
+  (['label_obscene', 'label_toxicity'],
+   [0.7101369500160217, 0.8155806064605713])),
+ ('"Motoristilla usein liian iso kyrpä"\n'
+  '\n'
+  'Piti pari kertaa lukea että sain sen oikein.',
+  ((0.006046977359801531, 'label_identity_attack'),
+   (0.17301045358181, 'label_insult'), (0.5978796482086182, 'label_obscene'),
+   (0.005556811112910509, 'label_severe_toxicity'),
+   (0.002293976256623864, 'label_threat'),
+   (0.7240467667579651, 'label_toxicity')),
+  ('toxic', 0.7240467667579651), (['label_toxicity'], [0.7240467667579651]))]
+[('Jo 7 kuukautta matkalla.  Jos lähetys ei ole kovin arvokas, sen seuraaminen '
+  'on varmaan jo mielenkiintoisempaa kuin itse paketin sisältö. \n'
+  '\n'
+  'Luulisi että postilla on tietojärjestelmässä jokin yläraja sille kuinka '
+  'kauan paketti voi matkustaa. Itse veikkaisin vuotta. Jos tälläistä '
+  'takarajaa ei ole, tälläisten pakettien määrä  kasvaa vuosi vuodelta. ',
+  ((0.0006399088306352496, 'label_identity_attack'),
+   (0.000591703865211457, 'label_insult'),
+   (0.0008358596824109554, 'label_obscene'),
+   (0.000574663223233074, 'label_severe_toxicity'),
+   (0.000571929442230612, 'label_threat'),
+   (0.0016571513842791319, 'label_toxicity')),
+  ('clean', 0.0016571513842791319), ([], [])),
+ ('Tietoyhteiskuntaasioita ei ole käsitelty politiikassa ollenkaan tarpeeksi. '
+  'Monet tärkeät asiaan liittyvät päätökset tehdään nykyään EU-tasolla ja '
+  'yksikin asiantunteva meppi voisi kerätä taaksensa kriittisen massan.\r\n'
+  '\r\n'
+  'Itsellänihän olisi 400 Jyrki Kasvi flyeria jaettavana. Tänään ei pysty kun '
+  'selkä valittaa, mutta huomenna on aika olla tehokas!',
+  ((0.0006390177877619863, 'label_identity_attack'),
+   (0.0005921387928538024, 'label_insult'),
+   (0.0008356303442269564, 'label_obscene'),
+   (0.0005733190337195992, 'label_severe_toxicity'),
+   (0.0005728268879465759, 'label_threat'),
+   (0.0016564502147957683, 'label_toxicity')),
+  ('clean', 0.0016564502147957683), ([], [])),
+ ('Lähetteen kuva on reilun puolen megan kokoinen. Nopeudella 50kT/s (noin '
+  '512kbit/s laajakaista) kuva latautuu noin kymmenen sekunnin ajan.\n'
+  '\n'
+  'Käytännössä sama kuva JPEG-muodossa veisi jopa kymmenesosan PNG-muotoon '
+  'verrattuna. Tämän kuvan lataaminen modeemilla (3-5kT/s) veisi noin kymmenen '
+  'sekuntia.',
+  ((0.0006366200395859778, 'label_identity_attack'),
+   (0.000584192865062505, 'label_insult'),
+   (0.0008341057109646499, 'label_obscene'),
+   (0.0005705641815438867, 'label_severe_toxicity'),
+   (0.0005708473036065698, 'label_threat'),
+   (0.001645231037400663, 'label_toxicity')),
+  ('clean', 0.001645231037400663), ([], [])),
+ ('&gt; Valitettavasti ei olekaan sarkasmisuffiksia tai sarkasmipartikkelia\n'
+  '\n'
+  'Ei vai? Asia on nopeasti korjattavissa. Heitetään seinälle vaikkapa -sar.\n'
+  '\n'
+  'Sarkasmin olisi tarkoitus mennä myös kontekstissa läpi. Ikävä kyllä '
+  'internetissä on henkilöitä joilla luetun ymmärtäminen ontuu (lue: minä) '
+  'ja/tai taustatiedot puuttuvat. Taustatietojen puuttuminen on mielestäni '
+  'suurin este sarkasmin levittämiselle.',
+  ((0.0006891234079375863, 'label_identity_attack'),
+   (0.0006153405411168933, 'label_insult'),
+   (0.0008650515228509903, 'label_obscene'),
+   (0.0006268826546147466, 'label_severe_toxicity'),
+   (0.0006148284301161766, 'label_threat'),
+   (0.0016235628863796592, 'label_toxicity')),
+  ('clean', 0.0016235628863796592), ([], [])),
+ ('[Lisää '
+  'kuvia](http://mazo.1g.fi/kuvat/Poikkeustilanteita/Vesivahinko%20Rautatientorilla%208.11.2009/), '
+  'joista '
+  '[tämä](http://mazo.1g.fi/kuvat/Poikkeustilanteita/Vesivahinko%20Rautatientorilla%208.11.2009/IMG_5353.JPG) '
+  'on aika hyvä...\n',
+  ((0.0006928750080987811, 'label_identity_attack'),
+   (0.0006205086829140782, 'label_insult'),
+   (0.0008724714280106127, 'label_obscene'),
+   (0.0006336614605970681, 'label_severe_toxicity'),
+   (0.0006264362600632012, 'label_threat'),
+   (0.0016160305822268128, 'label_toxicity')),
+  ('clean', 0.0016160305822268128), ([], [])),
+ ('Algoritmia on tosiaan muuteltu. Alussa kielivalinta meni selaimen mukaan. '
+  'Tässä oli paljon ongelmia. Selaimet ei antanut fi-kieltä vakiona ja '
+  'defaultti-reddit joka näytettiin suomalaisille oli liian kuollut, että '
+  'siinä olisi näkynyt yhtään mitään ("täällä ei näytä olevan mitään"). \n'
+  '\n'
+  'Nykyään fi-kielen pitäisi mennä maan mukaan defaulttina (en oo varma, en oo '
+  'testannu) ja omankielisten redditien painoarvoa on nostettu niin, että ne '
+  'näkyvät joskus jopa suomalaisten etusivulla. \n'
+  '\n'
+  'Tämä kielitoiminnon pitäisi olla universaali, eli vaihda em. pätkässä suomi '
+  'toiseen kieleen ja homma toimii samalla tavalla.',
+  ((0.0006773684872314334, 'label_identity_attack'),
+   (0.0006072234245948493, 'label_insult'),
+   (0.0008620034786872566, 'label_obscene'),
+   (0.0006145744700916111, 'label_severe_toxicity'),
+   (0.0006071910029277205, 'label_threat'),
+   (0.0016120042419061065, 'label_toxicity')),
+  ('clean', 0.0016120042419061065), ([], [])),
+ ('Hyvin pienen otannan perusteella ehdokkaat kyllä vaikuttivat olevan eri '
+  'mieltä kysymysten laadukkuudesta. Yksi jos toinenkin tuskaili sen kanssa, '
+  'että osa kysymyksistä oli laadittu niin että niihin oli liki mahdotonta '
+  'vastata kyllä tai ei, koska kysymyksistä ei käynyt riittävästi ilmi mitä '
+  'niillä haettiin. Sinänsä on kuitenkin hienoa, että irc-galleriasta on '
+  'kasvanut niin merkittävä instituutio, että sen kautta vaalien ehdokkaat '
+  'saadaan vastaamaan sellaisiin erityisesti nuoria kiinnostaviin kysymyksiin, '
+  'joita muut vaalikoneet tai media eivät nosta esiin.',
+  ((0.0007307676132768393, 'label_identity_attack'),
+   (0.0006478250725194812, 'label_insult'),
+   (0.0008907519513741136, 'label_obscene'),
+   (0.0006730012246407568, 'label_severe_toxicity'),
+   (0.000658451346680522, 'label_threat'),
+   (0.0016096775652840734, 'label_toxicity')),
+  ('clean', 0.0016096775652840734), ([], [])),
+ ('&gt; Sinänsä on kuitenkin pelottavaa, että irc-galleriasta on kasvanut niin '
+  'merkittävä instituutio\n'
+  '\n'
+  'FTFY. \n'
+  '\n'
+  'Eri ryhmiin keskittyvät vaalikoneet ovat sinänsä vähän arveluttavia, koska '
+  'ne antavat ehdokkaille mahdollisuuden myös muokata mielipiteitään ryhmiä '
+  'suosiviksi. Esim. jos vertaa [IRC-gallerian käyttäjien vastauksia '
+  'puolueiden '
+  'vastauksiin](http://irc-galleria.net/vaalikone.php?page=view_stats&amp;stats0=ux&amp;stats1=p0), '
+  'niin yhteneväisyys on aika ilmiömäistä. Eroa lähinnä maahanmuuttoasioissa '
+  'ja huumepolitiikassa.',
+  ((0.000689252105075866, 'label_identity_attack'),
+   (0.0006165427621454, 'label_insult'),
+   (0.0008681571343913674, 'label_obscene'),
+   (0.0006278767832554877, 'label_severe_toxicity'),
+   (0.0006204672390595078, 'label_threat'),
+   (0.0016068315599113703, 'label_toxicity')),
+  ('clean', 0.0016068315599113703), ([], [])),
+ ('Jos haluatte puolustaa Kansalaisoikeuksia tietoyhteiskunnassa, äänestäkää '
+  'Jyrki Kasvia (231).  Kasvi näyttää tietävän eniten ja on aktiivinen näissä '
+  'jutuissa. \n'
+  '\n'
+  "EU'ssa tehdään juurin nyt päätöksiä jotka voivat rajoittaa "
+  'kansalaisoikeuksia ja yksityisyyttä tuntuvasti. Kaiken mailman Lex Nokioita '
+  'on tulossa EU:n tasolla jos valitaan ehdokkaita jotka eivät näistä asioista '
+  'piittaa. \n'
+  '\n'
+  '[Tavoitteet](http://www.kasvi.org/index.php?7191):\n'
+  '\n'
+  '    - Kansalaisoikeudet on turvattava direktiivillä myös tietoverkoissa ja '
+  'tietoliikenteessä!\n'
+  '    - Identiteettivarkaus on kriminalisoitava EU-tasolla!\n',
+  ((0.0007024648948572576, 'label_identity_attack'),
+   (0.0006284755072556436, 'label_insult'),
+   (0.0008800337673164904, 'label_obscene'),
+   (0.000645122432615608, 'label_severe_toxicity'),
+   (0.0006330198375508189, 'label_threat'),
+   (0.0016054474981501698, 'label_toxicity')),
+  ('clean', 0.0016054474981501698), ([], [])),
+ ('&gt;Merkillä ei ole yhtä staattista muotoa, siitä voidaan luoda lukuisia '
+  'variaatioita yhdistämällä A erilaisten välimerkkien kanssa. Perusversion '
+  'lisäksi käyttöön otetaan A! ja A”. Erilaiset välimerkit muuttavat A:n '
+  'merkitystä, tämä kuvastaa sitä, että Aalto-yliopistoa ei ole valmiiksi '
+  'määritelty, se on avoin keskustelulle, kyseenalaistamiselle ja eri '
+  'näkökulmista tarkastamiselle. \n'
+  '\n'
+  'Logo variaatiot pdf muodossa: '
+  'http://www.aaltoyliopisto.info/files/1_aalto_logo_tiedotteisiin.pdf\n'
+  '\n'
+  'Okei, no yleinen aalto logo voisi varmaan olla **A~**,  entinen '
+  'kauppakorkea voi varmaankin käyttää **A$** ja **A€** variantteja. Taikki '
+  'käyttää **A®** logoa.  TKK on **A⚙** tai **A 8====D**',
+  ((0.0008234253036789596, 'label_identity_attack'),
+   (0.0006970232934691012, 'label_insult'),
+   (0.0009526118519715965, 'label_obscene'),
+   (0.0007719550631009042, 'label_severe_toxicity'),
+   (0.0007411346305161715, 'label_threat'),
+   (0.0015692934393882751, 'label_toxicity')),
+  ('clean', 0.0015692934393882751), ([], []))]
+CLEAN
+[('Nothing like the smell of perskymppi and nolaaminen in the morning.',
+  ((0.010647772811353207, 'label_identity_attack'),
+   (0.11929261684417725, 'label_insult'),
+   (0.16981913149356842, 'label_obscene'),
+   (0.004651254042983055, 'label_severe_toxicity'),
+   (0.0061041489243507385, 'label_threat'),
+   (0.5888482332229614, 'label_toxicity')),
+  ('clean', 0.5888482332229614), ([], [])),
+ ('Valehtelija. Noita on jo ainakin 59.',
+  ((0.009218406863510609, 'label_identity_attack'),
+   (0.3044290244579315, 'label_insult'), (0.09137396514415741, 'label_obscene'),
+   (0.0025840126909315586, 'label_severe_toxicity'),
+   (0.002232859842479229, 'label_threat'),
+   (0.5817868709564209, 'label_toxicity')),
+  ('clean', 0.5817868709564209), ([], [])),
+ ('80k€ warettamisesta ja ehdollista pedofiliasta? pedobear approves.',
+  ((0.021343166008591652, 'label_identity_attack'),
+   (0.07136072218418121, 'label_insult'),
+   (0.08261998742818832, 'label_obscene'),
+   (0.003670396748930216, 'label_severe_toxicity'),
+   (0.004899671766906977, 'label_threat'),
+   (0.5304537415504456, 'label_toxicity')),
+  ('clean', 0.5304537415504456), ([], [])),
+ ('Postin tietojärjestelmät ovat aivan kamalaa kuraa.\n',
+  ((0.007541585247963667, 'label_identity_attack'),
+   (0.05189067870378494, 'label_insult'),
+   (0.09075860679149628, 'label_obscene'),
+   (0.0020020161755383015, 'label_severe_toxicity'),
+   (0.003802953055128455, 'label_threat'),
+   (0.4448975920677185, 'label_toxicity')),
+  ('clean', 0.4448975920677185), ([], [])),
+ ('Pelotat.',
+  ((0.005517983343452215, 'label_identity_attack'),
+   (0.03001880645751953, 'label_insult'),
+   (0.015645183622837067, 'label_obscene'),
+   (0.0017151313368231058, 'label_severe_toxicity'),
+   (0.004900375846773386, 'label_threat'),
+   (0.256878137588501, 'label_toxicity')),
+  ('clean', 0.256878137588501), ([], [])),
+ ('Phöh, mistä moinen negatiivisuus? Kymppitonnihan on ihan hauskaa viihdettä '
+  'ja sopivan rentoa, eikä esmes ainakaan mikään ällöttävästi joka puolella '
+  'mainostettava, kaikkien älyä aliarvioiva surkea sosiaalinen '
+  'kokeilu..*köh*BB*köh*\n'
+  '\n'
+  'Ja ei, en ole mummeli, siihen on vielä monta vuosikymmentä... ;)',
+  ((0.005191194824874401, 'label_identity_attack'),
+   (0.04283604398369789, 'label_insult'),
+   (0.032926224172115326, 'label_obscene'),
+   (0.001168621121905744, 'label_severe_toxicity'),
+   (0.002009151503443718, 'label_threat'),
+   (0.2434319108724594, 'label_toxicity')),
+  ('clean', 0.2434319108724594), ([], [])),
+ ('ketä kiinnostaa? pari vuotta eteenpäin nuo 3d-lasit on vanhaa tekniikkaa '
+  'joille nauretaan. Rahat kankkulan kaivoon.',
+  ((0.004605710040777922, 'label_identity_attack'),
+   (0.03132493793964386, 'label_insult'),
+   (0.027171000838279724, 'label_obscene'),
+   (0.0014547242317348719, 'label_severe_toxicity'),
+   (0.0031382753513753414, 'label_threat'),
+   (0.22757452726364136, 'label_toxicity')),
+  ('clean', 0.22757452726364136), ([], [])),
+ ('Senpä takia kannattaakin kirjoittaa mitä tarkoittaa, vaikkapa että "Paskoja '
+  'sarjakuvastrippejä - Fok_it". ',
+  ((0.001893860986456275, 'label_identity_attack'),
+   (0.024938074871897697, 'label_insult'),
+   (0.12758353352546692, 'label_obscene'),
+   (0.001507862820290029, 'label_severe_toxicity'),
+   (0.0014409407740458846, 'label_threat'),
+   (0.21083807945251465, 'label_toxicity')),
+  ('clean', 0.21083807945251465), ([], [])),
+ ('Melkein tekisi mennä hakkaamaan nuolen lisäksi eduskuntaa ja hallitusta.',
+  ((0.003702722257003188, 'label_identity_attack'),
+   (0.02089310996234417, 'label_insult'),
+   (0.02629786729812622, 'label_obscene'),
+   (0.0012751574395224452, 'label_severe_toxicity'),
+   (0.0037864702753722668, 'label_threat'),
+   (0.18734323978424072, 'label_toxicity')),
+  ('clean', 0.18734323978424072), ([], [])),
+ ('Testasin huvikseni YLE:n ja HS:n vaalikoneita. Toisessa Vatanen oli '
+  'toiseksi epäsopivin vaihtoehto allekirjoittaneelle, toisessa kaikkein '
+  'epäsopivin. Hmmh.\n'
+  '\n'
+  'Edit: tämän kirjoituksen perusteella Vatanen alkaa vaikuttaa melkoiselta '
+  'mulkulta.',
+  ((0.001471126452088356, 'label_identity_attack'),
+   (0.022545883432030678, 'label_insult'),
+   (0.09206085652112961, 'label_obscene'),
+   (0.0010931679280474782, 'label_severe_toxicity'),
+   (0.0009150177356787026, 'label_threat'),
+   (0.14579951763153076, 'label_toxicity')),
+  ('clean', 0.14579951763153076), ([], []))]
+END: ma 15.8.2022 10.54.03 +0300

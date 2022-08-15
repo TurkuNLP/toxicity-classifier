@@ -16,3 +16,50 @@ DatasetDict({
         num_rows: 63978
     })
 })
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.3478, 'learning_rate': 6e-06, 'epoch': 1.0}
+{'eval_loss': 0.4579126238822937, 'eval_accuracy': 0.9181749976554441, 'eval_weighted_accuracy': 0.8882341675521479, 'eval_roc_auc': 0.8882341675521479, 'eval_f1': 0.9181749976554441, 'eval_precision': 0.9181749976554441, 'eval_recall': 0.9181749976554441, 'eval_runtime': 527.8309, 'eval_samples_per_second': 121.209, 'eval_steps_per_second': 3.789, 'epoch': 1.0}
+{'loss': 0.2514, 'learning_rate': 4e-06, 'epoch': 2.0}
+{'eval_loss': 0.49425292015075684, 'eval_accuracy': 0.916830785582544, 'eval_weighted_accuracy': 0.8928465935368007, 'eval_roc_auc': 0.8928465935368008, 'eval_f1': 0.916830785582544, 'eval_precision': 0.916830785582544, 'eval_recall': 0.916830785582544, 'eval_runtime': 527.9245, 'eval_samples_per_second': 121.188, 'eval_steps_per_second': 3.788, 'epoch': 2.0}
+{'loss': 0.1728, 'learning_rate': 2e-06, 'epoch': 3.0}
+{'eval_loss': 0.5392683744430542, 'eval_accuracy': 0.9113445246803589, 'eval_weighted_accuracy': 0.9035927253332774, 'eval_roc_auc': 0.9035927253332774, 'eval_f1': 0.9113445246803589, 'eval_precision': 0.9113445246803589, 'eval_recall': 0.9113445246803589, 'eval_runtime': 527.6522, 'eval_samples_per_second': 121.25, 'eval_steps_per_second': 3.79, 'epoch': 3.0}
+{'loss': 0.1045, 'learning_rate': 0.0, 'epoch': 4.0}
+{'eval_loss': 0.661749005317688, 'eval_accuracy': 0.9095314014192378, 'eval_weighted_accuracy': 0.8993023810466112, 'eval_roc_auc': 0.8993023810466112, 'eval_f1': 0.9095314014192378, 'eval_precision': 0.9095314014192378, 'eval_recall': 0.9095314014192378, 'eval_runtime': 526.616, 'eval_samples_per_second': 121.489, 'eval_steps_per_second': 3.798, 'epoch': 4.0}
+{'train_runtime': 13474.6196, 'train_samples_per_second': 47.369, 'train_steps_per_second': 5.921, 'train_loss': 0.21913910485834337, 'epoch': 4.0}
+saved
+F1_micro: 0.9181749976554441
+              precision    recall  f1-score   support
+
+       clean       0.98      0.93      0.95     57735
+       toxic       0.55      0.85      0.67      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.77      0.89      0.81     63978
+weighted avg       0.94      0.92      0.93     63978
+
+[[ 4.490224  -4.043188 ]
+ [ 2.2866068 -2.0119653]
+ [ 2.203794  -1.6887566]
+ ...
+ [-3.8793097  3.0489752]
+ [ 4.5722246 -4.0764527]
+ [ 4.23791   -3.63052  ]]
+tensor([[9.9980e-01, 1.9674e-04],
+        [9.8659e-01, 1.3406e-02],
+        [9.8001e-01, 1.9986e-02],
+        ...,
+        [9.7872e-04, 9.9902e-01],
+        [9.9982e-01, 1.7533e-04],
+        [9.9962e-01, 3.8249e-04]])
+END: pe 12.8.2022 19.37.09 +0300

@@ -2,7 +2,7 @@
 #SBATCH --job-name=toxicity
 #SBATCH --account=project_2000539
 #SBATCH --partition=gpu
-#SBATCH --time=00:30:00 # depends highly on how many examples I want to see predicted
+#SBATCH --time=01:00:00 # depends highly on how many examples I want to see predicted
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=5 # from 10 to 5?
 #SBATCH --mem-per-cpu=8000
@@ -12,6 +12,12 @@
 
 module load pytorch 
 
+echo "START: $(date)"
+
 #type multi, binary, true-binary
 
-srun python3 toxicity_predictions.py --model models/multi-toxic --type multi --threshold 0.6 --data data/reddit-Suomi.jsonl
+#srun python3 toxicity_predictions.py --model models/multi-toxic --type multi --threshold 0.765 --data data/reddit-Suomi.jsonl
+
+srun python3 toxicity_predictions.py --model models/binary-toxic --type binary --threshold 0.6 --data data/reddit-Suomi.jsonl
+
+echo "END: $(date)"

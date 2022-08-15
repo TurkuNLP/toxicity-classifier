@@ -15,3 +15,27 @@ DatasetDict({
         num_rows: 63978
     })
 })
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1378, 'learning_rate': 6e-06, 'epoch': 1.0}
+[[-8.277504  ]
+ [-4.718609  ]
+ [-4.0263867 ]
+ [-8.179868  ]
+ [-0.08422116]]
+tensor([[2.5411e-04],
+        [8.8486e-03],
+        [1.7526e-02],
+        [2.8016e-04],
+        [4.7896e-01]])
+END: pe 12.8.2022 16.22.08 +0300

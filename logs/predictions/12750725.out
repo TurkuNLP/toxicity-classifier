@@ -1,0 +1,198 @@
+START: ma 15.8.2022 13.34.51 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/binary-toxic', threshold=0.6, type='binary')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200
+tensor([[9.9979e-01, 2.0997e-04],
+        [9.9979e-01, 2.0997e-04],
+        [9.9979e-01, 2.0997e-04],
+        [9.9979e-01, 2.0997e-04],
+        [9.9979e-01, 2.0997e-04],
+        [9.9980e-01, 2.0484e-04],
+        [9.9979e-01, 2.0997e-04],
+        [9.9971e-01, 2.9134e-04],
+        [9.9980e-01, 1.9758e-04],
+        [9.9976e-01, 2.4473e-04]])
+[[ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.47543   -4.0176463]
+ [ 4.5118346 -3.9564803]
+ [ 4.405279  -3.7354598]
+ [ 4.4695406 -4.0596266]
+ [ 4.4546742 -3.8604476]]
+[('Mitä vittua..', 'toxic', 0.9992507100105286),
+ ('Olipa rasittavaa paskaa koko artikkeli.', 'toxic', 0.9987965822219849),
+ ('"Motoristilla usein liian iso kyrpä"\n'
+  '\n'
+  'Piti pari kertaa lukea että sain sen oikein.',
+  'toxic', 0.9978647828102112),
+ ('etsiin seksin seura joka päivä', 'toxic', 0.9839630722999573),
+ ('Hämmentävän paska quote, sehän menee "Motoristeja on kahdenlaisia, niitä '
+  'jotka ovat kaatuneet ja niitä jotka tulevat kaatumaan."\n'
+  '\n'
+  'Hyvä vinkki kypärän sovitukseen on että jos poskitiivisteet eivät nosta '
+  'poskia niin että näyttää possulta niin potta on liian löysä.',
+  'toxic', 0.9824355840682983),
+ ('80k€ warettamisesta ja ehdollista pedofiliasta? pedobear approves.', 'toxic',
+  0.9810871481895447),
+ ('Nothing like the smell of perskymppi and nolaaminen in the morning.',
+  'toxic', 0.9796725511550903),
+ ('Testasin huvikseni YLE:n ja HS:n vaalikoneita. Toisessa Vatanen oli '
+  'toiseksi epäsopivin vaihtoehto allekirjoittaneelle, toisessa kaikkein '
+  'epäsopivin. Hmmh.\n'
+  '\n'
+  'Edit: tämän kirjoituksen perusteella Vatanen alkaa vaikuttaa melkoiselta '
+  'mulkulta.',
+  'toxic', 0.9592314958572388)]
+[('Mitä vittua..', 'toxic', 0.9992507100105286),
+ ('Olipa rasittavaa paskaa koko artikkeli.', 'toxic', 0.9987965822219849),
+ ('"Motoristilla usein liian iso kyrpä"\n'
+  '\n'
+  'Piti pari kertaa lukea että sain sen oikein.',
+  'toxic', 0.9978647828102112),
+ ('etsiin seksin seura joka päivä', 'toxic', 0.9839630722999573),
+ ('Hämmentävän paska quote, sehän menee "Motoristeja on kahdenlaisia, niitä '
+  'jotka ovat kaatuneet ja niitä jotka tulevat kaatumaan."\n'
+  '\n'
+  'Hyvä vinkki kypärän sovitukseen on että jos poskitiivisteet eivät nosta '
+  'poskia niin että näyttää possulta niin potta on liian löysä.',
+  'toxic', 0.9824355840682983),
+ ('80k€ warettamisesta ja ehdollista pedofiliasta? pedobear approves.', 'toxic',
+  0.9810871481895447),
+ ('Nothing like the smell of perskymppi and nolaaminen in the morning.',
+  'toxic', 0.9796725511550903),
+ ('Testasin huvikseni YLE:n ja HS:n vaalikoneita. Toisessa Vatanen oli '
+  'toiseksi epäsopivin vaihtoehto allekirjoittaneelle, toisessa kaikkein '
+  'epäsopivin. Hmmh.\n'
+  '\n'
+  'Edit: tämän kirjoituksen perusteella Vatanen alkaa vaikuttaa melkoiselta '
+  'mulkulta.',
+  'toxic', 0.9592314958572388)]
+[('LOLLOLLOLLOL.', 'clean', 0.9798586368560791),
+ ('I *wish* I could read the Suomi-reddit, but minä puhun vain vähän Suomea...',
+  'clean', 0.9781132340431213),
+ ('No pakkohan sitä oli hakata.', 'clean', 0.9733269810676575),
+ ('Alunperinhän otsikkona Hesarissa oli "Irkkaajat ovat hölmöimpiä käyttäjiä"',
+  'clean', 0.9727951288223267),
+ ("Sell Others' eBooks. Skip The Writing Process!", 'clean',
+  0.9673349857330322),
+ ('Olisipa vain seiskassa, mutta tuo rutto on levinnyt jo kaikkiin lehtiin, '
+  'mukaanlukien Hesariin.',
+  'clean', 0.9633331894874573),
+ ('nopee syö hitaat', 'clean', 0.9629242420196533),
+ ('Phöh, mistä moinen negatiivisuus? Kymppitonnihan on ihan hauskaa viihdettä '
+  'ja sopivan rentoa, eikä esmes ainakaan mikään ällöttävästi joka puolella '
+  'mainostettava, kaikkien älyä aliarvioiva surkea sosiaalinen '
+  'kokeilu..*köh*BB*köh*\n'
+  '\n'
+  'Ja ei, en ole mummeli, siihen on vielä monta vuosikymmentä... ;)',
+  'clean', 0.9568157196044922),
+ ('onpas tuo täynnä hillittömiä lauseita. \n'
+  '\n'
+  '"Vastuu köyhistä ei kuuluisi vasemmistopuolueiden, Vihreiden, '
+  'Perussuomalaisten ja Kristillisdemokraattien mukaan kirkolle. Kokoomuksen '
+  'mukaan heikompiosaisista välitämistä ei tule jättää julkisen vallan '
+  'monopoliksi."\n'
+  '\n'
+  '"Kristillisdemokraatit on kannanotossaan jyrkempi ja korostaa kirkkokuntien '
+  'itsenäisyyttä ja uskonnon eroa politiikasta."\n'
+  '\n'
+  'Ääliöitä löytyy näköjään sekä kirkosta, että poliitikkojen joukosta.\n'
+  '\n'
+  'Toivottavasti kohta päästäisiin eroon kokonaan valtion kirkosta '
+  'sivistyneeseen sekulaariseen yhteiskuntaan.',
+  'clean', 0.952384352684021),
+ ('paranoidi skitsofrenia', 'clean', 0.951443612575531),
+ ('ketä kiinnostaa? pari vuotta eteenpäin nuo 3d-lasit on vanhaa tekniikkaa '
+  'joille nauretaan. Rahat kankkulan kaivoon.',
+  'clean', 0.9436044692993164),
+ ('Pelotat.', 'clean', 0.9433102607727051),
+ ('Melkein tekisi mennä hakkaamaan nuolen lisäksi eduskuntaa ja hallitusta.',
+  'clean', 0.9379775524139404),
+ ('"Vain prostituoidut Oksanen unohti. Mutta niitähän löytyy kyllä Oksasen '
+  'äidin kotimaasta Virosta."  Hmm? Joku ns. vetänyt herneksen nenään?\n'
+  '\n'
+  'Laatua.\n',
+  'clean', 0.9376972913742065),
+ ('Se olisi kyllä kamalaa jos vanhemmat joutuisivat ottamaan vastuuta '
+  'lapsistaan. Kyllä se on kaikkien muiden tehtävä suojella muiden lapsia.\n'
+  '\n'
+  'Esimerkiksi tämänkin viestin voi joku viaton lapsi lukea ja minä olen '
+  'vastuussa siitä, että viesti ei sisällä rumia sanoja kuten seksi, kives tai '
+  'Suvi Lindén.',
+  'clean', 0.9369401931762695),
+ ('Ihmettelin samaa. Oli n. 5 sekunnin WTF-elämys.', 'clean',
+  0.931659996509552),
+ ('Senpä takia kannattaakin kirjoittaa mitä tarkoittaa, vaikkapa että "Paskoja '
+  'sarjakuvastrippejä - Fok_it". ',
+  'clean', 0.9162924885749817),
+ ('katsotui**m**pien.', 'clean', 0.8921036124229431),
+ ('Valehtelija. Noita on jo ainakin 59.', 'clean', 0.7552912831306458),
+ ('Postin tietojärjestelmät ovat aivan kamalaa kuraa.\n', 'clean',
+  0.29564499855041504)]
+[('Sama kuva, eri teksti. [Käy se sarjakuva näinkin](http://www.qwantz.com/).\n'
+  '\n'
+  'Asiallisella taidetaan tässä tarkoittaa epäkorrektia.',
+  'clean', 0.9998341798782349),
+ ('Onkohan Redditiin laitettu tänään päälle joku maakohtainen juttujen nosto. '
+  'Ihmettelin aamulla, kun joku Jyrki J. Kasvi linkki oli etusivulla pitkän '
+  'aikaa..',
+  'clean', 0.9998262524604797),
+ ('Tervehdys, tunnus rekisteröity tänne pari päivää sitten =)\n'
+  '\n'
+  'Aiemmin seuraillut vain Diggiä, ajattelin että pakkohan tätä on koittaa ja '
+  'paljon laajempi kyllä tämä on.',
+  'clean', 0.9998250603675842),
+ ('Laitoinpahan linkin pieneksi herätteeksi lähinnä heille jotka eivät vielä '
+  'ole päättäneet äänestää, en niinkään heille jotka eivät tiedä ketä '
+  'äänestäisivät.',
+  'clean', 0.9998224377632141),
+ ('Jos haluatte puolustaa Kansalaisoikeuksia tietoyhteiskunnassa, äänestäkää '
+  'Jyrki Kasvia (231).  Kasvi näyttää tietävän eniten ja on aktiivinen näissä '
+  'jutuissa. \n'
+  '\n'
+  "EU'ssa tehdään juurin nyt päätöksiä jotka voivat rajoittaa "
+  'kansalaisoikeuksia ja yksityisyyttä tuntuvasti. Kaiken mailman Lex Nokioita '
+  'on tulossa EU:n tasolla jos valitaan ehdokkaita jotka eivät näistä asioista '
+  'piittaa. \n'
+  '\n'
+  '[Tavoitteet](http://www.kasvi.org/index.php?7191):\n'
+  '\n'
+  '    - Kansalaisoikeudet on turvattava direktiivillä myös tietoverkoissa ja '
+  'tietoliikenteessä!\n'
+  '    - Identiteettivarkaus on kriminalisoitava EU-tasolla!\n',
+  'clean', 0.999822199344635),
+ ('Saahan niitä, mutta siitä ilosta saa [maksaa vähän '
+  'enemmän](http://www.hel.fi/wps/portal/HKL/Artikkeli?WCM_GLOBAL_CONTEXT=/hkl/fi/Liput/Helsingin+sis_isten+lippujen+hinnat). '
+  'Kuljettajat eivät enää myy halvempia *raitiovaunulippuja*, mutta '
+  '*kertalippuja* kyllä saa. ',
+  'clean', 0.9998216032981873),
+ ('Hyvä pointti. Miksi en itse muistanut varoittaa? D´oh.', 'clean',
+  0.9998213648796082),
+ ('Tässä olisi kuvia miehen kotisivuilta, jotka varmaan ovat samalla '
+  'cuil-asteikolla kuin työhakemuskin.\n'
+  '\n'
+  'http://koti.mbnet.fi/esalaari/Esa%20Samuli%20Laari%27s%20some%20of%20the%20girl-friends%20from%2021st%20century.htm',
+  'clean', 0.9998205304145813),
+ ('Jotain on todellakin taphtunut. Itse en edes tiennyt koko Suomi-redditistä '
+  'ennenkuin se tänään ilmaantui yläreunan rivistöön, yhdessä Finnish, '
+  'Teknologia, Spaceman(‽) ja Suvi -redditien kanssa. \n'
+  '\n',
+  'clean', 0.9998193383216858),
+ ('&gt; Valitettavasti ei olekaan sarkasmisuffiksia tai sarkasmipartikkelia\n'
+  '\n'
+  'Ei vai? Asia on nopeasti korjattavissa. Heitetään seinälle vaikkapa -sar.\n'
+  '\n'
+  'Sarkasmin olisi tarkoitus mennä myös kontekstissa läpi. Ikävä kyllä '
+  'internetissä on henkilöitä joilla luetun ymmärtäminen ontuu (lue: minä) '
+  'ja/tai taustatiedot puuttuvat. Taustatietojen puuttuminen on mielestäni '
+  'suurin este sarkasmin levittämiselle.',
+  'clean', 0.9998177886009216)]
+END: ma 15.8.2022 13.37.35 +0300

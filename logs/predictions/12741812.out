@@ -1,0 +1,1387 @@
+START: ma 15.8.2022 12.11.06 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/multi-toxic', threshold=0.76, type='multi')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200000
+[[0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.0003897532296832651, 0.0004632089694496244, 0.000721478252671659, 0.0002836358326021582, 0.00035105267306789756, 0.0022771540097892284], [0.0003497153811622411, 0.0005716662271879613, 0.0008507528691552579, 0.00022854589042253792, 0.0003584376536309719, 0.003066040575504303], [0.00045404903357848525, 0.00048304488882422447, 0.0007229059701785445, 0.00036631355760619044, 0.00040300682303495705, 0.0018954221159219742], [0.00043031148379668593, 0.0004691947251558304, 0.000716006790753454, 0.0003431848017498851, 0.0003935889108106494, 0.0019802208989858627], [0.0004548829747363925, 0.0004805800272151828, 0.0007240900886245072, 0.00037598892231471837, 0.000416283291997388, 0.0019155126065015793]]
+[array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0., 0.])]
+[([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), (['label_toxicity'], [0.822920560836792]), ([], []), ([], []), ([], []), ([], []), ([], []), ([], []), ([], [])]
+(('clean', 0.003066040575504303), ('clean', 0.003066040575504303), ('clean', 0.003066040575504303), ('clean', 0.003066040575504303), ('clean', 0.003066040575504303))
+TOXIC
+[('mies oli murhannut yliopisto-opiskelijan katkaisemalla tältä pään.\n'
+  '\n'
+  'miettii mitä nämäkin siellä ajattelevat kun joku suomalainen alkaa '
+  'ulisemaan kuolemantuomiota vastaan...\n'
+  'SE KATKAISI JOLTAIN VITTU PÄÄN!!!!',
+  ((0.9021283984184265, 'label_identity_attack'),
+   (0.9851440787315369, 'label_insult'), (0.993707001209259, 'label_obscene'),
+   (0.9575767517089844, 'label_severe_toxicity'),
+   (0.844318151473999, 'label_threat'),
+   (0.9968066215515137, 'label_toxicity')),
+  ('toxic', 0.9968066215515137),
+  (['label_identity_attack', 'label_insult', 'label_obscene',
+    'label_severe_toxicity', 'label_threat', 'label_toxicity'],
+   [0.9021283984184265, 0.9851440787315369, 0.993707001209259,
+    0.9575767517089844, 0.844318151473999, 0.9968066215515137])),
+ ('Vitun teini homot, tapetaan ne kaikki ja poltetaan roviolla.\n'
+  'Saatanan anarkisti vajakit pitäis hirttää korkeimmista kuusista.\n',
+  ((0.740723729133606, 'label_identity_attack'),
+   (0.8841119408607483, 'label_insult'), (0.9657445549964905, 'label_obscene'),
+   (0.9383057355880737, 'label_severe_toxicity'),
+   (0.9964262843132019, 'label_threat'),
+   (0.9872894883155823, 'label_toxicity')),
+  ('toxic', 0.9964262843132019),
+  (['label_insult', 'label_obscene', 'label_severe_toxicity', 'label_threat',
+    'label_toxicity'],
+   [0.8841119408607483, 0.9657445549964905, 0.9383057355880737,
+    0.9964262843132019, 0.9872894883155823])),
+ ('vittu tuo ämmä oli niin vittumainen marmattaja tekis mieli lyödä jos tulis '
+  'mua haastattelemaan...',
+  ((0.2944364845752716, 'label_identity_attack'),
+   (0.9786014556884766, 'label_insult'), (0.9950867295265198, 'label_obscene'),
+   (0.9656839966773987, 'label_severe_toxicity'),
+   (0.23505239188671112, 'label_threat'),
+   (0.9963808655738831, 'label_toxicity')),
+  ('toxic', 0.9963808655738831),
+  (['label_insult', 'label_obscene', 'label_severe_toxicity', 'label_toxicity'],
+   [0.9786014556884766, 0.9950867295265198, 0.9656839966773987,
+    0.9963808655738831])),
+ ('Vitun sivarit. Selkärangattomia apinoita.',
+  ((0.8118101358413696, 'label_identity_attack'),
+   (0.9924827218055725, 'label_insult'), (0.9952211976051331, 'label_obscene'),
+   (0.9585286974906921, 'label_severe_toxicity'),
+   (0.07388512790203094, 'label_threat'),
+   (0.9963244795799255, 'label_toxicity')),
+  ('toxic', 0.9963244795799255),
+  (['label_identity_attack', 'label_insult', 'label_obscene',
+    'label_severe_toxicity', 'label_toxicity'],
+   [0.8118101358413696, 0.9924827218055725, 0.9952211976051331,
+    0.9585286974906921, 0.9963244795799255])),
+ ('Sitä mä en tajua, että minkälainen vitun cuckold nyhverö ton perheen isä '
+  'on. Antaa porukan hakata pieniä lapsiaan ja uhata tappaa ja raiskata vaimon '
+  'eikä tee yhtään mitään asialle. 2 vuotta jossain pelle oikeudessa pyöritty '
+  'ja sitten tulee, että joo vakava rikos, mutta ei rangaistusta. Kun '
+  'väkivalta on noin halpaa ja kaikki tietää sen niin sitä saa hei käyttää '
+  'itekkin. Vitun nössö, pistää vituttamaan noiden lapsien puolesta.',
+  ((0.24898111820220947, 'label_identity_attack'),
+   (0.9770081043243408, 'label_insult'), (0.9941891431808472, 'label_obscene'),
+   (0.9238898754119873, 'label_severe_toxicity'),
+   (0.33585891127586365, 'label_threat'),
+   (0.9960351586341858, 'label_toxicity')),
+  ('toxic', 0.9960351586341858),
+  (['label_insult', 'label_obscene', 'label_severe_toxicity', 'label_toxicity'],
+   [0.9770081043243408, 0.9941891431808472, 0.9238898754119873,
+    0.9960351586341858])),
+ ('Vitun narkkari. Tyrmään tuollaiset. Mun kaveri piikitti kerran kolme '
+  'cappuccinoa suoneen ja kuoli.',
+  ((0.23425765335559845, 'label_identity_attack'),
+   (0.9812209606170654, 'label_insult'), (0.9945486187934875, 'label_obscene'),
+   (0.9150055646896362, 'label_severe_toxicity'),
+   (0.24052542448043823, 'label_threat'),
+   (0.9959483742713928, 'label_toxicity')),
+  ('toxic', 0.9959483742713928),
+  (['label_insult', 'label_obscene', 'label_severe_toxicity', 'label_toxicity'],
+   [0.9812209606170654, 0.9945486187934875, 0.9150055646896362,
+    0.9959483742713928])),
+ ('No nyt vitun munattomat paskat esittäkää edes että teillä on selkärankaa! '
+  'Vai vittu kärsisikö kannatus vai olisiko veli venäläinen liian pelottava? '
+  'Saatanan pelkurit.',
+  ((0.8382212519645691, 'label_identity_attack'),
+   (0.9873690009117126, 'label_insult'), (0.9950287938117981, 'label_obscene'),
+   (0.916032612323761, 'label_severe_toxicity'),
+   (0.058467622846364975, 'label_threat'),
+   (0.9959321618080139, 'label_toxicity')),
+  ('toxic', 0.9959321618080139),
+  (['label_identity_attack', 'label_insult', 'label_obscene',
+    'label_severe_toxicity', 'label_toxicity'],
+   [0.8382212519645691, 0.9873690009117126, 0.9950287938117981,
+    0.916032612323761, 0.9959321618080139])),
+ ('Vitun hihhulit.',
+  ((0.8148094415664673, 'label_identity_attack'),
+   (0.9905647039413452, 'label_insult'), (0.9950413107872009, 'label_obscene'),
+   (0.9586357474327087, 'label_severe_toxicity'),
+   (0.04685322940349579, 'label_threat'),
+   (0.9958945512771606, 'label_toxicity')),
+  ('toxic', 0.9958945512771606),
+  (['label_identity_attack', 'label_insult', 'label_obscene',
+    'label_severe_toxicity', 'label_toxicity'],
+   [0.8148094415664673, 0.9905647039413452, 0.9950413107872009,
+    0.9586357474327087, 0.9958945512771606])),
+ ('Saatanan inisevät verenimijä vittu paskiaiset. ',
+  ((0.4376361072063446, 'label_identity_attack'),
+   (0.9844464659690857, 'label_insult'), (0.9951738715171814, 'label_obscene'),
+   (0.9525755643844604, 'label_severe_toxicity'),
+   (0.04285138472914696, 'label_threat'),
+   (0.9957939386367798, 'label_toxicity')),
+  ('toxic', 0.9957939386367798),
+  (['label_insult', 'label_obscene', 'label_severe_toxicity', 'label_toxicity'],
+   [0.9844464659690857, 0.9951738715171814, 0.9525755643844604,
+    0.9957939386367798])),
+ ('Saatana tämä olla pikku Neuvostoliitto VIELÄKIN perkkele vitun '
+  'piulun-nussijat lähdetn pois jääkkä tänne mätänemään kukkojenne  kansa. '
+  'HUVASTI.',
+  ((0.9243878722190857, 'label_identity_attack'),
+   (0.989096462726593, 'label_insult'), (0.9930998086929321, 'label_obscene'),
+   (0.9198811650276184, 'label_severe_toxicity'),
+   (0.08367034792900085, 'label_threat'),
+   (0.9957656860351562, 'label_toxicity')),
+  ('toxic', 0.9957656860351562),
+  (['label_identity_attack', 'label_insult', 'label_obscene',
+    'label_severe_toxicity', 'label_toxicity'],
+   [0.9243878722190857, 0.989096462726593, 0.9930998086929321,
+    0.9198811650276184, 0.9957656860351562]))]
+NEUTRAL
+[('Sepäs tuossa onkin että nykyajan nuoria ei kiinnosta tehdä "paska duuneja" '
+  'vaikka asuttaisiin vielä kotona.\n'
+  '\n'
+  'Kotoa saa vanhemmilta riittävästi rahaa ja sitten kun olet 30+ tai vanhempi '
+  'niin töihin ei enää huolita edes siivoojaksi.',
+  ((0.009614454582333565, 'label_identity_attack'),
+   (0.2500877380371094, 'label_insult'), (0.5431341528892517, 'label_obscene'),
+   (0.005337989889085293, 'label_severe_toxicity'),
+   (0.00341581623069942, 'label_threat'),
+   (0.7611628174781799, 'label_toxicity')),
+  ('toxic', 0.7611628174781799), (['label_toxicity'], [0.7611628174781799])),
+ ('Linkki ei toimi (thread not found)? Tai sit paska mobiiliselain jäkittää.',
+  ((0.00647699274122715, 'label_identity_attack'),
+   (0.1706269532442093, 'label_insult'), (0.5841236710548401, 'label_obscene'),
+   (0.005904358811676502, 'label_severe_toxicity'),
+   (0.003764897119253874, 'label_threat'),
+   (0.7611156105995178, 'label_toxicity')),
+  ('toxic', 0.7611156105995178), (['label_toxicity'], [0.7611156105995178])),
+ ('Pappi ja pedofiili meni baariin. \n\nHän tilasi oluen.',
+  ((0.08385910093784332, 'label_identity_attack'),
+   (0.2704083323478699, 'label_insult'), (0.23038871586322784, 'label_obscene'),
+   (0.006200422532856464, 'label_severe_toxicity'),
+   (0.0062217554077506065, 'label_threat'),
+   (0.761093258857727, 'label_toxicity')),
+  ('toxic', 0.761093258857727), (['label_toxicity'], [0.761093258857727])),
+ ('taattua paskalehteä. Spoiler: Zoomattu kuva, vähän verisuonia. Eivät '
+  'verestä kuin 5 tunnin coffeeshop-kiertueen jälkeen. Ovat melkolailla '
+  'normaalit silmät.',
+  ((0.00755288964137435, 'label_identity_attack'),
+   (0.20526336133480072, 'label_insult'), (0.6397324204444885, 'label_obscene'),
+   (0.005811949726194143, 'label_severe_toxicity'),
+   (0.003246813779696822, 'label_threat'),
+   (0.7609226107597351, 'label_toxicity')),
+  ('toxic', 0.7609226107597351), (['label_toxicity'], [0.7609226107597351])),
+ ('Mode mene kotiin, olet humalassa. ',
+  ((0.009537766687572002, 'label_identity_attack'),
+   (0.3211228549480438, 'label_insult'), (0.11059165745973587, 'label_obscene'),
+   (0.007006803527474403, 'label_severe_toxicity'),
+   (0.011668678373098373, 'label_threat'),
+   (0.7609071731567383, 'label_toxicity')),
+  ('toxic', 0.7609071731567383), (['label_toxicity'], [0.7609071731567383])),
+ ('Tottakai voi paskat säät ottaa kupoliin tai kuumuus tai sumu yms\n'
+  '\n'
+  'Tässä nyt asiasta puhuttiin noinniinkun erillisenä oireena.',
+  ((0.006605663802474737, 'label_identity_attack'),
+   (0.19088733196258545, 'label_insult'), (0.6519918441772461, 'label_obscene'),
+   (0.0061192940920591354, 'label_severe_toxicity'),
+   (0.0035585297737270594, 'label_threat'),
+   (0.7609000205993652, 'label_toxicity')),
+  ('toxic', 0.7609000205993652), (['label_toxicity'], [0.7609000205993652])),
+ ('Downvote, koska ei näille jutuille tarvitse antaa minkäänlaista '
+  'lisänäkyvyyttä.\n'
+  '\n'
+  'Edit: Toivottavasti tällaisen paskan määrä pysyy "sunnuntaisarjis"-tasolla, '
+  'eikä ala viemään suomireddittiä kellertävän sosiaalipornon suuntaan...\n'
+  '\n'
+  'Edit2: Runkkuringin vastainen kommentointi kostautuu, mutta minkäs teet!\n',
+  ((0.009315045550465584, 'label_identity_attack'),
+   (0.15362831950187683, 'label_insult'), (0.6342564821243286, 'label_obscene'),
+   (0.006779944524168968, 'label_severe_toxicity'),
+   (0.0030046484898775816, 'label_threat'),
+   (0.7608724236488342, 'label_toxicity')),
+  ('toxic', 0.7608724236488342), (['label_toxicity'], [0.7608724236488342])),
+ ('Miks just "virtsa- ja kakkavesi"? Miten pientä miestä voi häiritä niin '
+  'paljon noiden sanojen rinnastaminen; puhutaan joko "virtsa- ja '
+  'ulostevedestä" tai "pissa- ja kakkavedestä" saatana!',
+  ((0.008271586149930954, 'label_identity_attack'),
+   (0.1648228019475937, 'label_insult'), (0.5059804320335388, 'label_obscene'),
+   (0.005691797938197851, 'label_severe_toxicity'),
+   (0.00458958325907588, 'label_threat'),
+   (0.7607356905937195, 'label_toxicity')),
+  ('toxic', 0.7607356905937195), (['label_toxicity'], [0.7607356905937195])),
+ ('"Isänmaalliset" persut ihannoivat paskajulkaisua jonka takana "ei varmasti '
+  'ole" Mordor? Värittäkää minut yllättyneeksi.',
+  ((0.03108082339167595, 'label_identity_attack'),
+   (0.31111088395118713, 'label_insult'), (0.5198714733123779, 'label_obscene'),
+   (0.0052164820954203606, 'label_severe_toxicity'),
+   (0.003288639010861516, 'label_threat'),
+   (0.7607178092002869, 'label_toxicity')),
+  ('toxic', 0.7607178092002869), (['label_toxicity'], [0.7607178092002869])),
+ ('FPH ei välttämättä ole natsismia mutta TRP on melko pitkälti naisvihaa.\n'
+  '\n'
+  'Alkuperäinen viesti /u/IAmAN00bie :lta\n'
+  '\n'
+  '* WTF is TRP?  \n'
+  ' \n'
+  '    * Ever seen [The Matrix?](http://en.wikipedia.org/wiki/The_Matrix) (If '
+  'you answered no, do you live under a rock or something?) If so, do you '
+  'remember the [scene where Morpheus offers '
+  'Neo](https://www.youtube.com/watch?v=zQ1_IbFFbzA) the choice between taking '
+  "['the red pill' or taking 'the blue "
+  "pill?'](http://en.wikipedia.org/wiki/Red_pill_and_blue_pill#Background) In "
+  'the movie, taking the blue pill would result in Neo remaining oblivious to '
+  'the true nature of the Matrix, while taking the red pill made Neo wake up '
+  "'to the true nature of the world.' (Spoiler alerts: fucking robots, "
+  'man!)  \n'
+  ' \n'
+  '    * In context of TRP movement, taking the red pill here means a man has '
+  "awoken to the 'true nature of women.' You can read TRP's sidebar to see "
+  "more on what this means (hint: don't bother, it's filled with fluff and "
+  'pseudo-scientific drivel), but a tl;dr is this: women are children, weak, '
+  "emotionally manipulative, and only after your money. Women can't love, they "
+  'only seek you for protection (read: money). Women would fuck you over in a '
+  "heart-beat for a more 'alpha' male. Thus, red pillers seek to work on "
+  "'game' (this is where their bullshit about 'TRP is just self-improvement' "
+  "comes from). 'Game' refers to pick-up artist tactics used to improve their "
+  'chances of having sex. Things like being confident, becoming physically '
+  'fit, or anything else you would typically find in a health, fitness, or '
+  'dating-tips forum for men. Platitudes that are sound advice for *anyone*, '
+  'but used by TRPers to mask the negative aspect of their belief system.\n'
+  ' \n'
+  '* Why TRP is bad for men:  \n'
+  ' \n'
+  '    * [Every Man Should Know: Why The Red Pill will Kill you '
+  'Inside](https://archive.today/pkco4)  \n'
+  ' \n'
+  "    * [I've denounced TRP lifestyle. The Red Pill is incredibly dangerous, "
+  'and I know this because I witnessed it first '
+  'hand.](https://archive.today/BYCk1)  \n'
+  ' \n'
+  '* TRP ruins relationships (kudos to /u/ILurvesMeSomePie for this!):  \n'
+  ' \n'
+  '    * Exhibit A: [TRPer tries MarriedRP advice for a week, now plans to '
+  'divorce wife of 20 years.](https://archive.is/ip1wk)  \n'
+  ' \n'
+  '    * Exhibit B: [TRPer tries MRP for 1.5 months, marriage of 2 years is '
+  'now in shambles.](https://archive.is/p2NAM)  \n'
+  ' \n'
+  '    * Exhibit C: [TRP convinces man to divorce his wife of 8 years and '
+  'abandon their son](https://archive.is/81ISe)  \n'
+  ' \n'
+  '    * Exhibit D: [Man cheats on wife of 15 years, who he fathered 3 '
+  'children with, because she was too busy with work to give him blowjobs on '
+  'demand.](https://archive.is/tuVCs)  \n'
+  ' \n'
+  '    * Exhibit E: [MeRPer throwing away a 13 year marriage because he felt '
+  "like a 'beta'](https://archive.is/jlg6M)  \n"
+  ' \n'
+  "    * Exhibit F: [Woman's SO wants out of 8 year relationship after reading "
+  'TRP.](https://archive.is/EBaJr)  \n'
+  ' \n'
+  '    * Exhibit G: ["I don\'t blame TRP for ruining my marriage but rather '
+  "for making me aware that the woman I married isn't exactly what I "
+  'thought"](https://archive.is/nVmyr)  \n'
+  ' \n'
+  "    * Exhibit H: [Wife of 4 years wants 'out' after two-weeks of "
+  'dread-gaming.](https://archive.is/yVFkZ)  \n'
+  ' \n'
+  '    * Exhibit I: [Man begins dread-game on wife of 4 years, relationship '
+  'starts to squander.](https://archive.is/ilNuq)  \n'
+  ' \n'
+  "    * Exhibit J: [MeRPer's pregnant wife schedules marriage counselling to "
+  'resolve their issues. TRP convinces him to end '
+  'it.](https://archive.is/6fiKZ)  \n'
+  ' \n'
+  "    * Exhibit K: [MeRPer's wife wants to go to couple's therapy. He tells "
+  'her to fuck off and suck his dick instead. '
+  'Literally.](https://archive.is/YtHk3)  \n'
+  ' \n'
+  '    * Exhibit L: ["Before TRP, I thought my wife as my equal and life '
+  'partner. After TRP, I now know my wife is an evil, scheming, hypergamous '
+  'feemale."](https://archive.is/RDG3q)  \n'
+  ' \n'
+  '    * Exhibit M: [Man gets Christmas bonus, expects his wife to fuck him '
+  "then and there. Instead she laments how he's been treating her for the past "
+  '2 months. He sets her straight.](https://archive.is/di5fx)  \n'
+  ' \n'
+  '    * Exhibit N: [RP man acts distant and cold towards wife, threatened to '
+  'divorce her just to keep her in check.](https://archive.is/WGKQa)  \n'
+  ' \n'
+  "    * Exhibit O: [Wife with cancer is indifferent to husband's toochache. "
+  'Should he divorce her?](https://archive.is/E4dYU)  \n'
+  ' \n'
+  '    * Exhibit P: [Married father, with a one-month old child, wants to next '
+  'his wife so he can spin plates.](https://archive.is/cSBc5)  \n'
+  ' \n'
+  '    * Exhibit Q: [MeRPer emotionally distresses his wife because she views '
+  'their finances as shared.](https://archive.is/vbw4u)  \n'
+  ' \n'
+  '    * Exhibit R: [Married for 18 years. Wants to spin-plates so he cheats '
+  'on her.](https://archive.is/vLdJ6)  \n'
+  ' \n'
+  '    * Exhibit S: [MeRPer married for 21 years discovers TRP, dread-games '
+  'wife with much success.](https://archive.is/FhEDY)  \n'
+  ' \n'
+  '    * Exhibit T: [MeRPbag calls wife a cunt, walks out, comes back saying '
+  '"Sorry not sorry you\'re such a cunt." Wife cries. Sex is had. '
+  'Yay!](https://archive.is/agLUq)  \n'
+  ' \n'
+  "    * Exhibit U: [MeRPer threatens stressed, overworked wife that he'll "
+  "look elsewhere if she doesn't open her legs and fuck him right "
+  'now](https://archive.is/JFnNX)  \n'
+  ' \n'
+  '    * Exhibit V: [MeRPer drives his wife away after swallowing the '
+  'pill](https://archive.is/E4WOr)  \n'
+  ' \n'
+  '    * Exhibit W: [MeRPer married for 4 years, enjoys "flipping switches in '
+  'her head" and "playing her like a fiddle."](https://archive.is/cfKSX)  \n'
+  ' \n'
+  '    * Exhibit X: [TRPer tries to talk his brother out of getting '
+  'married](https://archive.is/zdI3s)  \n'
+  ' \n'
+  "    * Exhibit Y: ['Has RP theory made you want to get a divorce?' General "
+  'Consensus: Yes](https://archive.is/BrwSt)  \n'
+  ' \n'
+  '    * Exhibit Z: ["Whats the deal with all these married guys actually '
+  'being happy?" "Cognitive Dissonance, yo\'"](https://archive.is/aiy7l)\n'
+  ' \n'
+  '* Why TRP is sexist:\n'
+  ' \n'
+  "    * Here's MANY, MANY examples showing anyone reading this how TRP is "
+  'toxic and should be avoided at all costs (ALL quotes directly from TRP '
+  'members, not "lies perpetuated by \'tumblr feminazis\'"):  \n'
+  ' \n'
+  '        * [Highlight reel 1](http://imgur.com/a/bGiiW) (**64 quotes**)\n'
+  ' \n'
+  '        * [Highlight reel 2](https://imgur.com/a/nrSCv) (**27 quotes**)\n'
+  ' \n'
+  '        * [Highlight reel 3](http://imgur.com/a/SLSyy) (**100 quotes**)\n'
+  ' \n'
+  '        * [Highlight reel 4](http://imgur.com/a/ms9c6) (**150 quotes**)\n'
+  ' \n'
+  '        * [Highlight reel 5](https://archive.today/T84oN) (**10 quotes**)\n'
+  ' \n'
+  '        * [Highlight reel 6](https://archive.today/m2RDR) (**14 quotes**)\n'
+  ' \n'
+  '    * More examples:  \n'
+  ' \n'
+  '        * [Women are Children](https://archive.today/Tip7V) by the **top '
+  'mod** of TRP, @ **+367**\n'
+  ' \n'
+  '        * [Women are shit. AWALT. Fuckoff snowflakes, nobody cares you '
+  "think you're different. Every woman thinks she's special and different and "
+  "expects to be treated as such. It's all bullshit. Women are remarkably "
+  'similar to each other across the board and HATE being generalised because '
+  "of their narcissism. They're so similar psychologically that we can make a "
+  'fucking subreddit that generalises just over half the human race with an '
+  'incredible degree of accuracy and use that knowledge as a proficient weapon '
+  "in helping men get the upperhand in a social system where they're "
+  'systemically beaten down. The upperhand is something a man needs if he ever '
+  'wants to come out unscathed with any kind of social contract with a woman. '
+  'Hypergamy necessitates it. She requires your superiority to be attracted to '
+  "you, that's probably the biggest joke about "
+  '"equality."](https://archive.today/jKDk3)**+242**  \n'
+  ' \n'
+  "        * [**Let's play TRP or Elliot "
+  'Rodgers**](https://archive.today/7na0m)  \n'
+  ' \n'
+  "If you don't see this stuff, you are purposefully ignoring the toxic "
+  'elements of TRP. *TRP is fundamentally an ideology about hating women.* '
+  "Plus you'll likely end up ruining your relationship.  \n"
+  ' \n'
+  'By admitting to following TRP, you are basically telling the world you are '
+  'an unabashed misogynist. This is undeniable given the countless examples '
+  'and literally the ideology spelled out in their sidebar.',
+  ((0.029134925454854965, 'label_identity_attack'),
+   (0.2040901631116867, 'label_insult'), (0.4636779725551605, 'label_obscene'),
+   (0.006617351435124874, 'label_severe_toxicity'),
+   (0.005323986988514662, 'label_threat'),
+   (0.7606992721557617, 'label_toxicity')),
+  ('toxic', 0.7606992721557617), (['label_toxicity'], [0.7606992721557617])),
+ ('Tiskaaminen on niin perkeleen tylsää touhua, että sitä tulee välteltyä '
+  'viimeiseen saakka, vaikka helpommalla varmaan pääsisi jos tiskaisi astiat '
+  'heti syötyään. Olen koko viikonlopun töissä, joten käytän väsymystä '
+  'tekosyynä likaisille astioille.',
+  ((0.008021940477192402, 'label_identity_attack'),
+   (0.1483432948589325, 'label_insult'), (0.5479639172554016, 'label_obscene'),
+   (0.006861207075417042, 'label_severe_toxicity'),
+   (0.005322396755218506, 'label_threat'),
+   (0.7606955170631409, 'label_toxicity')),
+  ('toxic', 0.7606955170631409), (['label_toxicity'], [0.7606955170631409])),
+ ('Jaa että on niinkus se "reikä" joka alkaa suusta ja päättyy persaukkoon, ja '
+  'sitten loput "reunustaa"?',
+  ((0.008611268363893032, 'label_identity_attack'),
+   (0.2083902359008789, 'label_insult'), (0.5504925847053528, 'label_obscene'),
+   (0.006845560390502214, 'label_severe_toxicity'),
+   (0.0027467936743050814, 'label_threat'),
+   (0.7606270909309387, 'label_toxicity')),
+  ('toxic', 0.7606270909309387), (['label_toxicity'], [0.7606270909309387])),
+ ('Minulla en erittäin vahva mielipide niistä saatanan pelleistä jotka täällä '
+  'redditissäkin spämmäsivät /r/gaming:ssa erään langan kommentti-osion +15k '
+  'vastaukseen, mutta en tunnista suomalaisesta uutisesta kumpi osapuoli on '
+  'kumpi ja kuinka nämä kaksi "kohua" liittyvät toisiinsa, jonka seurauksena '
+  'olen tällä hetkellä hyvin närkästynyt ja hämmentynyt.',
+  ((0.013399340212345123, 'label_identity_attack'),
+   (0.3996575176715851, 'label_insult'), (0.6015316247940063, 'label_obscene'),
+   (0.006152227986603975, 'label_severe_toxicity'),
+   (0.0031205720733851194, 'label_threat'),
+   (0.7605947852134705, 'label_toxicity')),
+  ('toxic', 0.7605947852134705), (['label_toxicity'], [0.7605947852134705])),
+ ('Joo tämähän olikin iso ongelma. Autokouluilta jää nyt laillisesti '
+  'käärimättä härskit katteet kun joku lukion opettaja töidensä päälle vielä '
+  'opettaa oppilaitaan ajamaan autoa. Ei jumalauta.',
+  ((0.006257738918066025, 'label_identity_attack'),
+   (0.11865212023258209, 'label_insult'), (0.6208484768867493, 'label_obscene'),
+   (0.007344727870076895, 'label_severe_toxicity'),
+   (0.005224049091339111, 'label_threat'),
+   (0.7605730295181274, 'label_toxicity')),
+  ('toxic', 0.7605730295181274), (['label_toxicity'], [0.7605730295181274])),
+ ('En tee naiiveja oletuksia siitä, että muuttaisin kenenkään sellaisen '
+  'mieltä, joka on jo pysyvästi jumiutunut ajatusmalleihinsa, mutta minun ei '
+  'myöskään tule tehdä sitä oletusta, että joku on jo sellainen toivoton '
+  'tapaus, joka on jämähtänyt.\n'
+  '\n'
+  'Nämäkin jutut lukee kuitenkin, joku joka ei vielä ole tehnyt valintaa sen '
+  'suhteen, kallistuuko rasistiksi vai ei. Maailma on niin päin vittua, kuin '
+  'se on nyt, koska hyvää esimerkkiä konfliktinratkaisusta harvemmalle '
+  'annetaan. Ne, jotka eivät ole joutuneet konflikteihin eivät osaa selvitä '
+  'konflikteista ja ne, jotka ovat joutuneet konflikteihin, ovat oppineet '
+  'väärän opetuksen.\n'
+  '\n'
+  'Asia on sen verran tärkeä, että toivoisin jokaisen tekevän parhaansa, jotta '
+  'omalta osaltaan tekisivät sen pienen muutoksen maailmaan, joka voisi sitä '
+  'parantaa. Jos tarjolla on konfliktia vaikeuttavia ratkaisuja toivoisin, '
+  'että ihmiset tiedostaisivat tämän itse ja pidättäytyisivät ilmaisemasta '
+  'ratkaisuaan hyväksyttävänä tai välttämättömänä.\n'
+  '\n',
+  ((0.006868043914437294, 'label_identity_attack'),
+   (0.1475256085395813, 'label_insult'), (0.6894035935401917, 'label_obscene'),
+   (0.006604211870580912, 'label_severe_toxicity'),
+   (0.0027594524435698986, 'label_threat'),
+   (0.7604507207870483, 'label_toxicity')),
+  ('toxic', 0.7604507207870483), (['label_toxicity'], [0.7604507207870483])),
+ ('Siis; Viron palkat ovat paskemmat kuin Suomessa ja elintaso nousee koska '
+  'Suomen paremmat palkat valuvat sinne. Tämä aiheuttaa tavallisille '
+  'Virolaisille vittumaisen sauman, mutta isoa peukkua siitä että Virolaisten '
+  'palkkatasokin on riittävä syy avautua Suomen veroista ja verottajasta. ',
+  ((0.05114675685763359, 'label_identity_attack'),
+   (0.23090599477291107, 'label_insult'), (0.5600974559783936, 'label_obscene'),
+   (0.006068827118724585, 'label_severe_toxicity'),
+   (0.004431075882166624, 'label_threat'),
+   (0.7601028680801392, 'label_toxicity')),
+  ('toxic', 0.7601028680801392), (['label_toxicity'], [0.7601028680801392])),
+ ('Tulikin tässä mieleen, että kaverin kanssa pieninä paukapäinä saatiin '
+  'mieleen loukata chattiohjelman juontajaa ja siinä sivussa koko Suomea! '
+  'Mutta rumat viestithän sensuroitiin.\n'
+  '\n'
+  'Joten tämä Mc Puhuvapää luki koko kansalle viestimme: "Senkin tyhmäpäät!"\n'
+  '\n'
+  'Näytettiin niille oikein kunnolla!',
+  ((0.010456161573529243, 'label_identity_attack'),
+   (0.5433922410011292, 'label_insult'), (0.27976295351982117, 'label_obscene'),
+   (0.005644991062581539, 'label_severe_toxicity'),
+   (0.004174836911261082, 'label_threat'),
+   (0.7600957155227661, 'label_toxicity')),
+  ('toxic', 0.7600957155227661), (['label_toxicity'], [0.7600957155227661])),
+ ('Vähän niinkuin *jokihomot*, muttei sinne päinkään.',
+  ((0.02534508891403675, 'label_identity_attack'),
+   (0.22541359066963196, 'label_insult'), (0.7154400944709778, 'label_obscene'),
+   (0.010849926620721817, 'label_severe_toxicity'),
+   (0.0016874285647645593, 'label_threat'),
+   (0.7600778341293335, 'label_toxicity')),
+  ('toxic', 0.7600778341293335), (['label_toxicity'], [0.7600778341293335])),
+ ('&gt;Samalla noin 200 miljoonalla Yara sai myös Savukoskella sijaitsevan '
+  'Soklin kaivosoikeudet, jotka arvioidaan fosforin ehtymisen takia miljardien '
+  'arvoiseksi.  \n'
+  '  \n'
+  'Ei vituta.',
+  ((0.00611071614548564, 'label_identity_attack'),
+   (0.11713812500238419, 'label_insult'), (0.6614726185798645, 'label_obscene'),
+   (0.00733919208869338, 'label_severe_toxicity'),
+   (0.003966704476624727, 'label_threat'),
+   (0.7600522041320801, 'label_toxicity')),
+  ('toxic', 0.7600522041320801), (['label_toxicity'], [0.7600522041320801])),
+ ('Ou jeah, tämä paskahan on jatkunut jo useamman vuoden kuten Nikin sivuilta '
+  'näkyy. Ja koska estolista on salainen, kohta sieltä löytyy muitakin '
+  'hallituksen ja/tai poliisin toimia kritisoivia sivuja. Tämä siis olettaen '
+  'ettei siellä ole jo muitakin..\n'
+  '\n'
+  'Näin se sananvapaus tapetaan jätkät, think of the children!',
+  ((0.00767939817160368, 'label_identity_attack'),
+   (0.13923048973083496, 'label_insult'), (0.5685586333274841, 'label_obscene'),
+   (0.006151126231998205, 'label_severe_toxicity'),
+   (0.00599267054349184, 'label_threat'),
+   (0.7600224018096924, 'label_toxicity')),
+  ('toxic', 0.7600224018096924), (['label_toxicity'], [0.7600224018096924]))]
+[('&lt;3\n'
+  '\n'
+  'Luettuani tuon artikkelin tulee kyllä vahingonilo mieleen. Suoraan '
+  'sanottuna ihan saatanan junttia porukkaa kuulostaa olevan toi Lieksan '
+  'sankariväki. Elämänkoulu on vahva ja työttömyys on mamujen vika, vaikka '
+  'olisi pitänyt vähän muitakin kouluja käydä että saisi duunia jostain.\n'
+  '\n'
+  'Jos kaikki Lieksan maahanmuuttajat lähtisivät pois sieltä niin olisi sitten '
+  'kiva kymmenen vuoden kuluttua mennä kyselemään kyläteiden kingeiltä, että '
+  'no joko on asiat hyvin ja kaikilla töitä, häh, ja jos ei ole niin kenenkäs '
+  'vika se nyt tällä kertaa on.\n'
+  '\n'
+  '/vuodatus',
+  ((0.10082201659679413, 'label_identity_attack'),
+   (0.4244629740715027, 'label_insult'), (0.3283817768096924, 'label_obscene'),
+   (0.006439444608986378, 'label_severe_toxicity'),
+   (0.004184810444712639, 'label_threat'),
+   (0.7598795294761658, 'label_toxicity')),
+  ('clean', 0.7598795294761658), ([], [])),
+ ('Näin. Ensimmäistä kertaa Suomen historiassa maahan on saapumassa oikeasti '
+  'merkittävä määrä pakolaisia. Kumma juttu kun pakolaisista on onnistuttu '
+  'ulisemaan jo toistakymmentä vuotta niinkuin itse Astrid Thors olisi tuonut '
+  'somaleita jonkun kotiin raiskaamaan suomem tyttäret. \n'
+  '\n'
+  'Yksi ainoa puolue on onnistunut varmistamaan sen että maahanmuutosta ei '
+  'tulla käymään ensimmäistäkään täysjärkistä keskustelua. Nyt on aika turha '
+  'odottaa että yksikään muu puolue tunkisi käsiään tuohon paskakasaan.',
+  ((0.07287626713514328, 'label_identity_attack'),
+   (0.3997708559036255, 'label_insult'), (0.47160065174102783, 'label_obscene'),
+   (0.005907315295189619, 'label_severe_toxicity'),
+   (0.004129947628825903, 'label_threat'),
+   (0.7598260045051575, 'label_toxicity')),
+  ('clean', 0.7598260045051575), ([], [])),
+ ('Tältä viikolta: [Tuukka smash!](http://gfycat.com/SilentSourHoneybadger)  \n'
+  'Tosta rapsahti 2 min huitomisesta muttei sentään suihkua. Jälkeenpäin '
+  'Tuukka heitti Versteegille ilmaisen hyvän neuvon: *"It\'s pretty obvious I '
+  "tried to slash the post. That's what I thought I did. Stay out of the "
+  'crease."*  \n'
+  'Nii, vittuako oli siinä.\n'
+  '\n'
+  'Mut eipä Tuukka ole ollenkaan sieltä pahimmasta päästä vaan enempi on '
+  'rauhallisen puoleinen varsinkin kun näitä kattoo:  \n'
+  '[14 Minutes of Pissed Off '
+  'Goalies](https://www.youtube.com/watch?v=8v9wZF-aQ9U)  \n'
+  'tyrsk@10:00 kun veskari luistelee läpi kaukalon vetämään vastustajan '
+  'veskaria pataan.',
+  ((0.0075905523262917995, 'label_identity_attack'),
+   (0.16095320880413055, 'label_insult'), (0.676619291305542, 'label_obscene'),
+   (0.007104197517037392, 'label_severe_toxicity'),
+   (0.0033909964840859175, 'label_threat'),
+   (0.7597849369049072, 'label_toxicity')),
+  ('clean', 0.7597849369049072), ([], [])),
+ ('&gt;Pointtihan olikin se, että menet ja teet.\n'
+  '\n'
+  'Ihan helvetin hyvä neuvo masentuneelle.',
+  ((0.0066412040032446384, 'label_identity_attack'),
+   (0.13144917786121368, 'label_insult'), (0.5337451696395874, 'label_obscene'),
+   (0.006708449684083462, 'label_severe_toxicity'),
+   (0.0059813931584358215, 'label_threat'),
+   (0.7597366571426392, 'label_toxicity')),
+  ('clean', 0.7597366571426392), ([], [])),
+ ('Rupes melkeen hengästyttään kun oli alotuspostauksessa niin monta '
+  'kysymystä.    \n'
+  'Viikonlopun todo-listaan kuuluu ek-ehdokkaan etsiminen, pakko se on joku '
+  'numero käydä sinne lappuun rustaamassa. Vituttaa kyllä koko vaalit. Samaa '
+  'paskaa joka tuutista.  \n'
+  'Muita tarpeellisia tehtäviä olisi parin esseen kirjoittaminen ja yhden '
+  'ryhmäprojektin oman osuuden valmistaminen. Välttelen viimeiseen asti, kuten '
+  'aina.     \n'
+  '    \n'
+  'Oon ollut 41 päivää selvinpäin. Putkeen. Kaljaa tekis mieli, mutta kun ei '
+  'ole seuraa. Yksin on liian surullista lähteä keskustaan ryyppäämään ja '
+  'kalsarikännejä en harrasta. Ehkä sitten ensviikonloppuna.    \n'
+  '     \n'
+  'Olis kiva käydä vaikka luonnontieteellisessä museossa näin viikonloppuna. '
+  'Tai kasvitieteellisessä puutarhassa. Tai ylipäätään jossain. Kaipaan '
+  'kylttyyripamausta.    \n'
+  '\n'
+  'Juuri nyt on kivaa muun muassa:\n'
+  '    \n'
+  '- maaperätieteen tentti on OHI. meni kyllä niin perseelleen että uusinta '
+  'kutsunee mutta ainakin se on tällä hetkellä OHI.\n'
+  '    \n'
+  '- kaikki on kivaa! jeejee! aurinko paistaa!     \n'
+  '- join just kahvia pitkästä aikaa ja nyt on kunnon boosti päällä. menottaa. '
+  'muutenkin ollut hirveän positiivinen fiilis aamusta asti.    \n'
+  '- kohta on kesä, jee!!\n',
+  ((0.007868457585573196, 'label_identity_attack'),
+   (0.1372421681880951, 'label_insult'), (0.606903612613678, 'label_obscene'),
+   (0.0065497965551912785, 'label_severe_toxicity'),
+   (0.00575056578963995, 'label_threat'),
+   (0.7597008943557739, 'label_toxicity')),
+  ('clean', 0.7597008943557739), ([], [])),
+ ('Sulle ganja tuntuu olevan ihmelääke kaikkiin vaivoihin. Ymmärrät kai, että '
+  'oon skeptinen väitteisiin, että kannabis yleisesti olisi vastaava apu. On '
+  'tietysti tosi paskaa, jos vaikuttavia aineita ei saada lääkkeistettyä ihan '
+  'vaan sen takia, että niitä löytyy kannabiksesta. Toivottavasti semmoisista '
+  'ennakkoluuloista pästään. Onko niitä, kun lääkärit kerta määräävät '
+  'amfetamiinia ja opiaatteja.\n'
+  '\n'
+  'Mitkä masennukseen määrätyt lääkkeet teki susta maanisen tappelijan?  Ganja '
+  'siis korasi sun masennuksen? \n'
+  '\n'
+  'Ajatus, että ainoastaan lakeja ja sääntöjä joista itse on samaa mieltä '
+  'johtaa ihan anarkiaan. Musta oli kännissä ihan hyvä ajatus ajaa autolla ja '
+  'nopeusrajoitukset tuntui fasismilta. ite tiedän mitä vauhtia osaan ajaa.',
+  ((0.01436758041381836, 'label_identity_attack'),
+   (0.2538762390613556, 'label_insult'), (0.29139819741249084, 'label_obscene'),
+   (0.005335281603038311, 'label_severe_toxicity'),
+   (0.006373455747961998, 'label_threat'),
+   (0.7596737742424011, 'label_toxicity')),
+  ('clean', 0.7596737742424011), ([], [])),
+ ('Niin jos oot köyhä, oot vaan huono ihminen. /s',
+  ((0.013872549869120121, 'label_identity_attack'),
+   (0.41575002670288086, 'label_insult'),
+   (0.09310805797576904, 'label_obscene'),
+   (0.00635292986407876, 'label_severe_toxicity'),
+   (0.006913476157933474, 'label_threat'),
+   (0.759577214717865, 'label_toxicity')),
+  ('clean', 0.759577214717865), ([], [])),
+ ('Jos minä tuon banjon, niin kuka kiljuu kuin sika?\n'
+  '\n'
+  'Tai ehkä pitäis puhua hanurista kun ollaan Suomessa.',
+  ((0.018612636253237724, 'label_identity_attack'),
+   (0.38309547305107117, 'label_insult'),
+   (0.28649023175239563, 'label_obscene'),
+   (0.005677865352481604, 'label_severe_toxicity'),
+   (0.004702869802713394, 'label_threat'),
+   (0.75944983959198, 'label_toxicity')),
+  ('clean', 0.75944983959198), ([], [])),
+ ('Sehän on ihan helvetin sama uskooko Joulupukkiin, Jeesukseen, Allahiin vai '
+  'saturnuksen renkaissa elävään Jibber Crabst hummeriin kunhan siitä ei synny '
+  'itsekkäitä ja eriarvoistavia päätöksiä.\n'
+  '\n'
+  'Soinin näkökannat ovat suoraan keskiajan kirkon opeista repäisty, joka '
+  'huolettaa kyllä aika rankasti. Sipilällä tuntuu olevan sentään jonkinlaista '
+  'järkeä ainakin pitää suunsa kiinni uskonnollista arvoista jos ei muuta. '
+  'Paska juttu vain että puolue on sama asia kuin sen johtajan arvomaailma, '
+  'joten epäilen että mitään hyvää on seuraavaan 4 vuoteen tulossa.',
+  ((0.0075027975253760815, 'label_identity_attack'),
+   (0.1314006894826889, 'label_insult'), (0.6059166193008423, 'label_obscene'),
+   (0.006458124611526728, 'label_severe_toxicity'),
+   (0.004665609914809465, 'label_threat'),
+   (0.7593840956687927, 'label_toxicity')),
+  ('clean', 0.7593840956687927), ([], [])),
+ ('Sinänsähän mekkoläppä oli täysin typerä eikä juurikaan puolusteltavissa, '
+  'mutta helvetin tiukalla on nuttura feministeilläkin jos kaikesta pitää '
+  'lähteä mesoamaan. Mielenkiintoisia aikoja eletään kun junttihuumorikin on '
+  'verkon ajatuspoliisien syynissä ja siihen suhtaudutaan kuin pahempaankin '
+  'sortovaltaan. Voisivat olla kiitollisia että saavat sentään jotain '
+  'tekemistä, tämäkin episodi työllistää sukupuolentutkijoita epäilemättä '
+  'viikkotolkulla.',
+  ((0.02711528353393078, 'label_identity_attack'),
+   (0.2517798840999603, 'label_insult'), (0.4745795726776123, 'label_obscene'),
+   (0.005430952180176973, 'label_severe_toxicity'),
+   (0.004332069773226976, 'label_threat'),
+   (0.7593401074409485, 'label_toxicity')),
+  ('clean', 0.7593401074409485), ([], [])),
+ ('Mitä tekemistä lynkkauksilla on homoliittojen kanssa? Ihme kunnet alkanut '
+  'mopon virittämisestä kesken kaiken virttä veistämään.',
+  ((0.7592834234237671, 'label_identity_attack'),
+   (0.2711945176124573, 'label_insult'), (0.1766553372144699, 'label_obscene'),
+   (0.009977991692721844, 'label_severe_toxicity'),
+   (0.008699656464159489, 'label_threat'),
+   (0.6963135004043579, 'label_toxicity')),
+  ('clean', 0.7592834234237671), ([], [])),
+ ('&gt;pitäisi valittaa että kansa on säätänyt paskat lait\n'
+  '\n'
+  'Suomessa on säädetty lakeja kansanäänestyksen perusteella kahdesti. '
+  'Kieltolain lopettaminen ja EU-jäsenyys. Molemmilla kerroilla kyse oli '
+  'neuvoa-antavasta kansanäänestyksestä jotta kansa ei vahingossakaan pääsisi '
+  'päättämään väärin. Jotta kansa voisi säätää paskoja lakeja, meidän pitäisi '
+  'ensin säätää paskoja lakeja itse.',
+  ((0.008700170554220676, 'label_identity_attack'),
+   (0.2544175684452057, 'label_insult'), (0.600502073764801, 'label_obscene'),
+   (0.005703086033463478, 'label_severe_toxicity'),
+   (0.0030041274148970842, 'label_threat'),
+   (0.759154736995697, 'label_toxicity')),
+  ('clean', 0.759154736995697), ([], [])),
+ ('Virolla on varusmiesarmeija sekä vapaaehtoisista koostuva miliisi. Kaikki '
+  'taistelukalusto on ainoastaan jalkaväki aseistusta, raskaampi kalusto '
+  'rajottuu muutamiin paseihin (saavat 2016 kuluessa 40 CVtä). Epäsuora tuli '
+  'kyky on olematon ja koko ilmatilan puolustus perustuu muiden NATO maiden '
+  'lentueisiin. Eipä kummoista varustusta turistikaan tarvitse että pelaa '
+  'samalla pelikentällä. \n'
+  '   \n'
+  '&gt;Pointtini on, että Viro on tehnyt jo lähes kaiken mahdollisen '
+  'puolustuksensa suhteen nykyisillä resursseilla, Suomi ei.  \n'
+  '\n'
+  'Nyt vittu, Suomella on kalustoa ja miesvoimaa rakentaa iso vittumainen '
+  'muuri Venäjän suuntaan vaikka yksin. Ja mitä tulee NATOn turvatakuisiin, '
+  'niitä ei ole vielä koskaan koestettu. Läntisemmät NATOn jäsenet vähentää '
+  'jatkuvasti puolustusmenojaan, näin myös tänä vuonna. Eteläiset valtiot ovat '
+  'melkein toistensa kurkussa. Jos Venäjä sattuisi jotain NATO valtiota '
+  'tuuppaamaan, on aika hyvä kysymys että kuinka moni on valmis aloittamaan '
+  'sotilaalliset toimet isossa mittakaavassa.    \n'
+  '    \n'
+  'NATO ottaisi Suomen varmasti mielellään, ei mikään ihme. Suomi '
+  'moninkertaistaisi tämänhetkisen taistelu kyvyn balttian välittömässä '
+  'läheisyydessä. Tällähetkellä Venäjä voisi teoriassa tehdä salamaiskun '
+  'Balttioihin ja suunnata sotimisensa Puolan rajalle, jos Suomi olisi mukana '
+  'Venäjällä olisi välittömästi +300,000 miestä sivustassa jota se ei voi olla '
+  'huomioimatta vähintään yhtä suurella joukolla. Jos Suomi olisi NATOssa, 70% '
+  'NATO-Venäjä rajasta olisi meidän rajaa. Se on nääs etulija. \n'
+  '   \n'
+  '&gt;Mut mut venäjällä niin vitusti kaikkee, ei suomi voi mittää mittää  \n'
+  '  \n'
+  'Siinä vaiheessa kun Venäjä siirtää 100% sotilaallisesta kyvystään Suomen '
+  'rajalle, voidaan vaan kuorossa nauraa kun jokainen Venäjälle vittuuntunu '
+  'naapuri kävelee Moskovaan ampumatta laukaustakaan.',
+  ((0.020932281389832497, 'label_identity_attack'),
+   (0.24103231728076935, 'label_insult'), (0.5862175822257996, 'label_obscene'),
+   (0.005503803491592407, 'label_severe_toxicity'),
+   (0.004475049674510956, 'label_threat'),
+   (0.7591295838356018, 'label_toxicity')),
+  ('clean', 0.7591295838356018), ([], [])),
+ ('&gt;perustulo hyi vittu\n'
+  '\n'
+  'Mielestäni perustulo on erinomainen idea. Maailmassa on selvä trendi että '
+  'automaatio korvaa ihmistyövoimaa yhä enemmän ja enemmän, mutta '
+  'kokonaistehokkuus kasvaa. Nykyinen systeemi johtaa tässä tilanteessa siihen '
+  'että tulot kertyy sinne missä on pääoma (automatisoidun tuotantolaitteiston '
+  'omistus jne.) ja yhä enemmän ja enemmän ihmisiä päätyy tilanteeseen, missä '
+  'he ovat riippuvaisia yhteiskunnan tarjoamasta sosiaaliturvasta, koska '
+  'kenelläkään ei ole yksinkertaisesti intressejä palkata heitä mihinkään. '
+  'Yksinkertaistetusti ei ole muuta vaihtoehtoa kun valita että (A) eletäänkö '
+  'maailmassa missä ennenpitkää 0.1% meistä on miljardööri-omistajia ja muut '
+  'näkevät nälkää vai (B) jaetaan yhä tehostuvan automaatiokoneiston tuottama '
+  'arvo myös niille kenen työpanosta ei tarvita. Perustulo on IMO '
+  'B-vaihtoehdossa yksinkertaisin, vähiten byrokratiaa vaativa ja ylipäätänsä '
+  'paras malli. \n'
+  '\n'
+  'Sen verran laaja aihe että tuskin tässä threadissa pystytään keskustella '
+  'kovin kattavasti. Suosittelen lukemaan aiheesta lisää esim täältä: '
+  'http://www.reddit.com/r/basicincome/wiki/index',
+  ((0.005635425448417664, 'label_identity_attack'),
+   (0.12223883718252182, 'label_insult'), (0.6901903748512268, 'label_obscene'),
+   (0.0076324231922626495, 'label_severe_toxicity'),
+   (0.0035982856061309576, 'label_threat'),
+   (0.7591074705123901, 'label_toxicity')),
+  ('clean', 0.7591074705123901), ([], [])),
+ ('Voin jo kuvitella tuulipuku-Reinon viemässä lautasta takaisin.\n'
+  '\n'
+  '*Eihän tässä ole paskaa nimeksikään!*',
+  ((0.005392786581069231, 'label_identity_attack'),
+   (0.1677851378917694, 'label_insult'), (0.6309829354286194, 'label_obscene'),
+   (0.006163533311337233, 'label_severe_toxicity'),
+   (0.003550102934241295, 'label_threat'),
+   (0.7590692639350891, 'label_toxicity')),
+  ('clean', 0.7590692639350891), ([], [])),
+ ('Johtunee ihan siitä, että elokuvalla on vähän liian kansallismielinen '
+  'viesti. Pitäähän seuraavan sukupolven hävetä kulttuuriaan aina edellistä '
+  'enemmän. \n'
+  '\n'
+  'PS. Mikä helvetin Meku? Miksi sitä tarvitaan/rahoitetaan?',
+  ((0.007024731952697039, 'label_identity_attack'),
+   (0.13091211020946503, 'label_insult'), (0.575212836265564, 'label_obscene'),
+   (0.006527593359351158, 'label_severe_toxicity'),
+   (0.005141244735568762, 'label_threat'),
+   (0.7590534090995789, 'label_toxicity')),
+  ('clean', 0.7590534090995789), ([], [])),
+ ('Ai perkele, nyt nasahtaa Saloon se viimeinenkin niitti. :(',
+  ((0.00711247231811285, 'label_identity_attack'),
+   (0.10543910413980484, 'label_insult'), (0.5331624746322632, 'label_obscene'),
+   (0.007914177142083645, 'label_severe_toxicity'),
+   (0.009979353286325932, 'label_threat'),
+   (0.7589819431304932, 'label_toxicity')),
+  ('clean', 0.7589819431304932), ([], [])),
+ ('Olipahan taas perjantai. Jotain runsaasti päälle 100 m^3 tuotteita pöllähti '
+  'tyhjästä varaston laituriin (tukkien samalla suurimman osan meidän '
+  'työntekoon liittyvästä *lebensraum*istamme), eikä saatu settiä hoidettua '
+  'päivän päätteeksi. No, hätä ei ole tämän näköinen, ja miehän reippaana '
+  'työntekijänä ilmoittauduin tekemään lisäpäivää huomenna (jottei '
+  'viikonloppuvuorolainen revi pelihousujaan), vaikka pitäisi olla '
+  'vapari-lauantai. Vietän sit viikonloppuani sunnuntaina, prkl kun ei '
+  'muutenkaan ole rahaa railakkaaseen viikonloppuun - tienaanpahan '
+  'lauantailisällistä tuntipalkkaa, sit seuraavan kuukauden loppupuolen '
+  'railakkaisiin viikonloppuihin (ja \\*krhm\\* vuokrakin pitäisi jollain '
+  'ilveellä maksaa siitä palkasta). Lähettäkää ~~apua~~ kaljaa.\n'
+  '\n'
+  'Eli tämän viikonlopun positiivinen uutinen on, että vaikka ollaan lievästi '
+  'kusessa varastolla (ja lastauslaiturilla on aina vitun viimaisan kylmää), '
+  'niin emme sentään ole ihan "hukka-periköön-mode: engaged"-tilassa, vaan '
+  'vain perus-kusessa. Eikä tässä vielä kaikki - kusessa olemisen olotilan '
+  'vähennysoperaatiosta saan kauniisti rahoja tililleni tulevaisuudessa. '
+  'Tuntuu koko ajan kuin lähettäisin jotain ihme kehitysapua '
+  'tulevaisuus-minulle. Ai niin, ja fiilikseni on "ihan hyvä", vaikka '
+  'sosiaalinen elämäni on aika mitäänsanomaton, rahatilanteeni on '
+  'kiikun-kaakun, työ on raskasta, työmatka näin talvella ärsyttää (kesällä '
+  'siedettävämpi), ja kämppäkin pitäisi siivota. Jotenkin vain on sellainen '
+  'ihme hyvä fiilis.\n'
+  '\n'
+  '[Linkin video liittyy '
+  'välillisesti](https://www.youtube.com/watch?v=KTnGZ37sZqM). DISCLAIMER: '
+  'varastollamme ei olla tietääkseni koskaan telottu ketään trukilla, eikä '
+  'olla niitä trukkeja kaadettukaan (saatika sit mitään hyllyjä kaadettu). '
+  'Paria pientä tuotetta olemme vuosien mittaan ehkä kaiketi sattuneet '
+  'nirhaamaan, sekä tietenkin ollaan hajoitettu n+1 loisteputkea entisten '
+  'tilojen katosta; minulla on peräti vienot arvet parin vuoden takaisesta '
+  'kerrasta jolloinka kuuma loisteputki sattui silleen hupsista sanomaan '
+  '*POKS* ja sylkäisemään kauniin sirpalesateen, sen verran ohi minusta että '
+  'leikkasi vain käsivarteni auki ("It\'s just a flesh wound", '
+  'kirjaimellisesti), ei sentään muuta. Joo, nostin siis patjapinoa vahingossa '
+  'loisteputkeen; neljä tikkiä, hukattu saunailta mökillä, sekä vitunmoinen '
+  'itseaiheutettu käytännön kokemus trukkityöturvallisuudessa.',
+  ((0.009624353609979153, 'label_identity_attack'),
+   (0.1859818398952484, 'label_insult'), (0.6148818731307983, 'label_obscene'),
+   (0.006206389516592026, 'label_severe_toxicity'),
+   (0.004016516730189323, 'label_threat'),
+   (0.7589492797851562, 'label_toxicity')),
+  ('clean', 0.7589492797851562), ([], [])),
+ ('Luulen, että olisin paljon nirsompi, jos olisin homoseksuaali. Ja tumblria '
+  'ei tainnut olla vielä perustettu.',
+  ((0.7589367032051086, 'label_identity_attack'),
+   (0.285430908203125, 'label_insult'), (0.29255411028862, 'label_obscene'),
+   (0.014456294476985931, 'label_severe_toxicity'),
+   (0.01141061820089817, 'label_threat'),
+   (0.7413663268089294, 'label_toxicity')),
+  ('clean', 0.7589367032051086), ([], [])),
+ ('&gt; – On mahdollista, että varamieheni eduskuntakausi jää vain muutaman '
+  'viikon mittaiseksi. Tämän hän tietää.\n'
+  '\n'
+  'Saattaa muuten varamiestä vituttaa, jos ehtii muuttaa Lapista Hesaan '
+  'muutamaksi viikoksi, ja sitten tuo pölvästi päättääkin yhtäkkiä tulla '
+  'takaisin. On aika paska järjestelmä tuolta kantilta. ',
+  ((0.009229467250406742, 'label_identity_attack'),
+   (0.3649020195007324, 'label_insult'), (0.5757415890693665, 'label_obscene'),
+   (0.005866570398211479, 'label_severe_toxicity'),
+   (0.002970063593238592, 'label_threat'),
+   (0.7589338421821594, 'label_toxicity')),
+  ('clean', 0.7589338421821594), ([], []))]
+CLEAN
+[('&gt; Uskoisin monen maahanmuuttajan haluavan integroitua muutettavaan '
+  'yhteiskuntaan. Maahanmuuttajien näkemyksistä on luultavasti tehty '
+  'tutkimuksia. Pikaisella googlauksella löytyi ainakin tällainen "How '
+  'immigrants experience integration" (2012), jossa todetaan seuraavasti: \n'
+  '\n'
+  'Tämä on ilmeisesti kulttuuritaustasta riippuvainen asia, on helpompaa '
+  'kotoutua maahan jos muuttaa esim. Euroopasta verrattuna tilanteeseen, jossa '
+  'tulija tulee vaikkapa Afrikasta. Se, miten tämä eroavaisuus johtuu esim. '
+  'lähtökulttuurista ja toisaalta kohdemaassa koetusta kohtelusta (lue: esim. '
+  'rasismista) on taas oma kysymyksensä. Käsitykseni mukaan esim. nimenomaan '
+  'somalit ja kurdit edustavat sitä porukkaa, jotka tarvitsevat enemmän a) '
+  'tukea kotoutumiselle b) aktiivista osallistumista yhteiskunnalliseen '
+  'toimintaan onnistuneen kotoutumisen aikaansaamiseksi. \n'
+  '\n'
+  '&gt; Se, miten omasta kulttuurista "luopuminen" on suotavaa, on '
+  'monimutkaisempi kysymys. \n'
+  '\n'
+  'Ei se ole monimutkaista ollenkaan siinä tilanteessa, jossa lähtökulttuuri '
+  'pistää napit vastakkain kohdemaan kulttuurin kanssa. Esimerkkinä vaikkapa '
+  'naisten tai seksuaalivähemistöjen asema ja kohtelu, tai ääriesimerkkinä '
+  'Sharia-lain kannattaminen. Toisaalta, kyllähän monimuotoisuus ja erilaisuus '
+  'tuo/luo arvoa ja rikkautta, mutta jossain menee se raja, kun liiallisesta '
+  'sotkemisesta ja yhdistämisestä kulttuurierot sumentuvat ja seurauksena on '
+  'yhtä harmaata massaa. Tämä ei toki ole käytännönläheinen tai '
+  'merkityksellinen pointti nykytilanteessa, mutta enemmänkin '
+  'teoreettinen/filosofinen vasta-argumentti sille, että kaikenlainen '
+  'yhdistely ja sekoittaminen olisi silkkaa rikkautta aina ja kaikissa '
+  'tapauksissa.\n'
+  '\n'
+  '&gt; Ns. elintasopakolaisuus on luultavasti hyvin vähäistä. Vai onko '
+  'sinulla siitä tutkimuksia?\n'
+  '\n'
+  'Viittaan tuolla sanalla sellaiseen maahanmuuttoon jonka motiivina on '
+  'parempi elintaaso, toisinsanoen se, että lähdetään hakemaan parempaa elämää '
+  'toisesta maasta, koska kotimaassa elintaso on heikompi mitä toivotaan '
+  'vieraassa maassa olevan. Tämän mukaan siis laajasti tulkittuna lähestulkoon '
+  'kaikki ei-humanitaarinen maahanmuutto olisi elintasopakolaisuutta. Se ei '
+  'siis varsinaisesti (välttämättä) liity siihen, että oltaisiin pakolaisia, '
+  'vaan enemmänkin siihen, että ruoho aidan toisella puolen on vihreämpää, '
+  'joten mennään laiduntamaan sinne. Ääritapauksessa "ruoholla" '
+  'tarkoitettaisiin esim. sosiaaliturvaa, jonka toivossa pyritään '
+  'pohjoismaisen hyvinvointiyhteiskunnan sosiaaliturvan piiriin. Minulla on se '
+  'käsitys, että maahanmuuttohakemuksien määrä on ollut jossain suhteessa '
+  'esim. nimenomaan sosiaaliturvan määrään. Toki korrelaatio itsessään ei '
+  'näytä kausaalisuutta.\n'
+  '\n'
+  '(En kykene juurikaan kaivelemaan mitään tilastoja tai muitakaan käytössä '
+  'olevasta tietokoneesta johtuen; giga muistia ja Firefox johtaa jo yhden '
+  'PDF:n avaamisen seurauksena armottomaan swappaamiseen, eikä kahden megan '
+  '3G-yhteys toki auta asiaa. Tästä johtuen koitankin painottaa sitä omaa '
+  'nykyistä käsitystäni, joten suolan kera kaikki.)',
+  ((0.0009127915254794061, 'label_identity_attack'),
+   (0.0007395856082439423, 'label_insult'),
+   (0.0010135212214663625, 'label_obscene'),
+   (0.0008487832965329289, 'label_severe_toxicity'),
+   (0.0007963856915012002, 'label_threat'),
+   (0.00152980734128505, 'label_toxicity')),
+  ('clean', 0.00152980734128505), ([], [])),
+ ('"Vastike kyllä nousee, mutta vuokranantajalla ei ole mahdollisuutta siirtää '
+  'sitä vuokraan koska muuten vuokralainen muuttaa pois."\n'
+  '\n'
+  'En itse usko, että tämä on näin yksinkertaista käytännössä. Väljällä '
+  'alueella, jossa maa on edullista ja asuntoja on paljon tyhjänä tilanne voi '
+  'olla tuo: omistajat voidaan pakottaa maksamaan kasvava osa kuluista, kunnes '
+  'heidän on pakko myydä täysin tuottamaton sijoitus. \n'
+  '\n'
+  'Tontista peritään jo nyt veroa ja se nousee jatkuvasti ja ainakin itse '
+  'siirrän kaikki nostot vuokriin. Yleensäottaen sellainen 3-5% vuodessa on '
+  'keskimäärin kattanut veroista johtuneet nousut kustannuksissa (tämä '
+  'tietysti riippuu taloyhtiöstä, nyt yhdessä nousi vastike 4.2%, vuokra '
+  'nousee n. 3.0%). \n'
+  '\n'
+  'Sitten 2008 ei palkoista johtuvia korotuksia ei ole entiseen tapaan '
+  'aiheutunut. Tämä tietysti tarkoittaa sitä, että vuokraajalle jää vähemmän '
+  'käteen asumisen jälkeen, koska hänen palkkansa ei ole noussut, mutta verot '
+  'pitää kuitenkin maksaa. Tilat ovat tietysti kysytyillä alueilla. '
+  'Vuokralaiset eivät myöskään ole häipyneet sillä vuokrataso on '
+  'kilpailukykyinen. Uudemmat kohteet, jotka on rakennettu tiheämpään '
+  'pärjäävät pienemmällä verorasituksella, mutta ovat rakennuskustannuksiltaan '
+  'merkittävästi korkeampia. Tässä hieman tietoa: '
+  'http://www.taloyhtio.net/talous/taloustiedotteet/48851.aspx Huomaa, että '
+  'vaikka palkat lähes junnaavat paikallaan niin kustannustaso nousee silti '
+  'mm. verotuksen vuoksi.\n'
+  '\n'
+  'On tietysti oleellista, että vuokrat nousevat samaa tahtia, jos itse nostan '
+  '7% ja muut vain 2%, niin silloin on vaara että vuokralainen lähtee '
+  'lipettiin. Kun kaikki nostellaan sopivan indeksin mukaan, niin ei synny '
+  'turhaa kuohuntaa. Omistaja ei kuitenkaan tingi tuotosta ennenkuin '
+  'äärimmäisen pakon edessä, joten vuokratarkistuksia ei ole jäädytetty. '
+  'Vuokralaiselle on paras, jos löytää laiskan vuokraisännän, joka ei edes '
+  'sovi tarkistuksista. Tietysti joku vuosi hän voi sitten ehdottaa lain '
+  'sallimaa maksimi 15% ottaakseen tappion kiinni. Toisaalta tässä tilanteessa '
+  'moni sitten lähtee, kun korotus on kerralla noin suuri ja kilpailevilla '
+  'kohteilla tälläistä korotusta ei ole samaan aikaan.\n'
+  '\n'
+  'Asumistuella elävät vastuulliset vuokralaiset ovat parhaita, sillä he '
+  'saavat kuitenkin 80% vuokrastaan valtiolta. Heihin kohdistuu vuokran '
+  'korotuksestakin vain 20%, joten se ei monia edes juuri kiinnosta. Ihmiset '
+  'eivät tykkää jatkuvasta muuttamisesta - he haluavat olla kodissaan.\n'
+  '\n'
+  'Tämän vuoksi uskon, että ainakin kysytyillä alueilla kulujen nousu '
+  'maapohjasta voidaan siirtää vuokriin. Kuiva teoria voi tietysti sanoa '
+  'toisin ja ehkä systeemi voikin valtakunnallisella tasolla toimia kuten '
+  'kuvailit. En usko, että se on kuitenkaan mikään taikaratkaisu esimerkiksi '
+  'Helsingin vuokratasoon.',
+  ((0.0008690414251759648, 'label_identity_attack'),
+   (0.0007141518290154636, 'label_insult'),
+   (0.000988781568594277, 'label_obscene'),
+   (0.0008065450820140541, 'label_severe_toxicity'),
+   (0.000753423199057579, 'label_threat'),
+   (0.0015297702047973871, 'label_toxicity')),
+  ('clean', 0.0015297702047973871), ([], [])),
+ ('Voisin tätä vähän kommentoida, ns. kuvataiteilijana.\n'
+  '\n'
+  'Taiteilijoille suunniteltu korvaus työstään tulee taidemuseon kautta eikä '
+  'siinä siis tarvitse pelätä, että verorahat lähtevät näille '
+  '/r/delusionalartists tyyppisille tai edes niistä vähän taitavimmille. '
+  'Taidemuseon näyttelyyn pääsee ainoastaan "oikeat taiteilijat". Voitte olla '
+  'eri mieltä museon valinnoista, mutta onhan siellä kuitenkin alalle '
+  'koulutetut ihmiset tekemässä taidevalintoja. En minäkään kannata, että '
+  'palkkaa aletaan jokaiselle kuvataiteilija-nimikkeen hankkineelle jakamaan. '
+  'Kuvataiteilijoita on myös itseoppineita, joilta virallinen koulutuspaperi '
+  'alalta puuttuu. Tämä suunniteltu museopalkka ei elätä kuvataiteilijaa. '
+  'Siinä saa ainoastaan korvauksen siitä työstä, minkä on tehnyt taidemuseossa '
+  '(oman työn ripustus). Uutisessakin luki, et alimmillaan yksi taiteilija sai '
+  'vain 250e korvauksen työstään. Eihän sillä elä.\n'
+  '\n'
+  'Taiteen ostamisesta. Nykytaide on usein sellaista, ettei se varsinaisesti '
+  'kuluttajan kodille (tai lompakolle) ole sopiva - ja vaikka olisi, ihmiset '
+  'nykyään hyvin nuivasti ostavat taidetta. Taiteen ostaminen ei tuo '
+  'samanlaista ostamisen tyydytystä kuin toisen, konkreettisemman asian '
+  'ostaminen (uusi tv, kännykkä, pelit) eikä sen pidempiaikaista iloa ja '
+  'hyötyä nähdä (on toki muitakin syitä, miksi taide ei myy). Moni taiteilija '
+  'myy julisteita, kortteja yms. sälää, mutta kaikki mikä hinnaltaan ylittää '
+  '10e ei mene kaupaksi helpolla. Siinä tulee joku reaktio "Onko tämä nyt '
+  'hintansa väärti?". Taidefrafiikka myy suhteellisen hyvin, koska niitä voi '
+  'painaa monta samanlaista ja myydä alhaisemmalla hinnalla kuin vaikkapa '
+  'maalausta. Suurimmaksi osaksi taidetta ostaa säätiöt ja valtio (esim. '
+  'julkisiin tiloihin) kokoelmiinsa. Ostot koskee kuitenkin hyvin '
+  'marginaalista osaa taiteilijoista.\n'
+  '\n'
+  '"Oikeaksi taiteilijaksi" tuleminen on myös melkoinen noidankehäruljanssi. '
+  'On pidettävä yksityisnäyttelyitä ennen kuin voi saada apurahoja tai että '
+  'valtio/säätiö haluaa taiteilijalta jotain ostaa tai tuoda näyttelyynsä. '
+  'Yksityisnäyttely maksaa helposti 1000e ylöspäin kaikkine kuluineen: "En voi '
+  'pitää näyttelyä ilman apurahaa, en saa apurahaa ilman näyttelyä". Näitä '
+  'omakustanteisia näyttelyitä on lisäksi pidettävä useampi, mielellään '
+  'tasaisin väliajoin, jotta oma nimi ei piireissä ehdi unohtua. Jos '
+  'yksityisnäyttelyn yhteydessä onnistuu töitään myymään, galleria vetää '
+  'välistä keskimäärin 25% (sen lisäksi että taiteilija jo maksaa '
+  'vuokraamastaan tilasta). \n'
+  '\n'
+  'Taiteilijaseuraan on hyvä liittyä, se näyttää näyttelyiden lisäksi hyvältä '
+  'CV:ssä ja lisää mahdollisuuksia saada apurahaa. Seuran jäsenyys maksaa. '
+  'Seuraan ei pääse ennen kuin on näyttöä taiteilijuudesta (pidetyt näyttelyt, '
+  'saadut apurahat) eli taas: "En voi liittyä taideseuraan ilman näyttöä '
+  'saaduista apurahoista, en saa apurahaa ilman taideseuran jäsenyyttä".\n'
+  '\n'
+  'Homma ei ihan näin mustavalkoinen tietenkään ole.\n'
+  '\n'
+  'Taiteilija toki tietää tämän kaiken ryhtyessään taiteilijaksi. Olisi '
+  'kuitenkin *ihan kiva* jos työn tekeminen ei ihan näin hankalaa ole. '
+  'Taiteilijuus on myös enemmän juurikin näitä kutsumusammatteja. Jos oikeasti '
+  'haluaa tehdä töitä taiteilijana niin silloin tekee, kaikista vaikeuksista '
+  'huolimatta. Siitä on pakko olla intohimonen eikä se saa tuntua '
+  'varsinaisesti työltä. Ei siinä muuten pärjää.\n'
+  '\n'
+  '\n'
+  '\n',
+  ((0.0009251618175767362, 'label_identity_attack'),
+   (0.0007435926818288863, 'label_insult'),
+   (0.0010221555130556226, 'label_obscene'),
+   (0.00085973902605474, 'label_severe_toxicity'),
+   (0.000801479269284755, 'label_threat'),
+   (0.0015293173491954803, 'label_toxicity')),
+  ('clean', 0.0015293173491954803), ([], [])),
+ ('Totta, hyvä kirjoitus! Ja kyllä, Patomäki ja sinä ymmärrette '
+  '(ymmärtääkseni) tämän eri tavalla. \n'
+  '\n'
+  '&gt;Investoinnit pitää tehsä yrityksiin, jotka luovat tuotteita ja '
+  'palveluita erityisesti vientiin.\n'
+  '\n'
+  'Patomäki viittaa tässä julkisiin investoihin, joita hän laittaa seuraavasti '
+  'tärkeysjärjestykseen: \n'
+  '\n'
+  '"Julkiset investoinnit pitää suunnata ennen muuta\n'
+  '\n'
+  '1. koulutukseen ja uuden oppimiseen,\n'
+  '2. perusrakenteisiin, \n'
+  '3. valikoitujen olemassa olevien teollisuuden alojen tukemiseen ja '
+  'kehittämiseen, ja\n'
+  '4. riskisijoituksiin uusiin yrityksiin ja osuuskuntiin nousevilla '
+  'alueilla."\n'
+  '\n'
+  'Mitä tulee väittämääsi siitä, että valtio ei voi tuottaa mitään uutta '
+  '(myytti), niin lue seuraava kohta uudestaan:\n'
+  '\n'
+  '&gt;Mariana Mazzucato on esittänyt laajaa huomiota herättäneessä uudessa '
+  'kirjassaan The Entrepreneurial State. Debunking Public vs. Private Sector '
+  'Myths (2014), että jopa Yhdysvalloissa valtio on aktiivisesti osallistunut '
+  'uusien teollisuuden alojen ja menestystuotteiden luomiseen lentokoneista ja '
+  'lääkeuutuuksista aina IPhoneen saakka. Valtio ei sunkaan ole ollut vain '
+  'markkinavirheiden korjaaja tai edes pelkkä innovaatioiden edellytysten '
+  'luoja, vaan julkisvalta on itse aktiivisesti ottanut taloudellisia riskejä, '
+  'osallistunut kehittämistoimintaan ja muokannut tulevaisuuden markkinoita. '
+  'Usein menee 15-20 vuotta ennen kuin yrittäjät tai kapitalistit toden teolla '
+  'kiinnostuvat alasta. Valtio voi siis itse olla schumpeterilainen yrittäjä. '
+  'Olennaista on osaako julkisvalta tukea uuden syntymistä ja oppimista, vai '
+  'lähteekö se puolustamaan jo laskussa olevia teollisuuden aloja yhtiöiden '
+  'ehdoilla?\n'
+  '\n'
+  'Peruste siitä, miksi valtion ei kannata luottaa täysin yksityisen sektorin '
+  'voimaan "luoda uutta" tulee tässä:\n'
+  '\n'
+  '&gt;"Sosialisoidut riskit ovat aivan liian usein päätyneet tukemaan '
+  'yksityisiä voittoja ja – mikä vielä pahempaa – varallisuuden kasautumista '
+  'harvoihin käsiin, varsinkin viime vuosikymmenten aikana."\n'
+  '\n'
+  'Eli esim. yritystuet voivat mennä vain ylipalkattujen toimitusjohtajien ja '
+  'suursijoittajien käsiin. Ne eivät hyödytä yhteiskuntaa, vaan hyödyttävät '
+  'vain yksittäisiä toimijoita. Esimerkiksi tuetut yritykset käyttävät '
+  'veroparatiiseja.\n'
+  '\n'
+  '&gt;vasemmisto demonisoi yrittämistä ja yrittäjiä järjestään.\n'
+  '\n'
+  'Mielestäni tämä on kärjistys ja ei pidä paikkaansa. Tuskin tarvitsee edes '
+  'perustella.',
+  ((0.0009164254879578948, 'label_identity_attack'),
+   (0.0007408303208649158, 'label_insult'),
+   (0.0010072264121845365, 'label_obscene'),
+   (0.000856888887938112, 'label_severe_toxicity'),
+   (0.0007991136517375708, 'label_threat'),
+   (0.0015292795142158866, 'label_toxicity')),
+  ('clean', 0.0015292795142158866), ([], [])),
+ ('&gt;Ihmiset väittävät havaitsevansa sähkömagneettisia kenttiä hyvin '
+  'nopeasti. Tästä huolimatta he eivät tuplasokko-kokeissa havaitse näitä '
+  'kenttiä oikeasti.\n'
+  '\n'
+  'Ainoastaan he, jotka väittävät altistuneensa pahasti "sähkölle" tai '
+  '"säteilylle". Tuplasokko-kokeissa on testattu yleensä vain lyhytkestoista '
+  'sähkömagneettista säteilyä kännykkätaajuuksilla ja niihin reagointi '
+  'tietoisella tasolla näyttää satunnaiselta tai huonommalta. Sähkökenttiä ja '
+  'magneettikenttiä välillä 50 Hz - 30 MHz ei yleensä olla testattu '
+  '"sähköherkkyyden" yhteydessä ja esim. useamman päivän kestäviä altistuksia '
+  'ei ole tullut vastaan netissä missään.\n'
+  '\n'
+  '&gt;On periaatteessa mahdollista, että on olemassa jonkinlainen joukko '
+  'aidosti sähkömagneettisia kenttiä huomaavia ihmisiä, mutta käytännössä '
+  'sellaista ei ole yksilöity\n'
+  '\n'
+  'Yksittäistapauksia on testattu, mutta ainakaan lyhytkestoisessa '
+  'altistuksessa tulokset eivät ole olleet kovinkaan järkeviä. Tulokset '
+  'liikkuvat linjalla "huonompi tunnistus kuin satunnainen" ja "jonkin verran '
+  'tilastollisesti merkittävä". Voisin kuvitella, että asian tutkiminen on jo '
+  'koejärjestelyjen puolesta erittäin haastava, ja asiasta tekee '
+  'mielenkiintoisen se, miten suuri hajonta noissa kokeissa näyttää olevan, '
+  'mihin Röösli viittaa ja hänen viitteensä viittaavat. Epämääräinen ongelma, '
+  'epämääräiset tutkimukset ja epämääräiset tulokset, ei vaikuta kauhean '
+  'rohkaisevalta.\n'
+  '\n'
+  '&gt;Biofyysisiä eli kansanomaisemmin "todellisia" efektejä ei voi '
+  'nykytutkimuksen valosssa erottaa nocebosta eli ihmisten kuvittelemasta '
+  'negatiivisesta efektistä.\n'
+  '\n'
+  'Heikolta näyttää. Siinä vaiheessa, kun ihminen on syystä tai toisesta '
+  'sairas ja voi huonosti, niin psykologinen komponentti tulee joka '
+  'tapauksessa erittäin vahvaksi. Tässä vaiheessa on mahdotonta odottaa '
+  'moneltakaan potilaalta mitään objektiivista analyysiä tilastaan. Vaikka '
+  'oireet olisivat alunperin olleetkin sähkölaitteesta, niin siinä vaiheessa, '
+  'kun olo on hirveä ja on vakuuttunut asiasta laidasta, niin on aika '
+  'mahdotonta kuvitella, että potilas suhtautuisi mitenkään järkevästi oireen '
+  'kuviteltuun lähteeseen (vaikka se olisi jossain määrin todellistakin).\n'
+  '\n'
+  '&gt;Rööslin muihin tutkimusten kokooma siis kertoo seuraavat fakta, joita '
+  'voinee pitää tieteellisenä konsensuksena aiheesta\n'
+  '\n'
+  'Huuhaata tai ei, niin huomionarvoinen seikka lienee myös se, että näitä '
+  'tutkimuksia on hyvin vähän ja tutkijoitakin on harvassa. Jos rupeaa '
+  'seuraamaan Rööslin viitteitä, niin hyvin äkkiä ne rupeavat kiertämään '
+  'kehää. Sairasen on hiukan vaarallista puhua tieteellisestä konsensuksesta '
+  'aiheesta, jossa on näin vähän vakavasti julkaistua tutkimusta, ja muutamat '
+  'selvät tutkimusryhmät ovat vastuussa suurimmasta osasta materiaalia.',
+  ((0.0009835626697167754, 'label_identity_attack'),
+   (0.000784662610385567, 'label_insult'),
+   (0.001053661573678255, 'label_obscene'),
+   (0.0009289516601711512, 'label_severe_toxicity'),
+   (0.0008573653758503497, 'label_threat'),
+   (0.0015291135059669614, 'label_toxicity')),
+  ('clean', 0.0015291135059669614), ([], [])),
+ ('Tässä ohjelmassa on monta ylevää kohtaa, mutta monen toteutus on täysin '
+  'auki. Jotkut kohdat ovat ihan selviä, kuten oppivelvollisuuden muutokset '
+  'jne. mutta isommista kuvioista puhutaan aivan ylimalkaisesti ja näistä '
+  'monesta tulee vielä lihava riita. Puhutaan esim. kolmikannoista ja ties '
+  'mistä yhteistyöelimistä jne. mutta todellisuudessa nämä tulevat tappelemaan '
+  'verissä päin.\n'
+  '\n'
+  'Otin tähän joitakin kohtia markkinoiden kehittämiseen liittyvästä osasta: \n'
+  '\n'
+  '&gt;2.2 Puretaan kaavoitukseen liittyviä kaupan kilpailun esteitä eheää\n'
+  'yhdyskuntarakennetta vaarantamatta.(YM)\n'
+  '\n'
+  'Mitä tämäkin muka tarkoittaa? Monet kunnallispoliitikot ja kaupan edustajat '
+  'eivät tule hyväksymään K:n  ja S:n kartellin tukijalan nakertamista ilman '
+  'kovaa taistelua.\n'
+  '\n'
+  '&gt;2.3 Lisätään rakentamisen kilpailua purkamallamarkkinoille pääsyn '
+  'esteitä. Vähennetään rakentamisen sääntelyä rakentamisen laatua '
+  'heikentämättä meneillään olevan rakentamismääräysten uudistamisen '
+  'yhteydessä.(YM)\n'
+  '\n'
+  'Rakentamisen laatu on hupaisa vitsi. Ei niitä määräyksiä nytkään '
+  'noudateta.\n'
+  '\n'
+  '&gt;2.4 Terveen kilpailun ohjelman linjaustenmukaisesti valmistellaan '
+  'ehdotukset sääntelyn vähentämiseksi eri aloilla, kuten vähittäiskaupassa, '
+  'lääkehuoltojärjestelmässä ja energia‐alalla, joissa sääntely rajoittaa '
+  'kilpailua. (TEM, STM, LVM, YM)\n'
+  '\n'
+  'Eli Suomeksi ne aikova avata ties mitä suljettuja piirejä avoimelle '
+  'kilpailulle. Saas nähdä, miten esim. sähköverkkojen ja apteekkien kanssa '
+  'käy. \n'
+  '\n'
+  '&gt;2.6 Valmistellaan toimenpidekokonaisuus, jolla vahvistetaan teollisen '
+  'tuotannon perustaa. Tämän tavoitteen tukemiseksi hallitus on sitoutunut '
+  'päätöksissään loppuvaalikauden aikana välttämään teollisuudelle aiheutuvien '
+  'kustannusten tai sääntelytaakan lisäämistä. (TEM)\n'
+  '\n'
+  'Eli pyritään olemaan *lisäämättä* teollisuuden sääntelytaakkaa? Entä se '
+  'nykyisen sääntelyn ja byrokratian purkaminen? \n'
+  '\n'
+  '    \n'
+  '\n'
+  'Yksi kaikkein masentavimmista kohdista on TE-keskus - KELA -kombinaatin '
+  'pomputusvallan lisääminen ja höpötykset vajaakuntoisten käyttämisestä '
+  'julkisissa töissä. En tajua, miten tämä tulee lisäämään kestävää '
+  'työllistymistä ja "ansiokehitystä". Monelle pientuloiselle on nykyään '
+  '"positiivinen ansiokehitys" sitä, että duuni säilyy alla ja palkka ei '
+  'laske. Aivan absurdia puhua ansiokehityksestä jonain kattavana '
+  'periaatteena. Isolla osalla suomalaisista ei ole mitään uraa, missä voisi '
+  'tapahtua tätä ansiokehitystä.\n'
+  '\n'
+  'Ja totta kai sokerina pohjalla: Kielellisten oikeuksien toteutuminen '
+  'varmistetaan. Tämä piti siis oikein erikseen mainita, vaikka se on selvää '
+  'nykyisen perustuslain ja erilaisten kieliasioita koskevien lakien puolesta. '
+  'Taisi olla RKP:n ehto osallistua tähän työhön.',
+  ((0.0009204197558574378, 'label_identity_attack'),
+   (0.0007468213443644345, 'label_insult'),
+   (0.001016712747514248, 'label_obscene'),
+   (0.0008601384470239282, 'label_severe_toxicity'),
+   (0.0008037182269617915, 'label_threat'),
+   (0.0015291135059669614, 'label_toxicity')),
+  ('clean', 0.0015291135059669614), ([], [])),
+ ('&gt; Oma näkökulmani tähän kaikkeen muuten on että kun käyn '
+  'yhteiskuntapolitiikan (fokus: työ ja työvoimapolitiikka) ja '
+  'taloussosiologian aineopintoja lävitse niin mm. Keynes ja Schumpeter saivat '
+  'ihan hemmetisti sivuja osakseen. Jälkimmäistä opettaja taisi vielä kehua '
+  'yhdeksi kolmesta suurimmasta taloustieteilijästä menneellä vuosisadalla. '
+  'Sinänsä jännä että hän on tuntematon -- luulisi että hän olisi sopinut '
+  'hyvin komplementiksi uusklassisen kylkeen jos "kokoomus-salaliittoni" olisi '
+  'pitänyt.\n'
+  '\n'
+  'Schumpeter nimenä ei ole minulle mitenkään uutta, vaan Schumpeterin '
+  'ajatusten niputtaminen talousteoriaksi (uus)keynesiläisen ja uusklassisen '
+  'taloustieteen rinnalle on minulle uutta. Schumpeterin niputtaminen yhdeksi '
+  'kolmesta suurimmasta viime vuosisadan taloustieteilijästä on kyllä myös '
+  'mielenkiintoista, koska tuolle listalle on melkein pakko pistää Keynes ja '
+  'Friedman, ja kolmannelle paikallehan löytyy suuri määrä kilpailijoita. Ei '
+  'siis siinä mitään, eiköhän kyseinen herra tärkeämmästä päästä ole. \n'
+  '\n'
+  'Sinänsä voi olla ihan perusteltuakin keskittyä niihin uusklassisiin '
+  'malleihin - ja vieläpä ihan erittäin yksinkertaisiin sellaisiin - kun '
+  'makrotaloustieteestä puhutaan käytännön mielessä. Asiaa on kuitenkin '
+  'todella paljon käytävänä jo siinä ja toisaalta jos kurssit ovat yhtään '
+  'matemaattisia, antavat ne hyvin osaamista myöhemmin sovellettavaksi myös '
+  'toisenlaiseen teoriaan. Toisaalta vähemmän matemaattisilla kursseilla '
+  'varmaan olisi hyvä antaa katsaus sinänsä relevanttiin toiseenkin teoriaan. '
+  'Aika paljon uuskeynesiläisyyttä ehtisi käymään läpi kuitenkin jo parissa '
+  'luennossa. Mene ja tiedä, itseäni kiinnostaa enemmän muutenkin mikro kuin '
+  'makro, joten siihen on tullut tutustuttua paremmin.\n'
+  '\n'
+  'Sinänsä muuten luulisi mikrotaloustieteenkin olevan ihan yhteiskuntatieteen '
+  'tiedekunnalle merkitystä. Kuulema Turussa sosiologia on kuin '
+  'mikrotaloustiedettä, mutta siinä missä taloustieteessä regression '
+  'vasemmalla puolella on tulot, sosiologiassa sieltä löytyy tulojen ohella '
+  'jotain muutakin elämänlaatua kuvaavaa muuttujaa, joille voisi löytää '
+  'taloustieteellisiäkin perusteluita. Eikös sosiologiassa kuitenkin ihmisten '
+  'tai ihmisryhmien käyttäytymistä tutkita? Sitähän se mikrotaloustiedekkin '
+  'pitkälti on. \n'
+  '\n'
+  '&gt; Juu, on siellä ainakin rahoitus ja johtaminen :D\n'
+  '\n'
+  'Jyväskylässä myös markkinointi ja yrittäjyys!',
+  ((0.0009492076351307333, 'label_identity_attack'),
+   (0.0007634545327164233, 'label_insult'),
+   (0.001025668578222394, 'label_obscene'),
+   (0.0008949003531597555, 'label_severe_toxicity'),
+   (0.0008357995538972318, 'label_threat'),
+   (0.001528318040072918, 'label_toxicity')),
+  ('clean', 0.001528318040072918), ([], [])),
+ ('Avioliitolla on useita funktioita eikä ilmoitusluontoisessa avioliitossa '
+  'tarvitse mennä muinaiseen Kreikkaan. Suurimman osan historiastaan '
+  'avioliitto on ollut vain kahden ihmisen keskinäinen vala [EDIT: josta on '
+  'sitten ilmoitettu yhteisölle (ja kirkolle) joka on ottanut tämän '
+  'annettuna]. Muistaakseni menivät muodista melko myöhään: [Yhdysvalloissakin '
+  '1800-luvun puolivälissä](http://en.wikipedia.org/wiki/Common-law_marriage). '
+  'Toisaalta Suomessakin 1900-luvun alun säätyläisnaisten elinikäiset '
+  'kumppanuudet rinnastettiin usein avioliittoon (jossa toinen osapuoli otti '
+  '"julkisen" ja toinen "yksityisen" osan). \n'
+  ' \n'
+  'Mutta niin. Avioliitto ei ole vain pariskunnan keskinäinen sopimus vaan '
+  'siinä on mukana aina yhteisö: avioliitto muuttaa yhteisön näkökulman '
+  'pariskuntaan (esimerkiksi miten suhtaudutaan naisen raskauteen). Toisaalta '
+  'Suomessa oli (ja Saksassa on vieläkin) avioparin yhteisverotus. \n'
+  '\n'
+  'Mutta mikä sinua varmaan eniten kiinnostaa on nykyinen laillinen asema: '
+  'avioliitto ja avoliittohan eivät ole sama asia. Kuten tuosta Tahdon '
+  '2013-kampanjasta tiedämme niin liiton tyyppi vaikuttaa laillisiin '
+  'oikeuksiin: onko puolisolla päätäntävaltaa toisen asioihin tai '
+  'edustusoikeutta lapsiin? Miten perimys tapahtuu? Ruotsista saamme helpon '
+  'esimerkin: kun Millenium-trilogian kirjoittaja kuoli niin tämän kanssa koko '
+  'aikuiselämän jakanut (ja kirjoittamisessa auttanut) avopuoliso jäi vaille '
+  'mitään ja miljoonien eurojen arvoiset tekijänoikeudet siirtyivät '
+  'kirjailijan isälle ja veljelle joiden kanssa kuollut ei ollut puhunut '
+  'vuosikymmeneen. Naiselle jäi vain tämän oman koneen kovalevyllä (!) ollut '
+  'neljännen kirjan luonnos josta suku sitten haastoi hänet oikeuteen.  \n'
+  '\n'
+  'Avioliiton merkitys on tietenkin vähentynyt kun Kela ei ole tehnyt enää '
+  'niin eroa saman osoitteen ja avioliiton välillä mutta käsittääkseni '
+  'vaikuttaa edelleen esimerkiksi sellaisiin asioihin kuin kuinka kaukaa '
+  'työttömän on velvoitettu ottamaan työpaikka vastaan.\n'
+  '\n'
+  'TLDR: Avioliiton voi nähdä "bundle-pakettina" jossa yhdellä '
+  'allekirjoituksella pariskunta antaa toisilleen suuren määrän oikeuksia (ja '
+  'velvollisuuksia). Samalla se on ilmoitus yhteiskunnalle että pariskuntaa '
+  'pitää kohdella kokonaisuutena eikä samassa elintilassa asuvina yksilöinä. '
+  'Avoliitto nähdään edelleen jotenkin toistaiseksi voimassaolevana '
+  'järjestelynä kun avioliitto on enemminkin pysyvä vetäytymisklasuurilla. ',
+  ((0.0008967667235992849, 'label_identity_attack'),
+   (0.000733097258489579, 'label_insult'),
+   (0.000999198411591351, 'label_obscene'),
+   (0.0008409462170675397, 'label_severe_toxicity'),
+   (0.0007851543487049639, 'label_threat'),
+   (0.0015276821795850992, 'label_toxicity')),
+  ('clean', 0.0015276821795850992), ([], [])),
+ ('Tarve hyville opettajille ei varmasti kokonaan katoa ennenkuin oikea '
+  'tekoäly saadaan aikaiseksi, mutta erilaiset verkkokurssit ja opettavaiset '
+  'pelit tulevat vähentämään tarvetta opettajille melko paljon. Maailmankuvan '
+  'ja käsitysten luomiseen kuitenkin aina tarvitaan myös puhdasta '
+  'tiedonsiirtoa. Tämä voidaan tehdä ilman opettaijakin. Opetusmateriaalin '
+  'muokkaaminen myös helpottuu kun saadaan raakaa helposti analysoitavaa dataa '
+  'koneen avulla tehdystä oppimisesta. Opettajat voisivat sitten '
+  'komplementoida tätä esimerkiksi noilla Sokrateen opetusmetodin kaltaisilla '
+  'tavoilla, joihin koneet eivät vielä pysty. Tosin jotain tuon kaltaista '
+  'voisi olla pelien avulla mahdollista tehdäkin. Esitetään pelaajille '
+  'kysymyksiä ja heitetään johonkin virtuaalimaailmaan josta saavat etsiä '
+  'ratkaisut.\n'
+  '\n'
+  'Lääkärien työstä en paljonkaan tiedä, mutta uskoisin että hyvin suuri osa '
+  'on vain kysymysten esittämistä ja vastausten perusteella hoitopäätöksen '
+  'tekemistä. Kyllähän siinä vielä pitkän aikaa joutuu olemaan myös ihminen '
+  'mukana tutkimassa fyysisesti, mutta hänen ei välttämättä tarvitse enää olla '
+  '6 vuotta kouluttautunut lääkäri, vaan sen voi tehdä esim. sairaanhoitaja. '
+  'Tutkimuksen automatisoinnista olen samaa mieltä, sitä on hankala '
+  'automatisoida (joku laboratoriotyö poislukien) ennekuin meillä on oikea '
+  'tekoäly. Kirurgiaan ei kuitenkaan tarvita kunnollista tekoälyä. Riittää '
+  'että koneella on tarpeeksi tasainen käsi (helpohko), hyvä konenäkö '
+  '(kehittyy kokoajan hurjaa vauhtia) sekä kyky tehdä tuohon konenäköön '
+  'perustuen päätöksiä, joka on periaatteessa sama asia kuin diagnosointi.\n'
+  '\n'
+  'Tilanne on kuitenkin se, että suurin osa työpaikoista on jo lähiaikoina '
+  'automatisoitavissa. Kysymys onkin että miten hoidamme tuon tilanteen. '
+  'Vaihtoehdot ovat:\n'
+  '\n'
+  '1. Keksimme ihmisille uusia tehtäviä niin, että työllisyys pysyy '
+  'jatkossakin järkevällä tasolla (mielestäni epätodennäköistä)\n'
+  '\n'
+  '2. Vain pieni osa väestöstä tekee kaiken työn ja ottaa samalla myös '
+  'suurimman osan automatisaation hyödyistä. \n'
+  '\n'
+  '3. Jaamme vähentyneen työn kaikkien kesken jolloin hyödyt ja vapaa-aika '
+  'jakautuvat tasaisesti.\n'
+  '\n'
+  'Toivoisin tietenkin vaihtoehtoa 3, mutta sitä ei ole tähän mennessä '
+  'kauheasti tapahtunut vaikka olisi ollut mahdollisuus. Todennäköisesti '
+  'työttömyys lisääntyy ja samalla yritetään keksiä uutta "turhaa" tekemistä '
+  'ihmisille. ',
+  ((0.0009252015152014792, 'label_identity_attack'),
+   (0.0007509019342251122, 'label_insult'),
+   (0.0010125470580533147, 'label_obscene'),
+   (0.0008692063274793327, 'label_severe_toxicity'),
+   (0.0008163634920492768, 'label_threat'),
+   (0.00152765738312155, 'label_toxicity')),
+  ('clean', 0.00152765738312155), ([], [])),
+ ("Mikä on 'taloudellinen' sijoitus ja mikä ei, sen kun tietäis. Edes "
+  'luonnontieteellisen perustutkimuksen rahoittajille tulee hyvin harvoin '
+  '*suoraa* sijoitushyötyä Nobeleista. Suomessa on harrastettu korkeakouluissa '
+  'rahoitusta tällä strategialla niin kauan kuin muistan, ja tulokset eivät '
+  'ole erityisen kehuttavia.\n'
+  '\n'
+  'Toisaalta kun puhutaan peruskoulutuksesta, on selkeästi olemassa sivistystä '
+  'joka jokaisella kansalaisella tulisi olla jotta yhteiskunta olisi '
+  'siedettävämpi paikka elää, kuten jonkinlainen paikkansa pitävä ymmärrys '
+  'maailman luonnontieteellistä historiasta ja hieman yksityiskohtaisemmin '
+  'ihmisen historiasta, käsitys kaikenlaisten tieteiden perusteista ja mistä '
+  'etsiä jos tulee tarve / mielenkiinto tietää enemmän, yleisiä '
+  'ajattelutaitoja ja tiedonkäsitystä. Moraalifilosofian, onnellisuuden, mitä '
+  'kaikkea ihmiskunta on saanut olemassaolonsa aikana aikaan ja muun '
+  'syvällisen pohdiskelu ottaen huomioon mitä ihmiskunnan kirjoitetun '
+  'historian aikana asioiden tiimoilta on saatu aikaiseksi olisi hyödyksi '
+  'useimmille ihmisille arkipäivän elämän onnellisuuden kannalta.\n'
+  '\n'
+  'Edellä mainitut tiedot ja taidot eivät *välttämättä* hyödytä kovinkaan '
+  'paljon yksittäistä ihmistä hänen taloudellisen tulevaisuutensa kannalta, '
+  'mutta puolestaan ovat hyvin olennaisia monella muulla tavalla, kuten sen '
+  'kannalta miten itse kukin vaikuttaa siihen millaisessa yhteiskunnassa '
+  'elämme (millaista politiikkaa teemme) tai millainen on käsityksemme '
+  'luonnosta ja millä eri tavoin osaamme valjastaa sen taloudelliseen '
+  'hyötykäyttöön (tai edes yrittää pitää sen asuttavana edellisten '
+  'valjastusyritysten jäljiltä). Ylipäätään ihmisaivot ovat paras tuntemamme '
+  'ajatteluväline, ja on sääli jos kaikki ihmiset hukkaavat sen täysin '
+  'merkityksettömään nysväilyyn.\n'
+  '\n'
+  '(Lisätään vielä etten väitä että nykymuotoinen suomalainen '
+  'koulutusjärjestelmä kaikkeen ylläkuvattuun kykenisi. Mutta vielä vähemmän '
+  'uskon että siihen kykenee. En usko että teollista vallankumousta ja siihen '
+  'liittyvää elintasoharppausta olisi tapahtunut ellei sukupolvi toisensa '
+  "jälkeen yläluokkaisia 'harrastelijoita' olisi käyttänyt eläämänsä pohtimaan "
+  'mitä oikeastaan on tietää asioita ja hiekkaan piirrettyjä ympyröitä, tai '
+  'myöhempiä variaatioita samalta alalata. En tiedä kuinka Galilein '
+  'luonnonfilosofiset pohdiskelut ja kokeilut hyödyttivät ... kuka sitten '
+  'rahoittikaan Padovan yliopistoa 1500-luvun lopulla, mutta ihmiskunnan saama '
+  'hyötyä on vaikea mitata rahassa. Nykyään ammattimainen harrastelu on käynyt '
+  'todella kalliiksi, mutta taivas varjele mitä sieltä *vielä* tulee, etenkin '
+  'jos kaikille kykeneville voidaan tarjota siihen mahdollisuus?)',
+  ((0.000869797426275909, 'label_identity_attack'),
+   (0.0007166833383962512, 'label_insult'),
+   (0.0009825661545619369, 'label_obscene'),
+   (0.0008148425258696079, 'label_severe_toxicity'),
+   (0.0007689829799346626, 'label_threat'),
+   (0.0015272734453901649, 'label_toxicity')),
+  ('clean', 0.0015272734453901649), ([], []))]
+END: ma 15.8.2022 12.50.22 +0300

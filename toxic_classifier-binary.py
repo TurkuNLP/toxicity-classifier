@@ -255,12 +255,13 @@ def get_predictions(dataset, trainer, pprint):
      # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
 
 
-    # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
-    threshold = 0.5
-    # set p[0] or p[1] depending on which we wanna concentrate on
-    preds = [1 if p[0] < threshold else np.argmax(p) for p in preds] 
-    # don't know if this makes much of a difference anyway but hey it's there for testing
-    # TODO could implement in regular evaluation as well to see whether it improves the results or not
+    # # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
+    # threshold = 0.5
+    # # set p[0] or p[1] depending on which we wanna concentrate on
+    # preds = [1 if p[0] < threshold else np.argmax(p) for p in predictions] 
+    # # don't know if this makes much of a difference anyway but hey it's there for testing
+    # # TODO could implement in regular evaluation as well to see whether it improves the results or not
+
 
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
