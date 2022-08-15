@@ -40,6 +40,11 @@ List for necessary packages to be installed (could also check import list):
 Information about the arguments to use with script can be found by looking at the argparse arguments with 'python3 toxic_classifier.py -h'.
 """
 
+# NOTES: 
+# BCEloss instead of mseloss for true-binary
+# => makes sense that all predictions are then clean, like with other classifiers which use crossentropyloss
+# => regression holds even with very little training data and works basically equally well which was a surprise
+
 
 parser = argparse.ArgumentParser(
         description="A script for classifying toxic data in a binary manner",
@@ -114,8 +119,7 @@ def json_to_dataset(data):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
-    df['labels'] = torch.tensor(df['labels'], dtype=torch.float) # this works but somehow there is still an error
-    #print(df.head())
+    df['labels'] = torch.tensor(df['labels'], dtype=torch.float) 
 
     dataset = datasets.Dataset.from_pandas(df)
     return dataset
@@ -160,8 +164,7 @@ def compute_metrics(pred):
 
     # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
 
-    #threshold = 0.6
-    # threshold optimization here
+    #threshold = 0.6 or threshold optimization 
     threshold = optimize_threshold(pred.predictions, labels)
     y_pred = [1 if prob >= threshold else 0 for prob in probs] 
     preds = y_pred
@@ -226,7 +229,7 @@ def predictions_to_csv(trues, preds, dataset):
 
     # Converting lists to df
     comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_labels, 'pred_labels':pred_labels})
-    comparisons_df.to_csv('binary_comparisons.csv')
+    comparisons_df.to_csv('true-binary_comparisons.csv')
     #print(comparisons_df.head())
 
 
@@ -325,6 +328,7 @@ def main():
         
     dataset = dataset.map(tokenize)
 
+    #  TODO how to set id2label and label2id?? id2label={1: "toxic"} (pipeline would require this?)
     model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1, cache_dir="../new_cache_dir/")
 
     # Set training arguments 
@@ -412,7 +416,7 @@ def main():
     plt.savefig("binary_precision-recall-curve") # set file name where to save the plots
 
     get_predictions(dataset, trainer, pprint)
-    #predictions_to_csv(trues, preds, dataset)
+    predictions_to_csv(trues, preds, dataset)
 
 if __name__ == "__main__":
     main()

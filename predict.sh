@@ -18,6 +18,6 @@ echo "START: $(date)"
 
 #srun python3 toxicity_predictions.py --model models/multi-toxic --type multi --threshold 0.765 --data data/reddit-Suomi.jsonl
 
-srun python3 toxicity_predictions.py --model models/binary-toxic --type binary --threshold 0.6 --data data/reddit-Suomi.jsonl
+srun python3 toxicity_predictions.py --model models/binary-toxic --type binary --threshold 0.7 --data data/reddit-Suomi.jsonl
 
 echo "END: $(date)"

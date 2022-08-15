@@ -1,0 +1,9 @@
+START: ma 15.8.2022 16.22.14 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/binary-toxic', threshold=0.7, type='binary')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200000

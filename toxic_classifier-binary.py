@@ -243,25 +243,20 @@ def get_predictions(dataset, trainer, pprint):
     tensor = torch.from_numpy(predictions)
     probabilities = F.softmax(tensor, dim=1) # turn to probabilities using softmax
 
-    # OOOR pipeline with 'return_all_scores' as parameter would do the same thing as above
-    # TODO set label2id and id2label when instantiating the model
-    # label2id={"clean": 0, "toxic": 1},
-    # id2label={0: "clean", 1: "toxic"}
-    # https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextClassificationPipeline 
-
     print(probabilities) # this is now a tensor with two probabilities per example (two labels)
 
+    #THIS
     preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
      # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
 
-
+    # OR THIS
     # # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
     # threshold = 0.5
     # # set p[0] or p[1] depending on which we wanna concentrate on
     # preds = [1 if p[0] < threshold else np.argmax(p) for p in predictions] 
-    # # don't know if this makes much of a difference anyway but hey it's there for testing
-    # # TODO could implement in regular evaluation as well to see whether it improves the results or not
 
+    # # TODO could implement in regular evaluation as well with threshold optimization? to see whether it improves the results or not
+ 
 
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
@@ -336,7 +331,7 @@ def main():
         
     dataset = dataset.map(tokenize)
 
-    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2, cache_dir="../new_cache_dir/")
+    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2, cache_dir="../new_cache_dir/", label2id={"clean": 0, "toxic": 1}, id2label={0: "clean", 1: "toxic"})
 
     # Set training arguments 
     trainer_args = transformers.TrainingArguments(

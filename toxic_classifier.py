@@ -520,9 +520,13 @@ def main():
     # number of labels
     if args.clean_as_label == True: 
         num_labels=len(label_names)
+        id2label = dict(zip(range(7), label_names))
+        label2id = dict(zip(label_names, range(7)))
     else:
         num_labels=len(label_names) - 1
-    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels, problem_type="multi_label_classification", cache_dir="../new_cache_dir/")
+        id2label = dict(zip(range(6), label_names))
+        label2id = dict(zip(label_names, range(6)))
+    model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels, problem_type="multi_label_classification", cache_dir="../new_cache_dir/", id2label=id2label, label2id=label2id)
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(

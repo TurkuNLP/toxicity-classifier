@@ -7,6 +7,9 @@ import json
 import datasets
 import pandas as pd
 
+""" This script is meant for looking at predictions for raw text and changing the for what classifies as clean and what toxic manually by looking at the neutral texts.
+This script can be used on three different saved models, multi-label with 7 labels, multiclass with two labels and binary. """
+
 # this should prevent any caching problems I might have because caching does not happen anymore
 datasets.disable_caching()
 
@@ -20,6 +23,7 @@ label_names = [
     'label_clean'
 ]
 
+# parse arguments
 parser = argparse.ArgumentParser(
             description="A script for predicting toxic texts based on a toxicity classifier",
             epilog="Made by Anni Eskelinen"
@@ -37,25 +41,28 @@ print(args)
 
 pprint = PrettyPrinter(compact=True).pprint
 
-
+# instantiate model, this is pretty simple
 model=transformers.AutoModelForSequenceClassification.from_pretrained(args.model)
 
 trainer = transformers.Trainer(
     model=model
 ) 
 
+# read the data in
 data = args.data
 
-# here set list of texts to use for new predictions
 with open(data, 'r') as json_file:
         json_list = list(json_file)
 lines = [json.loads(jline) for jline in json_list]
-lines = lines[:200000] # CHANGE HOW MANY TEXTS WANT TO USE
+
+lines = lines[:200000] # CHANGE HOW MANY TEXTS WANT TO USE (could be set as an argument)
+
 # use pandas to look at each column
 df=pd.DataFrame(lines)
 df = df[['body']]
 df.rename(columns = {'body':'text'}, inplace = True) # have to change the column name so this works
 pprint(df[:5])
+
 # keep every row except ones with deleted text
 #df = df[df["body"].str.contains("[deleted]") == False]
 
@@ -69,19 +76,15 @@ tokenizer = transformers.AutoTokenizer.from_pretrained("TurkuNLP/bert-base-finni
 def tokenize(example):
     return tokenizer(
         example["text"],
-        padding='max_length', # this got it to work...
+        padding='max_length', # this got it to work, data_collator could have helped as well?
         max_length=512,
         truncation=True,
     )
 
 dataset = datasets.Dataset.from_pandas(df)
 
-#pprint(dataset[:10])
-
 #map all the examples
 dataset = dataset.map(tokenize)
-
-#pprint(dataset[:5])
 
 texts = dataset["text"]
 
@@ -90,6 +93,9 @@ threshold = args.threshold
 # see how the labels are predicted
 test_pred = trainer.predict(dataset)
 predictions = test_pred.predictions
+
+# OOOR pipeline with 'return_all_scores' as parameter would do the same thing as above
+# https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextClassificationPipeline 
 
 # what to do with the predictions depending on the type
 if args.type == "binary":
@@ -108,12 +114,14 @@ if args.type == "binary":
     # OR THIS
     # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
     # set p[0] or p[1] depending on which we wanna concentrate on
-    preds = [0 if p[1] < threshold else np.argmax(p) for p in predictions]  # if toxic below 0.5 count as clean
-    # this technically messes up the probabilities when looking at the predictions but whatever lol
-    # then I will have to look at the lower clean stuff as well because it will show there
-    # TODO add some marking that a threshold was used?
+    preds = [0 if p[1] < threshold else np.argmax(p) for p in predictions]  # if toxic below 0.5 count as clean (set index to 0)
 
+    # get all labels and their probabilities
+    all_label_probs = []
+    for prob in probs:
+        all_label_probs.append(tuple(zip(prob, ["clean", "toxic"])))
 
+    # get predicted labels
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
     for val in preds: # index
@@ -125,8 +133,8 @@ if args.type == "binary":
     for i in range(len(probabilities)):
         probs.append(probabilities[i][preds[i]]) # preds[i] gives the correct index for the current probability
 
-    # lastly use zip to get tuples with (text, label, probability)
-    prediction_tuple = tuple(zip(texts, labels, probs))
+    # lastly use zip to get tuple
+    prediction_tuple = tuple(zip(texts, labels, all_label_probs, probs))
 
     # make into list of tuples
     toxic = [item for item in prediction_tuple
@@ -135,20 +143,25 @@ if args.type == "binary":
           if item[1] == "clean"]
 
     # now sort by probability, descending
-    toxic.sort(key = lambda x: float(x[2]), reverse=True)
-    clean.sort(key = lambda x: float(x[2]), reverse=True)
-    clean2 = sorted(clean, key = lambda x: float(x[2])) # ascending
+    toxic.sort(key = lambda x: float(x[3]), reverse=True)
+    clean.sort(key = lambda x: float(x[3]), reverse=True)
+    clean2 = sorted(clean, key = lambda x: float(x[3])) # ascending
 
     # beginning most toxic, middle "neutral", end most clean
     # all = toxic + clean2
 
+    print("TOXIC")
     pprint(toxic[:10])
+    print("NEUTRAL")
     pprint(toxic[-20:]) # these two middle are the closest to "neutral" where the threshold is
-    pprint(clean[-20:])
+    pprint(clean2[:20]) # clean[-20:]
+    print("CLEAN")
     pprint(clean[:10])
 
 
 elif args.type == "multi":
+    # if I want to setup pipeline I have to set function to apply to sigmoid manually (not fun for this, works out of the box for multiclass)
+
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(predictions))
     preds = np.zeros(probs.shape)
@@ -178,8 +191,8 @@ elif args.type == "multi":
     for prob in probs:
         prob_label_tuples.append(tuple(zip(prob, label_names[:-1])))
 
-
-    pred_label_idxs = [] # the predicted indexes
+    # the predicted indexes
+    pred_label_idxs = [] 
     for vals in preds:
         pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
 
@@ -191,8 +204,8 @@ elif args.type == "multi":
         else:
             probs_picked.append(pred_label_idxs[i])
 
-
-    labels = [] # the predicted labels
+    # the predicted labels
+    labels = [] 
     idx2label = dict(zip(range(6), label_names[:-1]))   # could add clean
     for vals in pred_label_idxs:
         if vals:
@@ -201,7 +214,11 @@ elif args.type == "multi":
             labels.append(vals)
 
     # the predicted labels and their probabilities
-    predicted = list(zip(labels, probs_picked)) # this doesn't zip because list of lists? tensor related? TODO fix or don't
+    predicted = []
+    for i in range(len(labels)): # could put anything for len because the examples are always there as length
+        # had two nested lists so have to do this in for loop to get one list of tuples
+        predicted.append(tuple(zip(labels[i], probs_picked[i])))
+
     print(predicted[:20])
 
     # get the highest probability for sorting from all of the probabilities
@@ -248,13 +265,6 @@ elif args.type == "multi":
     print("CLEAN")
     pprint(clean[-10:])
 
-    # print("TOXIC")
-    # pprint(toxic)
-    # print("CLEAN")
-    # pprint(clean)
-
-    # pprint(all[:10])
-    # pprint(all[-10:])
 
 elif args.type == "true-binary":
     sigmoid = torch.nn.Sigmoid()
@@ -262,9 +272,11 @@ elif args.type == "true-binary":
     print(predictions[:10])
     print(probabilities[:10])
 
+    # get predictions with the threshold
     y_pred = [1 if prob >= threshold else 0 for prob in probabilities] 
     preds = y_pred
 
+    # get predicted labels
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
     for val in preds: # index
@@ -286,9 +298,11 @@ elif args.type == "true-binary":
     clean2 = sorted(clean, key = lambda x: float(x[2]), reverse=True)
 
     # beginning most toxic, middle "neutral", end most clean
-    all = toxic + clean2
+    #all = toxic + clean2
 
+    print("TOXIC")
     pprint(toxic[:10]) # most toxic
+    print("NEUTRAL")
     pprint(toxic[-10:]) # least toxic # this and the next is where the threshold can be seen and changed
     pprint(clean2[:10]) # "least clean"
 
