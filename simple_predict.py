@@ -7,7 +7,7 @@ import json
 import datasets
 import pandas as pd
 
-""" Script for predicting whether a text is toxic or clean. Only prints the text and label. """
+""" Script for predicting whether a text is toxic or clean. Only prints the text and label and saves toxic, clean or all to either .csv or .tsv files. """
 
 
 # this should prevent any caching problems I might have because caching does not happen anymore
@@ -98,9 +98,6 @@ if args.type == "binary":
     tensor = torch.from_numpy(predictions)
     probabilities = F.softmax(tensor, dim=1) # turn to probabilities using softmax
     probabilities = probabilities.tolist()
-    print(probabilities[:10]) # this is now a tensor with two probabilities per example (two labels)
-    print(predictions[:10])
-
 
     # THIS
     #preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
@@ -119,15 +116,9 @@ if args.type == "binary":
         labels.append(idx2label[val])
 
     # lastly use zip to get tuple
-    prediction_tuple = tuple(zip(texts, labels))
+    all = tuple(zip(texts, labels))
 
-    # make into list of tuples
-    toxic = [item for item in prediction_tuple
-          if item[1] == "toxic"]
-    clean = [item for item in prediction_tuple
-          if item[1] == "clean"]
-
-    pprint(prediction_tuple[:100])
+    pprint(all[:100])
 
 
 elif args.type == "multi":
@@ -152,20 +143,6 @@ elif args.type == "multi":
         new_probs.append(probs[i][:-1])
     probs = new_probs
 
-    # the predicted indexes
-    pred_label_idxs = [] 
-    for vals in preds:
-        pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
-
-    # the predicted labels
-    labels = [] 
-    idx2label = dict(zip(range(6), label_names[:-1]))   # could add clean
-    for vals in pred_label_idxs:
-        if vals:
-            labels.append([idx2label[val] for val in vals])
-        else:
-            labels.append(vals)
-
     # set label whether the text is toxic or clean
     pred_label = []
     for i in range(len(preds)):
@@ -182,14 +159,10 @@ elif args.type == "multi":
 elif args.type == "true-binary":
     sigmoid = torch.nn.Sigmoid()
     probabilities = sigmoid(torch.Tensor(predictions))
-    print(predictions[:10])
-    print(probabilities[:10])
 
     # get predictions with the threshold
     y_pred = [1 if prob >= threshold else 0 for prob in probabilities] 
     preds = y_pred
-
-    probabilities = probabilities.tolist() 
 
     # get predicted labels
     labels = []
@@ -197,6 +170,40 @@ elif args.type == "true-binary":
     for val in preds: # index
         labels.append(idx2label[val])
 
-    prediction_tuple = tuple(zip(texts, labels))
+    all = tuple(zip(texts, labels))
 
-    pprint(prediction_tuple)
+    pprint(all[:100])
+
+
+# make tuple to dataframe and then save to a file
+
+# if want to save purely toxic or clean texts
+toxic = [item for item in all
+        if item[1] == "toxic"]
+clean = [item for item in all
+        if item[1] == "clean"]
+
+# only text to file
+def only_toxic_clean(data):
+    df = pd.DataFrame(list(data), columns=['text', 'label'])
+    df = df['text']
+    return df
+
+# text and label to file
+def text_and_label(data):
+    df = pd.DataFrame(list(data), columns=['text', 'label'])
+    return df
+
+#dataframe = text_and_label(all) 
+dataframe = only_toxic_clean(toxic) # clean, could put both but to different files
+
+
+# line_terminator str, optional THIS MAY NEED TO BE CHANGED?
+#The newline character or character sequence to use in the output file. 
+#Defaults to os.linesep, which depends on the OS in which this method is called (’\n’ for linux, ‘\r\n’ for Windows, i.e.).
+
+# to csv
+#dataframe.to_csv('logs/predictions/predicted.csv')
+
+# or to tsv
+dataframe.to_csv('logs/predictions/predicted.tsv', sep="\t", index=False)

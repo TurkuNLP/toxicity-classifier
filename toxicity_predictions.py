@@ -148,7 +148,7 @@ if args.type == "binary":
     # now sort by probability, descending
     toxic.sort(key = lambda x: float(x[0][1]), reverse=True)
     clean.sort(key = lambda x: float(x[0][1]), reverse=True)
-    clean2 = sorted(clean, key = lambda x: float(x[3])) # ascending
+    clean2 = sorted(clean, key = lambda x: float(x[0][1])) # ascending
 
     # beginning most toxic, middle "neutral", end most clean
     # all = toxic + clean2
@@ -175,7 +175,7 @@ elif args.type == "multi":
     probs = probs.tolist()
 
     # take the clean label away
-    # TODO add something to distinct this from 6 labels vs. 7 which I am currently using
+    # TODO add something to distinct this from 6 labels vs. 7 which I am currently using?
     new_pred = []
     for i in range(len(preds)):
         new_pred.append(preds[i][:-1])

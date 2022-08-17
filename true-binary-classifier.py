@@ -159,14 +159,12 @@ def compute_metrics(pred):
     labels = pred.label_ids
     sigmoid = torch.nn.Sigmoid()
     probs = sigmoid(torch.Tensor(pred.predictions))
-    print(pred.predictions[:5])
-    print(probs[:5])
 
     # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
 
     #threshold = 0.6 #or threshold optimization 
     threshold = optimize_threshold(pred.predictions, labels)
-    print(threshold)
+    print("best threshold",threshold)
     y_pred = [1 if prob >= threshold else 0 for prob in probs] 
     preds = y_pred
 
@@ -224,7 +222,6 @@ def predictions_to_csv(trues, preds, dataset):
     for one in trues:
         new_true.append(one)
     trues = new_true
-    print(trues)
 
     preds = preds.astype(int)
     preds = preds.tolist()
@@ -233,7 +230,6 @@ def predictions_to_csv(trues, preds, dataset):
         for two in one:
             new_pred.append(two)
     preds = new_pred
-    print(preds)
 
     # Gathering vectors of label names using idx2label (modified single-label version)
     true_labels, pred_labels = [], []
@@ -260,8 +256,6 @@ def get_predictions(dataset, trainer, pprint):
 
     sigmoid = torch.nn.Sigmoid()
     probabilities = sigmoid(torch.Tensor(predictions))
-    print(predictions[:5])
-    print(probabilities[:5])
 
     # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
     threshold = 0.6
@@ -409,7 +403,6 @@ def main():
     # see how the labels are predicted
     test_pred = trainer.predict(dataset['test'])
     trues = test_pred.label_ids
-    print(trues)
     predictions = test_pred.predictions
 
     sigmoid = torch.nn.Sigmoid()

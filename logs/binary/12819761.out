@@ -27,3 +27,30 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1378, 'learning_rate': 6e-06, 'epoch': 1.0}
+[[-8.032355 ]
+ [-3.946448 ]
+ [-4.152489 ]
+ [-7.8609786]
+ [-0.3937339]]
+tensor([[3.2468e-04],
+        [1.8957e-02],
+        [1.5482e-02],
+        [3.8535e-04],
+        [4.0282e-01]])
+0.6499999999999999
+{'eval_loss': 0.2700549066066742, 'eval_accuracy': 0.9225046109600175, 'eval_weighted_accuracy': 0.8899901940576147, 'eval_roc_auc': 0.8899901940576147, 'eval_f1': 0.6814852884491842, 'eval_precision': 0.5689155851120884, 'eval_recall': 0.8495915425276309, 'eval_runtime': 524.056, 'eval_samples_per_second': 122.082, 'eval_steps_per_second': 3.816, 'epoch': 1.0}
+{'loss': 0.1042, 'learning_rate': 4e-06, 'epoch': 2.0}
+[[-9.054333 ]
+ [-7.4932566]
+ [-4.820058 ]
+ [-8.967566 ]
+ [-2.7596202]]
+tensor([[0.0001],
+        [0.0006],
+        [0.0080],
+        [0.0001],
+        [0.0595]])
+0.6499999999999999
+{'eval_loss': 0.35269397497177124, 'eval_accuracy': 0.9166119603613743, 'eval_weighted_accuracy': 0.893582503232407, 'eval_roc_auc': 0.8935825032324071, 'eval_f1': 0.6693523396343353, 'eval_precision': 0.5458956732713304, 'eval_recall': 0.8649687650168189, 'eval_runtime': 524.8348, 'eval_samples_per_second': 121.901, 'eval_steps_per_second': 3.811, 'epoch': 2.0}
+{'loss': 0.0761, 'learning_rate': 2e-06, 'epoch': 3.0}
