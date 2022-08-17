@@ -1,11 +1,13 @@
 # toxicity-classifier
 
-This repository includes code for classifying toxic data as multi-label classification (6 labels + no label), binary classification (toxic or not) and binary evaluation based on the multi-label classification. The goal is to make a decent classifier for Finnish using translated data. The data used is from the [TurkuNLP github](https://github.com/TurkuNLP/wikipedia-toxicity-data-fi).
+This repository includes code for classifying toxic data as multi-label classification (6 labels + no label), multiclass/binary classification (toxic or not) and binary evaluation based on the multi-label classification. The goal is to make a decent classifier for Finnish using translated data. The data used is from the [TurkuNLP github](https://github.com/TurkuNLP/wikipedia-toxicity-data-fi).
 
 Current results for runs can be found [here](https://docs.google.com/spreadsheets/d/1g8Ya5lx80CdqEXHiwKO32EFv2AMNkZzPypzlb1PI6xk/edit?usp=sharing) and the overview of everything is [here](https://docs.google.com/document/d/1ht2dqMYe8p5lDqYE2kWrz-F-RUeOfh60J8J925SeP8g/edit?usp=sharing)
 
 
 ## Example usage of scripts
+
+To train the models use the scripts as follows without optional arguments.
 
 ```
 python3 toxic_classifier.py --train [FILE] --test [FILE] --model [MODEL_NAME]

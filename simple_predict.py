@@ -198,12 +198,15 @@ def text_and_label(data):
 dataframe = only_toxic_clean(toxic) # clean, could put both but to different files
 
 
-# line_terminator str, optional THIS MAY NEED TO BE CHANGED?
-#The newline character or character sequence to use in the output file. 
-#Defaults to os.linesep, which depends on the OS in which this method is called (’\n’ for linux, ‘\r\n’ for Windows, i.e.).
-
+# unfortunately all new lines are actual new lines in the csv files not \n so something should maybe be done TODO
 # to csv
 #dataframe.to_csv('logs/predictions/predicted.csv')
 
 # or to tsv
-dataframe.to_csv('logs/predictions/predicted.tsv', sep="\t", index=False)
+dataframe.to_csv('logs/predictions/predicted.tsv', sep="\t", header=False) #, index=False, (this includes the row number (to make it clear which example is which) and text)
+
+# or to txt file
+textlist = dataframe['text'].tolist()
+with open('logs/predictions/predicted.txt', 'w') as f:
+    for line in textlist:
+        f.write(f"{line}\n")
