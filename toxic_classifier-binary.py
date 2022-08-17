@@ -255,7 +255,7 @@ def get_predictions(dataset, trainer, pprint):
     # # set p[0] or p[1] depending on which we wanna concentrate on
     # preds = [1 if p[0] < threshold else np.argmax(p) for p in probabilities] 
 
-    # # TODO could implement in regular evaluation as well with threshold optimization? to see whether it improves the results or not
+    # # TODO could implement in regular evaluation as well with threshold optimization? to see whether it improves the results or not (seems confusing so probably no)
  
 
     labels = []

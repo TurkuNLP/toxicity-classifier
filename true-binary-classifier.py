@@ -8,7 +8,7 @@ import numpy as np
 import json
 import torch
 from collections import Counter
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score, classification_report, roc_auc_score, precision_recall_curve
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score, balanced_accuracy_score, classification_report, roc_auc_score, precision_recall_curve, f1_score
 from collections import defaultdict
 import matplotlib.pyplot as plt
 
@@ -99,7 +99,6 @@ def json_to_dataset(data):
     with open(data, 'r') as json_file:
         json_list = list(json_file)
     lines = [json.loads(jline) for jline in json_list]
-    lines = lines[:200]
 
     # there is now a list of dictionaries
     df=pd.DataFrame(lines)
@@ -147,7 +146,7 @@ def optimize_threshold(predictions, labels):
     best_f1_threshold = 0.5 # use 0.5 as a default threshold
     y_true = labels
     for th in np.arange(0.3, 0.7, 0.05):
-        y_pred = [1 if prob >= threshold else 0 for prob in probs] 
+        y_pred = [1 if prob >= th else 0 for prob in probs] 
         f1 = f1_score(y_true=y_true, y_pred=y_pred, average='binary') # this metric could be changed to something else
         if f1 > best_f1:
             best_f1 = f1
@@ -219,7 +218,7 @@ def predictions_to_csv(trues, preds, dataset):
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
     print(idx2label)
 
-    # how to fix float numpy array back to shape, now it does not work :(
+    # fix float numpy arrays back to int shape
     trues = trues.astype(int)
     new_true = []
     for one in trues:
@@ -227,10 +226,18 @@ def predictions_to_csv(trues, preds, dataset):
     trues = new_true
     print(trues)
 
+    preds = preds.astype(int)
+    preds = preds.tolist()
+    new_pred = []
+    for one in preds:
+        for two in one:
+            new_pred.append(two)
+    preds = new_pred
+    print(preds)
+
     # Gathering vectors of label names using idx2label (modified single-label version)
     true_labels, pred_labels = [], []
     for val in trues:
-        print(val)
         true_labels.append(idx2label[val])
     for val in preds:
         pred_labels.append(idx2label[val])
@@ -240,7 +247,7 @@ def predictions_to_csv(trues, preds, dataset):
 
     # Converting lists to df
     comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_labels, 'pred_labels':pred_labels})
-    comparisons_df.to_csv('true-binary_comparisons.csv')
+    comparisons_df.to_csv('comparisons/true-binary_comparisons.csv')
     #print(comparisons_df.head())
 
 
@@ -390,13 +397,13 @@ def main():
 
     trainer.train()
 
-    # trainer.model.save_pretrained("models/true-binary-toxic")
-    # print("saved")
+    trainer.model.save_pretrained("models/true-binary-toxic-tr")
+    print("saved")
 
 
     eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
     #pprint(eval_results)
-    print('F1_micro:', eval_results['eval_f1'])
+    print('F1:', eval_results['eval_f1'])
     #print('weighted accuracy', eval_results['eval_weighted_accuracy'])
 
     # see how the labels are predicted

@@ -8,7 +8,9 @@ import datasets
 import pandas as pd
 
 """ This script is meant for looking at predictions for raw text and changing the for what classifies as clean and what toxic manually by looking at the neutral texts.
-This script can be used on three different saved models, multi-label with 7 labels, multiclass with two labels and binary. """
+This script can be used on three different saved models, multi-label with 7 labels, multiclass with two labels and binary. 
+To make predictions with the script, specify the data, the model, the type of model and the threshold.
+"""
 
 # this should prevent any caching problems I might have because caching does not happen anymore
 datasets.disable_caching()
