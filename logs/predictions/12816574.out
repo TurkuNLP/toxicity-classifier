@@ -1,0 +1,566 @@
+START: ke 17.8.2022 09.44.23 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/binary-toxic', threshold=0.7, type='binary')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200000
+[[0.9997900128364563, 0.00020997434330638498], [0.9997900128364563, 0.00020997434330638498], [0.9997900128364563, 0.00020997434330638498], [0.9997900128364563, 0.00020997434330638498], [0.9997900128364563, 0.00020997434330638498], [0.999795138835907, 0.000204840034712106], [0.9997900128364563, 0.00020997434330638498], [0.9997085928916931, 0.0002913367061410099], [0.9998024106025696, 0.00019758044800255448], [0.999755322933197, 0.00024472721270285547]]
+[[ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.5118346 -3.9564803]
+ [ 4.47543   -4.0176463]
+ [ 4.5118346 -3.9564803]
+ [ 4.405279  -3.7354598]
+ [ 4.4695406 -4.0596266]
+ [ 4.4546742 -3.8604476]]
+TOXIC
+[('Kukas se tämäkin idiootti taas on', 'toxic',
+  ((0.0007355798152275383, 'clean'), (0.9992644190788269, 'toxic')),
+  0.9992644190788269),
+ ('Voi pyhä helvetti mikä paskavideo. Ihan oikeastiko on pakko tuollaista '
+  'helvetin sontaa linkata tänne?',
+  'toxic', ((0.0007366858189925551, 'clean'), (0.999263346195221, 'toxic')),
+  0.999263346195221),
+ ('Ei saatana mitä paskaa taas.', 'toxic',
+  ((0.0007368107908405364, 'clean'), (0.9992632269859314, 'toxic')),
+  0.9992632269859314),
+ ('Oi vittu näitä komulkauutisten typeryyksiä. Suomessa ei ole '
+  'oikeistolaisesta talouspolitiikasta tietoakaan',
+  'toxic', ((0.0007374956621788442, 'clean'), (0.9992625117301941, 'toxic')),
+  0.9992625117301941),
+ ('On vittu huomattu. 3g toimii sentään jotenkin joskin aika huterasti. '
+  'Saatanan tunarit. ',
+  'toxic', ((0.0007384380442090333, 'clean'), (0.9992615580558777, 'toxic')),
+  0.9992615580558777),
+ ('Bravo! Bravo! Lisää! Lisää!\n'
+  '\n'
+  'Vitun idiootit, ettekö te ikinä opi? Kenkää koko lössille.',
+  'toxic', ((0.0007393675041384995, 'clean'), (0.9992606043815613, 'toxic')),
+  0.9992606043815613),
+ ('Voi jumalauta mitä paskaa.', 'toxic',
+  ((0.000739353010430932, 'clean'), (0.9992606043815613, 'toxic')),
+  0.9992606043815613),
+ ('Vittu, mitkä ongelmat ihmisillä.', 'toxic',
+  ((0.0007393343257717788, 'clean'), (0.9992606043815613, 'toxic')),
+  0.9992606043815613),
+ ('Haista vittu. Tää oli yksi idiootti eikä kaikki pyöräilijät. \n'
+  ' \n'
+  '\n'
+  'Ihan samanlaista aivokuollutta soopaa voisin suoltaa autoilijoistakin, '
+  'mutta kun en ole täysi idiootti, niin taidanpa jättää väliin. ',
+  'toxic', ((0.0007401196635328233, 'clean'), (0.999259889125824, 'toxic')),
+  0.999259889125824),
+ ('Mikä vittu siinä on, että ei mee kalloon, et eräät ihmisryhmät ihan '
+  'oikeasti vain perseilee täällä? En ole itse ikinä nähnyt töissä olevaa '
+  'romaniakaan. Ei savua ilman tulta.',
+  'toxic', ((0.0007402043556794524, 'clean'), (0.9992597699165344, 'toxic')),
+  0.9992597699165344)]
+NEUTRAL
+[('No ehkä nää "kansan syvät rivit" ymmärtää nyt kuinka typerää on äänestää '
+  'populistista puoluetta.',
+  'toxic', ((0.2907475233078003, 'clean'), (0.7092524170875549, 'toxic')),
+  0.7092524170875549),
+ ('Tämä palautti mieleeni muistoja. Joskus nelos - vitosluokalla rohkenin '
+  'jutustelemaan eräälle tytylle (olkoon hän nimeltään vaikkapa neiti S), joka '
+  'oli rumien silmälasiensa, lyhyen vartensa ja päällekäyvän autisminsa takia '
+  'jokseenkin syrjitty tytypiireissä. Koska olin itsekin sosiaalisesti kömpelö '
+  'paska, tunsin tarvetta kaveerata kanssansa. Näin myös toimittiin, ja '
+  'kaveerasimme sujuvasti välitunneilla joidenkin kuukausien ajan.\n'
+  '\n'
+  'Kunnes! Tyty värväsi jonkun kaverinsa kävelemään luokseni ilmoittamaan, '
+  'että *tää meidän juttu on nyt ohi*. Emme enää *seurustelleet* sen jälkeen. '
+  'Olen siitä lähtien ihmetellyt, missä vaiheessa edes seurustelimme. Hiukan '
+  'ennen ala-asteen päättymistä tiet erkanivat emmekä ole sittemmin puhuneet '
+  'saati olleet muuten tekemisissä.\n'
+  '\n'
+  'Eräs henkilö, johon olen tutustunut sittemmin, tutustui neiti S:ään '
+  'ammattikorkeakoulussa. Neiti S oli haukkunut minut hänelle kusipääksi '
+  'suostumatta erittelemään syitä sen tarkemmin. Se on harmi, sillä haluaisin '
+  'tietää, millä ihmeen muuvilla onnistuin tekemään niinkin pysyvän '
+  'vaikutuksen että vielä viisitoista vuotta myöhemminkin hän on noinkin '
+  'suolainen. En ihan oikeasti tiedä yhtään!',
+  'toxic', ((0.29114237427711487, 'clean'), (0.7088575959205627, 'toxic')),
+  0.7088575959205627),
+ ('Hur är det Sebastian, behärskar du det svenska språket?', 'toxic',
+  ((0.2924751341342926, 'clean'), (0.7075248956680298, 'toxic')),
+  0.7075248956680298),
+ ("Satu Silvo is still gorgeous at 50. Wouldn't mind being her boy toy.",
+  'toxic', ((0.2932279109954834, 'clean'), (0.7067720293998718, 'toxic')),
+  0.7067720293998718),
+ ('Näyttää samalta kun se kaveri joka pissat housussa heitti sitä '
+  'pyörätelinettä liikkeen ikkunaan kiakkovieraissa. ',
+  'toxic', ((0.2932460308074951, 'clean'), (0.7067539095878601, 'toxic')),
+  0.7067539095878601),
+ ('Adoptiossa on kyse lapsen oikeuksista, ei aikuisten. Itsehän kieltäisin '
+  'ulkomailta adoptoimisen kokonaan (tässä maassakin on lapsia ilman '
+  'vanhempia), ja sallisin maan sisäisen adoption myös homopareille, sillä se '
+  'olisi lapsen etu. Se että lähdetään vinkuintiaan lapsishoppaamaan on '
+  'kuvottavaa itsekeskeisyyttä adoptoijalta mitä en suvaitse. ',
+  'toxic', ((0.29351744055747986, 'clean'), (0.7064825892448425, 'toxic')),
+  0.7064825892448425),
+ ('Joudutaan varmaan pistämään oma piikkilanka rajalle. Säälittäväksi tämä '
+  'touhu on mennyt. Tulijat voisi vaikka pisteyttää, ja ottaa sisään vain ne, '
+  'joiden odotusarvoinen hyöty Suomelle on tarpeeksi suuri ja riski '
+  'syrjäytymiseen ym. vähäinen. Loput voidaan palauttaa siihen maahan, mistä '
+  'tänne tulivat.\n'
+  '\n'
+  'Soinin ja persujen toimintaa en ymmärrä. Kaikki lupaukset ja poliittiset '
+  'tavoitteet on petetty ja kannatuksen luisu jyrkennee romahdukseksi pian.',
+  'toxic', ((0.29353955388069153, 'clean'), (0.7064604163169861, 'toxic')),
+  0.7064604163169861),
+ ('Suomessa on vielä keskimääräistä tyhmempää väkeä, joiden mielestä tämä on '
+  'hieno ja hyvä käytäntö eristää "vaaralliset" huumeidenkäyttäjät pois '
+  'yhteiskunnasta. \n'
+  '\n'
+  'Syrjäytyneeksi voidaan niputtaa joka ikinen nuori joka ei putoa nykyisen '
+  'kankean, byrokraattisen ja uskonnollisia arvoja toitottavan yhteiskunnan '
+  'muottiin. Aika suuri osa siis. \n'
+  '\n'
+  'Täällä on vain niin nurinkurinen ikähaitari että eläkeläis ikäisillä on '
+  'kaikki demokraattinen valta eivätkä he halua uudistaa Suomea aktiivisesti '
+  'ja parannella yhteiskuntaa vaan viedä se takaisin sinne vanhaan hyvään '
+  '60-lukuun, jolloin kaikki oli yksinkertaista.',
+  'toxic', ((0.2936302423477173, 'clean'), (0.7063696980476379, 'toxic')),
+  0.7063696980476379),
+ ('Ei helvetti :D Tunnustetaan tosiasiat ja pyritään laskemaan teollisuuden '
+  'jalostusastetta, jotta se sopii paremmin tyhmille Suomalaisille. Siinä on '
+  'suunnitelma. Ei jumalauta :D\n'
+  '\n'
+  'Ok, joitain heikosti työllistäviä aloja voidaan kouluttaa vähemmän, mutta '
+  'tämä elintaso voidaan pitää vain erikoistumalla ja myymällä maailmalle '
+  'asioita, joita voidaan tehdä vain äärimmäisen korkean koulutustason maissa. '
+  'Lisäksi julkisen puolen asiat pitää tehdä äärimmäisen tehokkaasti, jonka '
+  'toteuttamiseen tarvitaan korkeaa koulutusta. Tämä vaatimus tulee '
+  'korostumaan edelleen eläkepommin räjähtäessä nyt ja seuraavan 20 vuotta '
+  'silmillemme.\n'
+  '\n'
+  'Niille, jotka jäävät riman alle pitää todennäköisesti alkaa maksamaan '
+  'perustuloa, jotta syrjäytyneiden määrä ei räjähdä. On varmaa että työ '
+  'polarisoituu enemmän ja heikkojen laajenevan joukon pitää pitää elää '
+  'lopulta suorittajien kukkarolta. Minusta tämä on parempi kuin ero eurosta '
+  'ja taantuminen agraaritaloudeksi, joka muistuttaisi ehkä minikokoista '
+  'Ukrainaa tai Puolaa.',
+  'toxic', ((0.2936830520629883, 'clean'), (0.7063168883323669, 'toxic')),
+  0.7063168883323669),
+ ('&gt;10 vuotiaskin ymmärtäisi että nyt heitetään vähän läppää.\n'
+  '\n'
+  'Ottaen huomioon, että minun ja legolaksen keskustelu alkoi itse '
+  'kirjoittamastani keskiverrosta vitsistä, niin voisi olettaa etten ole ihan '
+  'välttämättä aivan tosissani. \n'
+  '\n'
+  'On tosin mahdollista, että olen itse pelkkä trolli tai vitsi, tai ehkä '
+  'kärsin dissosiatiivisesta identiteettihäiriöstä. Tai sitten halusin '
+  'viestilläni kannustaa legolasta viihdyttämään itseäni lisää hassuilla '
+  'kommenteillaan, tai sitten olen vaihtoehtoisesti pelkkä mieletön idiootti.\n'
+  '\n'
+  'Todennäköisimmin olen ehkä kuitenkin pelkkä viha- ja ahdasmielinen natsi, '
+  'niin kuin jo käyttäjänimenikin implikoi. Ota nyt näistä selvää :|',
+  'toxic', ((0.29388803243637085, 'clean'), (0.7061119675636292, 'toxic')),
+  0.7061119675636292),
+ ('EU on jo valtaosin NATOssa ja muilla EU-mailla ei ole mitään haluja '
+  'perustaa rinnakkaisia organisaatioita. NATO on ainoastaan Suomelle joku '
+  'kauhea ongelma. Ruotsia ei toistaiseksi hirveästi kiinnosta koko asia, ja '
+  'jos asia etenee ikävämpiin suuntiin, on Ruotsi NATOssa ennen kuin ovikellon '
+  'kuoret ovat lakanneet resonoimasta.\n'
+  '\n'
+  'Siinä sitten Suomen NATO-kiimattomat ja muut suomettuneet kotiryssät '
+  'ulisevat pohjoismaisen yhteistyön perään ja ruikuttavat Yhdysvaltojen '
+  'hyökkäysliiton kaameudesta.',
+  'toxic', ((0.29428809881210327, 'clean'), (0.7057119607925415, 'toxic')),
+  0.7057119607925415),
+ ('Itse lahoan kolmiooni tekemisittä ja juon olutta. Tuu tänne jos nakertaa, '
+  'stna. :E',
+  'toxic', ((0.29459959268569946, 'clean'), (0.7054004073143005, 'toxic')),
+  0.7054004073143005),
+ ('Postin tietojärjestelmät ovat aivan kamalaa kuraa.\n', 'toxic',
+  ((0.29564499855041504, 'clean'), (0.704355001449585, 'toxic')),
+  0.704355001449585),
+ ('Ne keillä on joku oikea syy pakoilla pitäisi saada jäädä. Tähän kuuluu mm. '
+  'uskonnolliset vähemmistöt, kuten Kristityt, Yazadit ja Shiite/Kurdi '
+  'Muslimit, Seksuaali-vähemmistöt sekä yksin tulleet (ei sunni) vanhukset, '
+  'naiset ja alle 15-vuotiaat lapset. Loput pitää lähettää postimerkki '
+  'perseessä takaisin ja sillä selvä. Kaikille perheenyhdistämis-prosesseille '
+  'myös loppu, ja jo käsitellyt "peseenyhdistämiset" tulisi perua.',
+  'toxic', ((0.2965629994869232, 'clean'), (0.703437089920044, 'toxic')),
+  0.703437089920044),
+ ('Damn man, you are one hell of a scholar and gentleman. I am sad that I have '
+  'but one upvote to give you for this written piece of poetry.\n'
+  '\n'
+  '\n'
+  'PS. I am high as balls and listening to all that SMC stuff. Thanks for '
+  'answering my questions. Greetings from Sweden!',
+  'toxic', ((0.2966596186161041, 'clean'), (0.7033404111862183, 'toxic')),
+  0.7033404111862183),
+ ('Yksikin ruikuttaja/AY-jäärä osaa myrkyttää koko ilmapiirin duunissa, tämän '
+  'olen kokenut monta kertaa. Jotkut eivät osaa pitää yksityisiä ongelmiaan '
+  'kotona vaan ottavat ne mukaan duuniin.',
+  'toxic', ((0.296965628862381, 'clean'), (0.7030344009399414, 'toxic')),
+  0.7030344009399414),
+ ('"huumehörhöt"\n'
+  '\n'
+  'Melkoisen moni huumeidenkäyttäjä on koukussa tahtomattaan, ja päälle päin '
+  'ei mitenkään näy, että käyttää. Huumeiden käyttö ei tarkoita, että olisi '
+  'automaattisesti vaaraksi muille tai elämässään täysin vailla kontrollia. '
+  'Tuskin oppilaitoksissa kovin montaa rappiosekakäyttäjää on.\n'
+  '\n'
+  'Tämä nykyinen ilmapiiri "huumehörhöistä" vain varmistaa sen, etteivät '
+  'käyttäjät uskalla hakea apua, koska työpaikat ja koulutuspaikat lähtevät '
+  'alta ja terveydenhuollon ja poliisin rekistereihin tulee merkinnät '
+  'huumeidenkäytöstä. Kuten nistiAMAsta kävi ilmi, on parempi pitää turpansa '
+  'kiinni ja jotenkin yrittää ratkaista ongelma yksinään.',
+  'toxic', ((0.2981734275817871, 'clean'), (0.7018265724182129, 'toxic')),
+  0.7018265724182129),
+ ('Tässähän oli Suomen poliittinen kenttä aika hyvin kiteytettynä. Saatanan '
+  'synkkää siis.',
+  'toxic', ((0.2983025014400482, 'clean'), (0.7016974687576294, 'toxic')),
+  0.7016974687576294),
+ ('Ratkaisu on päällystää itsensä kärpäspaperilla ja mennä 2-3 kossupullon '
+  'humalassa kierimään sinne tienlaitaan. ',
+  'toxic', ((0.2988656163215637, 'clean'), (0.7011343836784363, 'toxic')),
+  0.7011343836784363),
+ ('Vihaan tuota sanontaa yli kaiken. Sillä pystyy näppärästi perustelemaan '
+  'ihan silmittömänkin ahneuden. Sitä paitsi joskus ei kerta kaikkiaan muuta '
+  'vaihtoehtoa ole kuin maksaa mitä pyydetään, valitettavasti. ',
+  'toxic', ((0.29988306760787964, 'clean'), (0.7001169323921204, 'toxic')),
+  0.7001169323921204)]
+[('Älä lannistu, sinulla voi vielä olla edessä suuri tulevaisuus juoppona '
+  'runoilijana. ',
+  'clean', ((0.3003636598587036, 'clean'), (0.6996363997459412, 'toxic')),
+  0.3003636598587036),
+ ('Ttu mullon rapula... Tänä iltana teekuuri ja huomenna kotopuoleen '
+  'rappaamaan autoa.\n'
+  '\n'
+  'Nyt ei kärsi soitella biisejä, ollaan mielummin ihan vaan hissun kissun.',
+  'clean', ((0.3007558286190033, 'clean'), (0.6992441415786743, 'toxic')),
+  0.3007558286190033),
+ ('Half their alphabet has eyelashes. It looks like it watches you while you '
+  "read. I'm scared.",
+  'clean', ((0.3007972836494446, 'clean'), (0.6992027163505554, 'toxic')),
+  0.3007972836494446),
+ ('Jep, puhelimel on vähä vaikee kirjottaa, oks teil kännyköit siel kehä 3.sen '
+  'ulkopuolel?',
+  'clean', ((0.3010426163673401, 'clean'), (0.6989573836326599, 'toxic')),
+  0.3010426163673401),
+ ('No mikä helvetti tässä on sitten ongelma? Ben Zyskowicz on edennyt '
+  'rättikauppiaasta kansanedustajaksi? Sekö jäi kaivamaan Pursimiehenkadun '
+  'pikkupojan maitohammasta?',
+  'clean', ((0.3013872504234314, 'clean'), (0.6986127495765686, 'toxic')),
+  0.3013872504234314),
+ ('FTW = For The Win? WTF?', 'clean',
+  ((0.30243411660194397, 'clean'), (0.6975659132003784, 'toxic')),
+  0.30243411660194397),
+ ('Syöksyn sivusta ja arvelen sen verran, että "kilipää" tässä kontekstissa '
+  'tarkoittaa mitä tahansa mielenterveysongelmaista, joka on valmis '
+  'vahingoittamaan toisia saadakseen itselleen siitä etua',
+  'clean', ((0.30245262384414673, 'clean'), (0.6975473761558533, 'toxic')),
+  0.30245262384414673),
+ ('Pian meillä on kaksi reaktoria, joita rakennetaan kuin Iisakin kirkkoa, ja '
+  'kaikki menee persneton puolelle. Maata johtavat kyvyttömät, lahjattomat ja '
+  'korruptoituneet, joten seuraukset ovat aika luonnollisia.',
+  'clean', ((0.30354663729667664, 'clean'), (0.696453332901001, 'toxic')),
+  0.30354663729667664),
+ ('Ihan selkee kulttuurishokki. Nämä ihmiset on myös uhreja vaikkakin '
+  'hyväuskoisia hölmöjä. Näille tyypeille on uskoteltu, että täällä kaikki '
+  'uneömat toteutuu ja sateen otettu rahat pois. Sääliks käy.',
+  'clean', ((0.3054374158382416, 'clean'), (0.694562554359436, 'toxic')),
+  0.3054374158382416),
+ ('*homorummutus intensifioituu*', 'clean',
+  ((0.305764377117157, 'clean'), (0.694235622882843, 'toxic')),
+  0.305764377117157),
+ ('En ihmettelis jos kohta alkais kadulla näkymään yskänlääkkeeltä ja '
+  'tinneriltä haisevia tyhjiä pulloja jossa on MS Paintilla väännetty etiketti '
+  'jossa lukee "joni-korianterin oma tekemä ES pärinäjuama, pär included"\n'
+  '\n'
+  'Sitä ne jonnet sitten keittelee likaisissa kahvipannuissa jossain metsässä '
+  'jonkun rämäsen puumajan sisällä.',
+  'clean', ((0.30624639987945557, 'clean'), (0.6937536001205444, 'toxic')),
+  0.30624639987945557),
+ ('Kyllä siinä viinassa kannattaa pysyä, viritellä vähän audia ja äänestää '
+  'persuja.',
+  'clean', ((0.30648306012153625, 'clean'), (0.6935169696807861, 'toxic')),
+  0.30648306012153625),
+ ('Eli kyse on siis rotuviasta? Mustat ihmiset raiskaavat enemmän kuin '
+  'valkoiset geneettisistä syistä?',
+  'clean', ((0.3069847822189331, 'clean'), (0.6930152773857117, 'toxic')),
+  0.3069847822189331),
+ ('Sitä lakia odottaessa joka kieltäisi turhat aivottomat virkamiehet...',
+  'clean', ((0.3097776174545288, 'clean'), (0.6902223825454712, 'toxic')),
+  0.3097776174545288),
+ ('Koko alkuperäinen "kansainvälistys"-idea oli mielestäni ihan paska: \n'
+  '\n'
+  'Kuka tarvitsee kansainvälisesti kansallisen postin palveluita?\n'
+  '\n'
+  'Posti on posti aika pirun monella kielellä. Miten ihmeessä kryptinen Itella '
+  'voisi helpommin brändäytyä helpommin postiksi kuin kielirajat ylittävä '
+  'posti?\n'
+  '\n'
+  'Noh. Ei se mitään. Saatiinhan tällä varmasti paljon liikevaihtoa. Monelle '
+  'mainos-, brändi- ja koodimaakarille lauantaimakkaraa paahtoleivän päälle. '
+  'Ja taas saadaan lisään kun vaihdetaan takaisin! ',
+  'clean', ((0.31006476283073425, 'clean'), (0.6899352669715881, 'toxic')),
+  0.31006476283073425),
+ ('Munarikasta pääsiäistä!\n'
+  '\n'
+  '**Munarikasta** pääsiäistä!\n'
+  '\n'
+  '\n'
+  'MUNARIKASTA!!\n'
+  '\n'
+  '\n'
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA '
+  'MUNARIKASTA MUNARIKASTA MUNARIKASTA MUNARIKASTA ',
+  'clean', ((0.3110426962375641, 'clean'), (0.6889572739601135, 'toxic')),
+  0.3110426962375641),
+ ('Jos joutuu puhumaan, niin on menettänyt oman tilan ja rauhan. '
+  'Selviytymiskeino, jaksaa sitä, että joutuu koko ajan jakamaan tilan '
+  'vaihtuvien tuntemattomien ihmisten kanssa on olla tiedostamatta. Se '
+  'kaupunkilaisten piirre. Maalla kohdataan ihmisiä niin harvoin, että on '
+  'varaa tiedostaa kaikki jotka kohdataan. \n'
+  '\n'
+  'Ehkä jossain toisessa maassa ero voisi olla, että herkemmin sanotaan että '
+  'fuck off jos joku selkeesti tunkee päin. Etäisyys ei ole se juttu, vaan '
+  'suunta ja oletetut aikomukset. \n'
+  '\n',
+  'clean', ((0.31138092279434204, 'clean'), (0.6886191368103027, 'toxic')),
+  0.31138092279434204),
+ ('Meille Natohaukka imperialistisioillehan tämä sataa suoraan laariin.',
+  'clean', ((0.3117386996746063, 'clean'), (0.6882612705230713, 'toxic')),
+  0.3117386996746063),
+ ('&gt;alkoholia nauttiessaan kyllä huomaa, ettei se ihan terveellistä ole.\n'
+  '\n'
+  'Nyt olet asiassa. Lääkärit ovat todenneet jo aikoja sitten, että alkoholi '
+  'on erityisen paha HUUME, koska se on myös sosiaalisesti hyväksyttyä. '
+  'Itseasiassa monet jopa perustelevat omaa juomistaan kotimaisen '
+  'panimoteollisuuden tukemisella jne. kautta ja ovat siten jopa itseasiassa '
+  'omasta mielestään Isänmaan asialla tässä dokaamisessaan.\n'
+  '\n'
+  'Alkoholin vieroitusoireet ovat paljon yhtäjaksoisesti kuluttavilla jopa '
+  'yhtä kovia kuin heroinisteilla. Sitten sitä hoidellaan yleensä "napeilla" '
+  '(kts.diatsepami) ja siitä se lähtee...\n'
+  '\n'
+  'Alkoholi tappaa tässä maassa vuosittain niin talossa kuin puutarhassa, '
+  'kouluissa ja kaduilla, helteessä ja pakkasessa 24/7 **enemmän kuin muut '
+  'huumeet yhteensä plus tupakointi** ja sosiaali- ja terveysministeri **Paula '
+  'Risikko** saa panimo- ja viinateollisuudelta rahoitusta ja tukea, eikä '
+  'halua kieltää lapsille suunnattua alkoholimainontaa. \n'
+  '\n'
+  'Saatanan tappajat.',
+  'clean', ((0.3118151128292084, 'clean'), (0.688184916973114, 'toxic')),
+  0.3118151128292084),
+ ('Nää halveksujat on mun kokemuksen mukaan Keravalta muuttaneita jotka on '
+  'kerenny asumaan Helsingissä 3kk mutta pitävät itseään stadilaisina koska '
+  'ovat jo teini-iästä asti osanneet tulla N-junalla Forumiin shoppailemaan.\n'
+  '\n'
+  'Tai sit nää on jotain Sonkajärveltä ja niin traumatisoituneita '
+  'landemeiningistä että ovat heti ensimmäisen tilaisuuden muuttaneet '
+  'Helsinkiin ja rakentavat identiteettiään inhoamalla kaikkea kehä kolmosen '
+  'ulkopuolista.',
+  'clean', ((0.3120662271976471, 'clean'), (0.6879337430000305, 'toxic')),
+  0.3120662271976471)]
+CLEAN
+[('Jutun kirjoittajahan on Yle Hämeen päällikkö (entinen Nelosen uutisten '
+  'päätoimittaja). En jotenkin jaksa/halua uskoa, että olisi huijaukseen itse '
+  'suoraan haksahtanut. Olihan se "Yle Häme ei tavoittanut Mark Wilsonia eikä '
+  'Regina Chilubaa kommentoimaan asiaa" aika hupaisa, vaikkakin tässä '
+  'yhteydessä lähinnä pakollinen muodollisuus.',
+  'clean', ((0.9998384714126587, 'clean'), (0.00016153317119460553, 'toxic')),
+  0.9998384714126587),
+ ('Lusikallinen, jonka jälkeen Vesa vastaa, ettei tiennyt vastaajan kuulevan. '
+  'Mutta huomaan nyt erheeni, joten selitänpäs tarkemmin. V For Vendetta on '
+  'alkuperäisessä muodossaan aika mielenkiintoinen teos, joka kertoo '
+  'anarkismin ja fasismin taistosta 90-luvun fasistisessa Englannissa vieläpä '
+  'varsin mielenkiintoisasti ja jopa joissain määrin opettavaisesti. Mikä '
+  'tietenkin johtuu sarjakuvan luojan Alan Mooren äärivasemmistolaisesta '
+  'ajatusmaailmasta. Edit: Onpas kielioppini tänään siellä huonomman puolella '
+  'ja toinen lisäys on sanat joissain määrin. Kolmantena lisäyksenä tuleekin '
+  'alkuperäinen kohta, mistä kyseinen sitaatti kokonaisuudessaan on peräisin. '
+  'http://i.imgur.com/xli7aj5.jpg',
+  'clean', ((0.9998376369476318, 'clean'), (0.00016235187649726868, 'toxic')),
+  0.9998376369476318),
+ ('Tässä on Patomäen vastine kyseiselle kirjoitukselle: '
+  'http://patomaki.fi/2015/02/kuinka-kay-sivistynyt-keskustelu-taloustieteilijalta-2/ \n'
+  '\n'
+  'Mielestäni ja tietääkseni Patomäki ei ole onnistunut vastaamaan mihinkään '
+  'yksityiskohtaisempaan kritiikkiin, vaan keskittyy vastaamaan paljon '
+  'yleisluontoisempiin väittämiin, jättäen kuvan siitä, että esimerkiksi tuo '
+  'Asiattoman lehdistökatsauksen kritiikki osuu. Tuostakin vastineesta vain '
+  'pieni osa keskittyi itse asiaan eikä niinkään muiden haukkumiseen, ja sekin '
+  'osa oli varsin ontuva ja jätti vastaamatta esimerkiksi niihin aivan '
+  'älyttömiin laskeviin (tai taisivat olla jopa aaltoilevia) tarjontakäyriin, '
+  'joita kirjassa kuulema on. Osa vastineesta tuntuu menevän ihan ohi '
+  'kritiikinkin. \n'
+  '\n'
+  'Lisäksi Patomäki vaikuttaa ainakin sosiaalisessa mediassa rakastavan '
+  'mainita, että vastaukset kritiikkiin löytyy kritisoitavasta kirjasta. Niin '
+  'paljon kuin tekisi mieli ostaa tuo kirja ihan jo huumorimielessäkin, sen '
+  'ostaminen olisi Patomäen ja kirjan julkaisijan tukemista sen kahden kympin '
+  'edestä.\n'
+  '\n'
+  'Pelottavaa on myös, että Patomäellä tuntuu olevan seuraajia, jotka '
+  'kannattavat häntä ilmeisesti varsin sokeasti.\n'
+  '\n'
+  '\n'
+  'Asiaton lehdistökatsaus on muuten erinomainen blogi. Suosittelen kaikille.',
+  'clean', ((0.9998373985290527, 'clean'), (0.000162523181643337, 'toxic')),
+  0.9998373985290527),
+ ('&gt; Olenpa sellaiseenkin väitteeseen törmännyt, että maanviljelijöillä oli '
+  'itse asiassa aika hyvin asiat keskiajan lämpöisinä vuosisatoina ennen kuin '
+  'paavi ja paikalliset kunkut alkoivat pistää kaikkia ojennukseen.\n'
+  '\n'
+  'Taisi olla keskiajan ihminen jopa keskimäärin terveempikin ja paremmin '
+  'ravittu kuin 1500-1600-lukujen ihminen, ainakin täällä pohjoisessa. Ei '
+  'sillä, että rima olisi tuolloin ollut kovinkaan korkealla...\n'
+  '\n'
+  'Ja oikeassa olet muutenkin. Käsite pimeästä keskiajasta taisi muotoutua '
+  'enemmänkin renesanssina, jolloin haluttiin tehdä pesäero keskiaikaan. (?) '
+  'Joten en tiedä kuinka validi väite se enää on. \n'
+  '\n'
+  'Sitten siitä artikkelista:\n'
+  '\n'
+  '&gt; \n'
+  'Eurovaalien alla Perussuomalainen-lehti julkaisi satiirisen Kansalaisen '
+  'direktiivioppaan.\n'
+  '[-]\n'
+  '&gt;Suomessa mikään suuri puolue ei ole aiemmin esittänyt niin rankkoja '
+  'tieteenvastaisia väitteitä kuin perussuomalaiset vitsikkääksi tarkoitetussa '
+  'kampanjassaan. \n'
+  '\n'
+  'En ole lukenu tuota "opasta", mutta onko nyt satiiristakin aihetta '
+  'huolestua?\n'
+  '\n'
+  'Edit: Jaa, oliko sittenkin kyseessä satiiria tiedettä vastaan tms...',
+  'clean', ((0.9998371601104736, 'clean'), (0.0001628543686820194, 'toxic')),
+  0.9998371601104736),
+ ('Kapteeni Tserepistä on sanottava sen verran että Jarla käsikirjoitti ja '
+  'piirsi sitä kymmenen vuotta pöytälaatikkoon. Kun tekoaikana mies meni '
+  'täysin tuntemattomasta Sarasvuon taustapiirtäjästä yhdeksi Suomen '
+  'tunnetuimmista taiteilijoista, teki miehen kustannustoimittaja viisaan '
+  '(rahakkaan) päätöksen ja pisti omakustanteeksi tarkoitetun 32-sivuisen '
+  'sarjakuvan koviin kansiin. Lopputuloksesta kyllä näkee ettei Jarla ole '
+  'realistisessa piirrostyylissä kovin harjaantunut.\n'
+  '\n'
+  'Leppäsen piirrostyylin jäykkyydestä voi olla montaa mieltä. Mielestäni '
+  'Achilles Wiggen on kuitenkin paljon notkeampaa kuin Mustanaamio. Edeltävä '
+  'lienee hänelle jonkinlainen elämäntyö ja jälkimmäinen se josta maksetaan '
+  'vuokra. Tekstimäärä lienee tietoinen valinta. Kuitenkin kun katsoo Leppäsen '
+  'töitä (aivan *Aurinkoaluksesta* asti) niin huomattavasti vähemmän '
+  'tekstipainotteisia ne ovat kuin saman ajanjakson amerikkalaissarjakuvat tai '
+  'edes modernit Aku Ankat. Tyylillisesti ne sopivat kyllä hyvin yhteen '
+  'nuorempienkin*Fantomen*issa julkaistujen käsikirjoitusten kanssa (nyt tuli '
+  'mieleen että kirjoittaako Leppänen omat Mustis-tarinansa? Vai ainoastaan '
+  'scifinsä?). \n'
+  '\n'
+  'Mitä tulee Leppäsen siltojenpolttelun, niin ydinongelmana ei ole moderni '
+  'hapatus kuten Kiroileva siili tai Viivi ja Wagner. Muistelen miehen olleen '
+  'yksi ensimmäisistä joille Suomen Sarjakuvaseura 70-luvulla tarjosi '
+  'Puupäähattua, mutta Leppänen ei halunnut tarjota järjestölle minkäänlaista '
+  'vakiinnuttamista sillä että olisi palkinnon ottanut vastaan. Kun lähes '
+  'kaikki muut suomalaiset sarjakuvatoimijat (kuvittajat, käsikirjoittajat, '
+  "kriitikot, toimittajat, hulluimmat fanit) SS'ään kuuluvat tai sen "
+  'tapahtumiin osallistuvat, niin tuo teko aika vahvasti väritti ja värittää '
+  'kanssakäymistä suomalaisissa ammattipiireissä. Mitä nämä jatkuvat uudet '
+  'ulostulot ylläpitävät uusien aktiivisukupolvien iloksi. \n'
+  '\n'
+  'EDIT: [Kari Leppäsen oma näkemys '
+  'puupäähattu-skandaalista.](http://karileppanencomics.fi/hatpage.htm)',
+  'clean', ((0.9998370409011841, 'clean'), (0.00016288046026602387, 'toxic')),
+  0.9998370409011841),
+ ('[Tämän '
+  'perusteella](https://twitter.com/archiveis/status/623469280558981121) oli '
+  'joku selkkaus Suomen rajalla ja hän teki tästä päätelmän että on jollakin '
+  'seuranta/mustalla listalla (ihmiset tulkitsivat väärin että sivusto olisi '
+  'jollain estolistalla, mutta näin hän ei tarkoittanut). '
+  '[Ilmeisesti](https://www.reddit.com/r/Suomi/comments/3e2czy/archivetoday_kielletty_suomessa/ctb1fnz) '
+  'koittaa olla varovainen ja välttää yhteenottoja viranomaisten ym. isojen '
+  'tahojen kanssa.\n'
+  '\n'
+  'On myös asioita joita emme keissistä tiedä, esim. kyseisen poistopyynnön '
+  'tehneen suomalaisyrityksen nimi, poistetun sivun sisältö ja mahdollinen '
+  'relevanssi tähän rajajuttuun. Mielestäni ylläpitäjän julkinen viestittely '
+  'on tarkoituksella niukkaa ja epäselvää, mikä on ihan ymmärrettävää jos hän '
+  'koittaa olla keikuttamatta venettä.\n'
+  '\n'
+  'Edellisessä langassa syyteltiin äijää siitä että on foliohattu liian '
+  'kireellä mutta kun sivuston käyttötarkoitukset ovat '
+  '[tällaiset](https://en.wikipedia.org/wiki/Archive.is#Use_cases) niin sallin '
+  'herralle ihan niin kireän lyijyvuoratun foliohatun kuin vain haluaa. Itse '
+  'ainakin pelkäisin oman hyvinvointini puolesta jos ihan yksin ylläpitäisin '
+  'vastaavanlaista sivustoa.',
+  'clean', ((0.9998370409011841, 'clean'), (0.00016298504488077015, 'toxic')),
+  0.9998370409011841),
+ ('Onkohan Ismo Soukola vasta tällä viikolla havahtunut siihen, että ensi '
+  'keväänä pitäisi jotenkin tulla uudestaan valituksi eduskuntaan, ja päätti '
+  'sitten pistää vaalivankkurit töräytyksellä liikkeelle.\n'
+  '\n'
+  'Oletan, että mitään tuollaisia tietoja pääministeristä ei saisi julkisesti '
+  'kyllä kertoa. Kymppiuutisissa Soukola selitti klassisesti, että olisi asia '
+  'pitänyt muotoilla erilailla, mutta eiköhän hän ihan tietoisesti rikkonut '
+  'luottamuksen.',
+  'clean', ((0.999836802482605, 'clean'), (0.0001631180930417031, 'toxic')),
+  0.999836802482605),
+ ('Tuo oikaisu koski vain tuota rahanpesuepäilyä jonka vuoksi nuo "33 '
+  'miljoonaa" olisivat jumissa. YLE uutisoi tästä viikko sitten perustuen '
+  'ilmeisesti Sambialaiselta verkkosivulta ja Ritaluomalta saamaansa tietoon. '
+  'Ritaluoma puolestaan uskoi kaiken minkä kätevän geneerisellä nimellä '
+  'varustettu Mark Wilson kertoi. Rahoja tuskin on olemassakaan, siksi siis '
+  'oikaisu.',
+  'clean', ((0.9998363256454468, 'clean'), (0.00016365091141778976, 'toxic')),
+  0.9998363256454468),
+ ('Oho. Äärimmäisen hyvä huomautus. Tuli vähän huijattu olo, kun ehdin jo '
+  'kommentoida käsityksessä, että olisi tuore uutinen kyseessä. Jos vanhoja '
+  'postailee, niin sopii se tehdä selväksi. Toki ihan kiinnostavaa ja tärkeää '
+  'tämmöisestä puolesta muistuttaa kun tulee ihmisiä ilman juuri minkäänlaista '
+  'valvontaa, mutta anteeksiantamatonta propagandaa jättää kertomatta, että '
+  'kyseessä vuoden vanha juttu. ',
+  'clean', ((0.9998363256454468, 'clean'), (0.0001635923981666565, 'toxic')),
+  0.9998363256454468),
+ ('&gt;Siis oliko tämä koraanin lukemista vai tutkimista? Tulkitseeko '
+  'Hämeen-Anttila koraania? Jos tulkitsee, kuinka takaat että hän esittää '
+  'tulkintansa puolueettomalta pohjalta?\n'
+  '\n'
+  'Se, että sinun eksegeettiset näkemyksesi (lol) eroavat Hämeen-Anttilan '
+  'näkemyksistä ei tarkoita etteikö Hämeen-Anttila olisi tehnyt pitkää ja '
+  'menestyksekästä uraa nimenomaan lähi-idän kulttuureita tutkien. '
+  'Hämeen-Anttila on siis oletettavasti perehtynyt Koraanin eksegetiikkaan ja '
+  'siihen liittyviin perinteisiin. Täten hän varmastikin tietää asiasta '
+  'jotakin.\n'
+  ' \n'
+  'Lässytys siitä, ettei Hämeen-Anttila olisi puolueeton tutkija ja ties mitä '
+  'muuta on lähinnä hämmentävää. Sinä kyseenalaistat hänen asiantuntijuutensa '
+  '- sinun tulisi selittää että miksi sinä sen kyseenalaistat.\n'
+  '\n'
+  'Minusta vähän tuntuu että ainoa tapa jolla Hämeen-Anttila voisi saada '
+  'tutkimuksellensa sinulta hyväksyntää olisi että hän vouhkaisi kovaan ääneen '
+  'siitä kuinka hirveän paha ja vaarallinen uskonto islam on, kuinka '
+  "jok'ikinen muslimi kannattaa ISIStä ja al-Qaidaa, ja ties mitä "
+  'liirum-laarumia.\n'
+  '\n'
+  '\n'
+  '&gt;Mutta tuleeko Raamatun lukua?\n'
+  '\n'
+  'Ilmeisesti kyllä, ja mikäli ei nyt niin myöhemmin. Kysyit että oliko '
+  'kristinuskosta tehty vastaavia sarjoja. Vastaus siihen on kyllä.\n'
+  '\n'
+  '&gt;Laita lähde äläkä muistele.\n'
+  '\n'
+  'http://www.hs.fi/kulttuuri/a1424839149747\n'
+  '\n'
+  '"Myös Raamattua luetaan radiossa päivittäin, juuri nyt selkokielisenä. '
+  'Silti Ylen kulttuuriohjelmien suunnitelmissa on myös Raamatun läpiluku."\n'
+  '\n'
+  '"Sitä ennen on ilmeisesti kuitenkin juutalaisten Tooran eli hepreasta '
+  'käännettyjen Raamatun viiden ensimmäisen kirjan ja Mooseksen lain vuoro."',
+  'clean', ((0.9998360872268677, 'clean'), (0.0001639104593778029, 'toxic')),
+  0.9998360872268677)]
+END: ke 17.8.2022 10.24.14 +0300

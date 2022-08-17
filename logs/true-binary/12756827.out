@@ -1,0 +1,346 @@
+epochs: 4, learning rate: 8e-6, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(batch=8, dev=False, epochs=4, learning=8e-06, loss=True, model='TurkuNLP/bert-base-finnish-cased-v1', test='data/test_fi_deepl.jsonl', train='data/train_fi_deepl.jsonl')
+toxic:  16225
+clean:  143346
+toxic:  6243
+clean:  57735
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1378, 'learning_rate': 6e-06, 'epoch': 1.0}
+[[-8.386987 ]
+ [-4.002299 ]
+ [-4.0378475]
+ [-8.263867 ]
+ [ 1.7614751]]
+tensor([[2.2776e-04],
+        [1.7946e-02],
+        [1.7330e-02],
+        [2.5759e-04],
+        [8.5339e-01]])
+{'eval_loss': 0.274437814950943, 'eval_accuracy': 0.9217074619400419, 'eval_weighted_accuracy': 0.8908342508587535, 'eval_roc_auc': 0.8908342508587535, 'eval_f1': 0.6799974445793138, 'eval_precision': 0.5655685441020192, 'eval_recall': 0.8524747717443537, 'eval_runtime': 533.3205, 'eval_samples_per_second': 119.962, 'eval_steps_per_second': 3.75, 'epoch': 1.0}
+{'loss': 0.1026, 'learning_rate': 4e-06, 'epoch': 2.0}
+[[-8.906346 ]
+ [-7.8367167]
+ [-5.743953 ]
+ [-8.878302 ]
+ [-3.323703 ]]
+tensor([[0.0001],
+        [0.0004],
+        [0.0032],
+        [0.0001],
+        [0.0348]])
+{'eval_loss': 0.3361145853996277, 'eval_accuracy': 0.9208634218012441, 'eval_weighted_accuracy': 0.8899380202683331, 'eval_roc_auc': 0.8899380202683331, 'eval_f1': 0.6774131889136668, 'eval_precision': 0.562420651713923, 'eval_recall': 0.8515136953387794, 'eval_runtime': 534.4231, 'eval_samples_per_second': 119.714, 'eval_steps_per_second': 3.742, 'epoch': 2.0}
+{'loss': 0.0722, 'learning_rate': 2e-06, 'epoch': 3.0}
+[[-9.014237 ]
+ [-7.878139 ]
+ [-6.8058743]
+ [-9.2909975]
+ [-5.8923993]]
+tensor([[1.2165e-04],
+        [3.7879e-04],
+        [1.1060e-03],
+        [9.2242e-05],
+        [2.7527e-03]])
+{'eval_loss': 0.41671332716941833, 'eval_accuracy': 0.9212229203788802, 'eval_weighted_accuracy': 0.8927086661300719, 'eval_roc_auc': 0.8927086661300719, 'eval_f1': 0.679878048780488, 'eval_precision': 0.5633091253552258, 'eval_recall': 0.8572801537722249, 'eval_runtime': 533.9671, 'eval_samples_per_second': 119.816, 'eval_steps_per_second': 3.746, 'epoch': 3.0}
+{'loss': 0.0453, 'learning_rate': 0.0, 'epoch': 4.0}
+[[-9.830404 ]
+ [-8.784548 ]
+ [ 2.9571674]
+ [-9.862939 ]
+ [-7.9325905]]
+tensor([[5.3788e-05],
+        [1.5306e-04],
+        [9.5060e-01],
+        [5.2066e-05],
+        [3.5873e-04]])
+{'eval_loss': 0.500935971736908, 'eval_accuracy': 0.9108130920003751, 'eval_weighted_accuracy': 0.8962267617622098, 'eval_roc_auc': 0.89622676176221, 'eval_f1': 0.6577084583083384, 'eval_precision': 0.5257504555480963, 'eval_recall': 0.8781034758930002, 'eval_runtime': 533.1529, 'eval_samples_per_second': 119.999, 'eval_steps_per_second': 3.751, 'epoch': 4.0}
+{'train_runtime': 13378.7878, 'train_samples_per_second': 47.709, 'train_steps_per_second': 5.964, 'train_loss': 0.08947776166778486, 'epoch': 4.0}
+saved
+[[-8.386987 ]
+ [-4.002299 ]
+ [-4.0378475]
+ [-8.263867 ]
+ [ 1.7614751]]
+tensor([[2.2776e-04],
+        [1.7946e-02],
+        [1.7330e-02],
+        [2.5759e-04],
+        [8.5339e-01]])
+F1_micro: 0.6799974445793138
+[[-8.386987 ]
+ [-4.002299 ]
+ [-4.0378475]
+ [-8.263867 ]
+ [ 1.7614751]]
+tensor([[2.2776e-04],
+        [1.7946e-02],
+        [1.7330e-02],
+        [2.5759e-04],
+        [8.5339e-01]])
+              precision    recall  f1-score   support
+
+       clean       0.98      0.93      0.96     57735
+       toxic       0.57      0.85      0.68      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.77      0.89      0.82     63978
+weighted avg       0.94      0.92      0.93     63978
+
+[[-8.386987 ]
+ [-4.002299 ]
+ [-4.0378475]
+ [-8.263867 ]
+ [ 1.7614751]]
+tensor([[2.2776e-04],
+        [1.7946e-02],
+        [1.7330e-02],
+        [2.5759e-04],
+        [8.5339e-01]])
+[[-8.386987 ]
+ [-4.002299 ]
+ [-4.0378475]
+ [-8.263867 ]
+ [ 1.7614751]]
+tensor([[2.2776e-04],
+        [1.7946e-02],
+        [1.7330e-02],
+        [2.5759e-04],
+        [8.5339e-01]])
+[('Haistakaa vittu, kusipäät!', 'toxic', tensor([0.9964])),
+ ('VITTU VITTU SINÄ VITTU SINÄ', 'toxic', tensor([0.9964])),
+ ('Haista vittu, senkin vitun ääliö!', 'toxic', tensor([0.9964])),
+ ('Haista vittu kusipää, nähdään helvetissä, ämmä.', 'toxic', tensor([0.9964])),
+ ('lel mikä vitun kusipää, eikö? xD \n kaasua tämä juntti', 'toxic',
+  tensor([0.9964])),
+ ('No haistakaa vittu wikipedia ja teidän vitun sensorit.', 'toxic',
+  tensor([0.9964])),
+ ('Vitut Valverdesta (vitun paska paskiainen)', 'toxic', tensor([0.9964])),
+ ('== painu vittuun == \n\n Painu vittuun', 'toxic', tensor([0.9964])),
+ ('== Haista vittu == \n\n Kauan eläköön vitun kakkaryhmä! \n rakkaus', 'toxic',
+  tensor([0.9964])),
+ ('täällä. Tyhmät kusipäät imevät munaani.', 'toxic', tensor([0.9964]))]
+[('"Mitä hittoa tämä on? Löysin sen sivun alareunasta: \n'
+  '\n'
+  ' > === Skandaali === \n'
+  ' > Helmikuun 2. päivänä 2009 Seth Rogen haastoi Maya Rudolphin - \n'
+  ' > kaalinsyöntikilpailu.  Tiettävästi raivostunut Rudolph vastasi '
+  '"Rogen".  \n'
+  ' > can suck it.""" \n'
+  '\n'
+  ' Näyttää minusta herjaavalta, enkä löydä täältä tai verkosta mitään '
+  'lähdettä. \n'
+  '\n'
+  '  25 helmikuu 2009 \n'
+  '\n'
+  ' "',
+  'toxic', tensor([0.6092])),
+ ('" \n'
+  '\n'
+  ' == SPUI == \n'
+  '\n'
+  ' RFC:t ovat pahoja ja pelottavia, mutta todisteita häntä vastaan on enemmän '
+  'kuin tarpeeksi, jos etsit tarpeeksi tarkkaan. Ehdotan sitä. Jos estolla '
+  'tarkoitat määrittelemätöntä estoa, niin luultavasti et selviä siitä. Jos '
+  'tarkoitat lyhyttä estoa, hän on tottunut siihen... etsi häntä estolokista. '
+  ') Estin hänet 24 tunniksi viime yönä pyöräpysähdyksen jälkeen. Ja hän '
+  'käyttäytyi IRC:ssä kuin kusipää. / "',
+  'toxic', tensor([0.6086])),
+ ('" \n'
+  ' \n'
+  ' Valehtelija! Menette verkkosivustolle, EIKÄ YHTÄÄN VAIHTOEHTOA TAI '
+  'LAUSEKETTAA ole peräisin "theway.org" -verkkosivustolta. Tämä oli neutraali '
+  'kertomus henkilöltä, jolla ei ole mitään vihamielisyyttä tai pahaa mieltä '
+  'The Way Internationalia kohtaan.  "',
+  'toxic', tensor([0.6085])),
+ ('== Ympärileikkaus == \n'
+  '\n'
+  ' Hei, olen 18-vuotias poika ja asun skotlannissa. en voi vetää penikseni '
+  'esinahkaa taaksepäin. minulle ei ole tehty ympärileikkausta, enkä voi vetää '
+  'esinahkaani taaksepäin. Onko tämä normaalia? thnx ajastanne ja avusta! )',
+  'toxic', tensor([0.6084])),
+ ('==Miksi ei mainita hänen juutalaista syntyperäänsä?== \n'
+  ' Wiki rakastaa juutalaisten korostamista paitsi silloin, kun he ovat '
+  'natseja, kommareita, gangstereita ja murhaajia.',
+  'toxic', tensor([0.6069])),
+ ('Edward Cullen on henkisesti vammainen kummajainen -', 'toxic',
+  tensor([0.6056])),
+ (':::Joka vihaa veljeään, on murhaaja, ja te tiedätte, ettei kenelläkään '
+  'murhaajalla ole iankaikkista elämää, joka pysyy hänessä.',
+  'toxic', tensor([0.6052])),
+ ('==Tällainen sensuuri saa minut voimaan pahoin= \n'
+  ' Äänestäkää säilyttääksenne, näyttäkää näille tekopyhille, mikä on mitä, '
+  'suvaitsevaisuus? ha, vain silloin kun se on heille hyväksi.',
+  'toxic', tensor([0.6051])),
+ ('" \n'
+  '\n'
+  ' == Näytä rakenne: == Yleisö, huumori, sosiaalisten ryhmien pilkkaaminen ja '
+  'vain se kapitalismi. == \n'
+  '\n'
+  ' Olen nähnyt vain 1-2 jaksoa tästä sarjasta. En ymmärrä, miten ihmiset '
+  'voivat kuluttaa tätä paskaa joka ikinen päivä tai viikko, aivan kuin he '
+  'joisivat maitoa kulhossa mätänevästä murosta.  \n'
+  '\n'
+  ' En halua olla ajattelematon kusipää, mutta et voi olla tosissasi? Se '
+  'kaikki on nörttien ja nörttien pilkkaamista varten. Toki sanon, että 5-10% '
+  'stereotyyppisistä nörteistä ja nörtteistä on itse asiassa totta, mitä '
+  'sarjassa sanotaan. Esimerkiksi: sarjakuvat, tietokoneet, videopelit, he '
+  'eivät halua myöhästyä (edes 1 minuutti) tunnilta, ja he haluavat AINA olla '
+  'oikeassa jokaisessa matematiikan tehtävässä - jos he myöhästyvät yhdestä - '
+  'he itkevät. Heillä on pakko-oireinen pakkomielle, Asperger, autismi tai '
+  'jokin muu vamma. CBS tietää tämän, jopa Viacom ja Chuck Lorren sarjat (tämä '
+  'koskee "Kaksi ja puoli miestä"). Heillä molemmilla on kauheita ohjelmia ja '
+  'huonoimpia juonikuvioita siellä hyväksikäyttösyistä.  \n'
+  '\n'
+  ' Yleisö on täysin peukaloitu, jos se olisi todellista yleisöä varten, mikä '
+  'on kauheaa sen kannalta, mitä he tekevät. Yleisölle maksavat kaikki nämä '
+  'televisiotuottajat, yhtiöt (CBS, Viacom) ja virastot tietävät, että '
+  'komediaa on helppo manipuloida. Kutsuisin sitä pakotetuksi huumoriksi, '
+  'heille maksetaan niin paljon siitä, että he nauravat kaikelle, he pitävät '
+  '""huumoria"" hyödykkeenä. Jos se ei olisi aitoa, olisi selvästi nähtävissä, '
+  'että he käyttävät naururajaa. Fanit kuitenkin NAURAVAT (eikä heille makseta '
+  'siitä), ja osa ""ihmisistä"" ei ymmärrä vitsejä ollenkaan. Mikä on minusta '
+  'paskapuhetta. Kaikki viittaukset ovat Haloon, Star Warsiin, Spider-Maniin, '
+  'Soniciin, Star Trekiin, perusfysiikkaan ja liikaa viittauksia Einsteiniin '
+  'niissä 1-2 jaksossa, jotka olin katsonut...  \n'
+  '\n'
+  ' He pilkkaavat ihmisiä, jotka ovat nörttejä, naisia (tyhmiä blondeja '
+  'blondeja), Nebraskasta/Midwestistä kotoisin olevia ihmisiä, insinöörejä (se '
+  'on helppoa ja he luulevat tietävänsä kaiken), fyysikoita, '
+  'intialaisia/aasialaisia, Aspergeria/Autismia, OCD:tä jne. Jos voi muistaa: '
+  'he jopa pilkkaavat ihmisiä, jotka ovat parempia, koska olen '
+  'fyysikko/tieteilijä ja jos olet kirjailija tai muusikko, työsi on siksi '
+  'paskaa. Nörtti/nörtti-stereotyyppi on helppo toteuttaa televisiossa, ihan '
+  'yhtä lailla kuin tyhmä blondi-stereotyyppi, joka on mielestäni ällöttävä ja '
+  'halventava kaikkia niitä kohtaan, jotka ovat oikeita nörttejä/nörttejä. '
+  'Jopa joku, joka on blondi ja katsoo tätä ohjelmaa, olisin vitun vihainen, '
+  'ja jos katsot tätä: otat tämän, koska he pilkkaavat [sinua], jos olet tyhmä '
+  'blondi. SINUN PITÄÄ lopettaa tämän katsominen. Jos joku sanoisi: '
+  '""Nörttipuoleni on poissa, koska katson The Big Bang Theorya."" Ensinnäkin, '
+  'nörttipuolesi ei ollut muutenkaan koskaan näkynyt, joten sillä ei '
+  'välttämättä ole väliä, seuraat joukkoa - kuten kuullut henkisesti. '
+  'Toisekseen, miten tämä ohjelma on tulevaisuuteen suuntautunut? Siinä on '
+  'vessahuumoria, joka ylittää sen tason, mitä televisiossa nykyään on. '
+  'Sinusta ei tule fyysikkoa, jos katsot tätä sarjaa, sama pätee Frasierin '
+  'kanssa psykiatrin työn saamiseen, tai Scrubsin kanssa '
+  'terveydenhuollon/lääketieteen alalla (valitettavasti vain realistista, '
+  'mielestäni), tai edes The King of Queens ei tee sinusta postinkantajaa jne. '
+  'He rehellisesti pilkkaavat ihmisiä kapitalismista, jota suurin osa '
+  'ihmisistä on liian vitun tyhmiä tutkimaan itsenäisiä DIY-ohjelmia, jotka '
+  'ovat älykkäitä, sama pätee musiikkiin (verrattuna sen löytämiseen radiosta '
+  'ja televisiosta). \n'
+  '\n'
+  ' Miten ihmiset voivat pitää ""Bazingaa"" hulvattomana, en ole koskaan '
+  'ymmärtänyt sitä. Kaikki on zing (nokkela huomautus negatiivisella tavalla) '
+  'ja Star Trek -viittaus klingonien loukkauksella (""Bazinga""). Ja kyllä, '
+  'rakastan Star Trekiä ja tuo on pelkkää paskapuhetta, jossa kaikki nämä '
+  'televisiokirjailijat olettavat, että se on alkuperäinen iskulause - se ei '
+  'ole - he olivat varastaneet sen, yhdestä sarjasta [Star Trek], '
+  '1960-luvulta. He voivat käyttää tuota materiaalia, koska se on yhtiö, joka '
+  'teki sen, eikä Gene Roddenberryn henkistä omaisuutta. Vaikka ihmiset '
+  'koulussa, kaupungissani tai sosiaalisissa verkostoissa, kuten Facebookissa, '
+  'uskovat niin, kuten kauhea kirjailija: John Green esimerkiksi, minä en ole. '
+  'Olen sitä mieltä, että jos pelkkä iskulause, joka tekee ohjelmasta '
+  'paskapuhetta, kuten ""Hei siellä, Jack"" Duck Dynasty, kun olin lukiossa, '
+  'puoli vuotta sitten. Samaa voi sanoa puolesta televisiosta, entä sitten? En '
+  'ikinä saisi itseäni katsomaan sekä Duck Dynastya että The Big Shit Theorya, '
+  'koska ne ovat molemmat yksiä television huonoimmista sarjoista (tällä '
+  'hetkellä)."',
+  'toxic', tensor([0.6023])),
+ ('" \n'
+  ' :Uuden albumin nimeä EI ole vielä!!! Nämä IP-osoitteet keksivät jatkuvasti '
+  'kuvitteellisia albumin nimiä!!! Mikään ei ole vahvistettu ennen kuin EMI '
+  'tai Kylien verkkosivut ilmoittavat jotain! ""Heavy Handed"" ???? really???? '
+  'Kylie ei ikinä nimeäisi albumia tuollaisella typerällä nimellä....lol.  "',
+  'toxic', tensor([0.6017]))]
+[('Hei watz up likilikilikilikilikiliki tänään en pidä enää sinusta', 'clean',
+  tensor([0.5997])),
+ ('::::::Haluan vain antaa oman mielipiteeni tästä asiasta. En välitä '
+  'paskaakaan berberien oikeuksista tai arabien hegemoniasta tai mistään '
+  'sellaisesta, mutta haluan yhtyä kommentteihin ja . Jos hän on syntynyt '
+  'Ranskassa, eikä puhu arabiaa tai kirjoita nimeään arabiaksi, miksi hänellä '
+  'on arabialainen kirjoitusasu? ~~~',
+  'clean', tensor([0.5995])),
+ ('== Mitä helvettiä tapahtui, ihmiset!==', 'clean', tensor([0.5988])),
+ ('Haha, No annoin täällä todistaa, että Fatmids eivät ole arabit. Olen '
+  'hollantilainen, ja meidän qeeun-esivanhempamme ovat saksalaisia. Tekeekö se '
+  'Holla Nd:stä Saksan valtion? Arabikansanedustajat ovat valehtelijoita. '
+  'Kuuluisa historioitsija Ibn Khaldun on myös kirjoittanut, että Fatmidit '
+  'ovat berberidynastia ja eri arabihistorioitsijat ovat sanoneet, että '
+  'Abassidit pitivät Fatmideja berbereinä. Miten helvetissä yksi mies voi '
+  'hallita berberikansaa, jos he eivät ole itse berbereitä. Kirjoitatte tänne '
+  'Marvel- ja scifi-tarinoita. Wikipedia on trula vitsi. te poeple harvinainen '
+  'cla ming ABORIGINAL Pohjois-Afrikan kansakunta on Lähi-idän arabikansakunta '
+  '???? Tämä ei ole world of warcraft. Historioitsijat varoittivat '
+  'Wikipediasta, että se on vain typerä sivusto, jossa ääliöt postaavat mitä '
+  'redicilimpia strooppeja. Menkää lukemaan Mugadimmah ja muita todellisen '
+  'historioitsijan Ibn Khaldunin teoksia. Ja moderni tiede on vahvistanut, '
+  'että Pohjois-Afrikassa ei ole arabeja. Pohjoisafrikkalaisilla ei ole samoja '
+  'geenejä kuin arabeilla. Ovatko nämä arabit fatimidit hävinneet '
+  'Pohjois-Afrikasta???? haha voi luoja mikä tyhmyys. Tiedätkö myös kuinka '
+  'moni nykyajan arabijohtaja ja ei-arabijohtaja väittää olevansa Alin ibn abu '
+  'talibin jälkeläisiä, ja doyu tiedätkö myös miksi?',
+  'clean', tensor([0.5962])),
+ ('G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR '
+  'G_BEAR G_BEAR G_BEAR G_BEAR G_BEAR',
+  'clean', tensor([0.5931])),
+ ('== Will and Grace -spinoff?  Onko Will todella homo? Milloin tarina päättyy '
+  '2024? == \n'
+  '\n'
+  '  \n'
+  '\n'
+  ' Tässä artikkelissa sanotaan, että Will and Grace -spinoff saattaisi olla '
+  'tulossa, mutta en löytänyt tästä lähdettä mistään.  Monissa paikoissa '
+  'sanotaan, että spinoffia ei tule, vaikka mielestäni pitäisi, koska he '
+  'mokasivat koko lopun.  Willin piti saada lapsi Gracen kanssa, mutta se '
+  'typerä Leo pilasi kaiken.  Joten jos on spinoff, tapahtuuko se vuoden 2024 '
+  'jälkeen? Koska Gracen tyttären syntyessä oli vuosi 2006 ja 18 vuotta '
+  'myöhemmin, kun Grace meni collegeen, olisi vuosi 2024. Menikö Lila '
+  'naimisiin Benin kanssa collegen jälkeen vai heti? Ohjelmassa ei sanottu. '
+  'Toinen kysymys on, että jos Will on homo, miksi hän harrasti seksiä tytön '
+  'kanssa ja tapaili kahta muuta tyttöä? Miksi Willillä oli tyttöystävä ja '
+  'miksi hän edes seurusteli Gracen kanssa, jos hän oli homo?~~~~.',
+  'clean', tensor([0.5925])),
+ ('" \n'
+  '\n'
+  ' == iTunesissa on...Smoke and Mirrors by TV/TV == \n'
+  ' Tarkista se. Ja ota se "Smoking Mirror" -paska pois täältä.   "',
+  'clean', tensor([0.5924])),
+ ('. Mustat täällä ovat enimmäkseen hiljaa siitä, mahdollisesti siksi, että he '
+  'ymmärtävät tekevänsä itsestään erittäin epäsuositun valittamalla siitä.',
+  'clean', tensor([0.5854])),
+ (':Sinä olet vastuussa tästä roskasta, joten sinun on lähdettävä pitkäksi '
+  'aikaa pois ja toivottava, että palatessasi kenelläkään ei ole '
+  'aavistustakaan siitä, mitä olet tehnyt menneisyydessä.',
+  'clean', tensor([0.5842])),
+ ('" \n'
+  '\n'
+  ' :LOL ,, kyllä ,, reMove niitä yksi kerrallaan kunnes tyhjentää tämän '
+  'luettelon ,, heeeeeeeey STOP viha ,, mitä helvettiä on arvo, että lääkäri '
+  'on muslimi tai kristitty tai juutalainen tai ateisti? jos hän sanoo '
+  'ensimmäisellä sivulla kirjansa ,, SO HE IS A MUSLIM ,,,, Muuten hän on '
+  'tekopyhä / tekopyhä tiedemies yay / ,, voi joku lisätä uuden kategorian '
+  'noille "" tekopyhä tiedemies """"',
+  'clean', tensor([0.5831]))]
+{0: 'clean', 1: 'toxic'}
+END: ma 15.8.2022 20.49.20 +0300

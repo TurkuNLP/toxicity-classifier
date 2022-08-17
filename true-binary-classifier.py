@@ -99,8 +99,9 @@ def json_to_dataset(data):
     with open(data, 'r') as json_file:
         json_list = list(json_file)
     lines = [json.loads(jline) for jline in json_list]
-    # there is now a list of dictionaries
+    lines = lines[:200]
 
+    # there is now a list of dictionaries
     df=pd.DataFrame(lines)
     df['labels'] = df[label_names].values.tolist()
 
@@ -164,8 +165,9 @@ def compute_metrics(pred):
 
     # change the threshold here! only one prediction where we decide which is which (default 0 if < 0.5 and 1 if >= 0.5)
 
-    #threshold = 0.6 or threshold optimization 
+    #threshold = 0.6 #or threshold optimization 
     threshold = optimize_threshold(pred.predictions, labels)
+    print(threshold)
     y_pred = [1 if prob >= threshold else 0 for prob in probs] 
     preds = y_pred
 
@@ -217,9 +219,18 @@ def predictions_to_csv(trues, preds, dataset):
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
     print(idx2label)
 
+    # how to fix float numpy array back to shape, now it does not work :(
+    trues = trues.astype(int)
+    new_true = []
+    for one in trues:
+        new_true.append(one)
+    trues = new_true
+    print(trues)
+
     # Gathering vectors of label names using idx2label (modified single-label version)
     true_labels, pred_labels = [], []
     for val in trues:
+        print(val)
         true_labels.append(idx2label[val])
     for val in preds:
         pred_labels.append(idx2label[val])
@@ -250,15 +261,21 @@ def get_predictions(dataset, trainer, pprint):
     y_pred = [1 if prob >= threshold else 0 for prob in probabilities] 
     preds = y_pred
 
+    probabilities = probabilities.tolist() 
 
     labels = []
     idx2label = dict(zip(range(2), ["clean", "toxic"]))
     for val in preds: # index
         labels.append(idx2label[val])
+    
+    probs = []
+    for prob in probabilities:
+        for p in prob:
+            probs.append(p)
 
     texts = dataset["test"]["text"]
     # lastly use zip to get tuples with (text, label, probability)
-    prediction_tuple = tuple(zip(texts, labels, probabilities))
+    prediction_tuple = tuple(zip(texts, labels, probs))
 
     #pprint(prediction_tuple)
 
@@ -328,7 +345,7 @@ def main():
         
     dataset = dataset.map(tokenize)
 
-    #  TODO how to set id2label and label2id?? id2label={1: "toxic"} (pipeline would require this?)
+    #  TODO how to set id2label and label2id?? id2label={1: "toxic"} (pipeline would require this? (probably not possible to use it?))
     model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1, cache_dir="../new_cache_dir/")
 
     # Set training arguments 
@@ -373,8 +390,8 @@ def main():
 
     trainer.train()
 
-    trainer.model.save_pretrained("models/true-binary-toxic")
-    print("saved")
+    # trainer.model.save_pretrained("models/true-binary-toxic")
+    # print("saved")
 
 
     eval_results = trainer.evaluate(dataset["test"]) #.select(range(20_000)))
@@ -385,6 +402,7 @@ def main():
     # see how the labels are predicted
     test_pred = trainer.predict(dataset['test'])
     trues = test_pred.label_ids
+    print(trues)
     predictions = test_pred.predictions
 
     sigmoid = torch.nn.Sigmoid()

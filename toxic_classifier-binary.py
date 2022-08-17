@@ -143,7 +143,7 @@ def compute_metrics(pred):
     labels = pred.label_ids
     preds = pred.predictions.argmax(-1)
 
-    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='micro') 
+    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average='binary') 
     # micro or binary?? binary only considers "positive"? chooses 1 so it reports only for toxic?
     acc = accuracy_score(labels, preds)
     roc_auc = roc_auc_score(y_true=labels, y_score=preds, average = 'micro')
@@ -253,7 +253,7 @@ def get_predictions(dataset, trainer, pprint):
     # # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
     # threshold = 0.5
     # # set p[0] or p[1] depending on which we wanna concentrate on
-    # preds = [1 if p[0] < threshold else np.argmax(p) for p in predictions] 
+    # preds = [1 if p[0] < threshold else np.argmax(p) for p in probabilities] 
 
     # # TODO could implement in regular evaluation as well with threshold optimization? to see whether it improves the results or not
  
