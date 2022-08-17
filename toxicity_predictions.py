@@ -27,7 +27,7 @@ label_names = [
 
 # parse arguments
 parser = argparse.ArgumentParser(
-            description="A script for predicting toxic texts based on a toxicity classifier",
+            description="A script for predicting toxic texts based on a toxicity classifier and finding the best threshold",
             epilog="Made by Anni Eskelinen"
         )
 parser.add_argument('--model', required=True,
