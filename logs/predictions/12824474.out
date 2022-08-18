@@ -1,0 +1,257 @@
+START: ke 17.8.2022 16.38.17 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/true-binary-toxic-tr', threshold=0.75, type='true-binary')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200000
+[[-8.081548 ]
+ [-8.081548 ]
+ [-8.081548 ]
+ [-8.081548 ]
+ [-8.081548 ]
+ [-7.9403496]
+ [-8.081548 ]
+ [-7.7274995]
+ [-7.9390435]
+ [-8.080491 ]]
+tensor([[0.0003],
+        [0.0003],
+        [0.0003],
+        [0.0003],
+        [0.0003],
+        [0.0004],
+        [0.0003],
+        [0.0004],
+        [0.0004],
+        [0.0003]])
+TOXIC
+[('&gt; painauma\n\n&gt; karvaisen miehen perseeseen\n\n', 'toxic',
+  0.9988149404525757),
+ ('JO KAHDEN KUUKAUDEN PÄÄSTÄ VITTU JEE', 'toxic', 0.9988018274307251),
+ ('- Nivea, jallu ja rotanloukku. \n'
+  '- Taitaa tulla poikamiesilta? \n'
+  '- Haista sinä mursu paska! ',
+  'toxic', 0.99880051612854),
+ ('#pilluminati', 'toxic', 0.9987988471984863),
+ ('Vitun jänskää järkeilyä tuo, että "Ainoa jolla oli kortti mälläsi pahasti, '
+  'koska sillä ei pysy viina ja töissä erossa toisistaan -&gt; vittu '
+  'trukkikortti korjaa tilanteen!"',
+  'toxic', 0.9987977743148804),
+ ('Mitä vittua\n\nOlis oikeesti\n\nMeitist tulis ainaki kokoomusnuori', 'toxic',
+  0.9987976551055908),
+ ('Mikä vittu siinä on että vaikka auton perässä lukee isolla keltamustalla '
+  'tarralla 100, niin SILTI PITÄÄ AJAA SAATANA KAHEKSAAKYMPPIÄ KOKO VITUN '
+  'MATKA JUHANNUSRUUHKASSA. Kysyn vaan. ',
+  'toxic', 0.9987976551055908),
+ ('Meidän äiskän koira pelkää ja vihaa käytännössä kaikkia aikuisia miehiä '
+  '(joiksi nykyään tulkitsee myös teini-ikään kerenneet serkkupojat), ja '
+  'saattaa puhjeta haukkumaan ja murisemaan hihnassa/häkissä ilman mitään '
+  'varoitusta. Sen lisäksi se on vitun tyhmä, saatanan ruma ja haisee '
+  'pahalta.\n'
+  '\n'
+  'Siskon koira on muuten hieno mies ja lunki eläin mutta haluaa tappaa ja '
+  'syödä äidin koiran.\n'
+  '\n'
+  'Niin, ja molemmat naiset ja molemmat koirat siis asuvat samassa '
+  'osoitteessa. Itse pakenen useimmilla lomilla toiselle mantereelle.',
+  'toxic', 0.9987959861755371),
+ ('Aina mun pitää runkata', 'toxic', 0.998795747756958),
+ ('Ota ylä-äänesi ja mene muualle(kin) vittuilemaan. :D', 'toxic',
+  0.9987956285476685)]
+NEUTRAL
+[('Ja kerrostaloasunnon tiloja ja ilmanvaihtoa ei tosissaan ole suunniteltu '
+  'millekään kasvihuoneelle, ei kannabiksen laillistamisen tarkoittaisi sitä '
+  'että voi välittää paskat naapureista ja asunnosta.',
+  'toxic', 0.7509192228317261),
+ ('Tän koko homman typeryys sattuu melkein fyysisesti. Näin saavat varmasti '
+  'suurimman mahdollisen julkisuuden koko hommalle.',
+  'toxic', 0.750575840473175),
+ ('&gt; Täynnä sivistyssanoja vain sivistyssanojen itsensä takia\n'
+  '\n'
+  'Ihan perussanastoa mitä käytetään kun puhutaan tilastoista.\n'
+  '\n'
+  '&gt; eikä se itse argumentti pelkistettynä ole muuta kuin "Älä hei yleistä, '
+  'mmkay?"\n'
+  '\n'
+  'Mielestäni argumentti pelkistettynä oli, että suhdeluvuista ei voi vetää '
+  'johtopäätöksiä kokonaisista populaatioista silloin kun suhdelukujen '
+  'taustalla olevat absoluuttiset luvut ovat niin pieniä, etteivät ne ole '
+  'missään määrin edustava otos populaatiosta tai ne ovat jopa häviävän pieni '
+  'osa populaatiosta.\n'
+  '\n'
+  'Musta tää on ihan järkevä pointti joka täytyy pitää mielessä kun puhutaan '
+  'nyt vaikka sitten näistä raiskaustilastoista. "Älä hei yleistä, mmkay?" on '
+  'ehkä ihan maalaisjärjen mukainen juttu jonka jo kaikki ovatkin oppineet, '
+  'mutta asiasta on mielestäni ihan hyvä muistuttaa näiden suhdelukujen '
+  'yhteydessä.\n'
+  '\n'
+  'Ihmiset kyllä tietää että parin somalin sekoilusta ei voi syyttää koko '
+  'somaliyhteisöä, mutta kun puhutaan koko populaatiosta tehdystä '
+  'tunnusluvusta, niin siinä sitten vähän hämärtyy tämä homma. Kai sitä '
+  'ihminen intuitiivisesti ajattelee, että jos esitetään luku joka kuvaa '
+  'Suomen koko somaliyhteisöä, niin sehän sitten koko populaatiota jollain '
+  'tapaa kuvaavana lukuna sitten kanssa kuvaa kaikkia somaleita ja siitä '
+  'voidaan vetää poliittiset johtopäätökset somaleihin liittyen.\n'
+  '\n'
+  'Selvennän: "Noin 10 somalia tuomittiin viime vuonna raiskauksesta. '
+  'Somaleita on Suomessa 5000". Harva lähtee loppuja 4990 leimaamaan. Mutta '
+  'suhdeluvun kanssa tää kuulostaisi tältä: "Somaleilla oli viime vuonna '
+  '22-kertainen yliedustus raiskaustilastoissa." Tässä kohtaa varmasti '
+  'helpommin yleistää raiskauksen jotenkin osaksi somalikulttuuria tms. vaikka '
+  'luvun taustalla on edelleen ne samat 10 tyyppiä.\n'
+  '\n'
+  '&gt; Erityisesti pisti silmään tämä (lukekaa itse se konteksti, en jaksa '
+  'kirjoittaa koko settiä).\n'
+  '&gt; Ja 0,09% ei ihan oikeasti ole paljon.\n'
+  '&gt; Eli jos 13 kpl 15 000:n populaatiosta eli se 0,09% ei ole paljon, '
+  'voitaisiin samaan hengenvetoon todeta jotta samaisen esimerkin 1 kpl 5 '
+  'miljoonan populaatiosta (joka siis on 0,00002%) on aivan vitun ei-mitään, '
+  'eikö? Eli koko rikos mikä on kyseessä - siis raiskaus - ei oikeastaan ole '
+  'ongelma ollenkaan, vai? Vittu mitä paskaa.\n'
+  '\n'
+  'Pointtihan oli että 0,09 % jostain populaatiosta on pieni määrä yksilöitä. '
+  'Siinä ei otettu rikokseen kantaa. Ja joo, yksi ihminen viiden miljoonan '
+  'populaatiosta on aika pieni määr, suorastaan häviävän pieni määrä. Ei tästä '
+  'mitenkään voi johtaa sitä että kirjoittajan mielestä raiskaus ei ole '
+  'ongelma. Kirjoittaja tarkoitti sitä, että 13 ihmistä edustaa 15 000 ihmisen '
+  'populaatiota tosi huonosti.',
+  'toxic', 0.7505336403846741),
+ ('Se, että kohteena oli tietyn aatesuunnan edustaja, joka oli '
+  'nahkakuugeleille vielä vanha tuttu, tekee tästä eräältä kantilta katsottuna '
+  'vieläkin pahemman teon. \n'
+  '\n'
+  'Onko kyse terrorismista? Jos edustat ns. äärivasemmistoa ja olet tunnettu '
+  'henkilö, pitääkö sinun alkaa pelätä että mahdollinen rikollisjärjestö '
+  'pahoinpitelee sinut? Eikö tuollaisen pelon levittäminen ole terrorismia? \n'
+  '\n'
+  'Oksettaa miten homma-foorumilla pidetään pahoinpitelyitä jopa '
+  'oikeutettuina. Pahoinpitelijät ja heidän toverinsa ovat yököttävää '
+  'roskasakkia jonka toimintaa varmaan rahoitetaan suureksi osaksi '
+  'työttömyyskorvauksilla.',
+  'toxic', 0.7504512071609497),
+ ('Jos muu maailma haluaa maksaa meidän safkat, maksakoot. Ei meidän pidä '
+  'kannattamatonta viljelyä väkisin tukea. Kriisivarastot erikseen, mutta '
+  'siitä tässä ei ollut puhe.\n'
+  '\n'
+  '&gt; Ja tutkija sitten on halvempi? \n'
+  '\n'
+  'Ei ne pelkät tutkijat riitä, vaan edistys vaatii lätää myös laitteisiin. \n'
+  '\n'
+  '&gt; Ruokaa voi ostaa ulkomailta, tieteellistä tutkimusta voi lukea ihan '
+  'ilmaiseksikin :)\n'
+  '\n'
+  'Opitko sinä lukemalla soittamaa kitara? Kokeile piruuttas.\n'
+  '\n'
+  '&gt; Voitko muuten valaista vähän, mikä on tämä ammattikoululaisten viha '
+  'maanviljelijöitä kohtaan? Suomi24-foorumit ovat täynnä amiksia jotka on '
+  'katkeria maanviljelijöille kun saavat ostettua laina- ja tukirahoilla sadan '
+  'tonnin traktorin peltojen kyntäystä varten. Ovatko ihmiset todellakin '
+  'kateellisia siitä?\n'
+  '\n'
+  'Kehittykööt niin kuin täällä muidenkin pitää kehittyä. Uutta businesta, '
+  'että se touhu on kannattavaa ilman että me tungetaan sinne miljardi '
+  'tolkulla fyrkkaa. Tukirahat ovat aivan suoraan tullu niiden edistymisen '
+  'esteeksi.  Eivät ne jussit kehity, ilman että potkii perseelle. *Potkis*.',
+  'toxic', 0.7503308653831482),
+ ('Maailman lyhytnäköisin kansa. ', 'toxic', 0.7502831220626831),
+ ('Perkele', 'toxic', 0.7502525448799133),
+ ('Heti alkaa närästää jos joku on *aktiivinen*, ei sillä väliä minkä '
+  'puolesta, mitä vastaan, tai edes missä, kunhan vähän pääsee naureskelemaan '
+  'et onpas tyhmää sakkia.\n'
+  '\n'
+  'Itehän kirjoittelen vaan lehtien näppispalstoille kaikkia hyviä ideoitani, '
+  'koska sillä tavalla saan ääneni paljon paremmin kuulumaan. Plus sen voi '
+  'tehdä kotisohvalta. ^^^^*/s*',
+  'toxic', 0.7502291798591614),
+ ('Tyypillinen vasemmiston edustaja, joka ei ymmärrä aste-eroja ja kylmiä '
+  'elämän realiteetteja. Veronkierto on pois niistä kuuluisista yhteisistä '
+  'rahoista... \n'
+  '\n'
+  'Minun puolestani on jotenkin ymmärrettävää ja anteeksiannettavaa, jos Matti '
+  'Meikäläinen maksaa pimeänä muutaman satasen palkan joskus muutaman vuoden '
+  'välein, mutta ei ministeri saa olla noin tyhmä tai röyhkeä. Hautalan '
+  'kontolla on esim. valtion yhtiöiden omistajaohjaus. Kyllä tämän kaliberin '
+  'toimijalla pitäisi olla jotain moraalia tai sitten ainakin selkärankaa '
+  'erota, kun omat kotiinpäinvedot tulevat julki.',
+  'toxic', 0.7501640319824219),
+ ('Mitäs perkelettä, näin tämän redditin etusivulla vaikka en ollu edes '
+  'kirjannu sisään... Q_Q \n'
+  '\n'
+  'Ollaanko me joku default Suomesta tuleville?',
+  'toxic', 0.7500907778739929)]
+[('Vielä kun Vaasankadulle tulisi pari oikeaa coffeeshoppia, se roska mitä ne '
+  'katudiilerit yrittää myydä pitäisi julistaa laittomaksi!',
+  'clean', 0.749788761138916),
+ ('Ei, kyllä täällä haisee enemmän Hollanti. Tai miksi sitä pilveä sitten '
+  'pitääkin kutsua. ',
+  'clean', 0.749692976474762),
+ ('Täs on vähän semmosta munansaannos henkeä', 'clean', 0.7495846748352051),
+ ('Laitetaan elementtitalo perkele! Neukkukuutio! Hyvä tulee!', 'clean',
+  0.7495203018188477),
+ ('&gt; Pahoittelut taas kerran USA-vertauksesta, mutta siellä valkoinen '
+  'roskasakki syö käsittämättömän surkeaa eines- ja pikaruokaa,\n'
+  '\n'
+  'Yhdysvalloissa einesruoka on tajuttoman halpaa, einesten syönti on usein '
+  'halvempaa kun oikean ruuan laitto. Suomessa joku saarioisen roiskeläppä on '
+  'euron. Yhdysvalloissa saat roiskeläppiä 3 kappaletta dollarilla. TV-ateriat '
+  'on alkaen jotain 4-5 euroa suomessa, siellä alkaen 2-3 dollaria.\n'
+  '\n'
+  '&gt;Siellä on saatavilla hyvinkin halpoja kasviksia ja raakaa lihaa,\n'
+  '\n'
+  "Totta, mutta nämä ovat saatavilla Farmer's marketeista, eli vastine meidän "
+  'kauppahalleille. Nämä ovat yleensä isosta ostareista syrjässä, niin harva '
+  'tekee reissun sinne - ainoastaan ne jotka haluavat laadukkaita '
+  'raaka-aineita.\n'
+  '\n'
+  '&gt; Entä, jos ei enää kiinnostus riitä kokkaamiseen ja järkevään '
+  'ostoskäyttäytymiseen? Krooninen köyhyys lamaa kaikenlaista yritteliäisyyttä '
+  'ja omaa aloitekykyä.\n'
+  '\n'
+  'No, tota ei nyt saatana ainakaan ratkaista antamalla lisää rahaa. Se '
+  'ratkaistaan koulun kotitaloustunneilla missä pitäisi opettaa muuta kun itse '
+  'ruuan laitto - vaikka juurikin raaka-aineiden vertailu ja hankinta.\n'
+  '\n'
+  'Suurin osa köyhistä ei vaan osaa. Olen minäkin ollut '
+  'velka/perintäkierteessa nuorempana, ja siitä päässyt. Säästämällä, '
+  'priorisoimalla laskuja oikein, tekemällä ylimääräistä paskaduunia. Se mitä '
+  'artikkelissa mainitaan että ahdistutaan postista ja ei avata sitä, niin voi '
+  'vittu, ei ihme jos on jatkuvasti ulosotossa.\n'
+  '\n'
+  'Ihminen on köyhä koska ei osaa hanskata rahaa. Olen nähnyt niin monta '
+  'tapausta missä tyyppi on korviaan myöten veloissa, ja saa rahaa jostain '
+  'reilusti. Heti se ryypätään pois baareissa tai shopataan pois. Jos ei '
+  'velkojaan edes yritä maksaa, niin... ei voi asialle mitään.',
+  'clean', 0.7493418455123901),
+ ('Höh, sehän olisi pois suurilta ikäluokilta. Ei tule onnistumaan. Papat '
+  'vihaavat nuoria.',
+  'clean', 0.7492619752883911),
+ ('Ihan oikein. Rajat kiinni ryssiltä.', 'clean', 0.7491803169250488),
+ ('Samaa juttu täällä. Olen ollut aina suvaitsevainen ihminen mutta kuitenkin '
+  'realisti esimerkiksi maahanmuuton haittojen suhteen, ja yllätyin tuossa '
+  'yhtenä päivänä huomattuani miten jyrkiksi ja vittuuntuneiksi mielipiteeni '
+  'pakolaisista ovat muuttuneet todella lyhyessä ajassa. \n'
+  '\n'
+  'Vielä puoli vuotta sitten jos joku olisi sanonut minulle että "Suomi '
+  'suomalaisille", olisin tuhahtanut paheksuvasti ja pitänyt kyseisen '
+  'vaatimuksen esittäjää junttina. Nyt jos joku sanoo minulle "Suomi '
+  'suomalaisille", niin nyökytän päätäni ja huomaan olevani aika pitkälti '
+  'samaa mieltä. Hitto. En voi tälle mitään. ',
+  'clean', 0.7491042613983154),
+ ('En vieläkään täysin ymmärrä tätä väärien mielipiteiden sensurointia. Joku '
+  'vanhempiensa kellarissa itseään viiltelevä huumeinen sierettynyt läskikasa  '
+  'kyttää kaiket ajat ruutua ja poistaa (edellisen) hallituksen '
+  'hallitusohjelman vastaisia mielipiteitä. Aivan helelelevetin sairasta.\n'
+  '\n'
+  'Jos nyt vertaa Usenettiin, niin siellä Otto J Mäkelä poisti mekaanisesti '
+  'tunnistettavat massapostitukset ja yksityisillä käyttäjillä oli erilaisia '
+  'Kill-File-työkaluja, joilla voi sensuroida ruudulta rumat sanat ja niitä '
+  'käyttävät kirjoittajat, jos ne ahdistivat. Toimi ihan hyvin.\n'
+  '\n'
+  '\n'
+  '\n',
+  'clean', 0.7487936615943909),
+ ('Meidän kosteat suomimeemit. ', 'clean', 0.7487229704856873)]
+END: ke 17.8.2022 17.17.06 +0300

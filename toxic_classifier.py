@@ -569,7 +569,7 @@ def main():
 
     trainer.train()
 
-    trainer.model.save_pretrained("models/multi-toxic-tr-optimized")
+    trainer.model.save_pretrained("models/multi-toxic-large-tr")
     print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])

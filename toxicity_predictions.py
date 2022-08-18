@@ -134,21 +134,21 @@ if args.type == "binary":
     for i in range(len(probabilities)):
         probs.append(probabilities[i][preds[i]]) # preds[i] gives the correct index for the current probability
 
-    textprob = tuple(zip(texts, probs))
+    labelprob = tuple(zip(labels, probs))
 
     # lastly use zip to get tuple
-    prediction_tuple = tuple(zip(textprob, labels, all_label_probs))
+    prediction_tuple = tuple(zip(texts, labelprob, all_label_probs))
 
     # make into list of tuples
     toxic = [item for item in prediction_tuple
-          if item[1] == "toxic"]
+          if item[1][0] == "toxic"]
     clean = [item for item in prediction_tuple
-          if item[1] == "clean"]
+          if item[1][0] == "clean"]
 
     # now sort by probability, descending
-    toxic.sort(key = lambda x: float(x[0][1]), reverse=True)
-    clean.sort(key = lambda x: float(x[0][1]), reverse=True)
-    clean2 = sorted(clean, key = lambda x: float(x[0][1])) # ascending
+    toxic.sort(key = lambda x: float(x[1][1]), reverse=True)
+    clean.sort(key = lambda x: float(x[1][1]), reverse=True)
+    clean2 = sorted(clean, key = lambda x: float(x[1][1])) # ascending
 
     # beginning most toxic, middle "neutral", end most clean
     # all = toxic + clean2
@@ -161,8 +161,11 @@ if args.type == "binary":
     print("CLEAN")
     pprint(clean[:10])
 
+    # get the most toxic to tsv file
+    toxicity  = [(toxic[i][0], toxic[i][1][0], toxic[i][1][1]) for i in range(len(toxic))]   
 
-elif args.type == "multi":
+# 6 or 7 labels
+elif args.type == "multi" or args.type == "multi-base":
     # if I want to setup pipeline I have to set function to apply to sigmoid manually (not fun for this, works out of the box for multiclass)
 
     sigmoid = torch.nn.Sigmoid()
@@ -174,17 +177,17 @@ elif args.type == "multi":
 
     probs = probs.tolist()
 
-    # take the clean label away
-    # TODO add something to distinct this from 6 labels vs. 7 which I am currently using?
-    new_pred = []
-    for i in range(len(preds)):
-        new_pred.append(preds[i][:-1])
-    preds = new_pred
+    if args.type == "multi":
+        # take the clean label away
+        new_pred = []
+        for i in range(len(preds)):
+            new_pred.append(preds[i][:-1])
+        preds = new_pred
 
-    new_probs = []
-    for i in range(len(probs)):
-        new_probs.append(probs[i][:-1])
-    probs = new_probs
+        new_probs = []
+        for i in range(len(probs)):
+            new_probs.append(probs[i][:-1])
+        probs = new_probs
 
     print(probs[:10])
     print(preds[:10])
@@ -268,6 +271,8 @@ elif args.type == "multi":
     print("CLEAN")
     pprint(clean[-10:])
 
+    # get the most toxic to tsv file
+    toxicity  = [(toxic[i][0], toxic[i][2][0], toxic[i][2][1]) for i in range(len(toxic))]   
 
 elif args.type == "true-binary":
     sigmoid = torch.nn.Sigmoid()
@@ -315,3 +320,15 @@ elif args.type == "true-binary":
     print("NEUTRAL")
     pprint(toxic[-10:]) # least toxic # this and the next is where the threshold can be seen and changed
     pprint(clean2[:10]) # "least clean"
+
+    toxicity = toxic
+
+
+# get most toxic to dataframe
+def text_and_label(data):
+    df = pd.DataFrame(data, columns=['text', 'label', 'probability'])
+    return df
+
+# get the most toxic to tsv file
+dataframe = text_and_label(toxicity)
+dataframe.to_csv('predictions/toxic_predicted.tsv', sep="\t", header=False, index=False) 

@@ -195,18 +195,26 @@ def text_and_label(data):
     return df
 
 #dataframe = text_and_label(all) 
-dataframe = only_toxic_clean(toxic) # clean, could put both but to different files
+dataframe = only_toxic_clean(clean) # clean or toxic, could put both but to different files
+dataframe2 = only_toxic_clean(toxic)
 
 
-# unfortunately all new lines are actual new lines in the csv files not \n so something should maybe be done TODO
+# unfortunately all new lines are actual new lines in the csv files not \n so something should maybe be done about it? TODO
 # to csv
-#dataframe.to_csv('logs/predictions/predicted.csv')
+#dataframe.to_csv('predictions/predicted.csv')
 
 # or to tsv
-dataframe.to_csv('logs/predictions/predicted.tsv', sep="\t", header=False) #, index=False, (this includes the row number (to make it clear which example is which) and text)
+# dataframe.to_csv('predictions/clean_predicted.tsv', sep="\t", header=False) #, index=False, (this includes the row number now (to make it clear which example is which) and text)
+# dataframe.to_csv('predictions/toxic_predicted.tsv', sep="\t", header=False) #, index=False, (this includes the row number now (to make it clear which example is which) and text)
 
+
+textlist = dataframe['text'].values.tolist()
 # or to txt file
-textlist = dataframe['text'].tolist()
-with open('logs/predictions/predicted.txt', 'w') as f:
+with open('predictions/clean_predicted.txt', 'w') as f:
     for line in textlist:
+        f.write(f"{line}\n")
+
+textlist2 = dataframe2['text'].values.tolist()
+with open('predictions/toxic_predicted.txt', 'w') as f:
+    for line in textlist2:
         f.write(f"{line}\n")
