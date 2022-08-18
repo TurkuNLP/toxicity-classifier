@@ -106,11 +106,20 @@ def json_to_dataset(data, label_names):
     dataset: Dataset
         the data in dataset format
     """
+    
+    lines = []
+    if type(data) is list:
+        for file in list:
+            with open(data, 'r') as json_file:
+                json_list = list(json_file)
+            temp = [json.loads(jline) for jline in json_list]
+            lines = lines + temp
+    else:
+        # first I need to read the json lines
+        with open(data, 'r') as json_file:
+            json_list = list(json_file)
+        lines = [json.loads(jline) for jline in json_list]
 
-    # first I need to read the json lines
-    with open(data, 'r') as json_file:
-        json_list = list(json_file)
-    lines = [json.loads(jline) for jline in json_list]
     # there is now a list of dictionaries
     df=pd.DataFrame(lines)
     df['labels'] = df[label_names[:-1]].values.tolist() # don't take clean label into account because it doesn't exist yet

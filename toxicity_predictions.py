@@ -163,6 +163,7 @@ if args.type == "binary":
 
     # get the most toxic to tsv file
     toxicity  = [(toxic[i][0], toxic[i][1][0], toxic[i][1][1]) for i in range(len(toxic))]   
+    cleaned  = [(clean[i][0], clean[i][1][0], clean[i][1][1]) for i in range(len(clean))]   
 
 # 6 or 7 labels
 elif args.type == "multi" or args.type == "multi-base":
@@ -273,6 +274,7 @@ elif args.type == "multi" or args.type == "multi-base":
 
     # get the most toxic to tsv file
     toxicity  = [(toxic[i][0], toxic[i][2][0], toxic[i][2][1]) for i in range(len(toxic))]   
+    cleaned  = [(clean[i][0], clean[i][2][0], clean[i][2][1]) for i in range(len(clean))]  
 
 elif args.type == "true-binary":
     sigmoid = torch.nn.Sigmoid()
@@ -322,6 +324,7 @@ elif args.type == "true-binary":
     pprint(clean2[:10]) # "least clean"
 
     toxicity = toxic
+    cleaned = clean
 
 
 # get most toxic to dataframe
@@ -332,3 +335,5 @@ def text_and_label(data):
 # get the most toxic to tsv file
 dataframe = text_and_label(toxicity)
 dataframe.to_csv('predictions/toxic_predicted.tsv', sep="\t", header=False, index=False) 
+dataframe2 = text_and_label(cleaned)
+dataframe2.to_csv('predictions/clean_predicted.tsv', sep="\t", header=False, index=False) 
