@@ -57,7 +57,7 @@ def arguments():
             description="A script for classifying toxic data (multi-label, includes binary evaluation on top)",
             epilog="Made by Anni Eskelinen"
         )
-    parser.add_argument('--train', required=True)
+    parser.add_argument('--train', nargs="+", required=True)
     parser.add_argument('--test', required=True)
     parser.add_argument('--model', required=True)
 
@@ -106,19 +106,20 @@ def json_to_dataset(data, label_names):
     dataset: Dataset
         the data in dataset format
     """
+
     
-    lines = []
     if type(data) is list:
-        for file in list:
-            with open(data, 'r') as json_file:
+        lines = []
+        print(data)
+        for file in data:
+            with open(file, 'r') as json_file:
                 json_list = list(json_file)
             temp = [json.loads(jline) for jline in json_list]
             lines = lines + temp
     else:
-        # first I need to read the json lines
         with open(data, 'r') as json_file:
             json_list = list(json_file)
-        lines = [json.loads(jline) for jline in json_list]
+            lines = [json.loads(jline) for jline in json_list]
 
     # there is now a list of dictionaries
     df=pd.DataFrame(lines)
@@ -578,7 +579,7 @@ def main():
 
     trainer.train()
 
-    trainer.model.save_pretrained("models/multi-toxic-large-tr")
+    trainer.model.save_pretrained("models/xlmr-large-multi-tr")
     print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])

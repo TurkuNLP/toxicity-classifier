@@ -66,7 +66,7 @@ A script for predicting toxic texts based on a toxicity classifier
 optional arguments:
   -h, --help            show this help message and exit
   --model MODEL         the model name
-  --type TYPE           which type the model is, multilabel, binary or true-
+  --type TYPE           which type the model is, multi-label (6 or 7 labels), binary or true-
                         binary
   --threshold THRESHOLD
                         the threshold for the predictions
