@@ -1,6 +1,7 @@
 from langdetect import detect
 from langdetect import DetectorFactory
 import sys
+import json
 import pandas as pd
 
 DetectorFactory.seed = 0
@@ -14,20 +15,21 @@ lines = [json.loads(jline) for jline in json_list]
 
 # use pandas to look at each column
 df=pd.DataFrame(lines)
-df = df[['body']]
-df.rename(columns = {'body':'text'}, inplace = True) # have to change the column name so this works
-
+df = df[['text']]
 
 # get texts and loop them to pick out the english texts
 texts = df['text'].values.tolist()
 
 en_list = []
 for text in texts:
-    if detect(text) == 'en':
-        en_list.append(text)
+    try:
+        if detect(text) == 'en':
+            en_list.append(text)
+    except:
+        print("error")
 
 
 # save the en_list to a file
 with open('label_distribution/toxic_eng.txt', 'w') as f:
-    for line in textlist:
+    for line in en_list:
         f.write(f"{line}\n")
