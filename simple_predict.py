@@ -36,6 +36,8 @@ parser.add_argument('--threshold', type=float, default=0.5,
     help="the threshold for the predictions")
 parser.add_argument('--data', required=True,
     help="the file name of the raw text to use for predictions")
+parser.add_argument('--tokenizer', required=True,
+    help="the tokenizer to use for tokenizing new text")
 args = parser.parse_args()
 print(args)
 
@@ -69,7 +71,7 @@ pprint(df[:5])
 #random.shuffle(texts) # not necessary
 print(len(lines))
 
-tokenizer = transformers.AutoTokenizer.from_pretrained("TurkuNLP/bert-base-finnish-cased-v1")
+tokenizer = transformers.AutoTokenizer.from_pretrained(args.tokenizer)
 
 def tokenize(example):
     return tokenizer(

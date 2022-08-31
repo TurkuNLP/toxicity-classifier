@@ -1,0 +1,9 @@
+START: ke 31.8.2022 09.54.19 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/multilingual-multi-tr', threshold=0.76, tokenizer='xlm-roberta-base', type='multi')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200000
