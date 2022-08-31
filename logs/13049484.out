@@ -26,3 +26,44 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2147, 'learning_rate': 6e-06, 'epoch': 1.0}
+Best threshold: 0.5999999999999999
+{'eval_loss': 0.21429745852947235, 'eval_accuracy': 0.9347744537184657, 'eval_roc_auc': 0.8515022301725138, 'eval_f1': 0.6911862650780729, 'eval_precision': 0.6423658872077029, 'eval_recall': 0.7480378023386193, 'eval_runtime': 529.0516, 'eval_samples_per_second': 120.93, 'eval_steps_per_second': 3.78, 'epoch': 1.0}
+{'loss': 0.1662, 'learning_rate': 4e-06, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.17076274752616882, 'eval_accuracy': 0.9242239519834943, 'eval_roc_auc': 0.8818712832625594, 'eval_f1': 0.6810945928167347, 'eval_precision': 0.5778546712802768, 'eval_recall': 0.8292487586096428, 'eval_runtime': 529.4028, 'eval_samples_per_second': 120.849, 'eval_steps_per_second': 3.778, 'epoch': 2.0}
+{'loss': 0.1358, 'learning_rate': 2e-06, 'epoch': 3.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.16220059990882874, 'eval_accuracy': 0.9268185938916502, 'eval_roc_auc': 0.8815231500434032, 'eval_f1': 0.6875750700653943, 'eval_precision': 0.589271417133707, 'eval_recall': 0.8252442735864168, 'eval_runtime': 530.1182, 'eval_samples_per_second': 120.686, 'eval_steps_per_second': 3.773, 'epoch': 3.0}
+{'loss': 0.1166, 'learning_rate': 0.0, 'epoch': 4.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.18145759403705597, 'eval_accuracy': 0.9240207571352652, 'eval_roc_auc': 0.8846158776031285, 'eval_f1': 0.6821837201699903, 'eval_precision': 0.5763367211665931, 'eval_recall': 0.8356559346468044, 'eval_runtime': 531.6241, 'eval_samples_per_second': 120.344, 'eval_steps_per_second': 3.762, 'epoch': 4.0}
+{'train_runtime': 15811.6139, 'train_samples_per_second': 40.368, 'train_steps_per_second': 5.046, 'train_loss': 0.15835039637265316, 'epoch': 4.0}
+Best threshold: 0.5999999999999999
+F1: 0.6911862650780729
+Best threshold: 0.5999999999999999
+Best threshold: 0.3
+              precision    recall  f1-score   support
+
+       clean       0.98      0.94      0.96     57735
+       toxic       0.58      0.82      0.68      6243
+
+    accuracy                           0.92     63978
+   macro avg       0.78      0.88      0.82     63978
+weighted avg       0.94      0.92      0.93     63978
+
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.36      0.63      0.46       712
+         label_insult       0.47      0.84      0.60      3427
+        label_obscene       0.50      0.84      0.62      3691
+label_severe_toxicity       0.17      0.85      0.29       367
+         label_threat       0.11      0.17      0.13       211
+       label_toxicity       0.57      0.82      0.67      6090
+
+            micro avg       0.48      0.81      0.60     14498
+            macro avg       0.36      0.69      0.46     14498
+         weighted avg       0.50      0.81      0.61     14498
+          samples avg       0.06      0.07      0.06     14498
+
+END: ke 31.8.2022 14.48.36 +0300

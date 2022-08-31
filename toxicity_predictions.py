@@ -336,6 +336,6 @@ def text_and_label(data):
 
 # get the most toxic to tsv file
 dataframe = text_and_label(toxicity)
-dataframe.to_csv('predictions/toxic_predicted-xlmr.tsv', sep="\t", header=False, index=False) 
+dataframe.to_csv('predictions/toxic_predicted-multilang.tsv', sep="\t", header=False, index=False) 
 dataframe2 = text_and_label(cleaned)
-dataframe2.to_csv('predictions/clean_predicted-xlmr.tsv', sep="\t", header=False, index=False) 
+dataframe2.to_csv('predictions/clean_predicted-multilang.tsv', sep="\t", header=False, index=False) 
