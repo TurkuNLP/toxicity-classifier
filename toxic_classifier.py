@@ -540,7 +540,7 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/multilabelfinbert", #output_dir for checkpoints, not necessary to mention what it is
+        "checkpoints/multilabeltransfer", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="epoch",
         logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
         save_strategy="epoch",
@@ -579,8 +579,8 @@ def main():
 
     trainer.train()
 
-    # trainer.model.save_pretrained("models/xlmr-nocleanlabel-tr")
-    # print("saved")
+    trainer.model.save_pretrained("models/xlmr-transfer")
+    print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])
     #pprint(eval_results)

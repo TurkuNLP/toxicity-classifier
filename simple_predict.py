@@ -201,7 +201,7 @@ dataframe = only_toxic_clean(clean) # clean or toxic, could put both but to diff
 dataframe2 = only_toxic_clean(toxic)
 
 
-# unfortunately all new lines are actual new lines in the csv files not \n so something should maybe be done about it? TODO
+# dataframe = dataframe.replace(r'\n',' ', regex=True)  # remove \n newlines so that the tsv actually works as it should
 # to csv
 #dataframe.to_csv('predictions/predicted.csv')
 

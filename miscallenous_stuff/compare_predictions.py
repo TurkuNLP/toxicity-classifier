@@ -14,8 +14,8 @@ def split_data(data):
         lines = f.readlines()
     line_list = []
     for i in range(len(lines)):
-        lines[i] = lines[i].replace("\n", "")
-        lines[i] = lines[i].split("\t") # split at the labels
+        #lines[i] = lines[i].replace("\n", "")
+        lines[i] = lines[i].split("\t")
         line_list.append(lines[i][0])
     return line_list
 
