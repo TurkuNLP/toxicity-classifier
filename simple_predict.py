@@ -212,13 +212,13 @@ dataframe2 = only_toxic_clean(toxic)
 # dataframe.to_csv('predictions/toxic_predicted.tsv', sep="\t", header=False) #, index=False, (this includes the row number now (to make it clear which example is which) and text)
 
 
-textlist = dataframe['text'].values.tolist()
+textlist = dataframe[['text']].values.tolist()
 # or to txt file
 with open('predictions/clean_predicted.txt', 'w') as f:
     for line in textlist:
         f.write(f"{line}\n")
 
-textlist2 = dataframe2['text'].values.tolist()
+textlist2 = dataframe2[['text']].values.tolist()
 with open('predictions/toxic_predicted.txt', 'w') as f:
     for line in textlist2:
         f.write(f"{line}\n")

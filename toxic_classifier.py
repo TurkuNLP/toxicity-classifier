@@ -288,6 +288,11 @@ def multi_label_metrics(predictions, labels, threshold):
         f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
         roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
+
+        from sklearn.metrics import hamming_loss
+        hamming = hamming_loss(y_true, y_pred)
+        print(hamming)
+
         # return as dictionary
         metrics = {'f1': f1,
                     'f1_weighted': f1_weighted_average,

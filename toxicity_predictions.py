@@ -336,10 +336,13 @@ def text_and_label(data):
 
 # get the most toxic to tsv file
 dataframe = text_and_label(toxicity)
-dataframe = dataframe.replace(r'\n',' ', regex=True)
-dataframe = dataframe.replace(r'\r\n',' ', regex=True)
+dataframe = dataframe.replace(r'\n',' ', regex=True) # unix
+dataframe = dataframe.replace(r'\r\n',' ', regex=True) # windows
+dataframe = dataframe.replace(r'\r',' ', regex=True) # mac
+
 dataframe.to_csv('predictions/toxic_predicted-tr.tsv', sep="\t", header=False, index=False) 
 dataframe2 = text_and_label(cleaned)
 dataframe2 = dataframe2.replace(r'\n',' ', regex=True)
 dataframe2 = dataframe2.replace(r'\r\n',' ', regex=True)
+dataframe2 = dataframe2.replace(r'\r',' ', regex=True)
 dataframe2.to_csv('predictions/clean_predicted-tr.tsv', sep="\t", header=False, index=False) 
