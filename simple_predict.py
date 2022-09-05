@@ -200,8 +200,10 @@ def text_and_label(data):
 dataframe = only_toxic_clean(clean) # clean or toxic, could put both but to different files
 dataframe2 = only_toxic_clean(toxic)
 
+# remove \n newlines so that the tsv actually works as it should
+#dataframe = dataframe.replace(r'\n',' ', regex=True) 
+#dataframe2 = dataframe2.replace(r'\n',' ', regex=True) 
 
-# dataframe = dataframe.replace(r'\n',' ', regex=True)  # remove \n newlines so that the tsv actually works as it should
 # to csv
 #dataframe.to_csv('predictions/predicted.csv')
 

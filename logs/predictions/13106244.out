@@ -1,0 +1,800 @@
+START: ma 5.9.2022 10.26.15 +0300
+Namespace(data='data/reddit-Suomi.jsonl', model='models/xlmr-transfer', threshold=0.76, tokenizer='xlm-roberta-large', type='multi')
+        text
+0  [deleted]
+1  [deleted]
+2  [deleted]
+3  [deleted]
+4  [deleted]
+200000
+[[0.0001704903261270374, 0.0001747546630213037, 0.000131995024275966, 0.00013225166185293347, 0.00010695760283851996], [0.0001704903261270374, 0.0001747546630213037, 0.000131995024275966, 0.00013225166185293347, 0.00010695760283851996], [0.0001704903261270374, 0.0001747546630213037, 0.000131995024275966, 0.00013225166185293347, 0.00010695760283851996], [0.0001704903261270374, 0.0001747546630213037, 0.000131995024275966, 0.00013225166185293347, 0.00010695760283851996], [0.0001704903261270374, 0.0001747546630213037, 0.000131995024275966, 0.00013225166185293347, 0.00010695760283851996], [0.00014769643894396722, 0.00019007611263077706, 0.00013001743354834616, 9.428595512872562e-05, 8.349563722731546e-05], [0.0001704903261270374, 0.0001747546630213037, 0.000131995024275966, 0.00013225166185293347, 0.00010695760283851996], [0.00044509745202958584, 0.0009490792290307581, 0.00032258007558993995, 7.422650378430262e-05, 0.00016750716895330697], [0.000153112065163441, 0.00018949812510982156, 0.0001248213229700923, 9.48297674767673e-05, 8.95526900421828e-05], [0.00015179546608123928, 0.00022981438087299466, 0.00013915079762227833, 7.79017063905485e-05, 8.275362779386342e-05]]
+[array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.]), array([0., 0., 0., 0., 0.])]
+[(), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), ()]
+(('clean', 0.0001747546630213037), ('clean', 0.0001747546630213037), ('clean', 0.0001747546630213037), ('clean', 0.0001747546630213037), ('clean', 0.0001747546630213037))
+TOXIC
+[("Bitch, I'm gonna cover the whole motherfucking country",
+  ((0.05294927954673767, 'label_identity_attack'),
+   (0.9891933798789978, 'label_insult'), (0.9994394183158875, 'label_obscene'),
+   (0.9477980732917786, 'label_severe_toxicity'),
+   (0.04429095983505249, 'label_threat')),
+  ('toxic', 0.9994394183158875),
+  (('label_insult', 0.9891933798789978), ('label_obscene', 0.9994394183158875),
+   ('label_severe_toxicity', 0.9477980732917786))),
+ ('Totta! \n'
+  'Fuck fuck fuck fucking shit\n'
+  '\n'
+  'ei kuulosta yhtä kauniilta kun\n'
+  '\n'
+  'Voi vitun vittu saatanan kusipää ei perkeleen vittu jumalauta',
+  ((0.04015578329563141, 'label_identity_attack'),
+   (0.9730544686317444, 'label_insult'), (0.9994107484817505, 'label_obscene'),
+   (0.9644811153411865, 'label_severe_toxicity'),
+   (0.018953246995806694, 'label_threat')),
+  ('toxic', 0.9994107484817505),
+  (('label_insult', 0.9730544686317444), ('label_obscene', 0.9994107484817505),
+   ('label_severe_toxicity', 0.9644811153411865))),
+ ('Fuck you kokoomus, fuck you very much.',
+  ((0.040122512727975845, 'label_identity_attack'),
+   (0.9873851537704468, 'label_insult'), (0.999340832233429, 'label_obscene'),
+   (0.9686142206192017, 'label_severe_toxicity'),
+   (0.019392769783735275, 'label_threat')),
+  ('toxic', 0.999340832233429),
+  (('label_insult', 0.9873851537704468), ('label_obscene', 0.999340832233429),
+   ('label_severe_toxicity', 0.9686142206192017))),
+ ('*Fucking nerds*',
+  ((0.07062267512083054, 'label_identity_attack'),
+   (0.9893524050712585, 'label_insult'), (0.9992965459823608, 'label_obscene'),
+   (0.8652594089508057, 'label_severe_toxicity'),
+   (0.007186545059084892, 'label_threat')),
+  ('toxic', 0.9992965459823608),
+  (('label_insult', 0.9893524050712585), ('label_obscene', 0.9992965459823608),
+   ('label_severe_toxicity', 0.8652594089508057))),
+ ('You want to shout "FUCKITY FUCK FUCK" (very loudly) at something, but just '
+  "don't, and grumble-mumble instead.",
+  ((0.016757268458604813, 'label_identity_attack'),
+   (0.9579792022705078, 'label_insult'), (0.9992449283599854, 'label_obscene'),
+   (0.9399195313453674, 'label_severe_toxicity'),
+   (0.04354844614863396, 'label_threat')),
+  ('toxic', 0.9992449283599854),
+  (('label_insult', 0.9579792022705078), ('label_obscene', 0.9992449283599854),
+   ('label_severe_toxicity', 0.9399195313453674))),
+ ('wtf the fuck',
+  ((0.021400591358542442, 'label_identity_attack'),
+   (0.9339789152145386, 'label_insult'), (0.9992257356643677, 'label_obscene'),
+   (0.9721499681472778, 'label_severe_toxicity'),
+   (0.032557759433984756, 'label_threat')),
+  ('toxic', 0.9992257356643677),
+  (('label_insult', 0.9339789152145386), ('label_obscene', 0.9992257356643677),
+   ('label_severe_toxicity', 0.9721499681472778))),
+ ('What the fuck? How does it get better than this, I personally despise these '
+  "fucking bluntheads, I'm glad they're taking actions in scaring these cunts. "
+  "Sign me up, I'll take a sniffer dog search me up anytime, I'm not a crook, "
+  "it doesn't shake my tree one fucking bit.",
+  ((0.03203283250331879, 'label_identity_attack'),
+   (0.990250289440155, 'label_insult'), (0.9991679191589355, 'label_obscene'),
+   (0.713394045829773, 'label_severe_toxicity'),
+   (0.014273745939135551, 'label_threat')),
+  ('toxic', 0.9991679191589355),
+  (('label_insult', 0.990250289440155), ('label_obscene', 0.9991679191589355))),
+ ('Anu maksa pillu kakka kulli paska muna',
+  ((0.0885203406214714, 'label_identity_attack'),
+   (0.9793383479118347, 'label_insult'), (0.9991123080253601, 'label_obscene'),
+   (0.6773771047592163, 'label_severe_toxicity'),
+   (0.008012911304831505, 'label_threat')),
+  ('toxic', 0.9991123080253601),
+  (('label_insult', 0.9793383479118347),
+   ('label_obscene', 0.9991123080253601))),
+ ('&gt; FUKK THE SYSTEM\n'
+  '\n'
+  'Nussii systeemiä puoltamalla systeemiä joka ampuisi hänen kaltaiset '
+  'vastarannan kiiskit? Aika metaa.',
+  ((0.007210579700767994, 'label_identity_attack'),
+   (0.8867706060409546, 'label_insult'), (0.9988909363746643, 'label_obscene'),
+   (0.8304915428161621, 'label_severe_toxicity'),
+   (0.01520549040287733, 'label_threat')),
+  ('toxic', 0.9988909363746643),
+  (('label_insult', 0.8867706060409546), ('label_obscene', 0.9988909363746643),
+   ('label_severe_toxicity', 0.8304915428161621))),
+ ('"~~FUCK~~LOVE THA POLICE COMIN\' STRAIGHT FROM THE UNDERGROUND"',
+  ((0.009641094133257866, 'label_identity_attack'),
+   (0.8735805749893188, 'label_insult'), (0.9988717436790466, 'label_obscene'),
+   (0.8477538228034973, 'label_severe_toxicity'),
+   (0.01724482886493206, 'label_threat')),
+  ('toxic', 0.9988717436790466),
+  (('label_insult', 0.8735805749893188), ('label_obscene', 0.9988717436790466),
+   ('label_severe_toxicity', 0.8477538228034973)))]
+NEUTRAL
+[('Nyt jätkät saatana. Lopettakaa.\n\nIhme rinkirunkkaamista taas.',
+  ((0.014687512069940567, 'label_identity_attack'),
+   (0.7652218341827393, 'label_insult'), (0.05209144577383995, 'label_obscene'),
+   (0.0016321182483807206, 'label_severe_toxicity'),
+   (0.0035560401156544685, 'label_threat')),
+  ('toxic', 0.7652218341827393), (('label_insult', 0.7652218341827393),)),
+ ('toisella firman perustajajäsenellä näyttää olevan myös oma pikavippifirma. '
+  'luonnollisesti tämä vitun säkki on rekistöröinyt yrityksensä äitinsä '
+  'nimiin, joten jokainen voi tehdä omat johtopäätöksensä tästä sankarista.',
+  ((0.005550801288336515, 'label_identity_attack'),
+   (0.7649108171463013, 'label_insult'), (0.5727842450141907, 'label_obscene'),
+   (0.003921076189726591, 'label_severe_toxicity'),
+   (0.0019274206133559346, 'label_threat')),
+  ('toxic', 0.7649108171463013), (('label_insult', 0.7649108171463013),)),
+ ('Tämä on kyllä perseestä. Perustulohan tämän ratkaisisi.',
+  ((0.0022501766216009855, 'label_identity_attack'),
+   (0.15384541451931, 'label_insult'), (0.7643719911575317, 'label_obscene'),
+   (0.0035648762714117765, 'label_severe_toxicity'),
+   (0.0017254032427445054, 'label_threat')),
+  ('toxic', 0.7643719911575317), (('label_obscene', 0.7643719911575317),)),
+ ('Olet idiootti. \n'
+  '\n'
+  'Minä olen sinun perusteella "pelosta tutiseva rasisti"...\n'
+  '\n'
+  'En pelkää,olen huolestunut, ja pakolaisten tulolla ei ole vaikutusta minun '
+  'elämään. 200km taitaa lähin vastaanottokeskus olla.\n'
+  '\n'
+  'Minua hirvittää se mitä näen ympäri eurooppaa ja afrikkaa. \n'
+  '\n'
+  'Eniten minua etoo se että minun pitää luultavasti tulevaisuudessa astua '
+  'aseisiin maahantulleita vastaan mistä on selkeät merkit muista maista '
+  'sisältäen ruotsin , ranskan ja englannin. \n'
+  '\n'
+  '\n'
+  'Minua oikeasti pelottaa mihin tämä on menossa mutta suomalaista suomea '
+  'puolustan, jos monikulttuurista pyydetään puolustamaan niin käännän '
+  'kylkeä.\n'
+  '\n'
+  '\n'
+  'PS: milloin saan muuttaa sinun luokse, anna osoite.',
+  ((0.02302592806518078, 'label_identity_attack'),
+   (0.7643696069717407, 'label_insult'), (0.03737248480319977, 'label_obscene'),
+   (0.0013349150540307164, 'label_severe_toxicity'),
+   (0.001886662095785141, 'label_threat')),
+  ('toxic', 0.7643696069717407), (('label_insult', 0.7643696069717407),)),
+ ('Jep, Soini on poliittisen historian ehkä suurin takinkääntäjä. Vallanhimo '
+  'on niin valtava, että se tekee aivan mitä vaan jotta perse pysyy Audissa.',
+  ((0.001768440124578774, 'label_identity_attack'),
+   (0.12360570579767227, 'label_insult'), (0.7638043165206909, 'label_obscene'),
+   (0.0032954546622931957, 'label_severe_toxicity'),
+   (0.0017216793494299054, 'label_threat')),
+  ('toxic', 0.7638043165206909), (('label_obscene', 0.7638043165206909),)),
+ ('Dialogi on aivan mahtavaa!\n'
+  '\n'
+  '&gt; Hakkaan sut\n'
+  '\n'
+  '&gt;&gt; Älä pliis. Mulla on osteoporoosi. Haluisitko mieluummin tehä '
+  'massia?\n'
+  '\n'
+  '&gt; Kerro lisää tai hakkaan sut\n'
+  '\n'
+  '&gt;&gt; Ok. Yks vitun sälli lupas myydä mulle horsen mutta nyt se on '
+  'linnassa koko vitun mulkku \n'
+  '\n'
+  '&gt; Hyväkin horse?\n'
+  '\n'
+  '&gt;&gt; Iha vitun hyvä 5/5\n'
+  '\n'
+  '&gt; paskapuhetta mutta uskon \n',
+  ((0.004169733263552189, 'label_identity_attack'),
+   (0.33820128440856934, 'label_insult'), (0.7624416947364807, 'label_obscene'),
+   (0.006553086452186108, 'label_severe_toxicity'),
+   (0.0038148018065840006, 'label_threat')),
+  ('toxic', 0.7624416947364807), (('label_obscene', 0.7624416947364807),)),
+ ('Oho, neekeri varkaita. Yllätys!',
+  ((0.7622463703155518, 'label_identity_attack'),
+   (0.5068281292915344, 'label_insult'), (0.04903392121195793, 'label_obscene'),
+   (0.002865288872271776, 'label_severe_toxicity'),
+   (0.0066080112010240555, 'label_threat')),
+  ('toxic', 0.7622463703155518),
+  (('label_identity_attack', 0.7622463703155518),)),
+ ('Totta, mutta miten vitussa rikospaikalta saatiin vietyä säkkikaupalla '
+  'tavaraa ilman että yksikään kyttä osaa sanoa mitä sieltä vietiin?\n',
+  ((0.001605900120921433, 'label_identity_attack'),
+   (0.04417524114251137, 'label_insult'), (0.7621124386787415, 'label_obscene'),
+   (0.0034607136622071266, 'label_severe_toxicity'),
+   (0.001926950179040432, 'label_threat')),
+  ('toxic', 0.7621124386787415), (('label_obscene', 0.7621124386787415),)),
+ ('Eihän tuolla nyt kaikki afrikkalaiset juokse puukottamassa ihmisiä, '
+  'artikkelin miehet vaan on täysin psykoottista.',
+  ((0.7620655298233032, 'label_identity_attack'),
+   (0.19573058187961578, 'label_insult'),
+   (0.01650059036910534, 'label_obscene'),
+   (0.002143838908523321, 'label_severe_toxicity'),
+   (0.012432891875505447, 'label_threat')),
+  ('toxic', 0.7620655298233032),
+  (('label_identity_attack', 0.7620655298233032),)),
+ ('vituttaa just tollanen että keksi itelles joku markkinointi slogani, ole '
+  'mansikka äläkä sipuli, myy ittees vitun vittu... \n'
+  '\n'
+  'työnantaja. tarvitset työntekijän tähän hommaan. tässä koulutukseni ja '
+  'työhistoriani. voin tulla milloin tahansa teille töihin. soita.\n'
+  '\n'
+  'vittu joko kelpaa tai ei en minä tuosta miksään muutu vaikka kuinka '
+  'kaunistelisin.\n'
+  '\n'
+  'vituttaa kanssa kun niissä työpaikka ilmoituksissa lukee vitusti jotain '
+  'adjektiiveja millainen pitää olla että on sopiva tähän työpaikkaan\n'
+  '\n'
+  '"Haemme iloista, aktiivista ja aikaansaavaa..."\n'
+  '"Toivomme positiivista elämänasennetta"\n'
+  '\n'
+  'vituttaaaa',
+  ((0.003487708978354931, 'label_identity_attack'),
+   (0.24344182014465332, 'label_insult'), (0.7617642283439636, 'label_obscene'),
+   (0.0054521518759429455, 'label_severe_toxicity'),
+   (0.0030031378846615553, 'label_threat')),
+  ('toxic', 0.7617642283439636), (('label_obscene', 0.7617642283439636),)),
+ ('Jaa, tää ei ollukkaan avarakatseinen persu vaan ihan perinteisesti '
+  'ahdasmielinen mulkku. ',
+  ((0.03198728710412979, 'label_identity_attack'),
+   (0.7615988850593567, 'label_insult'), (0.2640381455421448, 'label_obscene'),
+   (0.0035885486286133528, 'label_severe_toxicity'),
+   (0.0026622528675943613, 'label_threat')),
+  ('toxic', 0.7615988850593567), (('label_insult', 0.7615988850593567),)),
+ ('Piti tehdä kertakäyttötunnus että pääsee mölisemään rasistisia kantojaan '
+  'ja/tai trollaamaan? Kaltaisesi idiootit ne Suomen tuhoaa.',
+  ((0.05477447807788849, 'label_identity_attack'),
+   (0.7614096999168396, 'label_insult'), (0.04498490318655968, 'label_obscene'),
+   (0.0022792546078562737, 'label_severe_toxicity'),
+   (0.005022681783884764, 'label_threat')),
+  ('toxic', 0.7614096999168396), (('label_insult', 0.7614096999168396),)),
+ ('Saiskohan tästä uuden viennin veturin? Olen kuullut, että vitun ärsyttävät '
+  'puhelinmyyjät myyvät ulkomaillakin.',
+  ((0.0033714252058416605, 'label_identity_attack'),
+   (0.5434324741363525, 'label_insult'), (0.7609341144561768, 'label_obscene'),
+   (0.00491410493850708, 'label_severe_toxicity'),
+   (0.0018908637575805187, 'label_threat')),
+  ('toxic', 0.7609341144561768), (('label_obscene', 0.7609341144561768),)),
+ ('No ei tälläsellä saa aikaan muutakuin rumaa homoseksiä...\n'
+  'naisiako internetissä....\n'
+  'noh jos sitä kuitenkin\n'
+  '[M4All] 22,uusimaa',
+  ((0.7608574032783508, 'label_identity_attack'),
+   (0.1801747977733612, 'label_insult'), (0.03463860601186752, 'label_obscene'),
+   (0.0019308645278215408, 'label_severe_toxicity'),
+   (0.0046721333637833595, 'label_threat')),
+  ('toxic', 0.7608574032783508),
+  (('label_identity_attack', 0.7608574032783508),)),
+ ('Loukkaa tälläinen pelleily, kun joku vitun likainen räppäri pilkkaa '
+  'veteraaneja. Hyi.\n'
+  '\n'
+  '/s',
+  ((0.003442612709477544, 'label_identity_attack'),
+   (0.7607825994491577, 'label_insult'), (0.7120605111122131, 'label_obscene'),
+   (0.0037660866510123014, 'label_severe_toxicity'),
+   (0.0016128669958561659, 'label_threat')),
+  ('toxic', 0.7607825994491577), (('label_insult', 0.7607825994491577),)),
+ ('Siinä kohtaa ku joku muu kuin skappari koittaa "huutaa" kertaajalle ni voi '
+  'saada paskaa niskaan ja kovemmat huudot takas.\n'
+  '\n'
+  'Haluun nähdä myös ku päivystäjä pistää jonkun kertaajan punnertamaan, '
+  'kuulostaa aika bullshit jutulta.',
+  ((0.005112620536237955, 'label_identity_attack'),
+   (0.12864145636558533, 'label_insult'), (0.7607373595237732, 'label_obscene'),
+   (0.0045526763424277306, 'label_severe_toxicity'),
+   (0.0028168917633593082, 'label_threat')),
+  ('toxic', 0.7607373595237732), (('label_obscene', 0.7607373595237732),)),
+ ('Opiskelijastatus on perseestä. Jos koitat hakea työttömyystukea '
+  'lukiopapereilla =&gt; hae kolmeen opiskelupaikkaan ja samanaikaisesti '
+  'työpaikkoja jos haluat työttömyystukea (opiskelupaikka on pakko ottaa '
+  'vastaan). Opiskelijastatus=opiskele tai hae onnistuneesti muualle. '
+  'Työttömyystukea et saa, koska olet opiskelija. Työttömyystuki on tottakai '
+  'paljon suurempi kuin opintotuki.',
+  ((0.002344710286706686, 'label_identity_attack'),
+   (0.25677940249443054, 'label_insult'), (0.7605530619621277, 'label_obscene'),
+   (0.0033926470205187798, 'label_severe_toxicity'),
+   (0.0012481736484915018, 'label_threat')),
+  ('toxic', 0.7605530619621277), (('label_obscene', 0.7605530619621277),)),
+ ('AMA request - Tappamisella internetissä uhkaillut ihminen.\n'
+  '\n'
+  'Tosin ei olisi ehkä vähän tylsä, en keksi kysyä muuta kuin että "kuinka '
+  'h*tin tyhmä olet?"\n',
+  ((0.004638846032321453, 'label_identity_attack'),
+   (0.5656431913375854, 'label_insult'), (0.7604248523712158, 'label_obscene'),
+   (0.005901376251131296, 'label_severe_toxicity'),
+   (0.0024254517629742622, 'label_threat')),
+  ('toxic', 0.7604248523712158), (('label_obscene', 0.7604248523712158),)),
+ ('Miten vitun vähän voi maailmasta tietää ja silti kehdata osallistua '
+  'keskusteluun? Eivät nuo nykyiset 70+ vuotiaat minimieläkeläiset ole '
+  'työiässään olleet mitään työtä vieroksuvia pummeja (vaikeaa jo siksikin, '
+  'että työttömyys- tai sosiaalitukia ei ollut silloin), vaan sotien jälkeen '
+  'tämän maan rakentaneita ahkeria ihmisiä. Joukossa varmasti paljon esim. '
+  'entisiä maanviljelijöitä ja suurperheiden kotiäitejä, joilla ei '
+  'yksinkertaisesti ole ollut mahdolisuutta kerätä omaisuutta vanhuutensa '
+  'varalle. \n'
+  '\n'
+  'EDIT. vai missasinko sittenkin vitsin tässä....',
+  ((0.0035467848647385836, 'label_identity_attack'),
+   (0.07386843860149384, 'label_insult'), (0.7604002952575684, 'label_obscene'),
+   (0.0038610962219536304, 'label_severe_toxicity'),
+   (0.0023909949231892824, 'label_threat')),
+  ('toxic', 0.7604002952575684), (('label_obscene', 0.7604002952575684),)),
+ ('&gt;Kommunismi on silti kivaa ilmeisesti.\n'
+  '\n'
+  'Niin joo ja siis hetkinen: jollei kannata turistien hakkaamista, on '
+  'kommunisti. Mitä vitun vittua nyt taas?',
+  ((0.005789211019873619, 'label_identity_attack'),
+   (0.11037389189004898, 'label_insult'), (0.7602079510688782, 'label_obscene'),
+   (0.00403294712305069, 'label_severe_toxicity'),
+   (0.002060036174952984, 'label_threat')),
+  ('toxic', 0.7602079510688782), (('label_obscene', 0.7602079510688782),))]
+[('Jeah ihmiset on kyl yleisesti ottaen niin vitun ahistuneita olentoja että '
+  'yhtä tilannekomediaa niiden seuraaminen.',
+  ((0.005295237526297569, 'label_identity_attack'),
+   (0.6042172312736511, 'label_insult'), (0.7598488330841064, 'label_obscene'),
+   (0.004682142287492752, 'label_severe_toxicity'),
+   (0.0020896720234304667, 'label_threat')),
+  ('clean', 0.7598488330841064), ()),
+ ('No voi perse. Voin jollain tavalla asettua asemaasi. Mutta nyt en silti '
+  'osaa sanoa mitään rohkaisevaa. Ja nyt menin muutenkin ihan sanattomaksi. '
+  'Missäpäin Suomea asut? Jos voi kysyä?',
+  ((0.0013054580194875598, 'label_identity_attack'),
+   (0.14428912103176117, 'label_insult'), (0.7598327994346619, 'label_obscene'),
+   (0.002944414969533682, 'label_severe_toxicity'),
+   (0.0014436260098591447, 'label_threat')),
+  ('clean', 0.7598327994346619), ()),
+ ('Kyllä minut mainittiin. Sinulla sentään mainittiin sukupuoli, joten voit '
+  'hyvällä omallatunnolla päätellä kirjoittajan olevan idiootti.',
+  ((0.011688966304063797, 'label_identity_attack'),
+   (0.7597913146018982, 'label_insult'), (0.06001700833439827, 'label_obscene'),
+   (0.0013216162333264947, 'label_severe_toxicity'),
+   (0.001520563499070704, 'label_threat')),
+  ('clean', 0.7597913146018982), ()),
+ ('On muuten perseestä, että jos hakisin tuot duunia, joutuisin sekä ikä-, '
+  'paino- että sukupuolisyrjinnän kohteeksi. Miksei Annika Lapintie tee jo '
+  'jotain? Tissibaari riistää nuoria naisia ja syrjii keski-ikäisiä miehiä!',
+  ((0.26966702938079834, 'label_identity_attack'),
+   (0.3989795744419098, 'label_insult'), (0.7597518563270569, 'label_obscene'),
+   (0.01088810432702303, 'label_severe_toxicity'),
+   (0.004510730504989624, 'label_threat')),
+  ('clean', 0.7597518563270569), ()),
+ ('En pidä ihmisiä niin tyhminä että ottaisivat noin selkeän läpän trollista. '
+  'Toisaalta paha tapa aliarvoida sitä miten vitun tyhmiä ihmiset oikeesti voi '
+  'olla.',
+  ((0.005335800349712372, 'label_identity_attack'),
+   (0.7596051692962646, 'label_insult'), (0.3242195248603821, 'label_obscene'),
+   (0.0022963425144553185, 'label_severe_toxicity'),
+   (0.0018117910949513316, 'label_threat')),
+  ('clean', 0.7596051692962646), ()),
+ ('&gt; Mitä v*itun kulttuuria\n'
+  '\n'
+  'Ei tarvii muuttaa kovin kauas Pohjoismaiden ulkopuolelle, niin maksuttomat '
+  'neuvolat, vanhempainlomat ja äitiyspakkaus alkaa olla melko tuntemattomia '
+  'asioita. Nuo on kyllä suomalaisessa/pohjoismaismaisessa kulttuurissa '
+  'asioita jotka ovat muualla selkeesti huonommin.',
+  ((0.006184822414070368, 'label_identity_attack'),
+   (0.061862774193286896, 'label_insult'),
+   (0.7587659358978271, 'label_obscene'),
+   (0.004972162656486034, 'label_severe_toxicity'),
+   (0.0020798330660909414, 'label_threat')),
+  ('clean', 0.7587659358978271), ()),
+ ('Aivan vitun sama se oletko sinä tai minä tai kukaan täällä samaa mieltä '
+  'väitteiden kanssa, tämä on oman kokemukseni mukaan yleisin syy '
+  'aseistakieltäytymiseen. Pointti oli purkaa /u/Jotakin:in kommentissa '
+  'rakennettu olematon olkiukkohippi eikä alkaa käydä hedelmätöntä keskustelua '
+  'optimaalisesta puolustustaktiikasta Suomelle. En tosiaan ole asiasta '
+  'tarpeeksi sivistynyt että osaisin valita puoleni, mitä nyt lähinnä kannatan '
+  'puolustusyhteistyön lisääämistä lännen kanssa.',
+  ((0.0012473773676902056, 'label_identity_attack'),
+   (0.020329300314188004, 'label_insult'),
+   (0.7586368918418884, 'label_obscene'),
+   (0.0026476734783500433, 'label_severe_toxicity'),
+   (0.0010993576142936945, 'label_threat')),
+  ('clean', 0.7586368918418884), ()),
+ ('Vituttaa kun politiikkaa on kaikkialla ja ihmiset tuntuu ottavan asiat ihan '
+  'helvetin tosissaan täällä, pakko väitellä joka asia ihan nappiin ja '
+  'kuitenkaan kumpikaan osapuoli ei myönny mihinkään, joten siitä ei ollut '
+  'paskaakaan hyötyä.\n'
+  '\n'
+  'Anteeks vittu.',
+  ((0.004638033919036388, 'label_identity_attack'),
+   (0.1778729110956192, 'label_insult'), (0.7583897113800049, 'label_obscene'),
+   (0.006446172017604113, 'label_severe_toxicity'),
+   (0.006782937794923782, 'label_threat')),
+  ('clean', 0.7583897113800049), ()),
+ ('&gt; on myös yhä useammin palvelu, johon asiakas ostaa käyttöoikeuden – '
+  'vähän kuin Windowsin Office-ohjelmaan.\n'
+  '\n'
+  'What the shit? Onko office nykyään MMORPG?',
+  ((0.0012622072827070951, 'label_identity_attack'),
+   (0.009400020353496075, 'label_insult'),
+   (0.7581124305725098, 'label_obscene'),
+   (0.002744661644101143, 'label_severe_toxicity'),
+   (0.0010112917516380548, 'label_threat')),
+  ('clean', 0.7581124305725098), ()),
+ ('Tai kuten viimeisen osan bestoffin ykköskommentti:\n'
+  '\n'
+  '&gt; Wife of 8 years cheats. Rich, big dicked hacker fights back any '
+  'emotion and ignores her attempts of sex. Feeling pain is for bitches in his '
+  'opinion, and he wants to watch football with friends.\n'
+  '\n'
+  '&gt; This says neckbeard Red Pill fan fiction all over it.',
+  ((0.030862001702189445, 'label_identity_attack'),
+   (0.7118611931800842, 'label_insult'), (0.757971465587616, 'label_obscene'),
+   (0.01201829593628645, 'label_severe_toxicity'),
+   (0.004589940421283245, 'label_threat')),
+  ('clean', 0.757971465587616), ()),
+ ('&gt; Jos kannattaa monikulttuurisuutta, niin sitten pitää opetella '
+  'hyväksymään tuollaisetkin tapahtumat.\n'
+  '\n'
+  'Miten voi olla noin vitun kujalla?! :D',
+  ((0.0019364255713298917, 'label_identity_attack'),
+   (0.08269481360912323, 'label_insult'), (0.7579140067100525, 'label_obscene'),
+   (0.003356597386300564, 'label_severe_toxicity'),
+   (0.0017484946874901652, 'label_threat')),
+  ('clean', 0.7579140067100525), ()),
+ ('Harmi ettei  Vihreillä ole enää vammaisia joita voisi ilkkua.  Onneksi on '
+  'muutama homo. '
+  'http://vaalikone.yle.fi/eduskuntavaalit2015/vaaligalleria#5772',
+  ((0.7575526237487793, 'label_identity_attack'),
+   (0.3081434667110443, 'label_insult'),
+   (0.027669962495565414, 'label_obscene'),
+   (0.002200569724664092, 'label_severe_toxicity'),
+   (0.007503748871386051, 'label_threat')),
+  ('clean', 0.7575526237487793), ()),
+ ('Onpahan vitun epäselvä artikkeli. Jos nyt ymmärsin oikein - eli saastuneet '
+  'kohteet ovat ihmisten kotikoneita - niin eihän palveluntarjoalla ole mitään '
+  'tekemistä asian kanssa. ',
+  ((0.0016406718641519547, 'label_identity_attack'),
+   (0.05606840178370476, 'label_insult'), (0.7568426132202148, 'label_obscene'),
+   (0.0025910274125635624, 'label_severe_toxicity'),
+   (0.0011265117209404707, 'label_threat')),
+  ('clean', 0.7568426132202148), ()),
+ ('Damn immigrants, assimilate or GTFO. /s',
+  ((0.003046376397833228, 'label_identity_attack'),
+   (0.2372760772705078, 'label_insult'), (0.7568018436431885, 'label_obscene'),
+   (0.002794024534523487, 'label_severe_toxicity'),
+   (0.001353430561721325, 'label_threat')),
+  ('clean', 0.7568018436431885), ()),
+ ('Milloin vitussa sulla oli syntymäpäivä?\nPaljon onnea vaan, perkele.',
+  ((0.001436977181583643, 'label_identity_attack'),
+   (0.055462371557950974, 'label_insult'), (0.756229817867279, 'label_obscene'),
+   (0.0032189926132559776, 'label_severe_toxicity'),
+   (0.0021749765146523714, 'label_threat')),
+  ('clean', 0.756229817867279), ()),
+ ('Iha vitusti. Piriä tarttis vähä, että lähtee taas kone käyntii.',
+  ((0.0011237768922001123, 'label_identity_attack'),
+   (0.05223377048969269, 'label_insult'), (0.7557193040847778, 'label_obscene'),
+   (0.0041530318558216095, 'label_severe_toxicity'),
+   (0.0030314645264297724, 'label_threat')),
+  ('clean', 0.7557193040847778), ()),
+ ('Jahas, ja mitäköhän vittua on "väkivaltaporno" joka halutaan myös '
+  'estolistalle? Kuka päättää rajat? Onko vaikkapa perseen hellä läpsiminen '
+  'aktin aikana väkivaltapornoa?',
+  ((0.003411690704524517, 'label_identity_attack'),
+   (0.03802007436752319, 'label_insult'), (0.755678117275238, 'label_obscene'),
+   (0.004179541952908039, 'label_severe_toxicity'),
+   (0.00206087832339108, 'label_threat')),
+  ('clean', 0.755678117275238), ()),
+ ('Siis sehän on taivaan tosi (pun intended), että jos Homot eivät saa mennä '
+  'naimisiin, on yhteiskunta onnellinen ja kaikilla kunnon ihmisillä™ on '
+  'kivat, hyvät elämät. \n'
+  '\n'
+  'Jos homoavioliitto tulee laiksi *PUFF* Dystopia ja kristityt ja muut '
+  'kunniallisia arvoja kannattavat ängetään lihaleikkuriin. Yhteiskunta '
+  'rapistuu lapsia syövien hinttikannibaalien, miehiä lahtaavien paikkaansa '
+  'tietämättömien femakkohirviöiden ja Marsalkka Haaviston '
+  'sateenkaarenväristen lahtareiden toimesta. Kyllä häviävän pieni, '
+  'enemmistöksi itseään kutsuva osa kansasta tietää!',
+  ((0.7554963827133179, 'label_identity_attack'),
+   (0.17174893617630005, 'label_insult'),
+   (0.01873880811035633, 'label_obscene'),
+   (0.001942577539011836, 'label_severe_toxicity'),
+   (0.010268621146678925, 'label_threat')),
+  ('clean', 0.7554963827133179), ()),
+ ('Kai siinä on ajatuksena että karpalolonkero olisi jotenkin homompaa(?).',
+  ((0.754314661026001, 'label_identity_attack'),
+   (0.2106611579656601, 'label_insult'),
+   (0.030062420293688774, 'label_obscene'),
+   (0.0019226657459512353, 'label_severe_toxicity'),
+   (0.005281634628772736, 'label_threat')),
+  ('clean', 0.754314661026001), ()),
+ ('&gt; Vai onkos se nyt niin, että vain kansallismieliset voivat olla '
+  'harhaisia?\n'
+  '\n'
+  'Ei tietenkään ole! Siksi sanoinkin lyhyessä kommentissani että laskisin '
+  'valtionpetturuudesta haaveilevat kansallissosialistit harhaisiksi "vaikka '
+  'kuinka hulluja muslimit touhuaisivat."\n'
+  '\n'
+  'Samaan tapaan hullut muslimit eivät tee kommunismista sen viisaampaa '
+  'valtiomuotoa, vaikka se kaikissa ilmenemismuodoissaan kitkee '
+  'poikkeuksellisen agressiivisesti ja väkivaltaisesti kaikkea uskonnollista, '
+  'kuten muslimeja.',
+  ((0.754206657409668, 'label_identity_attack'),
+   (0.18014593422412872, 'label_insult'),
+   (0.015142621472477913, 'label_obscene'),
+   (0.001689298776909709, 'label_severe_toxicity'),
+   (0.004522279836237431, 'label_threat')),
+  ('clean', 0.754206657409668), ())]
+CLEAN
+[('[http://www.youtube.com/watch?v=KtFjKZgjIJ4](http://www.youtube.com/watch?v=KtFjKZgjIJ4)',
+  ((0.00016688209143467247, 'label_identity_attack'),
+   (0.00016697806131560355, 'label_insult'),
+   (0.00013736826076637954, 'label_obscene'),
+   (0.00013119120558258146, 'label_severe_toxicity'),
+   (0.00010626904258970171, 'label_threat')),
+  ('clean', 0.00016697806131560355), ()),
+ ('[pakollinen] (https://www.youtube.com/watch?v=eVneqqeyO2M)',
+  ((0.00015811460616532713, 'label_identity_attack'),
+   (0.0001669726480031386, 'label_insult'),
+   (0.00013674070942215621, 'label_obscene'),
+   (0.0001205147709697485, 'label_severe_toxicity'),
+   (9.926237544277683e-05, 'label_threat')),
+  ('clean', 0.0001669726480031386), ()),
+ ('[Sabaton, varsinkin uusin](https://www.youtube.com/watch?v=MsXmtjLMH18)\n'
+  '\n'
+  '[Arjen Anthony Lucassen / '
+  'Ayreon](https://www.youtube.com/watch?v=TQFmfZCcrYw)\n'
+  '\n'
+  '[Raubtier](https://www.youtube.com/watch?v=ogLwHEPyXBE)\n'
+  '\n'
+  '[Hudson Mohawke](https://www.youtube.com/watch?v=k_MWuP2Qj7U)\n'
+  '\n'
+  '[Týr](https://www.youtube.com/watch?v=PlJHzQ_dxdQ)\n'
+  '\n'
+  '[Amorphis](https://www.youtube.com/watch?v=KY0bUjF0YQ8)',
+  ((0.00016692123608663678, 'label_identity_attack'),
+   (0.00016650617180857807, 'label_insult'),
+   (0.00014208214997779578, 'label_obscene'),
+   (0.0001299093710258603, 'label_severe_toxicity'),
+   (0.0001032612199196592, 'label_threat')),
+  ('clean', 0.00016692123608663678), ()),
+ ('Oulu, FI: '
+  'https://www.google.com/maps/@46.6330568,-91.5303721,3a,75y,80.98h,82.18t/data=!3m6!1e1!3m4!1sOlsbpGTnf7NJhZs9jmALMQ!2e0!7i3328!8i1664!6m1!1e1\n'
+  '\n'
+  'Oulu, WI: '
+  'https://www.google.com/maps/place//@64.9317499,25.730566,3a,75y,282.15h,90t/data=!3m7!1e1!3m4!1s5bJdTfkPahcVzK3GzbJxMQ!2e0!7i13312!8i6656!4b1!4m2!3m1!1s0x4681ce53264265ed:0x707aba1bed05151c!6m1!1e1',
+  ((0.00016142323147505522, 'label_identity_attack'),
+   (0.00016683165449649096, 'label_insult'),
+   (0.00014012452447786927, 'label_obscene'),
+   (0.0001223611325258389, 'label_severe_toxicity'),
+   (9.990459511755034e-05, 'label_threat')),
+  ('clean', 0.00016683165449649096), ()),
+ ('#####&amp;#009;\n'
+  '\n'
+  '######&amp;#009;\n'
+  '\n'
+  '####&amp;#009;\n'
+  ' [**AGM-158 JASSM**](https://en.wikipedia.org/wiki/AGM-158%20JASSM): '
+  '[](#sfw) \n'
+  '\n'
+  '---\n'
+  '\n'
+  '&gt;The __AGM-158 JASSM__ (__Joint Air-to-Surface Standoff Missile__) is a '
+  'low observable [standoff](https://en.wikipedia.org/wiki/Standoff_missile) '
+  '[air-launched cruise '
+  'missile](https://en.wikipedia.org/wiki/Air-launched_cruise_missile) '
+  'developed in the [United '
+  'States](https://en.wikipedia.org/wiki/United_States). It is a large, '
+  'semi-stealthy long-range weapon of the 2,000 pounds (910\xa0kg) class. The '
+  "missile's development began in 1995, but a number of problems during "
+  'testing delayed its introduction into service until 2009. As of 2014, the '
+  'JASSM has entered foreign service in '
+  '[Australia](https://en.wikipedia.org/wiki/Australia) and '
+  '[Finland](https://en.wikipedia.org/wiki/Finland), and been ordered by '
+  '[Poland](https://en.wikipedia.org/wiki/Poland). An extended range version '
+  'of the missile, the AGM-158B JASSM-ER (Joint Air-to-Surface Standoff '
+  'Missile-Extended Range), entered service in 2014.\n'
+  '\n'
+  '&gt;====\n'
+  '\n'
+  '&gt;[**Image**](https://i.imgur.com/iPS3UZ3.jpg) '
+  '[^(i)](https://commons.wikimedia.org/wiki/File:Agm-158_JASSM.jpg)\n'
+  '\n'
+  '---\n'
+  '\n'
+  '^Relevant: [^Air-launched ^cruise '
+  '^missile](https://en.wikipedia.org/wiki/Air-launched_cruise_missile) ^| '
+  '[^List ^of ^aircraft '
+  '^weapons](https://en.wikipedia.org/wiki/List_of_aircraft_weapons) ^| '
+  '[^AGM-159 ^JASSM](https://en.wikipedia.org/wiki/AGM-159_JASSM) ^| '
+  '[^Teledyne ^CAE ^J402](https://en.wikipedia.org/wiki/Teledyne_CAE_J402) \n'
+  '\n'
+  '^Parent ^commenter ^can [^toggle '
+  '^NSFW](/message/compose?to=autowikibot&amp;subject=AutoWikibot NSFW '
+  'toggle&amp;message=%2Btoggle-nsfw+cs47byo) ^or[](#or) '
+  '[^delete](/message/compose?to=autowikibot&amp;subject=AutoWikibot '
+  'Deletion&amp;message=%2Bdelete+cs47byo)^. ^Will ^also ^delete ^on ^comment '
+  '^score ^of ^-1 ^or ^less. ^| [^(FAQs)](/r/autowikibot/wiki/index) ^| '
+  '[^Mods](/r/autowikibot/comments/1x013o/for_moderators_switches_commands_and_css/) '
+  '^| [^Call ^Me](/r/autowikibot/comments/1ux484/ask_wikibot/)',
+  ((0.0001532451278762892, 'label_identity_attack'),
+   (0.00016683021385688335, 'label_insult'),
+   (0.00014751726121176034, 'label_obscene'),
+   (0.00011213269317522645, 'label_severe_toxicity'),
+   (9.169733675662428e-05, 'label_threat')),
+  ('clean', 0.00016683021385688335), ()),
+ ('[Jaa-a](https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/1240144_10152629401328819_4413332754873985238_n.jpg?oh=57baba4bfbf2efcbca0830e7be2e1b7a&amp;oe=548B3040&amp;__gda__=1418042233_c4bf50503dbc36e0ebb5c960f9887917), '
+  'miten '
+  '[lienee](https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10672331_10152856087029574_7198465837465507872_n.jpg?oh=b50ade412a224332bc55183cb28c6c57&amp;oe=54CC36DE&amp;__gda__=1422427848_107c3f5be54c884e21e2a3560b60dd3e)',
+  ((0.00015520375745836645, 'label_identity_attack'),
+   (0.00016663943824823946, 'label_insult'),
+   (0.0001453603763366118, 'label_obscene'),
+   (0.00011564619489945471, 'label_severe_toxicity'),
+   (9.418316039955243e-05, 'label_threat')),
+  ('clean', 0.00016663943824823946), ()),
+ ('[Tässä artikkeli '
+  'asiasta](http://www.europarl.europa.eu/news/en/news-room/content/20150702IPR73645/html/TTIP-ease-access-to-US-market-protect-EU-standards-reform-dispute-settlement) '
+  'joka nyt julkaistiin neuvotteluiden jälkeen (kts. kohta "New system to '
+  'resolve investor-state disputes"). [Ja tässä itse asiakirja sopimuksen '
+  'luonnoksesta ja neuvotteluista (helmikuu '
+  '2015).](http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//NONSGML+COMPARL+PE-549.135+01+DOC+PDF+V0//EN)\n'
+  '\n'
+  'Ja siitä kohdat: \n'
+  '\n'
+  'I: "[...] President Juncker has also clearly stated in his Political '
+  'Guidelines that he will\n'
+  'not accept that the jurisdiction of courts in the Member States is limited '
+  'by special\n'
+  'regimes for investor disputes [...]" (sivu 6/13)\n'
+  '\n'
+  '1.(d)(xiv): "[...] such a mechanism is not\n'
+  'necessary in TTIP given the EU’s and the US’ developed legal systems; a '
+  'state-to-state dispute settlement system and the use of national courts are '
+  'the most\n'
+  'appropriate tools to address investment disputes;" (sivu 11/13)',
+  ((0.0001635139633435756, 'label_identity_attack'),
+   (0.00016662910638842732, 'label_insult'),
+   (0.000141393014928326, 'label_obscene'),
+   (0.00012469224748201668, 'label_severe_toxicity'),
+   (0.00010158430086448789, 'label_threat')),
+  ('clean', 0.00016662910638842732), ()),
+ ('#####&amp;#009;\n'
+  '\n'
+  '######&amp;#009;\n'
+  '\n'
+  '####&amp;#009;\n'
+  ' [**Jerusalem Light '
+  'Rail**](https://en.wikipedia.org/wiki/Jerusalem%20Light%20Rail): [](#sfw) \n'
+  '\n'
+  '---\n'
+  '\n'
+  '&gt;\n'
+  '\n'
+  '&gt;The __Jerusalem Light Rail__ '
+  '([Hebrew](https://en.wikipedia.org/wiki/Hebrew_language): הרכבת הקלה '
+  'בירושלים\u200e, *HaRakevet HaKala Birushalayim*) is a [light '
+  'rail](https://en.wikipedia.org/wiki/Light_rail) line, the first of several '
+  '[rapid transit](https://en.wikipedia.org/wiki/Rapid_transit) lines planned '
+  'in [Jerusalem](https://en.wikipedia.org/wiki/Jerusalem). Construction began '
+  'in 2002 and ended in 2010, when the testing phase began. It was built by '
+  'the CityPass consortium, which has a 30-year concession to operate it. The '
+  'project required construction of the [Jerusalem Chords '
+  'Bridge](https://en.wikipedia.org/wiki/Jerusalem_Chords_Bridge) as well as '
+  'other renovation projects around Jerusalem.\n'
+  '\n'
+  '&gt;After repeated delays due to archaeological findings and other issues, '
+  'service began, initially free of charge, on August 19, 2011. It became '
+  'fully operational on December 1, 2011. The line is 13.9 kilometers (8.6\xa0'
+  'mi) long with 23 stops. Extensions are planned to the north to [Neve '
+  'Yaakov](https://en.wikipedia.org/wiki/Neve_Yaakov) and to [Hadassah Ein '
+  'Kerem Hospital](https://en.wikipedia.org/wiki/Hadassah_Medical_Center) to '
+  "the southwest. When completed, these will extend the line's length to "
+  '22.5\xa0km. \n'
+  '\n'
+  '&gt;With a total estimated cost for the initial line of 3.8 billion NIS '
+  '(approx. US $1.1 billion),   the project was criticized for budget '
+  'overruns, for its route serving the settlements of [East '
+  'Jerusalem](https://en.wikipedia.org/wiki/East_Jerusalem) and for '
+  'contributing to [air](https://en.wikipedia.org/wiki/Air_pollution) and '
+  '[noise pollution](https://en.wikipedia.org/wiki/Noise_pollution) during '
+  'construction. \n'
+  '\n'
+  '\n'
+  '&gt;====\n'
+  '\n'
+  '&gt;[**Image from article**](https://i.imgur.com/SkuA5EL.jpg) '
+  '[^(i)](https://commons.wikimedia.org/wiki/File:Jerusalem_Light_Rail02.JPG)\n'
+  '\n'
+  '---\n'
+  '\n'
+  '^Interesting: [^Egged '
+  '^\\(company)](https://en.wikipedia.org/wiki/Egged_\\(company\\)) ^| [^Jaffa '
+  '^Road](https://en.wikipedia.org/wiki/Jaffa_Road) ^| [^Tel '
+  '^Aviv](https://en.wikipedia.org/wiki/Tel_Aviv) ^| '
+  '[^Jerusalem](https://en.wikipedia.org/wiki/Jerusalem) \n'
+  '\n'
+  '^Parent ^commenter ^can [^toggle '
+  '^NSFW](http://www.np.reddit.com/message/compose?to=autowikibot&amp;subject=AutoWikibot '
+  'NSFW toggle&amp;message=%2Btoggle-nsfw+chd0hjp) ^or[](#or) '
+  '[^delete](http://www.np.reddit.com/message/compose?to=autowikibot&amp;subject=AutoWikibot '
+  'Deletion&amp;message=%2Bdelete+chd0hjp)^. ^Will ^also ^delete ^on ^comment '
+  '^score ^of ^-1 ^or ^less. ^| '
+  '[^(FAQs)](http://www.np.reddit.com/r/autowikibot/wiki/index) ^| '
+  '[^Mods](http://www.np.reddit.com/r/autowikibot/comments/1x013o/for_moderators_switches_commands_and_css/) '
+  '^| [^Magic '
+  '^Words](http://www.np.reddit.com/r/autowikibot/comments/1ux484/ask_wikibot/)',
+  ((0.0001571971515659243, 'label_identity_attack'),
+   (0.00016655285435263067, 'label_insult'),
+   (0.0001422482164343819, 'label_obscene'),
+   (0.00011740970512619242, 'label_severe_toxicity'),
+   (9.602784848539159e-05, 'label_threat')),
+  ('clean', 0.00016655285435263067), ()),
+ ('#####&amp;#009;\n'
+  '\n'
+  '######&amp;#009;\n'
+  '\n'
+  '####&amp;#009;\n'
+  'Section 21. [**Aircraft carrier '
+  'museums**](https://en.wikipedia.org/wiki/National_Museum_of_the_United_States_Navy#Aircraft_carrier_museums) '
+  'of article  [**National Museum of the United States '
+  'Navy**](https://en.wikipedia.org/wiki/National%20Museum%20of%20the%20United%20States%20Navy): '
+  '[](#sfw) \n'
+  '\n'
+  '---\n'
+  '\n'
+  '&gt;\n'
+  '\n'
+  '&gt;\n'
+  '\n'
+  '\n'
+  '&gt;* [USS *Hornet* '
+  'Museum](https://en.wikipedia.org/wiki/USS_Hornet_Museum); Alameda, CA – '
+  '[USS\xa0*Hornet*\xa0'
+  '(CV-12)](https://en.wikipedia.org/wiki/USS_Hornet_(CV-12\\))\n'
+  '\n'
+  '&gt;* [Intrepid Sea-Air-Space '
+  'Museum](https://en.wikipedia.org/wiki/Intrepid_Sea-Air-Space_Museum); New '
+  'York City – [USS\xa0*Intrepid*\xa0'
+  '(CV-11)](https://en.wikipedia.org/wiki/USS_Intrepid_(CV-11\\))\n'
+  '\n'
+  '&gt;* [USS *Lexington* Museum on the '
+  'Bay](https://en.wikipedia.org/wiki/USS_Lexington_(CV-16\\)#USS_Lexington_Museum); '
+  'Corpus Christi, Texas – [USS\xa0*Lexington*\xa0'
+  '(CV-16)](https://en.wikipedia.org/wiki/USS_Lexington_(CV-16\\))\n'
+  '\n'
+  '&gt;* [USS *Midway* '
+  'Museum](https://en.wikipedia.org/wiki/USS_Midway_Museum); San Diego, '
+  'California – [USS\xa0*Midway*\xa0'
+  '(CV-41)](https://en.wikipedia.org/wiki/USS_Midway_(CV-41\\))\n'
+  '\n'
+  '&gt;* [Patriots Point](https://en.wikipedia.org/wiki/Patriots_Point); '
+  'Charleston, South Carolina – [USS\xa0*Yorktown*\xa0'
+  '(CV-10)](https://en.wikipedia.org/wiki/USS_Yorktown_(CV-10\\))\n'
+  '\n'
+  '&gt;\n'
+  '\n'
+  '---\n'
+  '\n'
+  '^Interesting: [^Akutan ^Zero](https://en.wikipedia.org/wiki/Akutan_Zero) ^| '
+  '[^National ^Museum ^of ^the ^Marine '
+  '^Corps](https://en.wikipedia.org/wiki/National_Museum_of_the_Marine_Corps) '
+  '^| [^USS ^Constitution '
+  '^Museum](https://en.wikipedia.org/wiki/USS_Constitution_Museum) ^| '
+  '[^National ^Museum ^of ^the ^United ^States '
+  '^Army](https://en.wikipedia.org/wiki/National_Museum_of_the_United_States_Army) \n'
+  '\n'
+  '^Parent ^commenter ^can [^toggle '
+  '^NSFW](/message/compose?to=autowikibot&amp;subject=AutoWikibot NSFW '
+  'toggle&amp;message=%2Btoggle-nsfw+cpobdqf) ^or[](#or) '
+  '[^delete](/message/compose?to=autowikibot&amp;subject=AutoWikibot '
+  'Deletion&amp;message=%2Bdelete+cpobdqf)^. ^Will ^also ^delete ^on ^comment '
+  '^score ^of ^-1 ^or ^less. ^| '
+  '[^(FAQs)](http://www.np.reddit.com/r/autowikibot/wiki/index) ^| '
+  '[^Mods](http://www.np.reddit.com/r/autowikibot/comments/1x013o/for_moderators_switches_commands_and_css/) '
+  '^| [^Magic '
+  '^Words](http://www.np.reddit.com/r/autowikibot/comments/1ux484/ask_wikibot/)',
+  ((0.00015546621580142528, 'label_identity_attack'),
+   (0.00016629578021820635, 'label_insult'),
+   (0.00015254985191859305, 'label_obscene'),
+   (0.00011281200568191707, 'label_severe_toxicity'),
+   (9.042685996973887e-05, 'label_threat')),
+  ('clean', 0.00016629578021820635), ()),
+ ('[Ensiferum](http://www.youtube.com/watch?v=BAyQZ6mq3vw)\n'
+  '\n'
+  '[Turisas](http://www.youtube.com/watch?v=cFBIr3Vx16w)\n'
+  '\n'
+  '[Stam1na](http://www.youtube.com/watch?v=zSmP8vp8tME)\n'
+  '\n'
+  '[Viikate](http://www.youtube.com/watch?v=45FsJF9xUsI)\n'
+  '\n'
+  '[Finntroll](http://www.youtube.com/watch?v=Dl2r3uJ5Knk)\n'
+  '\n'
+  '[Korpiklaani](http://www.youtube.com/watch?v=MDTq9Ow7Fjw)\n'
+  '\n'
+  '[Moonsorrow](http://www.youtube.com/watch?v=2LAbZR65Lnw)\n',
+  ((0.0001581627147970721, 'label_identity_attack'),
+   (0.00016534300812054425, 'label_insult'),
+   (0.00014734224532730877, 'label_obscene'),
+   (0.00012066643830621615, 'label_severe_toxicity'),
+   (9.595416486263275e-05, 'label_threat')),
+  ('clean', 0.00016534300812054425), ())]
+END: ma 5.9.2022 11.03.27 +0300

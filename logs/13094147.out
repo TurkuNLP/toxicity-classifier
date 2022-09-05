@@ -26,3 +26,44 @@ To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
 {'loss': 0.2478, 'learning_rate': 6e-06, 'epoch': 1.0}
+Best threshold: 0.3
+{'eval_loss': 0.512592077255249, 'eval_accuracy': 0.9168933070743068, 'eval_roc_auc': 0.7578795884542155, 'eval_f1': 0.5681799723869082, 'eval_precision': 0.5762767710049423, 'eval_recall': 0.5603075444497838, 'eval_runtime': 541.205, 'eval_samples_per_second': 118.214, 'eval_steps_per_second': 3.695, 'epoch': 1.0}
+{'loss': 0.1776, 'learning_rate': 4e-06, 'epoch': 2.0}
+Best threshold: 0.3
+{'eval_loss': 0.43025922775268555, 'eval_accuracy': 0.9173778486354685, 'eval_roc_auc': 0.7809340485765986, 'eval_f1': 0.5908668730650156, 'eval_precision': 0.57166392092257, 'eval_recall': 0.6114047733461477, 'eval_runtime': 540.6684, 'eval_samples_per_second': 118.331, 'eval_steps_per_second': 3.699, 'epoch': 2.0}
+{'loss': 0.1444, 'learning_rate': 2e-06, 'epoch': 3.0}
+Best threshold: 0.3
+{'eval_loss': 0.5191981792449951, 'eval_accuracy': 0.9108130920003751, 'eval_roc_auc': 0.7998684439796787, 'eval_f1': 0.5916117950186086, 'eval_precision': 0.5347392935696726, 'eval_recall': 0.6620214640397245, 'eval_runtime': 540.5636, 'eval_samples_per_second': 118.354, 'eval_steps_per_second': 3.7, 'epoch': 3.0}
+{'loss': 0.1272, 'learning_rate': 0.0, 'epoch': 4.0}
+Best threshold: 0.3
+{'eval_loss': 0.5083504319190979, 'eval_accuracy': 0.902482103222983, 'eval_roc_auc': 0.8083955438248802, 'eval_f1': 0.5805150272305519, 'eval_precision': 0.5002317497103128, 'eval_recall': 0.691494473810668, 'eval_runtime': 540.1715, 'eval_samples_per_second': 118.44, 'eval_steps_per_second': 3.703, 'epoch': 4.0}
+{'train_runtime': 15483.4181, 'train_samples_per_second': 41.224, 'train_steps_per_second': 5.153, 'train_loss': 0.17428398390500452, 'epoch': 4.0}
+saved
+Best threshold: 0.3
+F1: 0.5916117950186086
+Best threshold: 0.3
+Best threshold: 0.3
+              precision    recall  f1-score   support
+
+       clean       0.96      0.94      0.95     57735
+       toxic       0.53      0.66      0.59      6243
+
+    accuracy                           0.91     63978
+   macro avg       0.75      0.80      0.77     63978
+weighted avg       0.92      0.91      0.91     63978
+
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.42      0.52      0.47       712
+         label_insult       0.60      0.45      0.51      3427
+        label_obscene       0.63      0.34      0.44      3691
+label_severe_toxicity       0.27      0.17      0.21       367
+         label_threat       0.35      0.09      0.15       211
+       label_toxicity       0.52      0.67      0.59      6090
+
+            micro avg       0.54      0.50      0.52     14498
+            macro avg       0.47      0.37      0.39     14498
+         weighted avg       0.56      0.50      0.51     14498
+          samples avg       0.06      0.05      0.05     14498
+
+END: Sun Sep  4 21:57:24 EEST 2022

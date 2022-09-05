@@ -13,10 +13,10 @@
 module load pytorch 
 
 EPOCHS=4 # 4 
-LR=8e-6    # "1e-5 4e-6 5e-6 7e-5 8e-6"
+LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"
 BATCH=8
 TR=0.6
-MODEL='xlm-roberta-base' #"TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-large-finnish-cased-v1" #'bert-base-cased' # "xlm-roberta-large" #'xlm-roberta-base'
+MODEL='bert-base-cased' #"TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-large-finnish-cased-v1" #'bert-base-cased' # "xlm-roberta-large" #'xlm-roberta-base'
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction treshold: $TR, model: $MODEL "
 
 #translated
@@ -25,7 +25,7 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 
 #original
 # echo "original train and test data"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --threshold $TR --loss #--dev
+# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev --threshold $TR
 
 # transfer
 # echo "transfer from english train to translated finnish test"
@@ -40,9 +40,13 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 # srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --binary --clean_as_label #--threshold $TR #--dev
 
 # transfer
-echo "transfer from english train to translated finnish test"
-srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --binary #--clean_as_label --threshold $TR #--dev
+# echo "transfer from english train to translated finnish test"
+# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --binary #--clean_as_label --threshold $TR #--dev
 
+
+#original
+echo "original train and test data"
+srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --binary --loss --clean_as_label #--dev --threshold $TR
 
 # multilingual
 # echo "multilingual with english and finnish train files"
