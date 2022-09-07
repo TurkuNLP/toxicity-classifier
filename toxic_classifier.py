@@ -292,6 +292,7 @@ def multi_label_metrics(predictions, labels, threshold):
         from sklearn.metrics import hamming_loss
         hamming = hamming_loss(y_true, y_pred)
         print(hamming)
+        # hamming loss value ranges from 0 to 1. Lesser value of hamming loss indicates a better classifier.
 
         # return as dictionary
         metrics = {'f1': f1,
@@ -506,8 +507,8 @@ def main():
     # use dev set or not
     if args.dev == True:
         # then split test into test and dev
-        test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
-        train = train.shuffle(seed=42) # shuffle the train set
+        train, dev = train.train_test_split(test_size=0.1).values() # splitting shuffles by default
+        test = test.shuffle(seed=42) # shuffle the train set
         # then make the dataset
         dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
     else:
@@ -584,7 +585,7 @@ def main():
 
     trainer.train()
 
-    trainer.model.save_pretrained("models/og-bert-clean-label")
+    trainer.model.save_pretrained("models/transfer-dev")
     print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])

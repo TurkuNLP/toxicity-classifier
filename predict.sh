@@ -18,13 +18,13 @@ echo "START: $(date)"
 
 #srun python3 toxicity_predictions.py --model models/multi-toxic --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1
 
-#srun python3 toxicity_predictions.py --model models/multilingual-multi-tr --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer xlm-roberta-base
+srun python3 toxicity_predictions.py --model models/multilingual-multi-tr --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer xlm-roberta-base
 
 #srun python3 toxicity_predictions.py --model models/binary-toxic --type binary --threshold 0.75 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1
 
 #srun python3 toxicity_predictions.py --model models/true-binary-toxic-tr --type true-binary --threshold 0.75 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1
 
-python3 toxicity_predictions.py --model models/multi-toxic-tr-optimized --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1
+#python3 toxicity_predictions.py --model models/multi-toxic-tr-optimized --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1
 
 #srun python3 toxicity_predictions.py --model models/multi-toxic-large-tr --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 # finbert-large
 
