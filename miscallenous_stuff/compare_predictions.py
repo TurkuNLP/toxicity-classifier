@@ -50,9 +50,9 @@ dfno1 = pd.DataFrame(no_same_lines1, columns=['text'])
 dfno2 = pd.DataFrame(no_same_lines2, columns=['text'])
 
 
-dfsame.to_csv('comparisons/same_predictions.tsv', sep="\t", header=False, index=False) #, index=False, (this includes the row number now (to make it clear which example is which) and text)
-dfno1.to_csv('comparisons/nosame1_predictions.tsv', sep="\t", header=False, index=False) #, index=False, (this includes the row number now (to make it clear which example is which) and text)
-dfno2.to_csv('comparisons/nosame2_predictions.tsv', sep="\t", header=False, index=False) #, index=False, (this includes the row number now (to make it clear which example is which) and text)
+dfsame.to_csv('comparisons/same_predictions.tsv', sep="\t", header=False, index=False) #, index=False this includes the row number now (to make it clear which example is which) and text)
+dfno1.to_csv('comparisons/nosame1_predictions.tsv', sep="\t", header=False, index=False)
+dfno2.to_csv('comparisons/nosame2_predictions.tsv', sep="\t", header=False, index=False) 
 
 
 

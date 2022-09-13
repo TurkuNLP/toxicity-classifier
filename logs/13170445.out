@@ -37,3 +37,30 @@ To disable this warning, you can either:
 0.016282324434975144
 {'eval_loss': 0.1539376974105835, 'eval_f1': 0.7795843347942881, 'eval_f1_weighted': 0.7887460182628898, 'eval_precision': 0.7487778381314503, 'eval_recall': 0.8130345030964318, 'eval_roc_auc': 0.9015095098502395, 'eval_accuracy': 0.9245519488657726, 'eval_runtime': 133.7834, 'eval_samples_per_second': 119.282, 'eval_steps_per_second': 3.73, 'epoch': 2.0}
 {'loss': 0.0753, 'learning_rate': 5e-06, 'epoch': 3.0}
+0.015008146384258679
+{'eval_loss': 0.16483356058597565, 'eval_f1': 0.7901270629472761, 'eval_f1_weighted': 0.7944963737096464, 'eval_precision': 0.7826967592592593, 'eval_recall': 0.7976997935712179, 'eval_roc_auc': 0.894784151904333, 'eval_accuracy': 0.928374483017922, 'eval_runtime': 133.3443, 'eval_samples_per_second': 119.675, 'eval_steps_per_second': 3.742, 'epoch': 3.0}
+{'loss': 0.0476, 'learning_rate': 0.0, 'epoch': 4.0}
+0.015540794585787693
+{'eval_loss': 0.20194777846336365, 'eval_f1': 0.7885162023877204, 'eval_f1_weighted': 0.7898637549073374, 'eval_precision': 0.761042524005487, 'eval_recall': 0.8180477735181363, 'eval_roc_auc': 0.9043084889007573, 'eval_accuracy': 0.9253665872916406, 'eval_runtime': 133.5533, 'eval_samples_per_second': 119.488, 'eval_steps_per_second': 3.736, 'epoch': 4.0}
+{'train_runtime': 10745.8014, 'train_samples_per_second': 53.458, 'train_steps_per_second': 6.682, 'train_loss': 0.09979173078893978, 'epoch': 4.0}
+saved
+0.03733575083101483
+F1: 0.19915064818953956
+0.03733575083101483
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.52      0.17      0.26       712
+         label_insult       0.61      0.07      0.13      3427
+        label_obscene       0.56      0.11      0.18      3691
+label_severe_toxicity       0.25      0.09      0.13       367
+         label_threat       0.14      0.01      0.03       211
+       label_toxicity       0.52      0.16      0.24      6090
+
+            micro avg       0.52      0.12      0.20     14498
+            macro avg       0.43      0.10      0.16     14498
+         weighted avg       0.54      0.12      0.20     14498
+          samples avg       0.01      0.01      0.01     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+63978 63978 63978
+END: ke 7.9.2022 14.21.00 +0300

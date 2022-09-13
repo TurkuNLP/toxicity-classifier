@@ -47,8 +47,18 @@ dfclean = df[df['labels'] == 0]
 dftoxic = dftoxic[['text']]
 dfclean = dfclean[['text']]
 
-dftoxic.to_csv('toxic_train.tsv', sep="\t", header=False, index=False)
-dfclean.to_csv('clean_train.tsv', sep="\t", header=False, index=False)
+def fix_newlines(dataframe):
+    dataframe = dataframe.replace(r'\n',' ', regex=True) # unix
+    dataframe = dataframe.replace(r'\r\n',' ', regex=True) # windows
+    dataframe = dataframe.replace(r'\r',' ', regex=True) # mac
+
+    return dataframe
+
+dftoxic = fix_newlines(dftoxic)
+dfclean = fix_newlines(dfclean)
+
+dftoxic.to_csv('en_toxic_train.tsv', sep="\t", header=False, index=False)
+dfclean.to_csv('en_clean_train.tsv', sep="\t", header=False, index=False)
 
 #textlist = dftoxic['text'].values.tolist()
 # with open('toxic_train.txt', 'w') as f:

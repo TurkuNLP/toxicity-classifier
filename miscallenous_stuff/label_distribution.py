@@ -44,6 +44,8 @@ train_toxic = dftrain[dftrain[label_names].sum(axis=1) > 0]
 train_clean = dftrain[dftrain[label_names].sum(axis=1) == 0]
 test_toxic = dftest[dftest[label_names].sum(axis=1) > 0]
 test_clean = dftest[dftest[label_names].sum(axis=1) == 0]
+print("all lines:", len(train_toxic)+len(train_clean)+ len(test_toxic)+ len(test_clean))
+print("all toxic percent:", (len(train_toxic) + len(test_toxic)) / (len(train_clean) + len(test_clean)))
 print("toxic train: ", len(train_toxic))
 print("clean train: ", len(train_clean))
 print("train toxic percent:" , len(train_toxic) / len(train_clean))
