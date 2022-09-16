@@ -40,6 +40,8 @@ parser.add_argument('--data', required=True,
     help="the file name of the raw text to use for predictions")
 parser.add_argument('--tokenizer', required=True,
     help="the tokenizer to use for tokenizing new text")
+parser.add_argument('--lines', type=int,
+    help="how many lines to predict on, starting from the beginning of file")
 args = parser.parse_args()
 print(args)
 
@@ -59,7 +61,9 @@ with open(data, 'r') as json_file:
         json_list = list(json_file)
 lines = [json.loads(jline) for jline in json_list]
 
-lines = lines[:200000] # CHANGE HOW MANY TEXTS WANT TO USE (could be set as an argument)
+line_amount = args.lines
+print("number of lines in the reddit file", len(lines))
+lines = lines[:line_amount] 
 
 # use pandas to look at each column
 df=pd.DataFrame(lines)
@@ -68,12 +72,12 @@ df.rename(columns = {'body':'text'}, inplace = True) # have to change the column
 pprint(df[:5])
 
 # keep every row except ones with deleted text
-#df = df[df["body"].str.contains("[deleted]") == False]
+df = df[df["text"] != "[deleted]"] # .str.contains("[deleted]") == False
 
+print("number of lines after deleting [deleted] rows", df.shape[0])
 
 
 #random.shuffle(texts) # not necessary
-print(len(lines))
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(args.tokenizer)
 
@@ -118,7 +122,7 @@ if args.type == "binary":
     # OR THIS
     # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
     # set p[0] or p[1] depending on which we wanna concentrate on
-    preds = [0 if p[1] < threshold else np.argmax(p) for p in probabilities]  # if toxic below 0.5 count as clean (set index to 0)
+    preds = [0 if p[1] < threshold else np.argmax(p) for p in probabilities]  # if toxic below threshold count as clean (set index to 0)
 
     # get all labels and their probabilities
     all_label_probs = []
@@ -153,7 +157,7 @@ if args.type == "binary":
     clean2 = sorted(clean, key = lambda x: float(x[1][1])) # ascending
 
     # beginning most toxic, middle "neutral", end most clean
-    # all = toxic + clean2
+    all = toxic + clean2
 
     print("TOXIC")
     pprint(toxic[:10])
@@ -165,7 +169,8 @@ if args.type == "binary":
 
     # get the most toxic to tsv file
     toxicity  = [(toxic[i][0], toxic[i][1][0], toxic[i][1][1]) for i in range(len(toxic))]   
-    cleaned  = [(clean[i][0], clean[i][1][0], clean[i][1][1]) for i in range(len(clean))]   
+    cleaned  = [(clean[i][0], clean[i][1][0], clean[i][1][1]) for i in range(len(clean))]
+    allpredict = [(all[i][0], all[i][1][0], all[i][1][1]) for i in range(len(all))]
 
 # 6 or 7 labels
 elif args.type == "multi" or args.type == "multi-base":
@@ -264,7 +269,8 @@ elif args.type == "multi" or args.type == "multi-base":
     toxic.sort(key = lambda x: float(x[2][1]), reverse=True)
     clean.sort(key = lambda x: float(x[2][1]), reverse=True)
 
-    # all.sort(key = lambda x: float(x[2][1]), reverse=True) # from most toxic to least toxic
+    all = [item for item in all]
+    all.sort(key = lambda x: float(x[2][1]), reverse=True) # from most toxic to least toxic
 
     print("TOXIC")
     pprint(toxic[:10])
@@ -276,7 +282,8 @@ elif args.type == "multi" or args.type == "multi-base":
 
     # get the most toxic to tsv file
     toxicity  = [(toxic[i][0], toxic[i][2][0], toxic[i][2][1]) for i in range(len(toxic))]   
-    cleaned  = [(clean[i][0], clean[i][2][0], clean[i][2][1]) for i in range(len(clean))]  
+    cleaned  = [(clean[i][0], clean[i][2][0], clean[i][2][1]) for i in range(len(clean))]
+    allpredict = [(all[i][0], all[i][2][0], all[i][2][1]) for i in range(len(all))]    
 
 elif args.type == "true-binary":
     sigmoid = torch.nn.Sigmoid()
@@ -317,7 +324,7 @@ elif args.type == "true-binary":
     clean2 = sorted(clean, key = lambda x: float(x[2]), reverse=True)
 
     # beginning most toxic, middle "neutral", end most clean
-    #all = toxic + clean2
+    all = toxic + clean2
 
     print("TOXIC")
     pprint(toxic[:10]) # most toxic
@@ -327,12 +334,20 @@ elif args.type == "true-binary":
 
     toxicity = toxic
     cleaned = clean
+    allpredict = all
 
 
-# get most toxic to dataframe
+# get to dataframe
 def text_and_label(data):
     df = pd.DataFrame(data, columns=['text', 'label', 'probability'])
     return df
+
+# TODO here we are gonna lose all new line markers of the new dataset unless we make them straight into jsonl or something?
+all_dataframe = text_and_label(allpredict)
+all_dataframe = all_dataframe.replace(r'\n',' ', regex=True) # unix
+all_dataframe = all_dataframe.replace(r'\r\n',' ', regex=True) # windows
+all_dataframe = all_dataframe.replace(r'\r',' ', regex=True) # mac
+all_dataframe.to_csv('predictions/all_predicted.tsv', sep="\t", header=False, index=False)
 
 # get the most toxic to tsv file
 dataframe = text_and_label(toxicity)
@@ -340,9 +355,9 @@ dataframe = dataframe.replace(r'\n',' ', regex=True) # unix
 dataframe = dataframe.replace(r'\r\n',' ', regex=True) # windows
 dataframe = dataframe.replace(r'\r',' ', regex=True) # mac
 
-dataframe.to_csv('predictions/toxic_predicted-tr.tsv', sep="\t", header=False, index=False) 
+dataframe.to_csv('predictions/toxic_binary.tsv', sep="\t", header=False, index=False) 
 dataframe2 = text_and_label(cleaned)
 dataframe2 = dataframe2.replace(r'\n',' ', regex=True)
 dataframe2 = dataframe2.replace(r'\r\n',' ', regex=True)
 dataframe2 = dataframe2.replace(r'\r',' ', regex=True)
-dataframe2.to_csv('predictions/clean_predicted-tr.tsv', sep="\t", header=False, index=False) 
+dataframe2.to_csv('predictions/clean_binary.tsv', sep="\t", header=False, index=False) 
