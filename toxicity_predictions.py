@@ -114,15 +114,14 @@ if args.type == "binary":
     print(probabilities[:10]) # this is now a tensor with two probabilities per example (two labels)
     print(predictions[:10])
 
-
-    # THIS
-    #preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
-     # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
-
-    # OR THIS
-    # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
-    # set p[0] or p[1] depending on which we wanna concentrate on
-    preds = [0 if p[1] < threshold else np.argmax(p) for p in probabilities]  # if toxic below threshold count as clean (set index to 0)
+    if threshold == 0.5:
+        preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
+        # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
+    else:
+        # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
+        # set p[0] or p[1] depending on which we wanna concentrate on
+        # could switch the other way as a test^^^
+        preds = [0 if p[1] < threshold else np.argmax(p) for p in probabilities]  # if toxic below threshold count as clean (set index to 0)
 
     # get all labels and their probabilities
     all_label_probs = []
@@ -342,22 +341,27 @@ def text_and_label(data):
     df = pd.DataFrame(data, columns=['text', 'label', 'probability'])
     return df
 
-# TODO here we are gonna lose all new line markers of the new dataset unless we make them straight into jsonl or something?
+# TODO here we are gonna lose all new line markers of the new dataset (tsv) unless we make them straight into jsonl or something?
+# with csv it does not matter if there are new line markers because the split happens at the next ,
+# can also straight read to a dataframe through read_csv
 all_dataframe = text_and_label(allpredict)
-all_dataframe = all_dataframe.replace(r'\n',' ', regex=True) # unix
-all_dataframe = all_dataframe.replace(r'\r\n',' ', regex=True) # windows
-all_dataframe = all_dataframe.replace(r'\r',' ', regex=True) # mac
-all_dataframe.to_csv('predictions/all_predicted.tsv', sep="\t", header=False, index=False)
+# all_dataframe = all_dataframe.replace(r'\n',' ', regex=True) # unix
+# all_dataframe = all_dataframe.replace(r'\r\n',' ', regex=True) # windows
+# all_dataframe = all_dataframe.replace(r'\r',' ', regex=True) # mac
+# all_dataframe.to_csv('predictions/all_predicted.tsv', sep="\t", header=False, index=False)
+all_dataframe.to_csv('predictions/all_predicted.csv', index=False)
 
-# get the most toxic to tsv file
+
+
+# # get the most toxic to tsv file
 dataframe = text_and_label(toxicity)
 dataframe = dataframe.replace(r'\n',' ', regex=True) # unix
 dataframe = dataframe.replace(r'\r\n',' ', regex=True) # windows
 dataframe = dataframe.replace(r'\r',' ', regex=True) # mac
 
-dataframe.to_csv('predictions/toxic_binary.tsv', sep="\t", header=False, index=False) 
+dataframe.to_csv('predictions/toxic_binary2.tsv', sep="\t", header=False, index=False) 
 dataframe2 = text_and_label(cleaned)
 dataframe2 = dataframe2.replace(r'\n',' ', regex=True)
 dataframe2 = dataframe2.replace(r'\r\n',' ', regex=True)
 dataframe2 = dataframe2.replace(r'\r',' ', regex=True)
-dataframe2.to_csv('predictions/clean_binary.tsv', sep="\t", header=False, index=False) 
+dataframe2.to_csv('predictions/clean_binary2.tsv', sep="\t", header=False, index=False) 

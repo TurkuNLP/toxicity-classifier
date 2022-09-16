@@ -22,7 +22,7 @@ LINES=200000
 
 #srun python3 toxicity_predictions.py --model models/multilingual-multi-tr --type multi --threshold 0.76 --data data/reddit-Suomi.jsonl --tokenizer xlm-roberta-base #--lines $LINES
 
-srun python3 toxicity_predictions.py --model models/binary-toxic --type binary --threshold 0.75 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES
+srun python3 toxicity_predictions.py --model models/binary-toxic --type binary --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES #--threshold 0.75
 
 #srun python3 toxicity_predictions.py --model models/true-binary-toxic-tr --type true-binary --threshold 0.75 --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES
 
