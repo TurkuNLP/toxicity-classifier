@@ -118,9 +118,9 @@ if args.type == "binary":
         preds = predictions.argmax(-1) # the -1 gives the indexes of the predictions, takes the one with the biggest number
         # argmax can be used on the probabilities as well although the tensor needs to changed to numpy array first
     else:
-        # idea that if there is no high prediction for e.g. clean label then we set it to toxic (or the other way around)
+        # idea that if there is no high prediction for clean label then we set it to toxic or the other way around
         # set p[0] or p[1] depending on which we wanna concentrate on
-        # could switch the other way as a test^^^
+        # could switch the other way as a test^^^ TODO next
         preds = [0 if p[1] < threshold else np.argmax(p) for p in probabilities]  # if toxic below threshold count as clean (set index to 0)
 
     # get all labels and their probabilities
@@ -138,6 +138,11 @@ if args.type == "binary":
     probs = []
     for i in range(len(probabilities)):
         probs.append(probabilities[i][preds[i]]) # preds[i] gives the correct index for the current probability
+
+    toxicprobs = []
+    for i in range(len(probabilities)):
+        toxicprobs.append(probabilities[i][1])
+    toxicpreds = tuple(zip(texts, labels, toxicprobs))
 
     labelprob = tuple(zip(labels, probs))
 
@@ -158,6 +163,9 @@ if args.type == "binary":
     # beginning most toxic, middle "neutral", end most clean
     all = toxic + clean2
 
+    alltoxic = [item for item in toxicpreds]
+    alltoxic.sort(key = lambda x: float(x[2]), reverse=True) # from most toxic to least toxic
+
     print("TOXIC")
     pprint(toxic[:10])
     print("NEUTRAL")
@@ -169,7 +177,8 @@ if args.type == "binary":
     # get the most toxic to tsv file
     toxicity  = [(toxic[i][0], toxic[i][1][0], toxic[i][1][1]) for i in range(len(toxic))]   
     cleaned  = [(clean[i][0], clean[i][1][0], clean[i][1][1]) for i in range(len(clean))]
-    allpredict = [(all[i][0], all[i][1][0], all[i][1][1]) for i in range(len(all))]
+    #allpredict = [(all[i][0], all[i][1][0], all[i][1][1]) for i in range(len(all))]
+    allpredict = alltoxic
 
 # 6 or 7 labels
 elif args.type == "multi" or args.type == "multi-base":
@@ -341,27 +350,24 @@ def text_and_label(data):
     df = pd.DataFrame(data, columns=['text', 'label', 'probability'])
     return df
 
-# TODO here we are gonna lose all new line markers of the new dataset (tsv) unless we make them straight into jsonl or something?
-# with csv it does not matter if there are new line markers because the split happens at the next ,
-# can also straight read to a dataframe through read_csv
+
 all_dataframe = text_and_label(allpredict)
-# all_dataframe = all_dataframe.replace(r'\n',' ', regex=True) # unix
-# all_dataframe = all_dataframe.replace(r'\r\n',' ', regex=True) # windows
-# all_dataframe = all_dataframe.replace(r'\r',' ', regex=True) # mac
-# all_dataframe.to_csv('predictions/all_predicted.tsv', sep="\t", header=False, index=False)
-all_dataframe.to_csv('predictions/all_predicted.csv', index=False)
+# put to csv so we don't need any new lines taken out
+
+all_dataframe.drop('label', axis=1, inplace=True) # take out label since it is not needed for Sampo, we only want texts and probabilities
+all_dataframe.to_csv('ForSampo/all_reddit.csv', index=False)
 
 
 
 # # get the most toxic to tsv file
-dataframe = text_and_label(toxicity)
-dataframe = dataframe.replace(r'\n',' ', regex=True) # unix
-dataframe = dataframe.replace(r'\r\n',' ', regex=True) # windows
-dataframe = dataframe.replace(r'\r',' ', regex=True) # mac
+# dataframe = text_and_label(toxicity)
+# dataframe = dataframe.replace(r'\n',' ', regex=True) # unix
+# dataframe = dataframe.replace(r'\r\n',' ', regex=True) # windows
+# dataframe = dataframe.replace(r'\r',' ', regex=True) # mac
 
-dataframe.to_csv('predictions/toxic_binary2.tsv', sep="\t", header=False, index=False) 
-dataframe2 = text_and_label(cleaned)
-dataframe2 = dataframe2.replace(r'\n',' ', regex=True)
-dataframe2 = dataframe2.replace(r'\r\n',' ', regex=True)
-dataframe2 = dataframe2.replace(r'\r',' ', regex=True)
-dataframe2.to_csv('predictions/clean_binary2.tsv', sep="\t", header=False, index=False) 
+# dataframe.to_csv('predictions/toxic_binary2.tsv', sep="\t", header=False, index=False) 
+# dataframe2 = text_and_label(cleaned)
+# dataframe2 = dataframe2.replace(r'\n',' ', regex=True)
+# dataframe2 = dataframe2.replace(r'\r\n',' ', regex=True)
+# dataframe2 = dataframe2.replace(r'\r',' ', regex=True)
+# dataframe2.to_csv('predictions/clean_binary2.tsv', sep="\t", header=False, index=False) 
