@@ -3,3 +3,6 @@
 /checkpoints
 /models
 /tmp_trainer
+/RedditPredictions/all_reddit.csv
+/RedditPredictions/yle_small_test.csv
+/RedditPredictions/yle_test.csv

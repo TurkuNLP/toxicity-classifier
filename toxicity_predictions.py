@@ -355,7 +355,7 @@ all_dataframe = text_and_label(allpredict)
 # put to csv so we don't need any new lines taken out
 
 all_dataframe.drop('label', axis=1, inplace=True) # take out label since it is not needed for Sampo, we only want texts and probabilities
-all_dataframe.to_csv('ForSampo/all_reddit.csv', index=False)
+all_dataframe.to_csv('RedditPredictions/all_reddit.csv', index=False)
 
 
 
