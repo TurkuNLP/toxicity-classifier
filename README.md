@@ -75,7 +75,3 @@ optional arguments:
 
 Made by Anni Eskelinen
 ```
-
-
-
-possible datasets to use in the future [hate speech dataset](https://github.com/Vicomtech/hate-speech-dataset), [ALONE](https://arxiv.org/abs/2008.06465), [ToxiGen](https://huggingface.co/datasets/skg/toxigen-data), [Surge ai Categorized Toxicity Dataset](https://app.surgehq.ai/datasets/categorized-toxicity?token=faVpwAMXx_VAZI4p)
