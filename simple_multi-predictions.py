@@ -7,7 +7,7 @@ import json
 import datasets
 import pandas as pd
 
-""" This script is meant for looking at predictions for the yle data to make a sanity check.
+""" This script is meant for looking at multi-label predictions for raw text data and saving highest probability with text/id.
 """
 
 # this should prevent any caching problems I might have because caching does not happen anymore
