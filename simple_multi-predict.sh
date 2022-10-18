@@ -19,6 +19,6 @@ LINES=2000
 #python3 simple_multi-predictions.py --model models/multi-toxic-tr-optimized --data data/ylenews-fi-2011-2018.dedup.filtered.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES
 
 # this file is massive at 68G, whereas reddit was 3,2G
-python3 simple_multi-predictions.py --model models/multi-toxic-tr-optimized --data data/suomi24-2001-2020.dedup.filtered.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES
+srun python3 simple_multi-predictions.py --model models/multi-toxic-tr-optimized --data data/suomi24-2001-2020.dedup.filtered.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES
 
 echo "END: $(date)"
