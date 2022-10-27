@@ -8,62 +8,78 @@ import json
 # load the texts to be translated
 data = sys.argv[1]
 from ast import literal_eval
-df = pd.read_csv(data, converters={'text': literal_eval}) # oh this does not work because the whole file isn't lists yet , converters={'text': literal_eval}
+df = pd.read_csv(data, converters={'text': literal_eval}) # this works when the text column has lists, will fail if there are translations in there
+
+# have to figure out a way if it crashes to continue from the last thing without ruining the previous translations
+# column will have text as string or list depending on whether it's translated or not already
+
+num = 1 # the number of rows translated previously (have to add +1 to number of rows translated previously) and where to start (first row to take)
+
 texts = df["text"]
-print(texts[:5])
+#print(texts[:5])
 
 # take only the part that is translated for now
 texts = texts.values
-print(texts[:5])
+#print(texts[:5])
 
 # instantiate the pipeline
 tokenizer = MarianTokenizer.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi", model_max_length=460) # added model max length
 model = MarianMTModel.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi")
-pipe = pipeline("translation", model=model, tokenizer=tokenizer, device=0)
-
-def save_data(df):
-    # save to csv
-    df.to_csv('data/train-opus-mt-translated.csv', index=False)
-
-    # what about saving to jsonl like the original files?
-    result = df.to_dict(orient="records")
-    parsed = json.loads(result)
-    with open('data/train-opus-mt-translated.json', 'w') as f:
-        json.dump(parsed, f)
-
-
+pipe = pipeline("translation", model=model, tokenizer=tokenizer) # , device=0
+start = num
+stop = 100
 # go through every example (list of lists, so pipe gets list of sentences from one example)
-for i in range(len(texts)):
-    tr = pipe(texts[i], truncation=True, max_length=512)
+
+def save_data(df, start, stop):
+    # save to csv
+    print()
+    newdf = df.iloc[start:stop]
+    newdf.to_csv('data/train-opus-mt-translated.csv', mode='a', index=False, header=False) # mode a appends to the file
+    # save only the ones that were just translated (keep track of index) so do not have to redo stuff that much and resave the whole csv file every tim
+
+
+
+print("beginning translation")
+for i in range(len(texts[num:])):
+    tr = pipe(texts[i+num], truncation=True, max_length=460)
     #print(tr)
     translations = [t["translation_text"] for t in tr]
     # print("--")
     # print(translations)
     final = ' '.join(translations)
-    print(final)
+    #print(final)
+    #print(i)
     
     # update the dataframe to have the translated text
-    df.at[i, 'text'] = final
+    df.at[i+num, 'text'] = final
     #print(df["text"][i])
 
+    stop = i+num+1
     # save every 1000 rows
-    if i % 100 == 0:
+    if i+num % 10 == 0:
         now = datetime.datetime.now()
         print(now)
-        print(i+1, "rows translated")
+        print(i+num+1, "rows translated")
         # save to csv
-        save_data(df)
-
-        # what about saving to jsonl like the original files?
-        result = df.to_json(orient="records")
-        parsed = json.loads(result)
-        with open('data/opus-mt-translated.json', 'w') as f:
-            json.dump(parsed, f)
+        save_data(df, start, stop)
+        start = i+num+1
 
 
 print("all translated")
-save_data(df)
+save_data(df, start, stop)
 
-        # tokenized_input = tokenizer.tokenize(newstr)
-        # if len(tokenized_input) > 400:
-        #     print(i, newstr)
+
+
+    # TODO make json file after translation
+    # # what about saving to jsonl like the original files?
+    # result = newdf.to_dict(orient="records")
+    # print()
+    # #parsed = json.loads(result)
+    # with open('data/train-opus-mt-translated.json', 'a') as f: # a instead of f
+    #     json.dump(result, f, separators=(',\n', ':'))
+
+            # # what about saving to jsonl like the original files?
+        # result = df.to_json(orient="records")
+        # parsed = json.loads(result)
+        # with open('data/opus-mt-translated.json', 'w') as f:
+        #     json.dump(parsed, f)

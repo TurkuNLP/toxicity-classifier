@@ -5,6 +5,8 @@ import requests
 import re
 import datetime
 
+thusfar = 156271
+
 data = sys.argv[1]
 
 # with open(data, 'r') as json_file:
@@ -17,16 +19,19 @@ df = pd.read_csv(data)
 # can I straight read it with read_json(_, orient="records") ????
 # df=pd.DataFrame(lines)
 
+
+# if text begins with & I should remove that character, it messes with the url but does not throw an error
+
 #text=False
-for i in range(len(df[26700:])):
-    ip = str(df["text"][i+26700])
+for i in range(len(df[thusfar:])):
+    ip = str(df["text"][i+thusfar])
     ip = f"{ip}" # was this necessary? I add quote marks to everything
-    #print(ip)
+    #print(ip, i)
 
     api_url = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={ip}"
     if len(api_url) > 2048:
-        print("too long", i + 26700)
-        first, second = ip[:int(len(ip)//2)], ip[int(len(ip)//2):]
+        print("too long", i + thusfar)
+        first, second = ip[:int(len(ip)//2)], ip[int(len(ip)//2):] # just split the row in the middle
         api_url1 = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={first}"
         response = requests.get(api_url1)
         response = response.json()
@@ -59,16 +64,16 @@ for i in range(len(df[26700:])):
     
     #print(i+26700)
     # update the dataframe to have the split texts
-    df.at[i+26700, 'text'] = textlist 
+    df.at[i+thusfar, 'text'] = textlist 
 
-    num = i + 26700
+    num = i + thusfar
     # save sometimes just in case
     if num % 1000 == 0:
         now = datetime.datetime.now()
         print(now)
-        print(i+26700, "rows split")
+        print(i+thusfar, "rows split")
         # save to csv
-        print(df[26700:num])
+        print(df[thusfar:num])
         df.to_csv("data/train-sentence-split.csv", index = False)
 
 # save to csv
