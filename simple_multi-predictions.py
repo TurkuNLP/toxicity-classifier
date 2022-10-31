@@ -115,8 +115,16 @@ for i in range(len(probs)):
     templist.append(highest)
     highest = 0.0
 
+# get probabilities to their own lists for use in tuple and dataframe (each with their own column)
+identity_attack = [probs[i][0] for i in range(len(probs))]
+insult = [probs[i][1] for i in range(len(probs))]
+obscene = [probs[i][2] for i in range(len(probs))]
+severe_toxicity = [probs[i][3] for i in range(len(probs))]
+threat = [probs[i][4] for i in range(len(probs))]
+toxicity  = [probs[i][5] for i in range(len(probs))]
 
-all = tuple(zip(texts, ids, templist)) 
+
+all = tuple(zip(texts, ids, templist, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) 
 #pprint(all[:10])
 
 allpredict = [item for item in all]
@@ -125,7 +133,7 @@ allpredict.sort(key = lambda x: float(x[2]), reverse=True) # from most toxic to 
 
 # get to dataframe
 def text_and_label(data):
-    df = pd.DataFrame(data, columns=['text', 'id', 'probability'])
+    df = pd.DataFrame(data, columns=['text', 'id', 'probability', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity'])
     return df
 
 all_dataframe = text_and_label(allpredict)

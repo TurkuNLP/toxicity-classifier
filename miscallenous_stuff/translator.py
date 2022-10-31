@@ -5,15 +5,14 @@ import sys
 import pandas as pd
 import json
 
+print("start translation script")
+
 # load the texts to be translated
 data = sys.argv[1]
 from ast import literal_eval
 df = pd.read_csv(data, converters={'text': literal_eval}) # this works when the text column has lists, will fail if there are translations in there
 
-# have to figure out a way if it crashes to continue from the last thing without ruining the previous translations
-# column will have text as string or list depending on whether it's translated or not already
-
-num = 1 # the number of rows translated previously (have to add +1 to number of rows translated previously) and where to start (first row to take)
+num = 9831 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
 
 texts = df["text"]
 #print(texts[:5])
@@ -25,7 +24,7 @@ texts = texts.values
 # instantiate the pipeline
 tokenizer = MarianTokenizer.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi", model_max_length=460) # added model max length
 model = MarianMTModel.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi")
-pipe = pipeline("translation", model=model, tokenizer=tokenizer) # , device=0
+pipe = pipeline("translation", model=model, tokenizer=tokenizer, device=0) # , device=0
 start = num
 stop = 100
 # go through every example (list of lists, so pipe gets list of sentences from one example)
@@ -40,6 +39,36 @@ def save_data(df, start, stop):
 
 
 print("beginning translation")
+
+# all_texts = []
+# for item in texts:
+#     for one in texts:
+#         all_texts.append(one)
+# # this could then be turned into a dataset and the pipeline would be faster
+
+# tr = pipe(all_texts, truncation=True, max_length=460) # translates everything at once
+# translations = [t["translation_text"] for t in tr]
+# with open("data/all_ids.txt", "r") as f:
+#     indexes = f.readlines()
+
+# indexes = [int(i) for i in indexes]
+
+# begin = 0
+# for one in indexes:
+#     translation = translations[begin:one]
+#     begin = one
+#     final = ' '.join(translations)
+#     df.at[num, 'text'] = final
+#     stop = num + 1
+#     if num % 10 == 0:
+#         now = datetime.datetime.now()
+#         print(now)
+#         print(num+1, "rows translated")
+#         # save to csv
+#         save_data(df, start, stop)
+#         start = i+num+1
+#     num = num + 1
+
 for i in range(len(texts[num:])):
     tr = pipe(texts[i+num], truncation=True, max_length=460)
     #print(tr)
@@ -55,8 +84,9 @@ for i in range(len(texts[num:])):
     #print(df["text"][i])
 
     stop = i+num+1
+    current = i + num
     # save every 1000 rows
-    if i+num % 10 == 0:
+    if current % 10 == 0:
         now = datetime.datetime.now()
         print(now)
         print(i+num+1, "rows translated")

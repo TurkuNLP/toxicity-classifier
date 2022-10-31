@@ -4,7 +4,7 @@
 #SBATCH --partition=gpu # test
 #SBATCH --time=5:00:00 # 5h
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10 # from 10 to 5?
+#SBATCH --cpus-per-task=1 # from 10 to 5?
 #SBATCH --mem-per-cpu=8000 #8000 
 #SBATCH --gres=gpu:v100:1
 #SBATCH --output=logs/%j.out

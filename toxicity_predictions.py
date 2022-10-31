@@ -95,6 +95,7 @@ dataset = datasets.Dataset.from_pandas(df)
 dataset = dataset.map(tokenize)
 
 texts = dataset["text"]
+ids = dataset["id"]
 
 threshold = args.threshold
 
