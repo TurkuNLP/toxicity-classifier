@@ -41,6 +41,7 @@ print(args)
 
 pprint = PrettyPrinter(compact=True).pprint
 
+
 # read the data in
 data = args.data
 
@@ -54,6 +55,13 @@ lines = lines[:line_amount]
 
 # use pandas to look at each column
 df=pd.DataFrame(lines)
+
+# If I want the reddit data to use this I need to do these changes
+if "reddit" in data:
+    df.rename(columns = {'body':'text'}, inplace = True) # have to change the column name so this works
+    # keep every row except ones with deleted text
+    #df = df[df["text"] != "[deleted]"] 
+
 df = df[['text', 'id']]
 pprint(df[:5])
 
@@ -107,15 +115,15 @@ print(probs[:10])
 
 # get the highest probability for sorting from all of the probabilities
 highest=0.0
-templist = []
+highprob = []
 for i in range(len(probs)):
     for j in range(len(probs[i])):
         if probs[i][j] > highest:
             highest = probs[i][j]
-    templist.append(highest)
+    highprob.append(highest)
     highest = 0.0
 
-# get probabilities to their own lists for use in tuple and dataframe (each with their own column)
+# get probabilities to their own lists for use in tuple and then dataframe (each with their own column)
 identity_attack = [probs[i][0] for i in range(len(probs))]
 insult = [probs[i][1] for i in range(len(probs))]
 obscene = [probs[i][2] for i in range(len(probs))]
@@ -124,7 +132,7 @@ threat = [probs[i][4] for i in range(len(probs))]
 toxicity  = [probs[i][5] for i in range(len(probs))]
 
 
-all = tuple(zip(texts, ids, templist, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) 
+all = tuple(zip(ids, texts, highprob, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) 
 #pprint(all[:10])
 
 allpredict = [item for item in all]
@@ -133,10 +141,10 @@ allpredict.sort(key = lambda x: float(x[2]), reverse=True) # from most toxic to 
 
 # get to dataframe
 def text_and_label(data):
-    df = pd.DataFrame(data, columns=['text', 'id', 'probability', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity'])
+    df = pd.DataFrame(data, columns=['id', 'text', 'probability', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity'])
     return df
 
 all_dataframe = text_and_label(allpredict)
 
 # put to csv so we don't need any new lines taken out
-all_dataframe.to_csv('RedditPredictions/yle_test.csv', index=False)
+all_dataframe.to_csv('RedditPredictions/yle_test2.csv', index=False)
