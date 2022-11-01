@@ -1,9 +1,0 @@
-START: ma 31.10.2022 11.47.42 +0200
-Namespace(model='models/multi-toxic-tr-optimized', data='data/ylenews-fi-2011-2018.dedup.filtered.jsonl', tokenizer='TurkuNLP/bert-base-finnish-cased-v1', lines=200000)
-number of lines in the file 674021
-                                                text                 id
-0  HPK käänsi lopulta voiton itselleen\n\nKahdeks...  ylenews:3-5315127
-1  Pelicansille molari Jyväskylästä - Blomqvist R...  ylenews:3-5315116
-2  Varapresidentti sanoi myös, että Egyptin uuden...  ylenews:3-6166664
-3  Kemi näytti kuntaliitokselle vihreää valoa\n\n...  ylenews:3-5315510
-4  MÄKIHYPPY: Asikainen liiteli yhdenneksitoista\...  ylenews:3-5315112

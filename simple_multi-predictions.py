@@ -60,7 +60,7 @@ df=pd.DataFrame(lines)
 if "reddit" in data:
     df.rename(columns = {'body':'text'}, inplace = True) # have to change the column name so this works
     # keep every row except ones with deleted text
-    #df = df[df["text"] != "[deleted]"] 
+    df = df[df.text != "[deleted]"] 
 
 df = df[['text', 'id']]
 pprint(df[:5])
@@ -147,4 +147,4 @@ def text_and_label(data):
 all_dataframe = text_and_label(allpredict)
 
 # put to csv so we don't need any new lines taken out
-all_dataframe.to_csv('RedditPredictions/yle_test2.csv', index=False)
+all_dataframe.to_csv('RedditPredictions/all_reddit2.csv', index=False)

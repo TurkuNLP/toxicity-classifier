@@ -1,4 +1,5 @@
 from transformers import pipeline
+import tqdm
 import datetime
 from transformers import MarianMTModel, MarianTokenizer
 import sys
@@ -12,7 +13,7 @@ data = sys.argv[1]
 from ast import literal_eval
 df = pd.read_csv(data, converters={'text': literal_eval}) # this works when the text column has lists, will fail if there are translations in there
 
-num = 9831 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
+num = 97311 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
 
 texts = df["text"]
 #print(texts[:5])
@@ -69,7 +70,7 @@ print("beginning translation")
 #         start = i+num+1
 #     num = num + 1
 
-for i in range(len(texts[num:])):
+for i in tqdm.tqdm(range(len(texts[num:]))):
     tr = pipe(texts[i+num], truncation=True, max_length=460)
     #print(tr)
     translations = [t["translation_text"] for t in tr]
