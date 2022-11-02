@@ -2,7 +2,7 @@
 #SBATCH --job-name=translation
 #SBATCH --account=project_2000539
 #SBATCH --partition=gpu # test
-#SBATCH --time=5:00:00 # 5h
+#SBATCH --time=3:00:00 # 5h
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1 # from 10 to 5?
 #SBATCH --mem-per-cpu=8000 #8000 

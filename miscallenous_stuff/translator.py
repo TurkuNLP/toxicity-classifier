@@ -13,7 +13,7 @@ data = sys.argv[1]
 from ast import literal_eval
 df = pd.read_csv(data, converters={'text': literal_eval}) # this works when the text column has lists, will fail if there are translations in there
 
-num = 97311 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
+num = 143991 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
 
 texts = df["text"]
 #print(texts[:5])

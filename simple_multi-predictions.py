@@ -34,6 +34,8 @@ parser.add_argument('--data', required=True,
     help="the file name of the raw text to use for predictions")
 parser.add_argument('--tokenizer', required=True,
     help="the tokenizer to use for tokenizing new text")
+parser.add_argument('--filename', required=True,
+    help="the file name to give file resulting from the predictions")
 parser.add_argument('--lines', type=int,
     help="how many lines to predict on, starting from the beginning of file")
 args = parser.parse_args()
@@ -132,7 +134,7 @@ threat = [probs[i][4] for i in range(len(probs))]
 toxicity  = [probs[i][5] for i in range(len(probs))]
 
 
-all = tuple(zip(ids, texts, highprob, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) 
+all = tuple(zip(ids, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) # texts, highprob
 #pprint(all[:10])
 
 allpredict = [item for item in all]
@@ -141,10 +143,11 @@ allpredict.sort(key = lambda x: float(x[2]), reverse=True) # from most toxic to 
 
 # get to dataframe
 def text_and_label(data):
-    df = pd.DataFrame(data, columns=['id', 'text', 'probability', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity'])
+    df = pd.DataFrame(data, columns=['id', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity']) # 'text', 'probability'
     return df
 
 all_dataframe = text_and_label(allpredict)
 
 # put to csv so we don't need any new lines taken out
-all_dataframe.to_csv('RedditPredictions/all_reddit2.csv', index=False)
+filename = args.filename
+all_dataframe.to_csv(filename, sep="\t", index=False) # added sep to make tsv

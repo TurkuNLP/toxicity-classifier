@@ -1,9 +1,0 @@
-START: ti 1.11.2022 12.16.30 +0200
-Namespace(model='models/multi-toxic-tr-optimized', data='data/reddit-Suomi.jsonl', tokenizer='TurkuNLP/bert-base-finnish-cased-v1', lines=None)
-number of lines in the file 3003354
-                                                 text       id
-5                                        en kommentoi  c06ss7o
-7   Matto on markkinoiden ainoa aito intialaistyyl...  c07k8p8
-8   Hyvä kuulla, nimenomaan kun Nokia on sanonut a...  c07mvoj
-9   Miksi en voi pelata online tilassa muita vastaan?  c07t1r8
-10                      täällä ei näytä olevan mitään  c07y6f9
