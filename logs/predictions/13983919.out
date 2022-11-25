@@ -1,9 +1,0 @@
-START: ke 2.11.2022 15.09.25 +0200
-Namespace(model='models/multi-toxic-tr-optimized', data='data/suomi24-2001-2020-1p-sample.jsonl', tokenizer='TurkuNLP/bert-base-finnish-cased-v1', filename='predictions/s24predictions.tsv', lines=None)
-number of lines in the file 945867
-                                                text                                    id
-0                                         juuri näin  s24:14c89e9f69140a030e19eb9a0a003b14
-1  kiitos samoin!!! :) (vaikkakin pikkasen myöhäs...  s24:e9e0e2af23e2d65dca9db67ae0bcc08e
-2  esim Alfan 2.5V6 vuonna 97 140KW kolmelitrasen...  s24:1615ed9538846dffa02ece6517eaa912
-3  Toimivimmat asiat on yksinkertaisia. Eli lähtö...  s24:5611c38bc87e76de28ece74e4768025e
-4  Bullit on jokseenkin sairas rotu.Iho ongelmat ...  s24:2757ca2ce4a217609d20236ccc7c0617

@@ -1,4 +1,6 @@
 import datasets
+import comet_ml
+from comet_ml import Experiment
 import transformers
 from pprint import PrettyPrinter
 import logging
@@ -89,7 +91,6 @@ def arguments():
 # keep arguments out of main method to keep it as a global variable
 # get commandline arguments
 args = arguments()
-
 
 def json_to_dataset(data, label_names):
     """ Reads the data from .jsonl format and turns it into a dataset using pandas.
@@ -285,22 +286,27 @@ def multi_label_metrics(predictions, labels, threshold):
         }
     else:
         precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro')
-        f1_weighted_average = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
+        f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
         roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
 
         from sklearn.metrics import hamming_loss
         hamming = hamming_loss(y_true, y_pred)
-        print(hamming)
+        print("hamming loss", hamming)
         # hamming loss value ranges from 0 to 1. Lesser value of hamming loss indicates a better classifier.
+
 
         # return as dictionary
         metrics = {'f1': f1,
-                    'f1_weighted': f1_weighted_average,
+                    'f1_macro': f1_macro,
                     'precision': precision,
                     'recall': recall,
                     'roc_auc': roc_auc,
                     'accuracy': accuracy}
+
+    experiment = comet_ml.get_global_experiment()
+    experiment.log_metrics(metrics)
+
     return metrics
 
 def compute_metrics(p: EvalPrediction):
@@ -477,6 +483,22 @@ def predictions_to_csv(trues, preds, dataset, label_names):
     comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_label_texts, 'pred_labels':pred_label_texts})
     comparisons_df.to_csv('comparisons/comparisons.csv')
     #print(comparisons_df.head())
+
+# COMET-ML STUFF
+experiment = Experiment(
+    project_name="toxicity-classification",
+    workspace="anniesk",
+)
+
+hyper_params = {
+    "model": args.model,
+    "learning_rate": args.learning,
+    "epochs": args.epochs,
+    "batch_size": args.batch,
+}
+
+experiment.log_parameters(hyper_params)
+
 
 
 def main():

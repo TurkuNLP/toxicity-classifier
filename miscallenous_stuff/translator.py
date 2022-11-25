@@ -13,7 +13,7 @@ data = sys.argv[1]
 from ast import literal_eval
 df = pd.read_csv(data, converters={'text': literal_eval}) # this works when the text column has lists, will fail if there are translations in there
 
-num = 143991 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
+num = 38691 # the number of rows translated previously and where to start (first row to take) TAKE NUM FROM PREVIOUS X ROWS TRANSLATED
 
 texts = df["text"]
 #print(texts[:5])
@@ -27,14 +27,14 @@ tokenizer = MarianTokenizer.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi",
 model = MarianMTModel.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi")
 pipe = pipeline("translation", model=model, tokenizer=tokenizer, device=0) # , device=0
 start = num
-stop = 100
+stop = 0
 # go through every example (list of lists, so pipe gets list of sentences from one example)
 
 def save_data(df, start, stop):
     # save to csv
     print()
     newdf = df.iloc[start:stop]
-    newdf.to_csv('data/train-opus-mt-translated.csv', mode='a', index=False, header=False) # mode a appends to the file
+    newdf.to_csv('data/test-opus-mt-translated.csv', mode='a', index=False, header=False) # mode a appends to the file
     # save only the ones that were just translated (keep track of index) so do not have to redo stuff that much and resave the whole csv file every tim
 
 

@@ -5,44 +5,47 @@ import requests
 import re
 import datetime
 
-thusfar = 156271
+thusfar = 48861 # 2 less than the line count is in the csv file
 
 data = sys.argv[1]
 
-# with open(data, 'r') as json_file:
-#         json_list = list(json_file)
-# lines = [json.loads(jline) for jline in json_list]
-
 df = pd.read_csv(data)
-#print(df[:5])
-
-# can I straight read it with read_json(_, orient="records") ????
-# df=pd.DataFrame(lines)
-
+print(df[:5])
 
 # if text begins with & I should remove that character, it messes with the url but does not throw an error
+import re
+chars_to_remove = ['&', ';', '#']
+regular_expression = '[' + re.escape (''. join (chars_to_remove)) + ']'
+
+df["text"] = df['text'].str.replace(regular_expression, '', regex=True)
+
 
 #text=False
 for i in range(len(df[thusfar:])):
+    resultlist = []
     ip = str(df["text"][i+thusfar])
     ip = f"{ip}" # was this necessary? I add quote marks to everything
     #print(ip, i)
 
     api_url = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={ip}"
-    if len(api_url) > 2048:
+    if len(api_url) > 1000: #2048
         print("too long", i + thusfar)
-        first, second = ip[:int(len(ip)//2)], ip[int(len(ip)//2):] # just split the row in the middle
-        api_url1 = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={first}"
-        response = requests.get(api_url1)
-        response = response.json()
-        result = response["result"]
-        resultlist = result.split("\n")
-        api_url2 = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={second}"
-        response = requests.get(api_url2)
-        response = response.json()
-        result = response["result"]
-        resultlist + result.split("\n") # get the results in one list
 
+        # get the strings to lists
+        import math
+        amount = len(ip) / 1000
+        amount = int(math.ceil(amount))
+        chunk = int(len(ip) / amount)
+        parts = [ip[i:i+chunk] for i in range(0, len(ip), chunk)]
+        for new_ip in parts:
+            api_url = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={new_ip}"
+            # print(len(api_url))
+            # print(api_url)
+            response = requests.get(api_url)
+            response = response.json()
+            result = response["result"]
+            resultlist = resultlist + result.split("\n") # get the results in one list (list + list)
+        
     else:
         response = requests.get(api_url)
         response = response.json()
@@ -68,13 +71,14 @@ for i in range(len(df[thusfar:])):
 
     num = i + thusfar
     # save sometimes just in case
-    if num % 1000 == 0:
+    if num % 10 == 0:
         now = datetime.datetime.now()
         print(now)
         print(i+thusfar, "rows split")
         # save to csv
         print(df[thusfar:num])
-        df.to_csv("data/train-sentence-split.csv", index = False)
+        df.to_csv("data/test-sentence-split.csv", index = False)
+
 
 # save to csv
-df.to_csv('data/train-sentence-split.csv', index=False)
+df.to_csv('data/test-sentence-split.csv', index=False)

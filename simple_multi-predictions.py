@@ -116,6 +116,7 @@ probs = new_probs
 print(probs[:10])
 
 # get the highest probability for sorting from all of the probabilities
+# TODO change this to only sort by toxicity or severe_toxicity if it is bigger
 highest=0.0
 highprob = []
 for i in range(len(probs)):
@@ -135,19 +136,37 @@ toxicity  = [probs[i][5] for i in range(len(probs))]
 
 
 all = tuple(zip(ids, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) # texts, highprob
+allwithtexts = tuple(zip(ids, texts, identity_attack, insult, obscene, severe_toxicity, threat, toxicity)) # texts, highprob
 #pprint(all[:10])
 
 allpredict = [item for item in all]
-allpredict.sort(key = lambda x: float(x[2]), reverse=True) # from most toxic to least toxic
+alltextspredict = [item for item in allwithtexts]
+
+#allpredict.sort(key = lambda x: float(x[2]), reverse=True) # from most toxic to least toxic
 
 
 # get to dataframe
-def text_and_label(data):
+def id_and_label(data):
     df = pd.DataFrame(data, columns=['id', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity']) # 'text', 'probability'
     return df
 
-all_dataframe = text_and_label(allpredict)
+def text_and_label(data):
+    df = pd.DataFrame(data, columns=['id', 'text', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity']) # 'probability'
+    return df
+
+all_dataframe = id_and_label(allpredict)
+alltexts_dataframe = text_and_label(alltextspredict)
+
+# change csv to not have new lines
+alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\n", "<NEWLINE>")
+alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\r\n", "<NEWLINE>")
+alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\r", "<NEWLINE>")
+alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\t", "<TAB>")
 
 # put to csv so we don't need any new lines taken out
 filename = args.filename
 all_dataframe.to_csv(filename, sep="\t", index=False) # added sep to make tsv
+
+alltexts_dataframe.to_csv("predictions/reddit-maybe-works.csv", index=False)
+
+
