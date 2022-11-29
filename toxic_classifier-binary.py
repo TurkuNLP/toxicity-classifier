@@ -97,20 +97,29 @@ def json_to_dataset(data):
     # there is now a list of dictionaries
 
     df=pd.DataFrame(lines)
-    df['labels'] = df[label_names].values.tolist()
+    # previous way of binarizing
+    #df['labels'] = df[label_names].values.tolist()
 
-    # change to binary: if toxic 1 if clean 0
-    # first get sum of labels
-    df['labels'] = df.labels.map(sum) #df[label_names].sum(axis=1)
+    # # change to binary: if toxic 1 if clean 0
+    # # first get sum of labels
+    # df['labels'] = df.labels.map(sum) #df[label_names].sum(axis=1)
 
-    # check that the ratio between clean and toxic is still the same! (it is)
-    train_toxic = df[df["labels"] > 0]
-    train_clean = df[df["labels"] == 0]
+    # # check that the ratio between clean and toxic is still the same! (it is)
+    # train_toxic = df[df["labels"] > 0]
+    # train_clean = df[df["labels"] == 0]
+
+    # new binarization only focusing on toxicity label because e.g., something can be obscene but not toxic
+    df['labels'] = None
+    df.loc[df['label_toxicity'] == 0, 'labels'] = 0
+    df.loc[df['label_toxicity'] == 1, 'labels'] = 1
+
+    train_toxic = df[df['labels'] == 1]
+    train_clean = df[df['labels'] == 0]
     print("toxic: ", len(train_toxic))
     print("clean: ", len(train_clean))
 
-    # then change bigger than 0 to 1 and 0 stays 0
-    df.loc[df["labels"] > 0, "labels"] = 1
+    # # then change bigger than 0 to 1 and 0 stays 0
+    # df.loc[df["labels"] > 0, "labels"] = 1
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
@@ -376,7 +385,7 @@ def main():
 
     trainer.train()
 
-    trainer.model.save_pretrained("models/binary-toxic")
+    trainer.model.save_pretrained("models/new-binary-toxic")
     print("saved")
 
 

@@ -305,8 +305,11 @@ def multi_label_metrics(predictions, labels, threshold):
                     'accuracy': accuracy}
 
     experiment = comet_ml.get_global_experiment()
-    experiment.log_metrics(metrics)
-
+    if experiment:
+        epoch = int(experiment.curr_epoch) if experiment.curr_epoch is not None else 0
+        experiment.set_epoch(epoch)
+        experiment.log_metrics(metrics)
+    
     return metrics
 
 def compute_metrics(p: EvalPrediction):
@@ -490,16 +493,30 @@ experiment = Experiment(
     workspace="anniesk",
 )
 
-hyper_params = {
-    "model": args.model,
-    "learning_rate": args.learning,
-    "epochs": args.epochs,
-    "batch_size": args.batch,
-}
+# hyper_params = {
+#     "model": args.model,
+#     "learning_rate": args.learning,
+#     "epochs": args.epochs,
+#     "batch_size": args.batch,
+# }
 
-experiment.log_parameters(hyper_params)
+# experiment.log_parameters(hyper_params)
 
+def print_confusion_matrix(confusion_matrix, axes, class_label, class_names, fontsize=14):
 
+    df_cm = pd.DataFrame(
+        confusion_matrix, index=class_names, columns=class_names,
+    )
+
+    try:
+        heatmap = sns.heatmap(df_cm, annot=True, fmt="d", cbar=False, ax=axes)
+    except ValueError:
+        raise ValueError("Confusion matrix values must be integers.")
+    heatmap.yaxis.set_ticklabels(heatmap.yaxis.get_ticklabels(), rotation=0, ha='right', fontsize=fontsize)
+    heatmap.xaxis.set_ticklabels(heatmap.xaxis.get_ticklabels(), rotation=45, ha='right', fontsize=fontsize)
+    axes.set_ylabel('True label')
+    axes.set_xlabel('Predicted label')
+    axes.set_title("Confusion Matrix for the class - " + class_label)
 
 def main():
     # this should prevent any caching problems I might have because caching does not happen anymore
@@ -529,8 +546,8 @@ def main():
     # use dev set or not
     if args.dev == True:
         # then split test into test and dev
-        train, dev = train.train_test_split(test_size=0.1).values() # splitting shuffles by default
-        test = test.shuffle(seed=42) # shuffle the train set
+        test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
+        train = train.shuffle(seed=42) # shuffle the train set
         # then make the dataset
         dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
     else:
@@ -618,6 +635,26 @@ def main():
 
     if args.binary == False:
         predictions_to_csv(trues, preds, dataset, label_names)
+
+        # get confusion matrix for multi-label
+        import sklearn.metrics as skm
+        cm = skm.multilabel_confusion_matrix(trues, preds)
+
+        # implement confusion matrix to heatmaps https://stackoverflow.com/questions/62722416/plot-confusion-matrix-for-multilabel-classifcation-python
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+
+        fig, ax = plt.subplots(4, 4, figsize=(12, 7))
+    
+        for axes, cfs_matrix, label in zip(ax.flatten(), cm, label_names[:-1]):
+            print_confusion_matrix(cfs_matrix, axes, label, ["N", "Y"])
+    
+        fig.tight_layout()
+        plt.show()
+        fig.savefig("multi-label-test.png")
+
+        experiment.log_figure(fig)
+
 
 
 if __name__ == "__main__":

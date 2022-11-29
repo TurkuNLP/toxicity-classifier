@@ -46,3 +46,15 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1691, 'learning_rate': 1e-05, 'epoch': 1.0}
+Best threshold: 0.5499999999999999
+hamming loss 0.01926933199649079
+{'eval_loss': 0.12070083618164062, 'eval_f1': 0.741705165896682, 'eval_f1_macro': 0.6211365592497785, 'eval_precision': 0.6885885105276839, 'eval_recall': 0.8037014563106796, 'eval_roc_auc': 0.8953716903843885, 'eval_accuracy': 0.9195387893219702, 'eval_runtime': 124.6842, 'eval_samples_per_second': 127.987, 'eval_steps_per_second': 4.002, 'epoch': 1.0}
+{'loss': 0.112, 'learning_rate': 0.0, 'epoch': 2.0}
+Best threshold: 0.5999999999999999
+hamming loss 0.017013410201779672
+{'eval_loss': 0.12812624871730804, 'eval_f1': 0.7607578205316493, 'eval_f1_macro': 0.6418383541079433, 'eval_precision': 0.7372615997722745, 'eval_recall': 0.7858009708737864, 'eval_roc_auc': 0.887908705918873, 'eval_accuracy': 0.9249279358315579, 'eval_runtime': 124.3057, 'eval_samples_per_second': 128.377, 'eval_steps_per_second': 4.014, 'epoch': 2.0}
+{'train_runtime': 5404.1397, 'train_samples_per_second': 53.149, 'train_steps_per_second': 6.644, 'train_loss': 0.14055359172311058, 'epoch': 2.0}
+saved
+Best threshold: 0.6499999999999999
+hamming loss 0.029929559119280587

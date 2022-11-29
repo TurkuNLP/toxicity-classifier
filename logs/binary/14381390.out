@@ -1,0 +1,203 @@
+epochs: 2, learning rate: 8e-6, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(train='data/train_fi_deepl.jsonl', test='data/test_fi_deepl.jsonl', model='TurkuNLP/bert-base-finnish-cased-v1', batch=8, epochs=2, learning=8e-06, dev=True, loss=True)
+toxic:  15294
+clean:  144277
+toxic:  6090
+clean:  57888
+tensor([0.5530, 5.2168], device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 143613
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 15958
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.3553, 'learning_rate': 4e-06, 'epoch': 1.0}
+{'eval_loss': 0.29658040404319763, 'eval_accuracy': 0.9622759744328864, 'eval_weighted_accuracy': 0.9011787889457923, 'eval_roc_auc': 0.9011787889457923, 'eval_f1': 0.81408276714021, 'eval_precision': 0.8036585365853659, 'eval_recall': 0.8247809762202754, 'eval_runtime': 123.0299, 'eval_samples_per_second': 129.708, 'eval_steps_per_second': 4.056, 'epoch': 1.0}
+{'loss': 0.2424, 'learning_rate': 0.0, 'epoch': 2.0}
+{'eval_loss': 0.410129576921463, 'eval_accuracy': 0.9626519613986715, 'eval_weighted_accuracy': 0.8983289086985473, 'eval_roc_auc': 0.8983289086985472, 'eval_f1': 0.8143302180685359, 'eval_precision': 0.8107940446650124, 'eval_recall': 0.8178973717146433, 'eval_runtime': 122.2211, 'eval_samples_per_second': 130.567, 'eval_steps_per_second': 4.083, 'epoch': 2.0}
+{'train_runtime': 5240.1825, 'train_samples_per_second': 54.812, 'train_steps_per_second': 6.852, 'train_loss': 0.29881890444832054, 'epoch': 2.0}
+saved
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+F1_micro: 0.6646506646506646
+              precision    recall  f1-score   support
+
+       clean       0.98      0.92      0.95     57888
+       toxic       0.54      0.87      0.66      6090
+
+    accuracy                           0.92     63978
+   macro avg       0.76      0.89      0.81     63978
+weighted avg       0.94      0.92      0.93     63978
+
+[[ 4.375993  -4.843061 ]
+ [ 2.5470607 -3.0048966]
+ [ 2.1636555 -2.403012 ]
+ ...
+ [-3.1745744  3.4204614]
+ [ 3.882211  -4.4013977]
+ [ 3.6676893 -4.166345 ]]
+tensor([[9.9990e-01, 9.9123e-05],
+        [9.9614e-01, 3.8649e-03],
+        [9.8971e-01, 1.0286e-02],
+        ...,
+        [1.3653e-03, 9.9863e-01],
+        [9.9975e-01, 2.5256e-04],
+        [9.9960e-01, 3.9587e-04]])
+[('Haistakaa vittu kaikki vitun ääliöt, ette voi saada kaksipuolista CD-levyä. '
+  'Teidän kaikkien pitäisi tehdä minulle palvelus ja hypätä jostain vitun '
+  'rakennuksesta, jotta meillä olisi kolme vähemmän paskiaista kävelemässä '
+  'maan päällä ja hengittämässä kaikkea ilmaani. Haistakaa vittu kaikki '
+  'paskiaiset, nekru, minä häivyn!!!!',
+  'toxic', 0.9996206760406494),
+ ('lopeta aivoton robotti oleminen ja korjaa artikkeli, senkin kusipää. jesus '
+  'vitun kristus. vitun ateistisika.',
+  'toxic', 0.9996199607849121),
+ ('Haista vittu, runkkari, palaa helvetissä, nekru!', 'toxic',
+  0.999619722366333),
+ ('vittu vittu vittu vittu vittu vittu vittu vittu vittu vittu vittu', 'toxic',
+  0.9996196031570435),
+ ('== Senkin viisastelija hintti. == \n'
+  '\n'
+  ' Haista vittu, senkin älykääpiö, hintti. Mikset pitäisi turpaasi kiinni, '
+  'senkin vitun kusipää. Polta helvetissä, ämmä!',
+  'toxic', 0.9996193647384644)]
+[('Hiero sitä kasvojasi vasten ja haistele sitä.', 'toxic', 0.5090460181236267),
+ ('::Hups, olen selvästi epäpätevä idiootti. Anteeksi. \n'
+  ' ::Tarkoitin käsitellä , ja nappasin käyttäjänimen seuraavasta viestistä. \n'
+  ' ::Anteeksi.',
+  'toxic', 0.5084230303764343),
+ ('Sanon sen uudestaan;en halua typerää ei-ihmistä robottia allekirjoittamaan '
+  'puolestani.hankkikaa se.',
+  'toxic', 0.5052549839019775),
+ ('Värit ovat rumat, se on lukukelvoton!', 'toxic', 0.5042061805725098),
+ ('mislhjyukykluyj uyikyujet 6u 7u tyijuy i yu tuiuku eading', 'toxic',
+  0.500957727432251)]
+[('tämä on kaikki mitä sinulla on sanottavaa platoista?!! vihaan wikipediaa!! '
+  'tämä oli minulle kun luin ( >:( >:o',
+  'clean', 0.5050773620605469),
+ ('::::: Joka tapauksessa se on tietosanakirja.  Jos lukija ei tiedä, mitä '
+  'odottaa tietosanakirjalta, hän oppii sen kyllä pian.  Ei ole mitään syytä '
+  'roiskia näitä rumia tunnisteita ympäri tietosanakirjaa siltä varalta, että '
+  'kaikki lukijamme ovat erityisen tyhmiä ihmisiä.',
+  'clean', 0.5045023560523987),
+ ('" \n'
+  ' :::::::Okei, mutta välttäkää ""What the f*ck"" -fraasia, meidän pitäisi '
+  'pysyä sivistyneessä kontekstissa. En muutenkaan ymmärrä tätä keskustelua. '
+  'Hyvä Rob.HUN, mikä on ehdotuksesi tarkalleen?   "',
+  'clean', 0.5044505000114441),
+ ('" \n'
+  '\n'
+  ' == IP, jonka juuri estit == \n'
+  '\n'
+  ' 72.136.1.111 tyhjentää keskustelusivunsa ja lisää siihen rivouksia.  "',
+  'clean', 0.5030152201652527),
+ ('HELLLOOOO SAARAHH U R A BONGYYYY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+  'clean', 0.5014170408248901)]
+[('==Wikilogos== \n'
+  '\n'
+  ' Huomasin, että olet hyvin mukana täällä, saatat olla kiinnostunut '
+  'ehdotuksestani, että Wikipedia käyttäisi wiki-yhteisön jäsenten luomia '
+  'logomuunnoksia kansallisten ja kansainvälisten tietoisuuspäivien, '
+  'muistopäivien, merkittävien vuosipäivien ja merkkipäivien merkitsemiseen. '
+  'Kommentoi Wikipediassa osoitteessa '
+  'Wikipedia:Village_pump_(ehdotukset)#Logovariaatiot ja keskustelusivullani.  '
+  'Kiitos!',
+  'clean', 0.9999490976333618),
+ ('"*Tuki - Lisää artikkeliin tiivistelmän tärkeistä tiedoista. Hyödyllinen '
+  'mielestäni, ja vaikka WP:OSE on ehkä pätevä argumentti, kun otetaan '
+  'huomioon, että Wikipedia toimii yhteisymmärryksessä, tuntuu siltä, että se, '
+  'että useimmat bioartikkelit käyttävät niitä, on pätevä vasta-argumentti '
+  'sille.  -)  \n'
+  '\n'
+  '  \n'
+  ' "',
+  'clean', 0.9999486207962036),
+ ('" \n'
+  ' == ""Mason Henson"" poistetaan nopeasti == \n'
+  '\n'
+  '  Luomasi sivu Mason Henson on merkitty poistettavaksi, koska se täyttää '
+  'yhden tai useamman nopean poistamisen kriteerin; erityisesti se kertoo '
+  'henkilöstä tai ihmisryhmästä, mutta siinä ei mainita, miten he ovat '
+  'tärkeitä tai merkittäviä ja miksi heidät pitäisi sisällyttää '
+  'tietosanakirjaan. Katso ohjeet siitä, mitä yleisesti hyväksytään '
+  'merkittäväksi, ja erityisesti elämäkertoja koskevat ohjeet. \n'
+  '\n'
+  ' Olet tervetullut osallistumaan sisältöön, joka on sisältöpolitiikkamme ja '
+  'mahdollisten sovellettavien sisällyttämisohjeiden mukaista. Älä kuitenkaan '
+  'yksinkertaisesti luo sivua uudelleen samalla sisällöllä. Kannattaa myös '
+  'lukea johdanto toimitukseen ja opas ensimmäisen artikkelin '
+  'kirjoittamiseen. \n'
+  '\n'
+  ' Kiitos. HG / / "',
+  'clean', 0.9999483823776245),
+ ('" \n'
+  '\n'
+  ' :::Olen samaa mieltä Scjessyn kanssa siitä, että '
+  'presidentinvaalikampanjaosio voisi menettää paljon osavaltiokohtaisten '
+  'äänestysten yksityiskohtia.  Yleinen yhteenveto, jossa sanottaisiin ""Obama '
+  'ja Clinton ovat käyneet tiukkaa kilpailua ehdokkuudesta, ja jotkin '
+  'äänestyssuuntaukset noudattavat demografisia linjoja"", olisi hyvä '
+  '(tietysti asianmukaisesti siteerattuna).  Ehkä sen jälkeen mainittaisiin '
+  'yleisesti väittelyt ja yleiset erot ehdokkaiden kantojen välillä.  Tässä '
+  'vaiheessa olisi kai kohtuullista mainita, että Obama johtaa '
+  'ehdokaskilpailua ja on todennäköinen ehdokas (jälleen kerran '
+  'asianmukaisesti siteerattuna).  Mikroskooppiset yksityiskohdat tästä ja '
+  'tuosta esivaalista ja tästä ja tuosta päivämäärästä kuuluvat pikemminkin '
+  'lapsiartikkeliin kuin tähän yhteenvetotyyppiseen elämäkertaan. × "',
+  'clean', 0.999948263168335),
+ ('" 2015 (UTC) \n'
+  '\n'
+  ' ::Hei Keith-264, olen yhdistänyt artikkelit tiettyihin päivämäärä- ja '
+  'paikannimiluokkiin itse artikkeleissa olevien tietojen perusteella. '
+  'Portal:World War I -sivuston linkit voivat olla avuksi. Kiitos '
+  'kiinnostuksestasi. - 00:57, 12. marraskuuta"',
+  'clean', 0.999948263168335)]
+{0: 'clean', 1: 'toxic'}
+END: Mon Nov 28 13:40:34 EET 2022

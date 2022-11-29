@@ -1,0 +1,387 @@
+epochs: 2, learning rate: 8e-6, batch size: 8, model: TurkuNLP/bert-base-finnish-cased-v1 
+Translated train and test
+Namespace(train='data/train_fi_deepl.jsonl', test='data/test_fi_deepl.jsonl', model='TurkuNLP/bert-base-finnish-cased-v1', batch=8, epochs=2, learning=8e-06, dev=True, loss=True)
+toxic:  15294
+clean:  144277
+toxic:  6090
+clean:  57888
+tensor([0.5530, 5.2168], device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 12796
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 51182
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.3488, 'learning_rate': 4e-06, 'epoch': 1.0}
+{'eval_loss': 0.4764596223831177, 'eval_accuracy': 0.9277899343544858, 'eval_weighted_accuracy': 0.8723063757463123, 'eval_roc_auc': 0.8723063757463124, 'eval_f1': 0.6793893129770991, 'eval_precision': 0.5883413461538461, 'eval_recall': 0.8037766830870279, 'eval_runtime': 99.9697, 'eval_samples_per_second': 127.999, 'eval_steps_per_second': 4.001, 'epoch': 1.0}
+{'loss': 0.2471, 'learning_rate': 0.0, 'epoch': 2.0}
+{'eval_loss': 0.4877351224422455, 'eval_accuracy': 0.9193497968115036, 'eval_weighted_accuracy': 0.8933550153581009, 'eval_roc_auc': 0.8933550153581008, 'eval_f1': 0.6702875399361022, 'eval_precision': 0.5486401673640168, 'eval_recall': 0.861247947454844, 'eval_runtime': 100.2411, 'eval_samples_per_second': 127.652, 'eval_steps_per_second': 3.99, 'epoch': 2.0}
+{'train_runtime': 5654.2595, 'train_samples_per_second': 56.443, 'train_steps_per_second': 7.056, 'train_loss': 0.2979617788898393, 'epoch': 2.0}
+saved
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+F1_micro: 0.6850195397307859
+              precision    recall  f1-score   support
+
+       clean       0.98      0.94      0.96     46310
+       toxic       0.59      0.81      0.69      4872
+
+    accuracy                           0.93     51182
+   macro avg       0.79      0.88      0.82     51182
+weighted avg       0.94      0.93      0.93     51182
+
+[[ 4.451017  -4.1258845]
+ [ 1.1922743 -1.8947039]
+ [-2.4697952  1.8749276]
+ ...
+ [ 4.0651536 -3.8827553]
+ [ 4.262606  -4.1163054]
+ [ 1.0836887 -1.7652655]]
+tensor([[9.9981e-01, 1.8837e-04],
+        [9.5635e-01, 4.3648e-02],
+        [1.2809e-02, 9.8719e-01],
+        ...,
+        [9.9965e-01, 3.5328e-04],
+        [9.9977e-01, 2.2961e-04],
+        [9.4526e-01, 5.4735e-02]])
+[('== hello == \n\n Ime mun mulkkua, hintti.', 'toxic', 0.9991852641105652),
+ ('== vitun CU estetty, hintti ==', 'toxic', 0.9991791844367981),
+ ('== Hmm == \n\n Nekru vittu sinä ja sinun kova perse porukka', 'toxic',
+  0.999177873134613),
+ ('== Naffie olet huora. == \n\n Olet huora naffie!', 'toxic',
+  0.9991758465766907),
+ ('== painu vittuun == \n\n Painu vittuun', 'toxic', 0.9991753697395325)]
+[('DHS ei siis ole osa TMZ:tä? Jos he olisivat homoja, kukaan ei varmaan '
+  'sanoisi mitään.',
+  'toxic', 0.512204647064209),
+ ('he ovat terroristeja, jotka hyökkäävät viattomia siviilejä vastaan. he ovat '
+  'ihmisyyden vastaisia. he eivät etsi vapautta vaan öljyrahaa.',
+  'toxic', 0.5117484331130981),
+ ('") \n'
+  ' : Kyllä, harrastan seksiä vaimoni kanssa, joka on todellakin kahden lapsen '
+  'äiti.  Joten, kuten ehdotat, oletan, että olen ""kusipää"".  Kiitos '
+  'ystävällisistä sanoista.  Harmi, että kunnioitus on WP:NOTINHERITED -) '
+  '(UTC"',
+  'toxic', 0.5084168314933777),
+ ('jgklyuiftyitdtydtytyfygyeortyirtuyiriprifythyueueigertiertiprertuirt '
+  'niertritierutuuhuikjfvhuktgeruuikdffjkxfvjkhfjkhfj '
+  'hdfjghjkfjgkdfkfnjbjgdfgfjfjfjklfkgmflgkfjgkfgjkfdgdggjkdfgfgjhjfkglf '
+  'gfjjfjfjfjfjrfjfjfjfjfjfjfjffjjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjf',
+  'toxic', 0.5066108107566833),
+ ('*Et ole lainkaan fiksu.  Lopeta tai sinut estetään.', 'toxic',
+  0.5008730888366699)]
+[('== Lazcano == \n\n Hänet on saatettu tappaa: .', 'clean',
+  0.5062592625617981),
+ ('::::Tämä mini-editointisota oli niin typerä - niin on myös tämä politiikka, '
+  'joka on täysin anti-akedmia.',
+  'clean', 0.5061663389205933),
+ ('Habanero kirjoitetaan joskus väärin ñ? Se on jälkeenjäänyttä. Eikö se '
+  'kirjoiteta niin espanjaksi?',
+  'clean', 0.5056107044219971),
+ ('Hvala na pomoći Josipe, u svakom slučaju pokušat ču slijediti tvoje upute.',
+  'clean', 0.5021652579307556),
+ ('\\stitle{dekho dekho ... socho ke jhiilo.n kaa shahar ho}%% \n'
+  '\n'
+  ' dekho dekho kyaa mai.n dekhuu.N \n'
+  ' socho socho socho sochuu.N mai.n kyaa o o o \n'
+  ' socho ke jhiilo.n kaa shahar ho \n'
+  ' Laharo.n pe apanaa ek ghar ho. \n'
+  ' ham jo dekhe.n sapane pyaare sach ho.n saare bas aur kyaa \n'
+  ' socho ke jhiilo.n kaa \\threedots \n'
+  '\n'
+  ' farsh ho pyaar kaa khushbuu_o.n kii diivaare.n \n'
+  ' ham jahaa.n baiThake prem se din guzaare.n baiTake prem se din guzaare.n \n'
+  ' palake.n uThe.n palake.n jhuke.n \n'
+  ' dekhe tujhe bas ye nazar \n'
+  ' socho ke jhiilo.n kaa \\threedots \n'
+  '\n'
+  ' bumbaro bumbaro \n'
+  ' barf hii barf ho sardiyo.n kaa ho mausam... \n'
+  ' Aag ke saamane haath se. nkate ho.n ham. \n'
+  ' baiThii rahuu.n aaGosh me.n rakhake tere kaa.ndhe pe sar \n'
+  ' socho ke jhiilo.n kaa \\threedots',
+  'clean', 0.5012048482894897)]
+[('" \n'
+  '\n'
+  ' == Teemat == \n'
+  '\n'
+  '  Poistettiin lause, joka koski kunnianosoituksia muihin avaruuselokuviin '
+  'synteesinä. Palautin tämän poiston ja perustelen sen alla lainauksella '
+  'artikkelista ja nykyisen artikkelin rivillä.    \n'
+  ' * Lukuisissa artikkeleissa viitataan Ed Harrisin yhteyteen... \n'
+  ' * ""Stone kelluu ympäriinsä pelkissä alusvaatteissa, on mahdotonta olla '
+  'ajattelematta Sigourney Weaverin Ripleytä Alien-elokuvassa."" > '
+  '""muistuttaa Sigorney Weaverin haavoittuvaa Ripleytä Alien-elokuvasta."" \n'
+  ' * ""Gravity leijuu Pixarin jättiläisten harteilla... [erityisesti] '
+  '""WALL-E""," sen mystisen synkkä avausjakso (ja sen koominen sammuttimen '
+  'käyttö, jota käytetään hyvin eri tavalla ""Gravityssä"")"" > ""WALL-E:n '
+  'sammuttimen ylimääräinen käyttö"""',
+  'clean', 0.9998551607131958),
+ ('" \n'
+  '\n'
+  '  \n'
+  ' ""Myönnettyään helmikuussa 2011 kolme avioliiton ulkopuolista suhdetta '
+  'Merzel sanoi riisuvansa buddhalaisen papin vaatteet, eroavansa Valkoisen '
+  'luumun asangan vanhimmasta jäsenestä, luopuvansa Kanzeonin abbedista ja '
+  'lopettavansa opettamisen määräämättömäksi ajaksi hakeutuakseen '
+  'neuvontaan.""[uutiset 8][uutiset 9][web 5][uutiset 10]""  Onko kellään '
+  'tietoa, mihin lauseen osiin kukin näistä lähteistä viittaa?  Tähän '
+  'lauseeseen sisältyy paljon yksityiskohtia ja pesulalista lähteistä.  Kiitos '
+  'jo etukäteen!   "',
+  'clean', 0.9998534917831421),
+ ('" \n'
+  '\n'
+  ' *20. vuosisadalla Denmark Streetillä oli useita japanilaisia yrityksiä, ja '
+  'se tunnettiin nimellä "Pikku-Tokio", mutta se tuli tunnetuimmaksi '
+  'Britannian "Tin Pan Alley" -kaduna, jossa oli lukuisia musiikkikustantajien '
+  'toimistoja.  - Samanaikaisesti tai myöhemmin? \n'
+  ' *to the Rookery - miksi isoja kirjaimia? Artikkelissa viitataan '
+  'kaakkureihin yleissubstantiivina. Onko meillä artikkelia tästä '
+  'nimenomaisesta torakosta? \n'
+  ' *Per WP:LEADLENGTH, tässä artikkelissa pitäisi olla korkeintaan yksi tai '
+  'kaksi kappaletta johdannossa. \n'
+  ' *CN-tunniste lisätty. \n'
+  ' *Koska tämä on brittiläistä aihetta käsittelevä artikkeli, eikö metrien '
+  'pitäisi olla ensimmäisinä? \n'
+  ' *Paljon osioita on hyvin lyhyitä, ja ne voitaisiin luultavasti yhdistää. \n'
+  ' *Disambiguointisivut: Jacobite, Fender  \n'
+  ' *Vakioi, annatko mainituille ihmisille eliniän vai et... \n'
+  ' *Onko lisää tietoa Little Tokiosta? \n'
+  ' *Ravintola ja hotelli Tokiwa - Jos tämä on ravintolan nimi (eli oikea '
+  'nimi), sitä ei saa kirjoittaa kursiivilla. \n'
+  ' *Vuosikymmenen loppuun mennessä, - mikä vuosikymmen, 1950- vai '
+  '1960-luku? \n'
+  ' *Tarkista mahdolliset linkit, kuten Not Fade Away (biisi) Stonesin '
+  'sinkulle. \n'
+  ' * Vuonna 1964 The Kinks, jossa Page soitti kitaraa ja Jon Lord, joka '
+  'myöhemmin muodosti Deep Purplen, soitti pianoa, nauhoitti ""You Really Got '
+  'Me"" yhdessä kellaristudioista. - Minä jättäisin pois ""myöhemmin Deep '
+  'Purple"", jotta tämä lause olisi selkeämpi. \n'
+  ' *More later"',
+  'clean', 0.9998534917831421),
+ ('" \n'
+  '\n'
+  ' ==Tämä luettelo sisältää lähteettömiä merkintöjä== \n'
+  '\n'
+  ' Ainakin yhden luettelossa olevan merkinnän tueksi ei ole olemassa mitään '
+  'lähdettä - merkinnän ""Kiinan tasavalta"" tueksi ei ole olemassa mitään '
+  'lähdettä. Tämä on Australian hallituksen luettelo, joka on yksinkertainen '
+  'ja selkeä. "Kiinan tasavalta" tai "Taiwan, Penghu, Kinmen tai Matsu" eivät '
+  'ole luettelossa. Huomaan, että Redking7 yritti kovasti korjata tämän, mutta '
+  'hänet potkittiin pois Wikipediasta (pysyvästi) hänen ponnistelujensa vuoksi '
+  '- häpeä niille, jotka ovat vastuussa - Luettelo on korjattava.  \n'
+  '\n'
+  ' A \n'
+  '\t - Afganistan  \n'
+  '\t - Algeria  \n'
+  '\t - Angola  \n'
+  '\t - Argentiina  \n'
+  '\t - Itävalta  \n'
+  ' B \n'
+  '\t - Bangladesh  \n'
+  '\t - Barbados  \n'
+  '\t - Belgia  \n'
+  '\t - Benin  \n'
+  '\t - Bhutan  \n'
+  '\t - Bosnia ja Hertsegovina  \n'
+  '\t - Botswana  \n'
+  '\t - Brasilia  \n'
+  '\t - Brunei Darussalam  \n'
+  '\t - Bulgaria  \n'
+  ' C \n'
+  '\t - Kambodža  \n'
+  '\t - Kanada  \n'
+  '\t - Chile  \n'
+  '\t - Kiina  \n'
+  '\t - Kolumbia  \n'
+  '\t - Kroatia  \n'
+  '\t - Kuuba  \n'
+  '\t - Kypros  \n'
+  '\t - Tšekin tasavalta  \n'
+  ' D \n'
+  '\t - Tanska  \n'
+  '\t - Djibouti  \n'
+  '\t - Dominikaaninen tasavalta  \n'
+  ' E \n'
+  '\t - Ecuador  \n'
+  '\t - Egypti  \n'
+  '\t - El Salvador  \n'
+  '\t - Viro  \n'
+  '\t - Etiopia  \n'
+  '\t - Euroopan unioni  \n'
+  ' F \n'
+  '\t - Fidži  \n'
+  '\t - Suomi  \n'
+  '\t - Entinen Jugoslavian tasavalta Makedonia  \n'
+  '\t - Ranska  \n'
+  ' G \n'
+  '\t - Saksa  \n'
+  '\t - Ghana  \n'
+  '\t - Kreikka  \n'
+  '\t - Guatemala  \n'
+  '\t - Guinea  \n'
+  ' H \n'
+  '\t - Pyhä istuin  \n'
+  '\t - Unkari  \n'
+  ' I \n'
+  '\t - Islanti  \n'
+  '\t - Intia  \n'
+  '\t - Indonesia  \n'
+  '\t - Iran  \n'
+  '\t - Irak  \n'
+  '\t - Irlanti  \n'
+  '\t - Israel  \n'
+  '\t - Italia  \n'
+  ' J \n'
+  '\t - Japani  \n'
+  '\t - Jordania  \n'
+  ' K \n'
+  '\t - Kazakstan  \n'
+  '\t - Kenia  \n'
+  '\t - Korea - Korean tasavalta  \n'
+  '\t - Kuwait  \n'
+  ' L \n'
+  '\t - Laos  \n'
+  '\t - Latvia  \n'
+  '\t - Libanon  \n'
+  '\t - Lesotho  \n'
+  '\t - Libya - Suuri sosialistinen Libyan arabijamahiriya (Libyan Suuri '
+  'Sosialistinen Kansanliitto)  \n'
+  '\t - Liettua  \n'
+  ' M \n'
+  '\t - Malawi  \n'
+  '\t - Malesia  \n'
+  '\t - Mali  \n'
+  '\t - Malta  \n'
+  '\t - Mauritania  \n'
+  '\t - Mauritius  \n'
+  '\t - Meksiko  \n'
+  '\t - Monaco  \n'
+  '\t - Mongolia  \n'
+  '\t - Marokko  \n'
+  '\t - Myanmar  \n'
+  ' N \n'
+  '\t - Nepal  \n'
+  '\t - Alankomaat  \n'
+  '\t - Uusi-Seelanti  \n'
+  '\t - Nigeria  \n'
+  '\t - Norja  \n'
+  ' O \n'
+  '\t - Oman  \n'
+  ' P \n'
+  '\t - Pakistan  \n'
+  '\t - Panama  \n'
+  '\t - Papua-Uusi-Guinea  \n'
+  '\t - Paraguay  \n'
+  '\t - Peru  \n'
+  '\t - Filippiinit  \n'
+  '\t - Puola  \n'
+  '\t - Portugali  \n'
+  ' Q \n'
+  '\t - Qatar  \n'
+  ' R \n'
+  '\t - Romania  \n'
+  '\t - Venäjä  \n'
+  '\t - Ruanda  \n'
+  ' S \n'
+  '\t - Samoa  \n'
+  '\t - Saudi-Arabia  \n'
+  '\t - Serbia  \n'
+  '\t - Seychellit  \n'
+  '\t - Sierra Leone  \n'
+  '\t - Singapore  \n'
+  '\t - Slovakia  \n'
+  '\t - Slovenia  \n'
+  '\t - Salomonsaaret  \n'
+  '\t - Etelä-Afrikka  \n'
+  '\t - Espanja  \n'
+  '\t - Sri Lanka  \n'
+  '\t - Sudan  \n'
+  '\t - Swazimaa  \n'
+  '\t - Ruotsi  \n'
+  '\t - Sveitsi  \n'
+  '\t - Syyria  \n'
+  ' T \n'
+  '\t - Tansania  \n'
+  '\t - Thaimaa  \n'
+  '\t - Itä-Timor  \n'
+  '\t - Tonga  \n'
+  '\t - Tunisia  \n'
+  '\t - Turkki  \n'
+  ' U \n'
+  '\t - Uganda  \n'
+  '\t - Ukraina  \n'
+  '\t - Yhdistyneet arabiemiirikunnat  \n'
+  '\t - Yhdistynyt kuningaskunta  \n'
+  '\t - Yhdysvallat  \n'
+  '\t - Uruguay  \n'
+  ' V \n'
+  '\t - Venezuela  \n'
+  '\t - Vietnam  \n'
+  ' Y \n'
+  '\t - Jemen  \n'
+  ' Z \n'
+  '\t - Sambia  \n'
+  '\t - Zimbabwe"',
+  'clean', 0.9998531341552734),
+ ('" \n'
+  '\n'
+  ' == DYK == \n'
+  '\n'
+  ' {| class="""messagebox standard-talk""" \n'
+  ' |- \n'
+  ' | \n'
+  ' |Did you know? päivitettiin. Joulukuun 22. päivänä 2006 artikkelin '
+  'Blauhöhle, jonka äskettäin nimitit, fakta esiteltiin pääsivun kyseisessä '
+  'osiossa. Jos tiedät toisen mielenkiintoisen faktan äskettäin luodusta '
+  'artikkelista, ehdota sitä ""Tiesitkö?"" -keskustelusivulla. \n'
+  ' |}  "',
+  'clean', 0.9998522996902466)]
+{0: 'clean', 1: 'toxic'}
+END: Mon Nov 28 20:57:02 EET 2022
