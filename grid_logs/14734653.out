@@ -1,0 +1,88 @@
+START 14734653: Thu Dec 22 16:19:26 EET 2022
+Namespace(train=['data/train_fi_deepl.jsonl'], test='data/test_fi_deepl.jsonl', model='TurkuNLP/bert-large-finnish-cased-v1', batch=16, epochs=10, learning=2e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+['data/train_fi_deepl.jsonl']
+text      object
+labels    object
+dtype: object
+text      object
+labels    object
+dtype: object
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Job ID: 14734653
+Cluster: puhti
+User/Group: annieske/annieske
+State: RUNNING
+Cores: 1
+CPU Utilized: 00:01:53
+CPU Efficiency: 81.29% of 00:02:19 core-walltime
+Job Wall-clock time: 00:02:19
+Memory Utilized: 4.56 GB
+Memory Efficiency: 58.34% of 7.81 GB
+Job consumed 2.39 CSC billing units based on following used resources
+Billed project: project_2000539
+CPU BU: 0.04
+Mem BU: 0.03
+GPU BU: 2.32
+GPU job efficiency:
+------------------------------------------------------------------------
+Host memory 
+     Hostname    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r15g08          3.38           3.3         13.87 
+------------------------------------------------------------------------
+GPU load 
+     Hostname        GPU Id      Mean (%)    stdDev (%)       Max (%) 
+       r15g08             2 [31m         0.07 [0m         0.27             1 
+------------------------------------------------------------------------
+GPU memory 
+     Hostname        GPU Id    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r15g08             2          0.79          0.68          2.27 
+------------------------------------------------------------------------
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+END 14734653: Thu Dec 22 16:21:44 EET 2022

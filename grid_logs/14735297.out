@@ -1,0 +1,25 @@
+START 14735297: Thu Dec 22 17:07:42 EET 2022
+Namespace(train=['data/train_en.jsonl'], test='data/test_fi_deepl.jsonl', model='xlm-roberta-large', batch=4, epochs=10, learning=3e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+['data/train_en.jsonl']
+text      object
+labels    object
+dtype: object
+text      object
+labels    object
+dtype: object
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})

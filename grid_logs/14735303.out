@@ -1,0 +1,3 @@
+START 14735303: Thu Dec 22 17:08:05 EET 2022
+Namespace(train=['data/train_en.jsonl'], test='data/test_fi_deepl.jsonl', model='xlm-roberta-large', batch=12, epochs=10, learning=5e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+['data/train_en.jsonl']

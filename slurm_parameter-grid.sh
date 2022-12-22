@@ -18,8 +18,9 @@ MAX_JOBS=100
 mkdir -p "$JOBDIR"
 
 # switch model here
+#  'bert-large-cased' #"TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-large-finnish-cased-v1" #'bert-base-cased' # 'bert-large-cased' # "xlm-roberta-large" #'xlm-roberta-base'
 MODELS="
-TurkuNLP/bert-base-finnish-cased-v1
+xlm-roberta-large
 "
 
 DATA_DIRS="

@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=toxicity
 #SBATCH --account=project_2000539
-#SBATCH --partition=gputest
-#SBATCH --time=00:15:00 # 5h
+#SBATCH --partition=gpu
+#SBATCH --time=10:00:00 # 5h
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
@@ -49,7 +49,7 @@ srun python toxic_classifier.py \
     --learning $learning_rate \
     --epochs $epochs \
     --batch $batch_size \
-    --train "$data_dir/train_fi_deepl.jsonl" \
+    --train "$data_dir/train_en.jsonl" \
     --test "$data_dir/test_fi_deepl.jsonl" \
     --clean_as_label \
     --loss \

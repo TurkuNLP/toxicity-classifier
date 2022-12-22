@@ -233,6 +233,8 @@ def make_class_weights(train, label_names):
 
     # Compute class weights using balanced method
     class_weights = [n_samples / (n_classes * freq) if freq > 0 else 1 for freq in class_count]
+    if args.clean_as_label == False: # multiply every label by 10
+        class_weights = [one * 10 for one in class_weights]
     class_weights = torch.tensor(class_weights).to("cuda:0") # have to decide on a device
     print(class_weights)
 
@@ -262,7 +264,7 @@ def optimize_threshold(predictions, labels):
     for th in np.arange(0.3, 0.7, 0.05):
         y_pred = np.zeros(probs.shape)
         y_pred[np.where(probs >= th)] = 1
-        f1 = f1_score(y_true=y_true, y_pred=y_pred, average='micro') # this metric could be changed to something else
+        f1 = f1_score(y_true=y_true, y_pred=y_pred, average='macro') # this metric could be changed to something else
         if f1 > best_f1:
             best_f1 = f1
             best_f1_threshold = th
@@ -630,11 +632,11 @@ def main():
     trainer_args = transformers.TrainingArguments(
         "checkpoints/somecheckpoint", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="steps",
-        eval_steps=1000,
+        eval_steps=2500,
         save_total_limit=5,
         logging_strategy="steps",  # number of epochs = how many times the model has seen the whole training data
-        save_steps=1000,
-        logging_steps=1000,
+        save_steps=2500,
+        logging_steps=2500,
        # auto_find_batch_size=True, # test finding biggest batch size that fits into memory
         #save_strategy="epoch",
         load_best_model_at_end=True,
@@ -674,46 +676,44 @@ def main():
 
     # everything below this is unnecessary for doing grid search!!
 
-    if args.save != None:
-        trainer.model.save_pretrained("models/{args.save}")
-        print("saved")
+    # if args.save != None:
+    #     trainer.model.save_pretrained("models/{args.save}")
+    #     print("saved")
 
-    eval_results = trainer.evaluate(dataset["test"])
-    pprint(eval_results)
-    print('F1:', eval_results['eval_f1'])
+    # eval_results = trainer.evaluate(dataset["test"])
+    # pprint(eval_results)
+    # print('F1:', eval_results['eval_f1'])
 
-    trues, probs, preds = get_classification_report(trainer, label_names, dataset, pprint)
+    # trues, probs, preds = get_classification_report(trainer, label_names, dataset, pprint)
 
-    if args.binary == False:
-        predictions_to_csv(trues, preds, dataset, label_names)
+    # if args.binary == False:
+    #     predictions_to_csv(trues, preds, dataset, label_names)
 
-        # do roc-auc plot TEST :( (after holiday get plots, yellowbrick?)
-        probs = probs.tolist()
-        if args.clean_as_label == True:
-            new_probs = []
-            for i in range(len(probs)):
-                new_probs.append(probs[i][:-1])
-            probs = new_probs
+    #     # do roc-auc plot TEST :( (after holiday get plots, yellowbrick?)
+    #     probs = probs.tolist()
+    #     if args.clean_as_label == True:
+    #         new_probs = []
+    #         for i in range(len(probs)):
+    #             new_probs.append(probs[i][:-1])
+    #         probs = new_probs
 
 
-        # get confusion matrix for multi-label
-        import sklearn.metrics as skm
-        cm = skm.multilabel_confusion_matrix(trues, preds)
+    #     # get confusion matrix for multi-label
+    #     import sklearn.metrics as skm
+    #     cm = skm.multilabel_confusion_matrix(trues, preds)
 
-        # implement confusion matrix to heatmaps https://stackoverflow.com/questions/62722416/plot-confusion-matrix-for-multilabel-classifcation-python
+    #     # implement confusion matrix to heatmaps https://stackoverflow.com/questions/62722416/plot-confusion-matrix-for-multilabel-classifcation-python
 
-        fig, ax = plt.subplots(3, 2) # , figsize=(12, 7)
+    #     fig, ax = plt.subplots(3, 2) # , figsize=(12, 7)
     
-        for axes, cfs_matrix, label in zip(ax.flatten(), cm, label_names[:-1]):
-            print_confusion_matrix(cfs_matrix, axes, label, ["N", "Y"])
+    #     for axes, cfs_matrix, label in zip(ax.flatten(), cm, label_names[:-1]):
+    #         print_confusion_matrix(cfs_matrix, axes, label, ["N", "Y"])
     
-        fig.tight_layout()
-        plt.show()
-        fig.savefig("multi-label-test.png")
+    #     fig.tight_layout()
+    #     plt.show()
+    #     fig.savefig("multi-label-test.png")
 
-        experiment.log_figure("multi-label-confusion", fig)
-
-    experiment.end()
+    #     experiment.log_figure("multi-label-confusion", fig)
 
 
 
