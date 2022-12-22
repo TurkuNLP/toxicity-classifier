@@ -1,4 +1,5 @@
 import datasets
+import os
 import comet_ml
 from comet_ml import Experiment
 import transformers
@@ -12,6 +13,8 @@ import torch
 from sklearn.metrics import classification_report, f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve
 from collections import defaultdict
 from transformers import EvalPrediction
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 """ Toxicity classifier
 
@@ -83,6 +86,8 @@ def arguments():
         help="If used the clean examples (no label) are marked as having a label instead for class weights purposes")
     parser.add_argument('--binary', action='store_true', default=False,
         help="If used the evaluation uses a binary classification (toxic or not) based on the multi-label predictions.")
+    parser.add_argument('--save', type=str, default=None,
+        help="If used the model will be saved with the string name given")
     args = parser.parse_args()
 
     print(args)
@@ -91,6 +96,24 @@ def arguments():
 # keep arguments out of main method to keep it as a global variable
 # get commandline arguments
 args = arguments()
+
+label_names = [
+    'label_identity_attack',
+    'label_insult',
+    'label_obscene',
+    'label_severe_toxicity',
+    'label_threat',
+    'label_toxicity',
+    'label_clean' # added new label for clean examples (no label previously) because the no label ones were not taken into account in the class weights
+]
+
+# COMET-ML STUFF
+experiment = Experiment(
+    project_name="toxicity-classification",
+    workspace="anniesk",
+)
+
+os.environ['COMET_LOG_ASSETS'] = 'True'
 
 def json_to_dataset(data, label_names):
     """ Reads the data from .jsonl format and turns it into a dataset using pandas.
@@ -108,22 +131,49 @@ def json_to_dataset(data, label_names):
         the data in dataset format
     """
 
-    
     if type(data) is list:
-        lines = []
-        print(data)
-        for file in data:
-            with open(file, 'r') as json_file:
-                json_list = list(json_file)
-            temp = [json.loads(jline) for jline in json_list]
-            lines = lines + temp
+        if any(".jsonl" in test for test in data):
+            lines = []
+            print(data)
+            for file in data:
+                with open(file, 'r') as json_file:
+                    json_list = list(json_file)
+                temp = [json.loads(jline) for jline in json_list]
+                lines = lines + temp
+             # there is now a list of dictionaries
+            df=pd.DataFrame(lines)
+        else:
+            if type(data) is list:
+                for file in data:
+                    df = pd.read_csv(file)
+                
+                print(df.dtypes)
+                print(df)
     else:
-        with open(data, 'r') as json_file:
-            json_list = list(json_file)
-            lines = [json.loads(jline) for jline in json_list]
+        if ".jsonl" in data:
+            with open(data, 'r') as json_file:
+                json_list = list(json_file)
+                lines = [json.loads(jline) for jline in json_list]
+            # there is now a list of dictionaries
+            df=pd.DataFrame(lines)
+    
+        else:
+            df = pd.read_csv(data, sep=";")
+            print(df.dtypes) 
+            print(df)
 
-    # there is now a list of dictionaries
-    df=pd.DataFrame(lines)
+    # this is for opus-mt test set only since the translations seemed to have so many problems
+    # check that everything is a proper string, not just whitespace or punctuation
+    df = df.astype({'text': str})
+    import string
+    for i in range(len(df)):
+        text = df["text"][i]
+        text = text.translate(str.maketrans('', '', string.punctuation)) # remove punctuation
+        if not text or text.isspace() == True:
+            # replace after the text has been checked to become empty after taking whitespace and punctuation out
+            df.at[i, 'text'] = "EMPTY"
+
+
     df['labels'] = df[label_names[:-1]].values.tolist() # don't take clean label into account because it doesn't exist yet
 
 
@@ -138,6 +188,9 @@ def json_to_dataset(data, label_names):
 
     # only keep the columns text and one_hot_labels
     df = df[['text', 'labels']]
+    df = df.astype({'text': str})
+    print(df.dtypes)
+
     dataset = datasets.Dataset.from_pandas(df)
 
     return dataset
@@ -275,7 +328,7 @@ def multi_label_metrics(predictions, labels, threshold):
         y_pred = new_pred
 
         precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='binary') # micro or binary? BINARY
-        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
+        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro') # micro or macro orr?
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
         metrics = {
             'accuracy': accuracy,
@@ -292,7 +345,7 @@ def multi_label_metrics(predictions, labels, threshold):
 
         from sklearn.metrics import hamming_loss
         hamming = hamming_loss(y_true, y_pred)
-        print("hamming loss", hamming)
+        #print("hamming loss", hamming)
         # hamming loss value ranges from 0 to 1. Lesser value of hamming loss indicates a better classifier.
 
 
@@ -302,13 +355,18 @@ def multi_label_metrics(predictions, labels, threshold):
                     'precision': precision,
                     'recall': recall,
                     'roc_auc': roc_auc,
-                    'accuracy': accuracy}
+                    'accuracy': accuracy,
+                    'hamming loss': hamming}
 
-    experiment = comet_ml.get_global_experiment()
+    print(classification_report(y_true, y_pred, target_names=label_names[:-1], labels=list(range(6))))
+
+    #experiment = comet_ml.get_global_experiment()
     if experiment:
         epoch = int(experiment.curr_epoch) if experiment.curr_epoch is not None else 0
         experiment.set_epoch(epoch)
         experiment.log_metrics(metrics)
+    else:
+        print("metrics not loaded to comet-ml")
     
     return metrics
 
@@ -434,7 +492,7 @@ def get_classification_report(trainer, label_names, dataset, pprint):
     # this report shows up even with binary evaluation but I don't think it matters, good info nonetheless
     print(classification_report(trues, preds, target_names=label_names[:-1], labels=list(range(6))))
 
-    return trues, preds
+    return trues, probs, preds
 
 
 def predictions_to_csv(trues, preds, dataset, label_names):
@@ -487,21 +545,6 @@ def predictions_to_csv(trues, preds, dataset, label_names):
     comparisons_df.to_csv('comparisons/comparisons.csv')
     #print(comparisons_df.head())
 
-# COMET-ML STUFF
-experiment = Experiment(
-    project_name="toxicity-classification",
-    workspace="anniesk",
-)
-
-# hyper_params = {
-#     "model": args.model,
-#     "learning_rate": args.learning,
-#     "epochs": args.epochs,
-#     "batch_size": args.batch,
-# }
-
-# experiment.log_parameters(hyper_params)
-
 def print_confusion_matrix(confusion_matrix, axes, class_label, class_names, fontsize=14):
 
     df_cm = pd.DataFrame(
@@ -516,7 +559,7 @@ def print_confusion_matrix(confusion_matrix, axes, class_label, class_names, fon
     heatmap.xaxis.set_ticklabels(heatmap.xaxis.get_ticklabels(), rotation=45, ha='right', fontsize=fontsize)
     axes.set_ylabel('True label')
     axes.set_xlabel('Predicted label')
-    axes.set_title("Confusion Matrix for the class - " + class_label)
+    axes.set_title(class_label)
 
 def main():
     # this should prevent any caching problems I might have because caching does not happen anymore
@@ -546,8 +589,8 @@ def main():
     # use dev set or not
     if args.dev == True:
         # then split test into test and dev
-        test, dev = test.train_test_split(test_size=0.2).values() # splitting shuffles by default
-        train = train.shuffle(seed=42) # shuffle the train set
+        train, dev = train.train_test_split(test_size=0.2).values() # splitting shuffles by default
+        test = test.shuffle(seed=42) # shuffle the train set
         # then make the dataset
         dataset = datasets.DatasetDict({"train":train,"dev":dev, "test":test})
     else:
@@ -585,22 +628,27 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/originalbert", #output_dir for checkpoints, not necessary to mention what it is
-        evaluation_strategy="epoch",
-        logging_strategy="epoch",  # number of epochs = how many times the model has seen the whole training data
-        save_strategy="epoch",
+        "checkpoints/somecheckpoint", #output_dir for checkpoints, not necessary to mention what it is
+        evaluation_strategy="steps",
+        eval_steps=1000,
+        save_total_limit=5,
+        logging_strategy="steps",  # number of epochs = how many times the model has seen the whole training data
+        save_steps=1000,
+        logging_steps=1000,
+       # auto_find_batch_size=True, # test finding biggest batch size that fits into memory
+        #save_strategy="epoch",
         load_best_model_at_end=True,
         num_train_epochs=args.epochs,
         learning_rate=args.learning,
         metric_for_best_model = "eval_f1", # this changes the best model to take the one with the best (biggest) f1 instead of best (smallest) loss
-        per_device_train_batch_size=args.batch,
-        per_device_eval_batch_size=32
+        per_device_train_batch_size=args.batch, # this should probably be bigger
+        per_device_eval_batch_size=16 #32 
     )
 
     data_collator = transformers.DataCollatorWithPadding(tokenizer)
     # Argument gives the number of steps of patience before early stopping
     early_stopping = transformers.EarlyStoppingCallback(
-        early_stopping_patience=5
+        early_stopping_patience=3 # 5
     )
     training_logs = LogSavingCallback()
 
@@ -624,27 +672,37 @@ def main():
 
     trainer.train()
 
-    trainer.model.save_pretrained("models/transfer-dev")
-    print("saved")
+    # everything below this is unnecessary for doing grid search!!
+
+    if args.save != None:
+        trainer.model.save_pretrained("models/{args.save}")
+        print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])
-    #pprint(eval_results)
+    pprint(eval_results)
     print('F1:', eval_results['eval_f1'])
 
-    trues, preds = get_classification_report(trainer, label_names, dataset, pprint)
+    trues, probs, preds = get_classification_report(trainer, label_names, dataset, pprint)
 
     if args.binary == False:
         predictions_to_csv(trues, preds, dataset, label_names)
+
+        # do roc-auc plot TEST :( (after holiday get plots, yellowbrick?)
+        probs = probs.tolist()
+        if args.clean_as_label == True:
+            new_probs = []
+            for i in range(len(probs)):
+                new_probs.append(probs[i][:-1])
+            probs = new_probs
+
 
         # get confusion matrix for multi-label
         import sklearn.metrics as skm
         cm = skm.multilabel_confusion_matrix(trues, preds)
 
         # implement confusion matrix to heatmaps https://stackoverflow.com/questions/62722416/plot-confusion-matrix-for-multilabel-classifcation-python
-        import matplotlib.pyplot as plt
-        import seaborn as sns
 
-        fig, ax = plt.subplots(4, 4, figsize=(12, 7))
+        fig, ax = plt.subplots(3, 2) # , figsize=(12, 7)
     
         for axes, cfs_matrix, label in zip(ax.flatten(), cm, label_names[:-1]):
             print_confusion_matrix(cfs_matrix, axes, label, ["N", "Y"])
@@ -653,7 +711,9 @@ def main():
         plt.show()
         fig.savefig("multi-label-test.png")
 
-        experiment.log_figure(fig)
+        experiment.log_figure("multi-label-confusion", fig)
+
+    experiment.end()
 
 
 

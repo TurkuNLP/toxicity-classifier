@@ -17,6 +17,7 @@ MAX_JOBS=100
 
 mkdir -p "$JOBDIR"
 
+# switch model here
 MODELS="
 TurkuNLP/bert-base-finnish-cased-v1
 "
@@ -25,20 +26,20 @@ DATA_DIRS="
 data
 "
 
-SEQ_LENS="128"
+SEQ_LENS="512" #ignore?
 
-#BATCH_SIZES="2"
-BATCH_SIZES="2 4 8 16"
+BATCH_SIZES=" 4 8 12"
+#BATCH_SIZES="2 4 8 16" # which batch sizes should I take? less of these?  only 8?
 # w/SEQ_LEN 128: BATCH_SIZES="4 8 16 24"
 
 #LEARNING_RATES="2e-5"
-LEARNING_RATES="5e-5 3e-5 2e-5"
+LEARNING_RATES="5e-5 3e-5 2e-5" # only these? seems okay
 
-EPOCHS="2 3"
+EPOCHS="10" 
 #EPOCHS="2 3 4"
 
 #REPETITIONS=5
-REPETITIONS=3
+REPETITIONS=3 # ignore
 
 # for repetition in `seq $REPETITIONS`; do
 #     for seq_len in $SEQ_LENS; do
@@ -55,7 +56,7 @@ REPETITIONS=3
 			    done
 			    echo "Submitting job with params $model $data_dir $batch_size $learning_rate $epochs" #$seq_len
 			    job_id=$(
-				sbatch "$DIR/slurm-run-dev.sh" \
+				sbatch "$DIR/toxic_classifier_slurm.sh" \
 				    $model \
 				    $data_dir \
 				    $seq_len \

@@ -1,0 +1,162 @@
+epochs: 2, learning rate: 2e-5, batch size: 8, prediction treshold: 0.6, model: bert-large-cased 
+original english
+Namespace(train=['data/train_en.jsonl'], test='data/test_en.jsonl', model='bert-large-cased', batch=8, epochs=2, learning=2e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+['data/train_en.jsonl']
+text      object
+labels    object
+dtype: object
+text      object
+labels    object
+dtype: object
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1754, 'learning_rate': 1e-05, 'epoch': 1.0}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.51      0.50      0.50       280
+         label_insult       0.71      0.81      0.75      1573
+        label_obscene       0.80      0.88      0.84      1680
+label_severe_toxicity       0.43      0.62      0.50       312
+         label_threat       0.56      0.47      0.51        98
+       label_toxicity       0.88      0.74      0.81      3079
+
+            micro avg       0.77      0.77      0.77      7022
+            macro avg       0.65      0.67      0.65      7022
+         weighted avg       0.78      0.77      0.77      7022
+          samples avg       0.06      0.07      0.06      7022
+
+{'eval_loss': 0.12208060175180435, 'eval_f1': 0.7698869695030922, 'eval_f1_macro': 0.6528287830325146, 'eval_precision': 0.7686302342086586, 'eval_recall': 0.7711478211335802, 'eval_roc_auc': 0.8811558001086077, 'eval_accuracy': 0.922136926210246, 'eval_hamming loss': 0.016904276985743382, 'eval_runtime': 818.7222, 'eval_samples_per_second': 38.981, 'eval_steps_per_second': 1.219, 'epoch': 1.0}
+{'loss': 0.1102, 'learning_rate': 0.0, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.57      0.56      0.57       280
+         label_insult       0.76      0.79      0.78      1573
+        label_obscene       0.83      0.87      0.85      1680
+label_severe_toxicity       0.46      0.64      0.54       312
+         label_threat       0.57      0.56      0.57        98
+       label_toxicity       0.86      0.80      0.83      3079
+
+            micro avg       0.79      0.80      0.79      7022
+            macro avg       0.68      0.71      0.69      7022
+         weighted avg       0.80      0.80      0.80      7022
+          samples avg       0.07      0.07      0.07      7022
+
+{'eval_loss': 0.13549655675888062, 'eval_f1': 0.7939191589117, 'eval_f1_macro': 0.6884831804891401, 'eval_precision': 0.7920623671155209, 'eval_recall': 0.7957846767302763, 'eval_roc_auc': 0.8939160389527739, 'eval_accuracy': 0.927432241892527, 'eval_hamming loss': 0.015149616167946106, 'eval_runtime': 815.5492, 'eval_samples_per_second': 39.133, 'eval_steps_per_second': 1.224, 'epoch': 2.0}
+{'train_runtime': 15819.3596, 'train_samples_per_second': 16.139, 'train_steps_per_second': 2.017, 'train_loss': 0.14276377407838253, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.57      0.67      0.62       712
+         label_insult       0.68      0.76      0.71      3427
+        label_obscene       0.62      0.81      0.70      3691
+label_severe_toxicity       0.29      0.71      0.42       367
+         label_threat       0.52      0.68      0.59       211
+       label_toxicity       0.56      0.89      0.69      6090
+
+            micro avg       0.59      0.82      0.68     14498
+            macro avg       0.54      0.75      0.62     14498
+         weighted avg       0.60      0.82      0.69     14498
+          samples avg       0.07      0.08      0.07     14498
+
+metrics not loaded to comet-ml
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'epoch': 2.0,
+ 'eval_accuracy': 0.8778955265872643,
+ 'eval_f1': 0.6825369443965269,
+ 'eval_f1_macro': 0.621318719039769,
+ 'eval_hamming loss': 0.028765096335198557,
+ 'eval_loss': 0.1469721496105194,
+ 'eval_precision': 0.5851902977716427,
+ 'eval_recall': 0.8187336184301283,
+ 'eval_roc_auc': 0.8979771457340019,
+ 'eval_runtime': 1644.0069,
+ 'eval_samples_per_second': 38.916,
+ 'eval_steps_per_second': 1.217}
+F1: 0.6825369443965269
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.57      0.67      0.62       712
+         label_insult       0.68      0.76      0.71      3427
+        label_obscene       0.62      0.81      0.70      3691
+label_severe_toxicity       0.29      0.71      0.42       367
+         label_threat       0.52      0.68      0.59       211
+       label_toxicity       0.56      0.89      0.69      6090
+
+            micro avg       0.59      0.82      0.68     14498
+            macro avg       0.54      0.75      0.62     14498
+         weighted avg       0.60      0.82      0.69     14498
+          samples avg       0.07      0.08      0.07     14498
+
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.44      0.78      0.57       712
+         label_insult       0.55      0.86      0.67      3427
+        label_obscene       0.54      0.88      0.67      3691
+label_severe_toxicity       0.22      0.85      0.34       367
+         label_threat       0.47      0.76      0.58       211
+       label_toxicity       0.51      0.93      0.65      6090
+
+            micro avg       0.50      0.89      0.64     14498
+            macro avg       0.45      0.84      0.58     14498
+         weighted avg       0.51      0.89      0.65     14498
+          samples avg       0.07      0.08      0.07     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+63978 63978 63978

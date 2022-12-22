@@ -1,0 +1,108 @@
+epochs: 2, learning rate: 2e-5, batch size: 8, prediction treshold: 0.6, model: TurkuNLP/bert-base-finnish-cased-v1 
+opus-mt translated train and test
+Namespace(train=['data/train-opus-mt-translated.csv'], test='data/test-opus-mt-translated3.csv', model='TurkuNLP/bert-base-finnish-cased-v1', batch=8, epochs=2, learning=2e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+id                       object
+label_identity_attack     int64
+label_insult              int64
+label_obscene             int64
+label_severe_toxicity     int64
+label_threat              int64
+label_toxicity            int64
+lang                     object
+text                     object
+dtype: object
+                      id  ...                                               text
+0       ee9697785fe41ff8  ...                            " Kiitos Xeno. - Puhu -
+1       29fec512f2ee929e  ...             2009 (UTC) Kiinteä 03:36, 8. kesäkuuta
+2       88944b29dde50648  ...               Kysymys Mitä vikaa korjauksessa oli?
+3       c7bf1f59096102f3  ...  Olen samaa mieltä nyt, itse asiassa. (Hämmästy...
+4       7d71ee0e8ea0794a  ...  Kisumu Näin, että edistitte Kisumua, mietin, v...
+...                  ...  ...                                                ...
+159566  5dd74c5c9e45c9a5  ...  " Sen sijaan, että tuhlaisit aikaa ad hominems...
+159567  de28d8aa910d3463  ...  En yritä voittaa montaa ystävää, vaan yksinker...
+159568  63dd6b07c99675b7  ...  17. syyskuuta. Edellinen allekirjoittamaton ko...
+159569  1cf9756715ee09de  ...  Yritän olla varovainen ytmndin kanssa. on hyvä...
+159570  fb6977954cc68910  ...  Vaikka uskon, että kaikki olisivat voineet hoi...
+
+[159571 rows x 9 columns]
+text      object
+labels    object
+dtype: object
+id                        object
+label_identity_attack    float64
+label_insult             float64
+label_obscene            float64
+label_severe_toxicity    float64
+label_threat             float64
+label_toxicity           float64
+lang                      object
+text                      object
+dtype: object
+                     id  ...                                               text
+0      879ad7bdba4cedaa  ...  " Hei Pieter pietersen, ja Tervetuloa Wikipedi...
+1      8889526d5dccab4a  ...  " Sinut on väliaikaisesti estetty muokkaamasta...
+2      3f49e23388bc4c07  ...  unblock Tule!!! Fuck..... okei mies, olen tode...
+3      2bf685b152948de4  ...  " Zeqin kieltäminen Zeqin välitysjutun korjaus...
+4      02511a5f1990bec2  ...          . Tämä tili on Dantherockerin sukkanukke1
+...                 ...  ...                                                ...
+63974  055d985a27c35d8d  ...  ". No, se ja laiska ylimielisyys. Kuinka monta...
+63975  882dc2e32fd1e881  ...  Tämä menetelmä on surkea, jacobian on päivityk...
+63976  874003b0dbc178cb  ...  " Valituksia toisesta päätoimittajasta  Kehota...
+63977  9a0b5e24d59e8298  ...  WP:Päivän kuva  Minä loin sen kategorian, Muis...
+63978  0d33b8948c212a88  ...      muista huumeista jälkeenjääneistä henkilöistä
+
+[63979 rows x 9 columns]
+text      object
+labels    object
+dtype: object
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 6398
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 57581
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1748, 'learning_rate': 1e-05, 'epoch': 1.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.1821281462907791, 'eval_f1': 0.6253652834599649, 'eval_f1_macro': 0.545295266559826, 'eval_precision': 0.5304908279623203, 'eval_recall': 0.7615658362989324, 'eval_roc_auc': 0.8679797383100805, 'eval_accuracy': 0.8829321663019694, 'eval_hamming loss': 0.033395852870688754, 'eval_runtime': 46.7567, 'eval_samples_per_second': 136.836, 'eval_steps_per_second': 4.277, 'epoch': 1.0}
+{'loss': 0.1168, 'learning_rate': 0.0, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.17427873611450195, 'eval_f1': 0.6424747174301012, 'eval_f1_macro': 0.5829073429824195, 'eval_precision': 0.5518650996423097, 'eval_recall': 0.7686832740213523, 'eval_roc_auc': 0.8724848379408333, 'eval_accuracy': 0.8751172241325414, 'eval_hamming loss': 0.03131186829217464, 'eval_runtime': 47.2692, 'eval_samples_per_second': 135.353, 'eval_steps_per_second': 4.231, 'epoch': 2.0}
+{'train_runtime': 4645.9355, 'train_samples_per_second': 68.693, 'train_steps_per_second': 8.587, 'train_loss': 0.14582058592966674, 'epoch': 2.0}

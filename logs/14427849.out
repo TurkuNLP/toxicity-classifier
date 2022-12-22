@@ -1,0 +1,148 @@
+epochs: 2, learning rate: 2e-5, batch size: 8, prediction treshold: 0.6, model: TurkuNLP/bert-base-finnish-cased-v1 
+opus-mt translated train and test
+Namespace(train=['data/train-opus-mt-translated.csv'], test='data/test-opus-mt-translated3.csv', model='TurkuNLP/bert-base-finnish-cased-v1', batch=8, epochs=2, learning=2e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+id                       object
+label_identity_attack     int64
+label_insult              int64
+label_obscene             int64
+label_severe_toxicity     int64
+label_threat              int64
+label_toxicity            int64
+lang                     object
+text                     object
+dtype: object
+                      id  ...                                               text
+0       ee9697785fe41ff8  ...                            " Kiitos Xeno. - Puhu -
+1       29fec512f2ee929e  ...             2009 (UTC) Kiinteä 03:36, 8. kesäkuuta
+2       88944b29dde50648  ...               Kysymys Mitä vikaa korjauksessa oli?
+3       c7bf1f59096102f3  ...  Olen samaa mieltä nyt, itse asiassa. (Hämmästy...
+4       7d71ee0e8ea0794a  ...  Kisumu Näin, että edistitte Kisumua, mietin, v...
+...                  ...  ...                                                ...
+159566  5dd74c5c9e45c9a5  ...  " Sen sijaan, että tuhlaisit aikaa ad hominems...
+159567  de28d8aa910d3463  ...  En yritä voittaa montaa ystävää, vaan yksinker...
+159568  63dd6b07c99675b7  ...  17. syyskuuta. Edellinen allekirjoittamaton ko...
+159569  1cf9756715ee09de  ...  Yritän olla varovainen ytmndin kanssa. on hyvä...
+159570  fb6977954cc68910  ...  Vaikka uskon, että kaikki olisivat voineet hoi...
+
+[159571 rows x 9 columns]
+text      object
+labels    object
+dtype: object
+id                       object
+label_identity_attack     int64
+label_insult              int64
+label_obscene             int64
+label_severe_toxicity     int64
+label_threat              int64
+label_toxicity            int64
+lang                     object
+text                     object
+dtype: object
+                     id  ...                                               text
+0      879ad7bdba4cedaa  ...  " Hei Pieter pietersen, ja Tervetuloa Wikipedi...
+1      8889526d5dccab4a  ...  " Sinut on väliaikaisesti estetty muokkaamasta...
+2      3f49e23388bc4c07  ...  unblock Tule!!! Fuck..... okei mies, olen tode...
+3      2bf685b152948de4  ...  " Zeqin kieltäminen Zeqin välitysjutun korjaus...
+4      02511a5f1990bec2  ...          . Tämä tili on Dantherockerin sukkanukke1
+...                 ...  ...                                                ...
+63973  055d985a27c35d8d  ...  ". No, se ja laiska ylimielisyys. Kuinka monta...
+63974  882dc2e32fd1e881  ...  Tämä menetelmä on surkea, jacobian on päivityk...
+63975  874003b0dbc178cb  ...  " Valituksia toisesta päätoimittajasta  Kehota...
+63976  9a0b5e24d59e8298  ...  WP:Päivän kuva  Minä loin sen kategorian, Muis...
+63977  0d33b8948c212a88  ...      muista huumeista jälkeenjääneistä henkilöistä
+
+[63978 rows x 9 columns]
+text      object
+labels    object
+dtype: object
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 159571
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 6398
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 57580
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1769, 'learning_rate': 1e-05, 'epoch': 1.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.1635374277830124, 'eval_f1': 0.6477241379310346, 'eval_f1_macro': 0.5872466855915458, 'eval_precision': 0.56388088376561, 'eval_recall': 0.7608554763447829, 'eval_roc_auc': 0.8681058491779554, 'eval_accuracy': 0.8818380743982495, 'eval_hamming loss': 0.03326560383453162, 'eval_runtime': 48.083, 'eval_samples_per_second': 133.062, 'eval_steps_per_second': 4.159, 'epoch': 1.0}
+{'loss': 0.1175, 'learning_rate': 0.0, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+{'eval_loss': 0.14943161606788635, 'eval_f1': 0.6696181516325401, 'eval_f1_macro': 0.6125258800546064, 'eval_precision': 0.5842588121680348, 'eval_recall': 0.7841866493843163, 'eval_roc_auc': 0.8804092427271696, 'eval_accuracy': 0.8785557986870897, 'eval_hamming loss': 0.031103469834323227, 'eval_runtime': 47.9267, 'eval_samples_per_second': 133.496, 'eval_steps_per_second': 4.173, 'epoch': 2.0}
+{'train_runtime': 4620.7813, 'train_samples_per_second': 69.067, 'train_steps_per_second': 8.634, 'train_loss': 0.14721239678703252, 'epoch': 2.0}
+Best threshold: 0.6499999999999999
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'epoch': 2.0,
+ 'eval_accuracy': 0.8819208058353595,
+ 'eval_f1': 0.6619862223540657,
+ 'eval_f1_macro': 0.5931815181974277,
+ 'eval_hamming loss': 0.029683339122380456,
+ 'eval_loss': 0.15955394506454468,
+ 'eval_precision': 0.5776576161988035,
+ 'eval_recall': 0.7751447317637977,
+ 'eval_roc_auc': 0.8765325944361428,
+ 'eval_runtime': 441.8753,
+ 'eval_samples_per_second': 130.308,
+ 'eval_steps_per_second': 4.074}
+F1: 0.6619862223540657
+Best threshold: 0.6499999999999999
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.40      0.80      0.53       625
+         label_insult       0.52      0.83      0.64      3060
+        label_obscene       0.51      0.86      0.64      3303
+label_severe_toxicity       0.19      0.84      0.31       331
+         label_threat       0.42      0.72      0.53       184
+       label_toxicity       0.52      0.88      0.65      5452
+
+            micro avg       0.48      0.86      0.62     12955
+            macro avg       0.42      0.82      0.55     12955
+         weighted avg       0.50      0.86      0.63     12955
+          samples avg       0.07      0.08      0.07     12955
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+57580 57580 57580

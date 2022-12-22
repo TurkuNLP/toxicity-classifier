@@ -46,3 +46,43 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.2002, 'learning_rate': 1e-05, 'epoch': 1.0}
+Best threshold: 0.39999999999999997
+hamming loss 0.03831926643742836
+{'eval_loss': 0.5029991865158081, 'eval_f1': 0.389879717959353, 'eval_f1_macro': 0.2851418523339328, 'eval_precision': 0.49111807732497387, 'eval_recall': 0.32324621733149933, 'eval_roc_auc': 0.6550302673812963, 'eval_accuracy': 0.8841825570490779, 'eval_runtime': 49.6869, 'eval_samples_per_second': 128.766, 'eval_steps_per_second': 4.025, 'epoch': 1.0}
+{'loss': 0.145, 'learning_rate': 0.0, 'epoch': 2.0}
+Best threshold: 0.3
+hamming loss 0.03878816296759404
+{'eval_loss': 0.45965537428855896, 'eval_f1': 0.4515653775322284, 'eval_f1_macro': 0.30765412739678205, 'eval_precision': 0.486122125297383, 'eval_recall': 0.42159559834938104, 'eval_roc_auc': 0.7020253943444529, 'eval_accuracy': 0.8638637074085652, 'eval_runtime': 49.4718, 'eval_samples_per_second': 129.326, 'eval_steps_per_second': 4.043, 'epoch': 2.0}
+{'train_runtime': 6690.4047, 'train_samples_per_second': 47.701, 'train_steps_per_second': 5.963, 'train_loss': 0.17257083199188789, 'epoch': 2.0}
+saved
+Best threshold: 0.3
+hamming loss 0.036841495889776546
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+F1: 0.4768168365669188
+Best threshold: 0.3
+hamming loss 0.036841495889776546
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.45      0.41      0.43       627
+         label_insult       0.53      0.43      0.48      3072
+        label_obscene       0.54      0.29      0.38      3337
+label_severe_toxicity       0.20      0.17      0.18       331
+         label_threat       0.23      0.04      0.07       186
+       label_toxicity       0.52      0.58      0.55      5491
+
+            micro avg       0.51      0.44      0.48     13044
+            macro avg       0.41      0.32      0.35     13044
+         weighted avg       0.51      0.44      0.47     13044
+          samples avg       0.05      0.04      0.04     13044
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+57580 57580 57580

@@ -1,0 +1,157 @@
+START 14733240: Thu Dec 22 14:55:50 EET 2022
+Namespace(train=['data/train_fi_deepl.jsonl'], test='data/test_fi_deepl.jsonl', model='TurkuNLP/bert-base-finnish-cased-v1', batch=4, epochs=10, learning=3e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+['data/train_fi_deepl.jsonl']
+text      object
+labels    object
+dtype: object
+text      object
+labels    object
+dtype: object
+tensor([ 9.5238,  2.8571,  2.8571, 14.2857, 28.5714,  1.5873,  0.1579],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 160
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 40
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 200
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'train_runtime': 41.4593, 'train_samples_per_second': 38.592, 'train_steps_per_second': 9.648, 'train_loss': 0.1897222900390625, 'epoch': 10.0}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00         4
+         label_insult       0.67      0.14      0.24        14
+        label_obscene       0.67      0.14      0.24        14
+label_severe_toxicity       0.00      0.00      0.00         2
+         label_threat       0.00      0.00      0.00         0
+       label_toxicity       0.62      0.38      0.47        21
+
+            micro avg       0.63      0.22      0.32        55
+            macro avg       0.32      0.11      0.16        55
+         weighted avg       0.57      0.22      0.30        55
+          samples avg       0.04      0.03      0.03        55
+
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'epoch': 10.0,
+ 'eval_accuracy': 0.88,
+ 'eval_f1': 0.32432432432432434,
+ 'eval_f1_macro': 0.1568627450980392,
+ 'eval_hamming loss': 0.041666666666666664,
+ 'eval_loss': 0.4277645945549011,
+ 'eval_precision': 0.631578947368421,
+ 'eval_recall': 0.21818181818181817,
+ 'eval_roc_auc': 0.6060341405319571,
+ 'eval_runtime': 1.4925,
+ 'eval_samples_per_second': 134.004,
+ 'eval_steps_per_second': 8.71}
+F1: 0.32432432432432434
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00         4
+         label_insult       0.67      0.14      0.24        14
+        label_obscene       0.67      0.14      0.24        14
+label_severe_toxicity       0.00      0.00      0.00         2
+         label_threat       0.00      0.00      0.00         0
+       label_toxicity       0.62      0.38      0.47        21
+
+            micro avg       0.63      0.22      0.32        55
+            macro avg       0.32      0.11      0.16        55
+         weighted avg       0.57      0.22      0.30        55
+          samples avg       0.04      0.03      0.03        55
+
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00         4
+         label_insult       0.50      0.29      0.36        14
+        label_obscene       0.38      0.21      0.27        14
+label_severe_toxicity       0.00      0.00      0.00         2
+         label_threat       0.00      0.00      0.00         0
+       label_toxicity       0.60      0.43      0.50        21
+
+            micro avg       0.50      0.29      0.37        55
+            macro avg       0.25      0.15      0.19        55
+         weighted avg       0.45      0.29      0.35        55
+          samples avg       0.04      0.04      0.04        55
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+200 200 200
+Job ID: 14733240
+Cluster: puhti
+User/Group: annieske/annieske
+State: RUNNING
+Cores: 1
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:01:31 core-walltime
+Job Wall-clock time: 00:01:31
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 7.81 GB (7.81 GB/core)
+Job consumed 1.56 CSC billing units based on following used resources
+Billed project: project_2000539
+CPU BU: 0.03
+Mem BU: 0.02
+GPU BU: 1.52
+GPU job efficiency:
+------------------------------------------------------------------------
+Host memory 
+     Hostname    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r02g01          4.53          3.69          8.06 
+------------------------------------------------------------------------
+GPU load 
+     Hostname        GPU Id      Mean (%)    stdDev (%)       Max (%) 
+       r02g01             2 [33m         39.1 [0m        48.24            97 
+------------------------------------------------------------------------
+GPU memory 
+     Hostname        GPU Id    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r02g01             2          2.71          2.98           6.4 
+------------------------------------------------------------------------
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+END 14733240: Thu Dec 22 14:57:20 EET 2022
