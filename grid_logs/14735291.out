@@ -23,3 +23,135 @@ DatasetDict({
         num_rows: 63978
     })
 })
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.4033, 'learning_rate': 4.8824967099078776e-05, 'epoch': 0.24}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       313
+         label_insult       0.00      0.00      0.00      1586
+        label_obscene       0.00      0.00      0.00      1698
+label_severe_toxicity       0.00      0.00      0.00       323
+         label_threat       0.00      0.00      0.00       112
+       label_toxicity       0.00      0.00      0.00      3093
+
+            micro avg       0.00      0.00      0.00      7125
+            macro avg       0.00      0.00      0.00      7125
+         weighted avg       0.00      0.00      0.00      7125
+          samples avg       0.00      0.00      0.00      7125
+
+{'eval_loss': 0.49755942821502686, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8968823437255209, 'eval_hamming loss': 0.03720820930596898, 'eval_runtime': 674.3401, 'eval_samples_per_second': 47.328, 'eval_steps_per_second': 2.958, 'epoch': 0.24}
+{'loss': 0.4483, 'learning_rate': 4.7649934198157556e-05, 'epoch': 0.47}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       313
+         label_insult       0.00      0.00      0.00      1586
+        label_obscene       0.00      0.00      0.00      1698
+label_severe_toxicity       0.00      0.00      0.00       323
+         label_threat       0.00      0.00      0.00       112
+       label_toxicity       0.00      0.00      0.00      3093
+
+            micro avg       0.00      0.00      0.00      7125
+            macro avg       0.00      0.00      0.00      7125
+         weighted avg       0.00      0.00      0.00      7125
+          samples avg       0.00      0.00      0.00      7125
+
+{'eval_loss': 0.5131987929344177, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8968823437255209, 'eval_hamming loss': 0.03720820930596898, 'eval_runtime': 673.1962, 'eval_samples_per_second': 47.408, 'eval_steps_per_second': 2.963, 'epoch': 0.47}
+{'loss': 0.4755, 'learning_rate': 4.647490129723632e-05, 'epoch': 0.71}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       313
+         label_insult       0.00      0.00      0.00      1586
+        label_obscene       0.00      0.00      0.00      1698
+label_severe_toxicity       0.00      0.00      0.00       323
+         label_threat       0.00      0.00      0.00       112
+       label_toxicity       0.00      0.00      0.00      3093
+
+            micro avg       0.00      0.00      0.00      7125
+            macro avg       0.00      0.00      0.00      7125
+         weighted avg       0.00      0.00      0.00      7125
+          samples avg       0.00      0.00      0.00      7125
+
+{'eval_loss': 0.5029585957527161, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8968823437255209, 'eval_hamming loss': 0.03720820930596898, 'eval_runtime': 672.6021, 'eval_samples_per_second': 47.45, 'eval_steps_per_second': 2.966, 'epoch': 0.71}
+{'loss': 0.4724, 'learning_rate': 4.52998683963151e-05, 'epoch': 0.94}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       313
+         label_insult       0.00      0.00      0.00      1586
+        label_obscene       0.00      0.00      0.00      1698
+label_severe_toxicity       0.00      0.00      0.00       323
+         label_threat       0.00      0.00      0.00       112
+       label_toxicity       0.00      0.00      0.00      3093
+
+            micro avg       0.00      0.00      0.00      7125
+            macro avg       0.00      0.00      0.00      7125
+         weighted avg       0.00      0.00      0.00      7125
+          samples avg       0.00      0.00      0.00      7125
+
+{'eval_loss': 0.515268862247467, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8968823437255209, 'eval_hamming loss': 0.03720820930596898, 'eval_runtime': 672.2807, 'eval_samples_per_second': 47.473, 'eval_steps_per_second': 2.968, 'epoch': 0.94}
+{'train_runtime': 9872.5386, 'train_samples_per_second': 129.304, 'train_steps_per_second': 10.775, 'train_loss': 0.44986140747070313, 'epoch': 0.94}
+Job ID: 14735291
+Cluster: puhti
+User/Group: annieske/annieske
+State: RUNNING
+Cores: 1
+CPU Utilized: 02:44:55
+CPU Efficiency: 98.95% of 02:46:40 core-walltime
+Job Wall-clock time: 02:46:40
+Memory Utilized: 7.17 GB
+Memory Efficiency: 91.79% of 7.81 GB
+Job consumed 171.61 CSC billing units based on following used resources
+Billed project: project_2000539
+CPU BU: 2.78
+Mem BU: 2.17
+GPU BU: 166.67
+GPU job efficiency:
+------------------------------------------------------------------------
+Host memory 
+     Hostname    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r15g06         13.88          1.29         14.04 
+------------------------------------------------------------------------
+GPU load 
+     Hostname        GPU Id      Mean (%)    stdDev (%)       Max (%) 
+       r15g06             1 [32m        96.98 [0m        12.46           100 
+------------------------------------------------------------------------
+GPU memory 
+     Hostname        GPU Id    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r15g06             1         25.96          2.89         26.38 
+------------------------------------------------------------------------
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+END 14735291: Thu Dec 22 19:54:11 EET 2022

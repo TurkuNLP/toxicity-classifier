@@ -1,0 +1,357 @@
+START 14915832: Sat Jan 14 12:52:44 EET 2023
+Namespace(train=['data/train-opus-mt-translated.csv'], test='data/test-opus-mt-translated3.csv', model='TurkuNLP/bert-base-finnish-cased-v1', batch=12, epochs=10, learning=1e-05, threshold=None, loss=True, dev=True, clean_as_label=True, binary=False, save=None)
+id                       object
+label_identity_attack     int64
+label_insult              int64
+label_obscene             int64
+label_severe_toxicity     int64
+label_threat              int64
+label_toxicity            int64
+lang                     object
+text                     object
+dtype: object
+                      id  ...                                               text
+0       ee9697785fe41ff8  ...                            " Kiitos Xeno. - Puhu -
+1       29fec512f2ee929e  ...             2009 (UTC) Kiinteä 03:36, 8. kesäkuuta
+2       88944b29dde50648  ...               Kysymys Mitä vikaa korjauksessa oli?
+3       c7bf1f59096102f3  ...  Olen samaa mieltä nyt, itse asiassa. (Hämmästy...
+4       7d71ee0e8ea0794a  ...  Kisumu Näin, että edistitte Kisumua, mietin, v...
+...                  ...  ...                                                ...
+159566  5dd74c5c9e45c9a5  ...  " Sen sijaan, että tuhlaisit aikaa ad hominems...
+159567  de28d8aa910d3463  ...  En yritä voittaa montaa ystävää, vaan yksinker...
+159568  63dd6b07c99675b7  ...  17. syyskuuta. Edellinen allekirjoittamaton ko...
+159569  1cf9756715ee09de  ...  Yritän olla varovainen ytmndin kanssa. on hyvä...
+159570  fb6977954cc68910  ...  Vaikka uskon, että kaikki olisivat voineet hoi...
+
+[159571 rows x 9 columns]
+text      object
+labels    object
+dtype: object
+id                       object
+label_identity_attack     int64
+label_insult              int64
+label_obscene             int64
+label_severe_toxicity     int64
+label_threat              int64
+label_toxicity            int64
+lang                     object
+text                     object
+dtype: object
+                     id  ...                                               text
+0      879ad7bdba4cedaa  ...  " Hei Pieter pietersen, ja Tervetuloa Wikipedi...
+1      8889526d5dccab4a  ...  " Sinut on väliaikaisesti estetty muokkaamasta...
+2      3f49e23388bc4c07  ...  unblock Tule!!! Fuck..... okei mies, olen tode...
+3      2bf685b152948de4  ...  " Zeqin kieltäminen Zeqin välitysjutun korjaus...
+4      02511a5f1990bec2  ...          . Tämä tili on Dantherockerin sukkanukke1
+...                 ...  ...                                                ...
+63973  055d985a27c35d8d  ...  ". No, se ja laiska ylimielisyys. Kuinka monta...
+63974  882dc2e32fd1e881  ...  Tämä menetelmä on surkea, jacobian on päivityk...
+63975  874003b0dbc178cb  ...  " Valituksia toisesta päätoimittajasta  Kehota...
+63976  9a0b5e24d59e8298  ...  WP:Päivän kuva  Minä loin sen kategorian, Muis...
+63977  0d33b8948c212a88  ...      muista huumeista jälkeenjääneistä henkilöistä
+
+[63978 rows x 9 columns]
+text      object
+labels    object
+dtype: object
+tensor([16.2248,  2.8940,  2.6981, 14.2921, 47.6901,  1.4905,  0.1590],
+       device='cuda:0')
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 127656
+    })
+    dev: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 31915
+    })
+    test: Dataset({
+        features: ['text', 'labels'],
+        num_rows: 63978
+    })
+})
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.1955, 'learning_rate': 9.764993419815756e-06, 'epoch': 0.24}
+Best threshold: 0.39999999999999997
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.33      0.39      0.36       272
+         label_insult       0.57      0.85      0.68      1518
+        label_obscene       0.66      0.83      0.73      1665
+label_severe_toxicity       0.35      0.62      0.44       328
+         label_threat       0.25      0.53      0.34        88
+       label_toxicity       0.77      0.78      0.78      2996
+
+            micro avg       0.63      0.78      0.70      6867
+            macro avg       0.49      0.67      0.56      6867
+         weighted avg       0.65      0.78      0.71      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.14989294111728668, 'eval_f1': 0.6986916617848077, 'eval_f1_macro': 0.5551794121977872, 'eval_precision': 0.6317090395480226, 'eval_recall': 0.781564001747488, 'eval_roc_auc': 0.8823079754272936, 'eval_accuracy': 0.9054363152122826, 'eval_hamming loss': 0.024173586088046373, 'eval_runtime': 159.3961, 'eval_samples_per_second': 200.224, 'eval_steps_per_second': 12.516, 'epoch': 0.24}
+{'loss': 0.1612, 'learning_rate': 9.529986839631511e-06, 'epoch': 0.47}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.50      0.42      0.45       272
+         label_insult       0.60      0.82      0.69      1518
+        label_obscene       0.73      0.80      0.76      1665
+label_severe_toxicity       0.50      0.50      0.50       328
+         label_threat       0.47      0.41      0.44        88
+       label_toxicity       0.81      0.74      0.77      2996
+
+            micro avg       0.70      0.74      0.72      6867
+            macro avg       0.60      0.61      0.60      6867
+         weighted avg       0.72      0.74      0.72      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.19276826083660126, 'eval_f1': 0.7236273467941905, 'eval_f1_macro': 0.6045229530575681, 'eval_precision': 0.7046081677704195, 'eval_recall': 0.7437017620503859, 'eval_roc_auc': 0.8660525785385038, 'eval_accuracy': 0.9155256149146169, 'eval_hamming loss': 0.020371820982818947, 'eval_runtime': 159.4022, 'eval_samples_per_second': 200.217, 'eval_steps_per_second': 12.516, 'epoch': 0.47}
+{'loss': 0.1494, 'learning_rate': 9.294980259447264e-06, 'epoch': 0.71}
+Best threshold: 0.5999999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.63      0.48      0.55       272
+         label_insult       0.65      0.83      0.73      1518
+        label_obscene       0.76      0.80      0.78      1665
+label_severe_toxicity       0.43      0.56      0.49       328
+         label_threat       0.47      0.53      0.50        88
+       label_toxicity       0.83      0.74      0.78      2996
+
+            micro avg       0.73      0.75      0.74      6867
+            macro avg       0.63      0.66      0.64      6867
+         weighted avg       0.74      0.75      0.74      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.1362173706293106, 'eval_f1': 0.7405335628227194, 'eval_f1_macro': 0.6372288561279914, 'eval_precision': 0.7295464179737177, 'eval_recall': 0.7518567059851463, 'eval_roc_auc': 0.8707448168134406, 'eval_accuracy': 0.9194736017546609, 'eval_hamming loss': 0.018893937020209934, 'eval_runtime': 159.3656, 'eval_samples_per_second': 200.263, 'eval_steps_per_second': 12.518, 'epoch': 0.71}
+{'loss': 0.1422, 'learning_rate': 9.05997367926302e-06, 'epoch': 0.94}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.44      0.64      0.52       272
+         label_insult       0.72      0.75      0.73      1518
+        label_obscene       0.77      0.79      0.78      1665
+label_severe_toxicity       0.37      0.72      0.49       328
+         label_threat       0.33      0.78      0.46        88
+       label_toxicity       0.88      0.68      0.76      2996
+
+            micro avg       0.72      0.72      0.72      6867
+            macro avg       0.58      0.73      0.62      6867
+         weighted avg       0.77      0.72      0.73      6867
+          samples avg       0.05      0.06      0.05      6867
+
+{'eval_loss': 0.11445589363574982, 'eval_f1': 0.7230286672988547, 'eval_f1_macro': 0.6241340435819764, 'eval_precision': 0.7243496053785443, 'eval_recall': 0.7217125382262997, 'eval_roc_auc': 0.8557485631393545, 'eval_accuracy': 0.9179382735390882, 'eval_hamming loss': 0.019828711682072172, 'eval_runtime': 159.2478, 'eval_samples_per_second': 200.411, 'eval_steps_per_second': 12.528, 'epoch': 0.94}
+{'loss': 0.1198, 'learning_rate': 8.824967099078774e-06, 'epoch': 1.18}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.49      0.53      0.51       272
+         label_insult       0.72      0.75      0.73      1518
+        label_obscene       0.74      0.82      0.78      1665
+label_severe_toxicity       0.53      0.45      0.49       328
+         label_threat       0.35      0.74      0.47        88
+       label_toxicity       0.79      0.80      0.80      2996
+
+            micro avg       0.73      0.77      0.75      6867
+            macro avg       0.60      0.68      0.63      6867
+         weighted avg       0.73      0.77      0.75      6867
+          samples avg       0.07      0.07      0.07      6867
+
+{'eval_loss': 0.12986864149570465, 'eval_f1': 0.7469179538047328, 'eval_f1_macro': 0.6291904532740636, 'eval_precision': 0.7273354491513729, 'eval_recall': 0.7675840978593272, 'eval_roc_auc': 0.8784406030101412, 'eval_accuracy': 0.9180636064546451, 'eval_hamming loss': 0.018653715598725782, 'eval_runtime': 159.1725, 'eval_samples_per_second': 200.506, 'eval_steps_per_second': 12.534, 'epoch': 1.18}
+{'loss': 0.1195, 'learning_rate': 8.58996051889453e-06, 'epoch': 1.41}
+Best threshold: 0.49999999999999994
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.61      0.37      0.46       272
+         label_insult       0.63      0.83      0.72      1518
+        label_obscene       0.69      0.86      0.77      1665
+label_severe_toxicity       0.34      0.80      0.48       328
+         label_threat       0.50      0.64      0.56        88
+       label_toxicity       0.78      0.82      0.80      2996
+
+            micro avg       0.67      0.81      0.74      6867
+            macro avg       0.59      0.72      0.63      6867
+         weighted avg       0.69      0.81      0.74      6867
+          samples avg       0.06      0.07      0.07      6867
+
+{'eval_loss': 0.14272770285606384, 'eval_f1': 0.7352785846316346, 'eval_f1_macro': 0.6296339201427169, 'eval_precision': 0.6725033208549692, 'eval_recall': 0.8109800495121596, 'eval_roc_auc': 0.8981453277248324, 'eval_accuracy': 0.9107629641234529, 'eval_hamming loss': 0.020941041307640084, 'eval_runtime': 159.1844, 'eval_samples_per_second': 200.491, 'eval_steps_per_second': 12.533, 'epoch': 1.41}
+{'loss': 0.1114, 'learning_rate': 8.354953938710285e-06, 'epoch': 1.65}
+Best threshold: 0.44999999999999996
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.55      0.51      0.53       272
+         label_insult       0.66      0.82      0.73      1518
+        label_obscene       0.81      0.77      0.79      1665
+label_severe_toxicity       0.45      0.58      0.51       328
+         label_threat       0.45      0.53      0.49        88
+       label_toxicity       0.81      0.78      0.80      2996
+
+            micro avg       0.73      0.77      0.75      6867
+            macro avg       0.62      0.67      0.64      6867
+         weighted avg       0.74      0.77      0.75      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.15688152611255646, 'eval_f1': 0.7491982039769082, 'eval_f1_macro': 0.6401724764597678, 'eval_precision': 0.7336683417085427, 'eval_recall': 0.765399737876802, 'eval_roc_auc': 0.8775325820889835, 'eval_accuracy': 0.9191916026946577, 'eval_hamming loss': 0.018376938743537522, 'eval_runtime': 159.1858, 'eval_samples_per_second': 200.489, 'eval_steps_per_second': 12.533, 'epoch': 1.65}
+{'loss': 0.1171, 'learning_rate': 8.11994735852604e-06, 'epoch': 1.88}
+Best threshold: 0.5499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.53      0.51      0.52       272
+         label_insult       0.71      0.78      0.74      1518
+        label_obscene       0.73      0.84      0.78      1665
+label_severe_toxicity       0.44      0.61      0.51       328
+         label_threat       0.49      0.55      0.52        88
+       label_toxicity       0.85      0.74      0.79      2996
+
+            micro avg       0.74      0.76      0.75      6867
+            macro avg       0.62      0.67      0.64      6867
+         weighted avg       0.75      0.76      0.75      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.14793650805950165, 'eval_f1': 0.7469428859156956, 'eval_f1_macro': 0.6432722554989203, 'eval_precision': 0.7380241648898366, 'eval_recall': 0.7560798019513616, 'eval_roc_auc': 0.8730486485315108, 'eval_accuracy': 0.9202882657057809, 'eval_hamming loss': 0.01837171653872265, 'eval_runtime': 159.1447, 'eval_samples_per_second': 200.541, 'eval_steps_per_second': 12.536, 'epoch': 1.88}
+{'loss': 0.0983, 'learning_rate': 7.884940778341795e-06, 'epoch': 2.12}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.54      0.55      0.54       272
+         label_insult       0.73      0.76      0.74      1518
+        label_obscene       0.81      0.77      0.79      1665
+label_severe_toxicity       0.40      0.72      0.51       328
+         label_threat       0.44      0.67      0.53        88
+       label_toxicity       0.82      0.78      0.80      2996
+
+            micro avg       0.74      0.76      0.75      6867
+            macro avg       0.62      0.71      0.65      6867
+         weighted avg       0.76      0.76      0.76      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.1410217434167862, 'eval_f1': 0.7504139370815635, 'eval_f1_macro': 0.653621373919834, 'eval_precision': 0.7420273348519362, 'eval_recall': 0.7589922819280618, 'eval_roc_auc': 0.8745888433900558, 'eval_accuracy': 0.9205702647657841, 'eval_hamming loss': 0.018105384093164135, 'eval_runtime': 159.1413, 'eval_samples_per_second': 200.545, 'eval_steps_per_second': 12.536, 'epoch': 2.12}
+{'loss': 0.0814, 'learning_rate': 7.64993419815755e-06, 'epoch': 2.35}
+Best threshold: 0.49999999999999994
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.50      0.56      0.53       272
+         label_insult       0.71      0.78      0.75      1518
+        label_obscene       0.77      0.82      0.79      1665
+label_severe_toxicity       0.41      0.66      0.51       328
+         label_threat       0.55      0.53      0.54        88
+       label_toxicity       0.81      0.78      0.80      2996
+
+            micro avg       0.73      0.77      0.75      6867
+            macro avg       0.63      0.69      0.65      6867
+         weighted avg       0.75      0.77      0.76      6867
+          samples avg       0.06      0.07      0.06      6867
+
+{'eval_loss': 0.16267083585262299, 'eval_f1': 0.7528727479075046, 'eval_f1_macro': 0.6518660310354943, 'eval_precision': 0.7339233854238695, 'eval_recall': 0.7728265618173875, 'eval_roc_auc': 0.8812026625133692, 'eval_accuracy': 0.9196616011279962, 'eval_hamming loss': 0.018194161575016972, 'eval_runtime': 159.2981, 'eval_samples_per_second': 200.348, 'eval_steps_per_second': 12.524, 'epoch': 2.35}
+{'loss': 0.0837, 'learning_rate': 7.414927617973304e-06, 'epoch': 2.59}
+Best threshold: 0.5999999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.47      0.61      0.53       272
+         label_insult       0.71      0.77      0.74      1518
+        label_obscene       0.78      0.81      0.79      1665
+label_severe_toxicity       0.45      0.53      0.49       328
+         label_threat       0.39      0.76      0.51        88
+       label_toxicity       0.78      0.80      0.79      2996
+
+            micro avg       0.72      0.78      0.75      6867
+            macro avg       0.60      0.71      0.64      6867
+         weighted avg       0.73      0.78      0.75      6867
+          samples avg       0.07      0.07      0.07      6867
+
+{'eval_loss': 0.14323244988918304, 'eval_f1': 0.7478578452029779, 'eval_f1_macro': 0.6421825081210013, 'eval_precision': 0.722290055623389, 'eval_recall': 0.7753021697975826, 'eval_roc_auc': 0.8821073552443063, 'eval_accuracy': 0.9177189409368636, 'eval_hamming loss': 0.01874771528539349, 'eval_runtime': 159.5868, 'eval_samples_per_second': 199.985, 'eval_steps_per_second': 12.501, 'epoch': 2.59}
+{'loss': 0.0897, 'learning_rate': 7.179921037789058e-06, 'epoch': 2.82}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.52      0.55      0.53       272
+         label_insult       0.71      0.77      0.74      1518
+        label_obscene       0.77      0.82      0.79      1665
+label_severe_toxicity       0.45      0.57      0.50       328
+         label_threat       0.46      0.65      0.54        88
+       label_toxicity       0.79      0.80      0.80      2996
+
+            micro avg       0.73      0.77      0.75      6867
+            macro avg       0.62      0.69      0.65      6867
+         weighted avg       0.74      0.77      0.75      6867
+          samples avg       0.07      0.07      0.07      6867
+
+{'eval_loss': 0.1460256576538086, 'eval_f1': 0.751858407079646, 'eval_f1_macro': 0.6493334960585978, 'eval_precision': 0.7316065031689171, 'eval_recall': 0.7732634338138925, 'eval_roc_auc': 0.8813561011927611, 'eval_accuracy': 0.9197556008146639, 'eval_hamming loss': 0.018303827876129303, 'eval_runtime': 159.8073, 'eval_samples_per_second': 199.709, 'eval_steps_per_second': 12.484, 'epoch': 2.82}
+{'loss': 0.081, 'learning_rate': 6.944914457604813e-06, 'epoch': 3.06}
+Best threshold: 0.49999999999999994
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.53      0.53      0.53       272
+         label_insult       0.70      0.79      0.74      1518
+        label_obscene       0.76      0.82      0.79      1665
+label_severe_toxicity       0.44      0.63      0.52       328
+         label_threat       0.41      0.69      0.52        88
+       label_toxicity       0.77      0.82      0.79      2996
+
+            micro avg       0.72      0.79      0.75      6867
+            macro avg       0.60      0.71      0.65      6867
+         weighted avg       0.72      0.79      0.75      6867
+          samples avg       0.07      0.07      0.07      6867
+
+{'eval_loss': 0.15987853705883026, 'eval_f1': 0.7520609629373051, 'eval_f1_macro': 0.6486968587312556, 'eval_precision': 0.71723044397463, 'eval_recall': 0.7904470656764234, 'eval_roc_auc': 0.8894279385731416, 'eval_accuracy': 0.9167162776124079, 'eval_hamming loss': 0.018690271032429893, 'eval_runtime': 160.7843, 'eval_samples_per_second': 198.496, 'eval_steps_per_second': 12.408, 'epoch': 3.06}
+{'train_runtime': 7712.8649, 'train_samples_per_second': 165.51, 'train_steps_per_second': 13.793, 'train_loss': 0.11924920419546274, 'epoch': 3.06}
+Job ID: 14915832
+Cluster: puhti
+User/Group: annieske/annieske
+State: RUNNING
+Cores: 1
+CPU Utilized: 02:09:12
+CPU Efficiency: 99.17% of 02:10:17 core-walltime
+Job Wall-clock time: 02:10:17
+Memory Utilized: 3.88 GB
+Memory Efficiency: 49.69% of 7.81 GB
+Job consumed 134.15 CSC billing units based on following used resources
+Billed project: project_2000539
+CPU BU: 2.17
+Mem BU: 1.70
+GPU BU: 130.28
+GPU job efficiency:
+------------------------------------------------------------------------
+Host memory 
+     Hostname    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r13g07          8.65          0.67          8.73 
+------------------------------------------------------------------------
+GPU load 
+     Hostname        GPU Id      Mean (%)    stdDev (%)       Max (%) 
+       r13g07             1 [32m         95.4 [0m        12.84           100 
+------------------------------------------------------------------------
+GPU memory 
+     Hostname        GPU Id    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r13g07             1          13.6          1.48         13.82 
+------------------------------------------------------------------------
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+END 14915832: Sat Jan 14 15:03:01 EET 2023

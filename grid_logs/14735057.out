@@ -55,3 +55,103 @@ huggingface/tokenizers: The current process just got forked, after parallelism h
 To disable this warning, you can either:
 	- Avoid using `tokenizers` before the fork if possible
 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 0.439, 'learning_rate': 4.8824967099078776e-05, 'epoch': 0.24}
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       270
+         label_insult       0.00      0.00      0.00      1551
+        label_obscene       0.00      0.00      0.00      1674
+label_severe_toxicity       0.00      0.00      0.00       296
+         label_threat       0.00      0.00      0.00       103
+       label_toxicity       0.00      0.00      0.00      3024
+
+            micro avg       0.00      0.00      0.00      6918
+            macro avg       0.00      0.00      0.00      6918
+         weighted avg       0.00      0.00      0.00      6918
+          samples avg       0.00      0.00      0.00      6918
+
+{'eval_loss': 0.4680004417896271, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8997336675544415, 'eval_hamming loss': 0.0361272129092903, 'eval_runtime': 693.8955, 'eval_samples_per_second': 45.994, 'eval_steps_per_second': 2.875, 'epoch': 0.24}
+{'loss': 0.4931, 'learning_rate': 4.7649934198157556e-05, 'epoch': 0.47}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       270
+         label_insult       0.00      0.00      0.00      1551
+        label_obscene       0.00      0.00      0.00      1674
+label_severe_toxicity       0.00      0.00      0.00       296
+         label_threat       0.00      0.00      0.00       103
+       label_toxicity       0.00      0.00      0.00      3024
+
+            micro avg       0.00      0.00      0.00      6918
+            macro avg       0.00      0.00      0.00      6918
+         weighted avg       0.00      0.00      0.00      6918
+          samples avg       0.00      0.00      0.00      6918
+
+{'eval_loss': 0.4601995050907135, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8997336675544415, 'eval_hamming loss': 0.0361272129092903, 'eval_runtime': 692.1566, 'eval_samples_per_second': 46.11, 'eval_steps_per_second': 2.882, 'epoch': 0.47}
+{'loss': 0.4528, 'learning_rate': 4.647490129723632e-05, 'epoch': 0.71}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       270
+         label_insult       0.00      0.00      0.00      1551
+        label_obscene       0.00      0.00      0.00      1674
+label_severe_toxicity       0.00      0.00      0.00       296
+         label_threat       0.00      0.00      0.00       103
+       label_toxicity       0.00      0.00      0.00      3024
+
+            micro avg       0.00      0.00      0.00      6918
+            macro avg       0.00      0.00      0.00      6918
+         weighted avg       0.00      0.00      0.00      6918
+          samples avg       0.00      0.00      0.00      6918
+
+{'eval_loss': 0.4741629958152771, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8997336675544415, 'eval_hamming loss': 0.0361272129092903, 'eval_runtime': 691.5913, 'eval_samples_per_second': 46.147, 'eval_steps_per_second': 2.885, 'epoch': 0.71}
+{'loss': 0.4707, 'learning_rate': 4.52998683963151e-05, 'epoch': 0.94}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       270
+         label_insult       0.00      0.00      0.00      1551
+        label_obscene       0.00      0.00      0.00      1674
+label_severe_toxicity       0.00      0.00      0.00       296
+         label_threat       0.00      0.00      0.00       103
+       label_toxicity       0.00      0.00      0.00      3024
+
+            micro avg       0.00      0.00      0.00      6918
+            macro avg       0.00      0.00      0.00      6918
+         weighted avg       0.00      0.00      0.00      6918
+          samples avg       0.00      0.00      0.00      6918
+
+{'eval_loss': 0.4837108254432678, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8997336675544415, 'eval_hamming loss': 0.0361272129092903, 'eval_runtime': 691.5227, 'eval_samples_per_second': 46.152, 'eval_steps_per_second': 2.885, 'epoch': 0.94}
+{'train_runtime': 10104.8715, 'train_samples_per_second': 126.331, 'train_steps_per_second': 10.528, 'train_loss': 0.46391180419921874, 'epoch': 0.94}
+Job ID: 14735057
+Cluster: puhti
+User/Group: annieske/annieske
+State: RUNNING
+Cores: 1
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 02:50:29 core-walltime
+Job Wall-clock time: 02:50:29
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 7.81 GB (7.81 GB/core)
+Job consumed 175.54 CSC billing units based on following used resources
+Billed project: project_2000539
+CPU BU: 2.84
+Mem BU: 2.22
+GPU BU: 170.48
+GPU job efficiency:
+------------------------------------------------------------------------
+Host memory 
+     Hostname    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r16g04         13.82          1.19         13.95 
+------------------------------------------------------------------------
+GPU load 
+     Hostname        GPU Id      Mean (%)    stdDev (%)       Max (%) 
+       r16g04             3 [32m        96.73 [0m        12.12           100 
+------------------------------------------------------------------------
+GPU memory 
+     Hostname        GPU Id    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r16g04             3          30.1          3.21         30.56 
+------------------------------------------------------------------------
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+END 14735057: Thu Dec 22 19:55:55 EET 2022

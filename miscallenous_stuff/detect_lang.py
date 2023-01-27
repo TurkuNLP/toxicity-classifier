@@ -7,11 +7,18 @@ import pandas as pd
 DetectorFactory.seed = 0
 
 # get the data to dataframe
-data = sys.argv[1]
+train = sys.argv[1]
+test = sys.argv[2]
 
-with open(data, 'r') as json_file:
+lines = []
+def get_lines(data):
+    with open(data, 'r') as json_file:
         json_list = list(json_file)
-lines = [json.loads(jline) for jline in json_list]
+    lines = [json.loads(jline) for jline in json_list]
+    return lines
+
+lines = lines + get_lines(train)
+lines = lines + get_lines(test)
 
 # use pandas to look at each column
 df=pd.DataFrame(lines)
@@ -20,16 +27,25 @@ df = df[['text']]
 # get texts and loop them to pick out the english texts
 texts = df['text'].values.tolist()
 
-en_list = []
+lang_list = {}
+count=0
 for text in texts:
     try:
-        if detect(text) == 'en':
-            en_list.append(text)
+        lang = detect(text)
     except:
-        print("error")
+        print("no language detected?")
+        lang = "no language detected"
+    if lang in lang_list:
+            count = lang_list.get(lang)
+            lang_list[lang] = count + 1 # update the dictionary
+            count = 0
+    else:
+        lang_list[lang] = 1 # add to the dictionary
+        count = 0
 
+print(lang_list)
 
 # save the en_list to a file
-with open('label_distribution/toxic_eng.txt', 'w') as f:
-    for line in en_list:
+with open('miscallenous_stuff/detected_langs', 'w') as f:
+    for line in lang_list:
         f.write(f"{line}\n")

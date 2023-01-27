@@ -20,7 +20,7 @@ mkdir -p "$JOBDIR"
 # switch model here
 #  'bert-large-cased' #"TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-large-finnish-cased-v1" #'bert-base-cased' # 'bert-large-cased' # "xlm-roberta-large" #'xlm-roberta-base'
 MODELS="
-xlm-roberta-large
+TurkuNLP/bert-base-finnish-cased-v1
 "
 
 DATA_DIRS="
@@ -29,12 +29,12 @@ data
 
 SEQ_LENS="512" #ignore?
 
-BATCH_SIZES=" 4 8 12"
+BATCH_SIZES="12" # " 4 8 12"
 #BATCH_SIZES="2 4 8 16" # which batch sizes should I take? less of these?  only 8?
 # w/SEQ_LEN 128: BATCH_SIZES="4 8 16 24"
 
 #LEARNING_RATES="2e-5"
-LEARNING_RATES="5e-5 3e-5 2e-5" # only these? seems okay
+LEARNING_RATES="5e-5 3e-5 2e-5 1e-5" #"5e-5 3e-5 2e-5 1e-5" # only these? seems okay
 
 EPOCHS="10" 
 #EPOCHS="2 3 4"

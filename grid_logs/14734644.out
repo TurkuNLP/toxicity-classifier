@@ -72,3 +72,86 @@ label_severe_toxicity       0.00      0.00      0.00       310
           samples avg       0.00      0.00      0.00      6921
 
 {'eval_loss': 0.4309539198875427, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8991696694344352, 'eval_hamming loss': 0.03614287952373492, 'eval_runtime': 672.7358, 'eval_samples_per_second': 47.441, 'eval_steps_per_second': 2.966, 'epoch': 0.24}
+{'loss': 0.4815, 'learning_rate': 4.7649934198157556e-05, 'epoch': 0.47}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       293
+         label_insult       0.00      0.00      0.00      1540
+        label_obscene       0.00      0.00      0.00      1675
+label_severe_toxicity       0.00      0.00      0.00       310
+         label_threat       0.00      0.00      0.00        70
+       label_toxicity       0.00      0.00      0.00      3033
+
+            micro avg       0.00      0.00      0.00      6921
+            macro avg       0.00      0.00      0.00      6921
+         weighted avg       0.00      0.00      0.00      6921
+          samples avg       0.00      0.00      0.00      6921
+
+{'eval_loss': 0.4379584789276123, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8991696694344352, 'eval_hamming loss': 0.03614287952373492, 'eval_runtime': 669.6901, 'eval_samples_per_second': 47.656, 'eval_steps_per_second': 2.979, 'epoch': 0.47}
+{'loss': 0.4832, 'learning_rate': 4.647490129723632e-05, 'epoch': 0.71}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       293
+         label_insult       0.00      0.00      0.00      1540
+        label_obscene       0.00      0.00      0.00      1675
+label_severe_toxicity       0.00      0.00      0.00       310
+         label_threat       0.00      0.00      0.00        70
+       label_toxicity       0.00      0.00      0.00      3033
+
+            micro avg       0.00      0.00      0.00      6921
+            macro avg       0.00      0.00      0.00      6921
+         weighted avg       0.00      0.00      0.00      6921
+          samples avg       0.00      0.00      0.00      6921
+
+{'eval_loss': 0.4547179043292999, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8991696694344352, 'eval_hamming loss': 0.03614287952373492, 'eval_runtime': 669.9428, 'eval_samples_per_second': 47.638, 'eval_steps_per_second': 2.978, 'epoch': 0.71}
+{'loss': 0.4622, 'learning_rate': 4.52998683963151e-05, 'epoch': 0.94}
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.00      0.00      0.00       293
+         label_insult       0.00      0.00      0.00      1540
+        label_obscene       0.00      0.00      0.00      1675
+label_severe_toxicity       0.00      0.00      0.00       310
+         label_threat       0.00      0.00      0.00        70
+       label_toxicity       0.00      0.00      0.00      3033
+
+            micro avg       0.00      0.00      0.00      6921
+            macro avg       0.00      0.00      0.00      6921
+         weighted avg       0.00      0.00      0.00      6921
+          samples avg       0.00      0.00      0.00      6921
+
+{'eval_loss': 0.4174405038356781, 'eval_f1': 0.0, 'eval_f1_macro': 0.0, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_roc_auc': 0.5, 'eval_accuracy': 0.8991696694344352, 'eval_hamming loss': 0.03614287952373492, 'eval_runtime': 669.823, 'eval_samples_per_second': 47.647, 'eval_steps_per_second': 2.978, 'epoch': 0.94}
+{'train_runtime': 9841.8325, 'train_samples_per_second': 129.708, 'train_steps_per_second': 10.809, 'train_loss': 0.43709876708984374, 'epoch': 0.94}
+Job ID: 14734644
+Cluster: puhti
+User/Group: annieske/annieske
+State: RUNNING
+Cores: 1
+CPU Utilized: 02:44:45
+CPU Efficiency: 99.14% of 02:46:11 core-walltime
+Job Wall-clock time: 02:46:11
+Memory Utilized: 6.47 GB
+Memory Efficiency: 82.85% of 7.81 GB
+Job consumed 171.12 CSC billing units based on following used resources
+Billed project: project_2000539
+CPU BU: 2.77
+Mem BU: 2.16
+GPU BU: 166.18
+GPU job efficiency:
+------------------------------------------------------------------------
+Host memory 
+     Hostname    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r16g07         13.81          1.37         13.98 
+------------------------------------------------------------------------
+GPU load 
+     Hostname        GPU Id      Mean (%)    stdDev (%)       Max (%) 
+       r16g07             2 [32m        96.09 [0m        13.21           100 
+------------------------------------------------------------------------
+GPU memory 
+     Hostname        GPU Id    Mean (GiB)  stdDev (GiB)     Max (GiB) 
+       r16g07             2          26.9          6.43         31.41 
+------------------------------------------------------------------------
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
+END 14734644: Thu Dec 22 19:05:08 EET 2022

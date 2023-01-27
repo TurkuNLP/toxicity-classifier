@@ -304,18 +304,21 @@ def multi_label_metrics(predictions, labels, threshold):
     if args.clean_as_label == True:
         # change to not take clean label into account when computing metrics (delete last prediction)
         # technically there can be a clean label and a toxic label at the same time but this just takes the toxic labels
-        new_pred, new_true = [], []    
+        new_pred, new_true, new_probs = [], [], []
         for i in range(len(y_pred)):
             new_pred.append(y_pred[i][:-1])
         for i in range(len(y_true)):
             new_true.append(y_true[i][:-1])
+        for i in range(len(probs)):
+            new_probs.append(y_true[i][:-1])
         y_true = new_true
         y_pred = new_pred
+        probs = new_probs
 
     if args.binary == True:
         # binary evaluation
         # if there are labels the text is toxic = 1
-        new_pred, new_true = [], []
+        new_pred, new_true= [], []
         for i in range(len(y_pred)):
             if sum(y_pred[i]) > 0:
                 new_pred.append(1)
@@ -330,7 +333,7 @@ def multi_label_metrics(predictions, labels, threshold):
         y_pred = new_pred
 
         precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='binary') # micro or binary? BINARY
-        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro') # micro or macro orr?
+        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
         metrics = {
             'accuracy': accuracy,
@@ -342,7 +345,11 @@ def multi_label_metrics(predictions, labels, threshold):
     else:
         precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro')
         f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
-        roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro')
+        
+        probs_roc_auc = roc_auc_score(y_true=y_true, y_score=probs)
+        micro_roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro') # micro or macro orr?
+        macro_roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'macro') # micro or macro orr?
+
         accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
 
         from sklearn.metrics import hamming_loss
@@ -630,7 +637,7 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/somecheckpoint", #output_dir for checkpoints, not necessary to mention what it is
+        "checkpoints/og-bert-1e-5-test", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="steps",
         eval_steps=2500,
         save_total_limit=5,
@@ -650,7 +657,7 @@ def main():
     data_collator = transformers.DataCollatorWithPadding(tokenizer)
     # Argument gives the number of steps of patience before early stopping
     early_stopping = transformers.EarlyStoppingCallback(
-        early_stopping_patience=3 # 5
+        early_stopping_patience=5 # 5
     )
     training_logs = LogSavingCallback()
 
@@ -676,26 +683,26 @@ def main():
 
     # everything below this is unnecessary for doing grid search!!
 
-    # if args.save != None:
-    #     trainer.model.save_pretrained("models/{args.save}")
-    #     print("saved")
+    if args.save != None:
+        trainer.model.save_pretrained(f"models/{args.save}")
+        print("saved")
 
-    # eval_results = trainer.evaluate(dataset["test"])
-    # pprint(eval_results)
-    # print('F1:', eval_results['eval_f1'])
+    eval_results = trainer.evaluate(dataset["test"])
+    pprint(eval_results)
+    print('F1:', eval_results['eval_f1'])
 
-    # trues, probs, preds = get_classification_report(trainer, label_names, dataset, pprint)
+    trues, probs, preds = get_classification_report(trainer, label_names, dataset, pprint)
 
-    # if args.binary == False:
-    #     predictions_to_csv(trues, preds, dataset, label_names)
+    if args.binary == False:
+        predictions_to_csv(trues, preds, dataset, label_names)
 
-    #     # do roc-auc plot TEST :( (after holiday get plots, yellowbrick?)
-    #     probs = probs.tolist()
-    #     if args.clean_as_label == True:
-    #         new_probs = []
-    #         for i in range(len(probs)):
-    #             new_probs.append(probs[i][:-1])
-    #         probs = new_probs
+        # do roc-auc plot TEST :( (after holiday get plots, yellowbrick?)
+        # probs = probs.tolist()
+        # if args.clean_as_label == True:
+        #     new_probs = []
+        #     for i in range(len(probs)):
+        #         new_probs.append(probs[i][:-1])
+        #     probs = new_probs
 
 
     #     # get confusion matrix for multi-label
