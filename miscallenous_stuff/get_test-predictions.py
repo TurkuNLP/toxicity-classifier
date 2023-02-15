@@ -75,7 +75,6 @@ if args.new_test == True:
 
     df = pd.DataFrame(data, columns =['ID', 'label', 'text'])
 
-    #df = pd.read_csv("annotations/all_annotations.tsv", sep="\t")
 
     #change the annotation data to multi-label format
 
@@ -193,30 +192,19 @@ def multi_label_metrics(predictions, labels, threshold):
     print(y_pred[:30])
     if args.new_test == True:
         # for testing the new test set, set probabilities for labels other than the true label to 0.
-        # this I could change to just compare to the true results instead of hard coded order of the examples
-         #e.g. if y_true[i][0] == 1 and y_pred[i][0] == 1:
-            # do the change
-        #else:
-            # all zero
         for i in range(len(y_pred)):
-            if i >= 706 and i < 1057:
-                if y_pred[i][0] == 1:
-                    y_pred[i] = [1,0,0,0,0,0,0]
-            elif i >= 0 and i < 352:
-                if y_pred[i][5] == 1:
-                    y_pred[i] = [0,0,0,0,0,1,0]
-            elif i >= 352 and i < 706:
-                if y_pred[i][3] == 1:
-                    y_pred[i] = [0,0,0,1,0,0,0]
-            elif i >= 1057 and i < 1422:
-                if y_pred[i][1] == 1:
-                    y_pred[i] = [0,1,0,0,0,0,0]
-            elif i >= 1422 and i < 1831:
-                if y_pred[i][2] == 1:
-                    y_pred[i] = [0,0,1,0,0,0,0]
-            elif i >= 1831 and i < 2260:
-                if y_pred[i][4] == 1:
-                    y_pred[i] = [0,0,0,0,1,0,0]
+            if y_true[i][0] == 1 and y_pred[i][0] == 1:
+                y_pred[i] = [1,0,0,0,0,0,0]
+            if y_true[i][5] == 1 and y_pred[i][5] == 1:
+                y_pred[i] = [0,0,0,0,0,1,0]
+            if y_true[i][3] == 1 and y_pred[i][3] == 1:
+                y_pred[i] = [0,0,0,1,0,0,0]
+            if y_true[i][1] == 1 and y_pred[i][1] == 1:
+                y_pred[i] = [0,1,0,0,0,0,0]
+            if y_true[i][2] == 1 and y_pred[i][2] == 1:
+                y_pred[i] = [0,0,1,0,0,0,0]
+            if y_true[i][4] == 1 and y_pred[i][4] == 1:
+                y_pred[i] = [0,0,0,0,1,0,0]
             else:
                 y_pred[i] = [0,0,0,0,0,0,1]
 
@@ -353,28 +341,21 @@ print(preds[2000:2050])
 
 # if args.new_test == True: #WHY DOES THIS NOT WORK? HUH?
 #     print("doing the changes!")
-#     for testing the new test set, set probabilities for labels other than the true label to 0.
-#     for i in range(len(preds)):
-#         if i >= 706 and i < 1057:
-#             if preds[i][0] == 1:
-#                 preds[i] = [1,0,0,0,0,0]
-#         elif i >= 0 and i < 352:
-#             if preds[i][5] == 1:
-#                 preds[i] = [0,0,0,0,0,1]
-#         elif i >= 352 and i < 706:
-#             if preds[i][3] == 1:
-#                 preds[i] = [0,0,0,1,0,0]
-#         elif i >= 1057 and i < 1422:
-#             if preds[i][1] == 1:
-#                 preds[i] = [0,1,0,0,0,0]
-#         elif i >= 1422 and i < 1831:
-#             if preds[i][2] == 1:
-#                 preds[i] = [0,0,1,0,0,0]
-#         elif i >= 1831 and i < 2260:
-#             if preds[i][4] == 1:
-#                 preds[i] = [0,0,0,0,1,0]
-#         else:
-#             preds[i] = [0,0,0,0,0,0]
+    for i in range(len(preds)):
+        if labels[i][0] == 1 and preds[i][0] == 1:
+            preds[i] = [1,0,0,0,0,0,0]
+        if labels[i][5] == 1 and preds[i][5] == 1:
+            preds[i] = [0,0,0,0,0,1,0]
+        if labels[i][3] == 1 and preds[i][3] == 1:
+            preds[i] = [0,0,0,1,0,0,0]
+        if labels[i][1] == 1 and preds[i][1] == 1:
+            preds[i] = [0,1,0,0,0,0,0]
+        if labels[i][2] == 1 and preds[i][2] == 1:
+            preds[i] = [0,0,1,0,0,0,0]
+        if labels[i][4] == 1 and preds[i][4] == 1:
+            preds[i] = [0,0,0,0,1,0,0]
+        else:
+            preds[i] = [0,0,0,0,0,0,1]
 
 # change to only take 6 labels from the 7
 if len(preds[0]) == 7:
