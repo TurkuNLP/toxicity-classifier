@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=toxicity
 #SBATCH --account=project_2000539
-#SBATCH --partition=gpu
-#SBATCH --time=10:30:00 # depends highly on how many examples I want to see predicted (1h for base, 2h 30min for large, 10h for all on base)
+#SBATCH --partition=gputest
+#SBATCH --time=00:10:00 # depends highly on how many examples I want to see predicted (1h for base, 2h 30min for large, 10h for all on base)
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1 # from 10 to 5? even less lol
 #SBATCH --mem-per-cpu=100000 #8000 
@@ -14,11 +14,11 @@ module load pytorch
 
 echo "START: $(date)"
 
-LINES=200000
+LINES=1000
 
 #python3 simple_multi-predictions.py --model models/multi-toxic-tr-optimized --data data/ylenews-fi-2011-2018.dedup.filtered.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --filename predictions/yle.csv--lines $LINES
 
-python3 simple_multi-predictions.py --model models/multi-toxic-tr-optimized --data data/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --filename predictions/reddit.tsv #--lines $LINES
+python3 simple_multi-predictions.py --model models/finbert-large-deepl --data data/SampoData/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --filename predictions/reddit.tsv --lines $LINES
 
 #python3 simple_multi-predictions.py --model models/multi-toxic-tr-optimized --data data/suomi24-2001-2020-1p-sample.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --filename predictions/s24predictions.tsv #--lines $LINES
 

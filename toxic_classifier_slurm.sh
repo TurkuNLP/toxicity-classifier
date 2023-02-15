@@ -2,7 +2,7 @@
 #SBATCH --job-name=toxicity
 #SBATCH --account=project_2000539
 #SBATCH --partition=gpu
-#SBATCH --time=20:00:00 # 5h
+#SBATCH --time=7:00:00 # 5h
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
@@ -78,11 +78,11 @@ module load pytorch
 
 export COMET_API_KEY="ARr02oZjXsfNYlAeIFROYSj7O"
 
-EPOCHS=10 # 4 
+EPOCHS=4 # 
 LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"
-BATCH=12 #8, 16, 32
+BATCH=8 #8, 16, 32
 TR=0.6
-MODEL="TurkuNLP/bert-large-finnish-cased-v1" #"TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-large-finnish-cased-v1" #'bert-base-cased' # 'bert-large-cased' # "xlm-roberta-large" #'xlm-roberta-base'
+MODEL="TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-base-finnish-cased-v1" #"TurkuNLP/bert-large-finnish-cased-v1" #'bert-base-cased' # 'bert-large-cased' # "xlm-roberta-large" #'xlm-roberta-base'
 echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction treshold: $TR, model: $MODEL "
 
 # #original english
@@ -90,12 +90,12 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 # srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --clean_as_label --save "og-bert-large3" #--threshold $TR
 
 # # translated deepl
-echo "Translated train and test deepl"
-srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --save "finbert-large-deepl2" #--clean_as_label #--threshold $TR
+# echo "Translated train and test deepl"
+# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --save "finbert-large-deepl2" #--clean_as_label #--threshold $TR
 
 # translated opus-mt
-# echo "opus-mt translated train and test"
-# srun python3 toxic_classifier.py --train data/train-opus-mt-translated.csv --test data/test-opus-mt-translated3.csv --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev --save "opus-mt-finbert-large" #--threshold $TR
+echo "opus-mt translated train and test"
+srun python3 toxic_classifier.py --train data/train-opus-mt-translated.csv --test data/test-opus-mt-translated3.csv --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev --save "opus-mt-finbert-base" #--threshold $TR
 
 
 # backtranslation

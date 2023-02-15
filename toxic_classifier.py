@@ -363,7 +363,9 @@ def multi_label_metrics(predictions, labels, threshold):
                     'f1_macro': f1_macro,
                     'precision': precision,
                     'recall': recall,
-                    'roc_auc': roc_auc,
+                    'probs_roc_auc': probs_roc_auc,
+                    'micro_roc_auc': micro_roc_auc,
+                    'macro_roc_auc': macro_roc_auc,
                     'accuracy': accuracy,
                     'hamming loss': hamming}
 

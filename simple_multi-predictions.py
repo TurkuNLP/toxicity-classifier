@@ -13,15 +13,15 @@ import pandas as pd
 # this should prevent any caching problems I might have because caching does not happen anymore
 datasets.disable_caching()
 
-label_names = [
-    'label_identity_attack',
-    'label_insult',
-    'label_obscene',
-    'label_severe_toxicity',
-    'label_threat',
-    'label_toxicity',
-    'label_clean'
-]
+# label_names = [
+#     'label_identity_attack',
+#     'label_insult',
+#     'label_obscene',
+#     'label_severe_toxicity',
+#     'label_threat',
+#     'label_toxicity',
+#     'label_clean'
+# ]
 
 # parse arguments
 parser = argparse.ArgumentParser(
@@ -51,9 +51,9 @@ with open(data, 'r') as json_file:
         json_list = list(json_file)
 lines = [json.loads(jline) for jline in json_list]
 
-line_amount = args.lines
-print("number of lines in the file", len(lines))
-lines = lines[:line_amount] 
+# line_amount = args.lines
+# print("number of lines in the file", len(lines))
+# lines = lines[:line_amount] 
 
 # use pandas to look at each column
 df=pd.DataFrame(lines)
@@ -100,31 +100,29 @@ predictions = test_pred.predictions
 
 
 
-
-#7 labels, change predictions into something usable in a file
-
 sigmoid = torch.nn.Sigmoid()
 probs = sigmoid(torch.Tensor(predictions))
 probs = probs.tolist()
 
-# change to only take 6 labels from the 7
-new_probs = []
-for i in range(len(probs)):
-    new_probs.append(probs[i][:-1])
-probs = new_probs
+# # change to only take 6 labels from the 7
+# if len(probs[0]) == 7:
+#     new_probs = []
+#     for i in range(len(probs)):
+#         new_probs.append(probs[i][:-1])
+#     probs = new_probs
 
-print(probs[:10])
+# print(probs[:10])
 
-# get the highest probability for sorting from all of the probabilities
-# TODO change this to only sort by toxicity or severe_toxicity if it is bigger
-highest=0.0
-highprob = []
-for i in range(len(probs)):
-    for j in range(len(probs[i])):
-        if probs[i][j] > highest:
-            highest = probs[i][j]
-    highprob.append(highest)
-    highest = 0.0
+# # get the highest probability for sorting from all of the probabilities
+# # TODO change this to only sort by toxicity or severe_toxicity if it is bigger
+# highest=0.0
+# highprob = []
+# for i in range(len(probs)):
+#     for j in range(len(probs[i])):
+#         if probs[i][j] > highest:
+#             highest = probs[i][j]
+#     highprob.append(highest)
+#     highest = 0.0
 
 # get probabilities to their own lists for use in tuple and then dataframe (each with their own column)
 identity_attack = [probs[i][0] for i in range(len(probs))]
@@ -154,19 +152,25 @@ def text_and_label(data):
     df = pd.DataFrame(data, columns=['id', 'text', 'identity_attack', 'insult', 'obscene', 'severe_toxicity', 'threat', 'toxicity']) # 'probability'
     return df
 
-all_dataframe = id_and_label(allpredict)
-alltexts_dataframe = text_and_label(alltextspredict)
 
-# change csv to not have new lines
-alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\n", "<NEWLINE>")
-alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\r\n", "<NEWLINE>")
-alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\r", "<NEWLINE>")
-alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\t", "<TAB>")
+# id and labels + their probabilities
+all_dataframe = id_and_label(allpredict)
 
 # put to csv so we don't need any new lines taken out
 filename = args.filename
 all_dataframe.to_csv(filename, sep="\t", index=False) # added sep to make tsv
 
-alltexts_dataframe.to_csv("predictions/reddit-maybe-works.csv", index=False)
+
+# # text, labels and their probabilities
+
+# alltexts_dataframe = text_and_label(alltextspredict)
+
+# # change csv to not have new lines
+# alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\n", "<NEWLINE>")
+# alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\r\n", "<NEWLINE>")
+# alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\r", "<NEWLINE>")
+# alltexts_dataframe["text"] = alltexts_dataframe["text"].str.replace("\t", "<TAB>")
+
+# alltexts_dataframe.to_csv("predictions/reddit-maybe-works.csv", index=False)
 
 

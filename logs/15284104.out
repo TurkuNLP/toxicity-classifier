@@ -1,0 +1,127 @@
+Namespace(model='models/finbert-large-deepl', data='data/test_fi_deepl.jsonl', tokenizer='TurkuNLP/bert-base-finnish-cased-v1', filename='test.tsv')
+                                                text  ...              labels
+0  Persujen mamu-puputus kyllästyttää  mutta mamu...  ...  [0, 0, 0, 0, 0, 1]
+1  Suvakit ja hyysärit haluaa saada lapset omaan ...  ...  [0, 0, 0, 0, 0, 1]
+2  VIELÄ YKSI ASIA! NÄMÄ EI OLE HENKILÖVAALIT,VAA...  ...  [0, 0, 0, 0, 0, 0]
+3  Halosen aikana on lapsiin ja naisiin kohdistun...  ...  [0, 0, 0, 0, 0, 1]
+4  Byää! Byää! Jos tulee vammoja, byää! Saatanan ...  ...  [0, 0, 0, 0, 0, 1]
+
+[5 rows x 3 columns]
+Dataset({
+    features: ['text', 'id', 'labels'],
+    num_rows: 2252
+})
+Best threshold: 0.3
+[[0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0.]
+ ...
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]]
+[[0 0 0 0 0 1]
+ [0 0 0 0 0 1]
+ [0 0 0 0 0 0]
+ [0 0 0 0 0 1]
+ [0 0 0 0 0 1]]
+[[0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 1.]]
+                       precision    recall  f1-score   support
+
+label_identity_attack       1.00      0.40      0.57       131
+         label_insult       1.00      0.52      0.68       141
+        label_obscene       1.00      0.88      0.93       170
+label_severe_toxicity       1.00      0.44      0.61        25
+         label_threat       1.00      0.40      0.57        40
+       label_toxicity       1.00      0.83      0.91       158
+
+            micro avg       1.00      0.65      0.79       665
+            macro avg       1.00      0.58      0.71       665
+         weighted avg       1.00      0.65      0.77       665
+          samples avg       0.19      0.19      0.19       665
+
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'eval_accuracy': 0.8965364120781527,
+ 'eval_f1': 0.7876025524156791,
+ 'eval_f1_macro': 0.7123053929305638,
+ 'eval_hamming loss': 0.017243931320307875,
+ 'eval_loss': 1.3107070922851562,
+ 'eval_macro_roc_auc': 0.7883551311354436,
+ 'eval_micro_roc_auc': 0.824812030075188,
+ 'eval_precision': 1.0,
+ 'eval_probs_roc_auc': 0.7003364227113725,
+ 'eval_recall': 0.649624060150376,
+ 'eval_runtime': 75.8354,
+ 'eval_samples_per_second': 29.696,
+ 'eval_steps_per_second': 3.719}
+Best threshold: 0.3
+[[0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0.]
+ ...
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0.]]
+[[0 0 0 0 0 1]
+ [0 0 0 0 0 1]
+ [0 0 0 0 0 0]
+ [0 0 0 0 0 1]
+ [0 0 0 0 0 1]]
+[[0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 1.]]
+                       precision    recall  f1-score   support
+
+label_identity_attack       1.00      0.40      0.57       131
+         label_insult       1.00      0.52      0.68       141
+        label_obscene       1.00      0.88      0.93       170
+label_severe_toxicity       1.00      0.44      0.61        25
+         label_threat       1.00      0.40      0.57        40
+       label_toxicity       1.00      0.83      0.91       158
+
+            micro avg       1.00      0.65      0.79       665
+            macro avg       1.00      0.58      0.71       665
+         weighted avg       1.00      0.65      0.77       665
+          samples avg       0.19      0.19      0.19       665
+
+[[0.11839624494314194, 0.05833958089351654, 0.1480414718389511, 0.0030688506085425615, 0.005789181217551231, 0.9309857487678528], [0.08594419807195663, 0.03958743065595627, 0.12726452946662903, 0.003283252939581871, 0.012636015191674232, 0.9252375364303589], [0.0013313998933881521, 0.0034000228624790907, 0.00795562844723463, 0.00016217873780988157, 0.001724972273223102, 0.0633179247379303], [0.04366708919405937, 0.10460945218801498, 0.1825740933418274, 0.005109332501888275, 0.008196312934160233, 0.9809079170227051], [0.9930238723754883, 0.9985143542289734, 0.9984083771705627, 0.7245651483535767, 0.05296320840716362, 0.9992243051528931], [0.0003006404440384358, 0.001148141804151237, 0.0027581520844250917, 6.553452840307727e-05, 0.0004845661169383675, 0.020657209679484367], [0.011050044558942318, 0.025606445968151093, 0.1006084606051445, 0.0010590919991955161, 0.004680076614022255, 0.5283099412918091], [0.00345593667589128, 0.05786183476448059, 0.9529822468757629, 0.011666374281048775, 0.004271433688700199, 0.9783862233161926], [0.008495334535837173, 0.02828451804816723, 0.10967588424682617, 0.0009542919578962028, 0.0031839620787650347, 0.48982009291648865], [0.0007874040747992694, 0.0024626285303384066, 0.005402777809649706, 0.00011414241453167051, 0.001111722202040255, 0.04045909643173218]]

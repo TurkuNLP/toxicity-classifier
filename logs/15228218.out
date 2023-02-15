@@ -1,0 +1,60 @@
+Namespace(model='models/finbert-large-deepl', data='data/test_fi_deepl.jsonl', tokenizer='TurkuNLP/bert-base-finnish-cased-v1', filename='test.tsv')
+number of lines in the file 63978
+                                                text  ...              labels
+0  " \n\n Hei Pieter Pietersen, ja tervetuloa Wik...  ...  [0, 0, 0, 0, 0, 0]
+1  " \n\n Sinut on väliaikaisesti estetty muokkaa...  ...  [0, 0, 0, 0, 0, 0]
+2  {Tule!!!!! FUCK..... ok mies, olen todella tod...  ...  [0, 0, 1, 0, 0, 1]
+3  " \n\n == Zeqin kieltäminen== \n Zeqin välimie...  ...  [0, 0, 0, 0, 0, 0]
+4         . Tämä tili on Dantherocker1:n sukkanukke.  ...  [0, 0, 0, 0, 0, 0]
+
+[5 rows x 3 columns]
+Best threshold: 0.6499999999999999
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'eval_accuracy': 0.913720341367345,
+ 'eval_f1': 0.6294011946967122,
+ 'eval_f1_macro': 0.5543990223743459,
+ 'eval_hamming loss': 0.023855075182093843,
+ 'eval_loss': 0.13864701986312866,
+ 'eval_macro_roc_auc': 0.8347437386679536,
+ 'eval_micro_roc_auc': 0.8761926661999172,
+ 'eval_precision': 0.531888697365181,
+ 'eval_probs_roc_auc': 1.0,
+ 'eval_recall': 0.7706945765937203,
+ 'eval_runtime': 2095.2957,
+ 'eval_samples_per_second': 30.534,
+ 'eval_steps_per_second': 3.817}

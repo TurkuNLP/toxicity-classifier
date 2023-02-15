@@ -61,19 +61,20 @@ with open(data, 'r') as json_file:
         json_list = list(json_file)
 lines = [json.loads(jline) for jline in json_list]
 
-line_amount = args.lines
-print("number of lines in the reddit file", len(lines))
-lines = lines[:line_amount] 
+# set limit on how many lines to predict on
+# line_amount = args.lines
+# print("number of lines in the reddit file", len(lines))
+# lines = lines[:line_amount] 
 
 # use pandas to look at each column
 df=pd.DataFrame(lines)
 df = df[['body']]
-df.rename(columns = {'body':'text'}, inplace = True) # have to change the column name so this works
+df.rename(columns = {'body':'text'}, inplace = True) # have to change the column name so this works (for reddit datas)
 pprint(df[:5])
 
+# this is for reddit data
 # keep every row except ones with deleted text
 df = df[df["text"] != "[deleted]"] # .str.contains("[deleted]") == False
-
 print("number of lines after deleting [deleted] rows", df.shape[0])
 
 
