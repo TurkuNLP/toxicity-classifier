@@ -20,6 +20,8 @@ regular_expression = '[' + re.escape (''. join (chars_to_remove)) + ']'
 df["text"] = df['text'].str.replace(regular_expression, '', regex=True)
 
 
+# TODO this I need to update to use the python library, example in that one colab notebook for tda course, don't remember why I had problems and did not use it last time?
+
 #text=False
 for i in range(len(df[thusfar:])):
     resultlist = []
