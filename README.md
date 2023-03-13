@@ -1,8 +1,10 @@
 # toxicity-classifier
 
-This repository includes code for classifying toxic data as multi-label classification (6 labels + no label), multiclass/binary classification (toxic or not) and binary evaluation based on the multi-label classification. The goal is to make a decent classifier for Finnish using translated data. The data used is from the [TurkuNLP github](https://github.com/TurkuNLP/wikipedia-toxicity-data-fi).
+This repository includes code for classifying toxic data as multi-label classification (6 labels + no label), multiclass/binary classification (toxic or not) and binary evaluation based on the multi-label classification. The goal is to make a decent classifier for Finnish using translated data. The data used is available in [huggingface](https://huggingface.co/datasets/TurkuNLP/wikipedia-toxicity-data-fi) and the model will be available in Huggingface later.
 
-Current results for runs can be found [here](https://docs.google.com/spreadsheets/d/1g8Ya5lx80CdqEXHiwKO32EFv2AMNkZzPypzlb1PI6xk/edit?usp=sharing) and the overview of everything is [here](https://docs.google.com/document/d/1ht2dqMYe8p5lDqYE2kWrz-F-RUeOfh60J8J925SeP8g/edit?usp=sharing)
+## Examples of mistakes the model makes
+
+Error analysis is coming later.
 
 
 ## Example usage of scripts
@@ -52,7 +54,7 @@ optional arguments:
 
 Made by Anni Eskelinen
 ```
-
+<!--- this needs to be updated!!! is out of date now, alsoo I need to update the docs file that I made earlier, or just remove it altogether --->
 Predictions can be made in two different scripts, toxicity_predictions.py and simple_multi-predictions.py. Toxicity_predictions.py is meant for finding the best threshold for new texts and simple_multi-predictions.py is meant for getting the predicted texts with id and highest probability to .csv files.
 
 Both scripts use the same arguments.
