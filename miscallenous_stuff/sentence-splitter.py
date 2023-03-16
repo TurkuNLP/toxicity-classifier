@@ -21,6 +21,11 @@ df["text"] = df['text'].str.replace(regular_expression, '', regex=True)
 
 
 # TODO this I need to update to use the python library, example in that one colab notebook for tda course, don't remember why I had problems and did not use it last time?
+# import ufal.udpipe
+# udpipemodel=ufal.udpipe.Model.load("english-ewt.udpipe")
+# tokenizer=ufal.udpipe.Pipeline(udpipemodel,"tokenizer=ranges","none","none","conllu")
+# print(tokenizer.process("I have a dog. The dog is cute. And brown at that.")) # example
+# sents=[line.replace("# text = ","") for line in parsed.split("\n") if line.startswith("# text = ")]
 
 #text=False
 for i in range(len(df[thusfar:])):

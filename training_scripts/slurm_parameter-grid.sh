@@ -24,7 +24,7 @@ TurkuNLP/bert-base-finnish-cased-v1
 "
 
 DATA_DIRS="
-data
+../data
 "
 
 SEQ_LENS="512" #ignore?

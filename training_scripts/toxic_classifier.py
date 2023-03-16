@@ -620,7 +620,7 @@ def main():
     def tokenize(example):
         return tokenizer(
             example["text"],
-            max_length=512,
+            max_length=128, # try different ones: 512 (used always before), 256, 128
             truncation=True
         )
         
@@ -639,7 +639,7 @@ def main():
 
     # Set training arguments
     trainer_args = transformers.TrainingArguments(
-        "checkpoints/og-bert-1e-5-test", #output_dir for checkpoints, not necessary to mention what it is
+        "../checkpoints/og-bert-1e-5-test", #output_dir for checkpoints, not necessary to mention what it is
         evaluation_strategy="steps",
         eval_steps=2500,
         save_total_limit=5,
@@ -686,7 +686,7 @@ def main():
     # everything below this is unnecessary for doing grid search!!
 
     if args.save != None:
-        trainer.model.save_pretrained(f"models/{args.save}")
+        trainer.model.save_pretrained(f"../models/{args.save}")
         print("saved")
 
     eval_results = trainer.evaluate(dataset["test"])

@@ -10,7 +10,7 @@ from transformers import EvalPrediction
 from sklearn.metrics import classification_report, f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve
 from sklearn.metrics import hamming_loss
 
-#python3 miscallenous_stuff/get_test-predictions.py --model "models/finbert-large-deepl" --data "data/test_fi_deepl.jsonl" --tokenizer "TurkuNLP/bert-base-finnish-cased-v1" --filename "test.tsv"
+#python3 miscallenous_stuff/get_test-predictions.py --model "../models/finbert-large-deepl" --data "../data/test_fi_deepl.jsonl" --tokenizer "TurkuNLP/bert-base-finnish-cased-v1" --filename "test.tsv"
 
 # this should prevent any caching problems I might have because caching does not happen anymore
 datasets.disable_caching()
@@ -64,7 +64,7 @@ if args.new_test == False:
 if args.new_test == True:
 # FOR OUR NEW TEST SET
 
-    with open("annotations/all_annotations.tsv", "rt", encoding="utf-8") as f:
+    with open("../annotations/all_annotations.tsv", "rt", encoding="utf-8") as f:
         data = f.readlines()
     data = data[1:]
     for i in range(len(data)):
@@ -78,38 +78,69 @@ if args.new_test == True:
 
     #change the annotation data to multi-label format
 
-    # if the label includes not- something
-    df.loc[df['label'].str.contains("not-"),["labels"]] = '[0,0,0,0,0,0,1]'
+    # read the config.json file to see how many labels the model uses
+    with open(f"{args.model}/config.json", 'r') as config_file:
+        config_json = json.load(config_file)
+    # here search for the correct part
+    #print(len(config_json["id2label"])) # check length
 
-    # if threat
-    df.loc[df["label"] == "threat",["labels"]] = '[0,0,0,0,1,0,0]'
+    if len(config_json["id2label"]) == 6:
+        # if the label includes not- something
+        df.loc[df['label'].str.contains("not-"),["labels"]] = '[0,0,0,0,0,0]'
 
-    # if toxicity
-    df.loc[df["label"] == "toxicity",["labels"]] = '[0,0,0,0,0,1,0]'
+        # if threat
+        df.loc[df["label"] == "threat",["labels"]] = '[0,0,0,0,1,0]'
 
-    #if severe_toxicity
-    df.loc[df["label"] == "severe_toxicity",["labels"]] = '[0,0,0,1,0,0,0]' #CANNOT SAVE AS PLAIN LIST OR STRING, NEED A WORKAROUND, MAYBE JUST PUT THIS AS STRING AND THEN THE list(string)
+        # if toxicity
+        df.loc[df["label"] == "toxicity",["labels"]] = '[0,0,0,0,0,1]'
 
-    #if insult
-    df.loc[df["label"] == "insult",["labels"]] = '[0,1,0,0,0,0,0]'
+        #if severe_toxicity
+        df.loc[df["label"] == "severe_toxicity",["labels"]] = '[0,0,0,1,0,0]'
 
-    #if identity_attack
-    df.loc[df["label"] == "identity_attack",["labels"]] = '[1,0,0,0,0,0,0]'
+        #if insult
+        df.loc[df["label"] == "insult",["labels"]] = '[0,1,0,0,0,0]'
 
-    #if obscene
-    df.loc[df["label"] == "obscene",["labels"]] = '[0,0,1,0,0,0,0]'
+        #if identity_attack
+        df.loc[df["label"] == "identity_attack",["labels"]] = '[1,0,0,0,0,0]'
 
-    import ast
-    df['labels'] = df['labels'].apply(lambda row: ast.literal_eval(row))
-    df.rename(columns = {'ID':'id'}, inplace = True)
+        #if obscene
+        df.loc[df["label"] == "obscene",["labels"]] = '[0,0,1,0,0,0]'
 
+        import ast
+        df['labels'] = df['labels'].apply(lambda row: ast.literal_eval(row)) 
+        df.rename(columns = {'ID':'id'}, inplace = True)
+
+    else if len(config_json["id2label"]) == 7:
+        # if the label includes not- something
+        df.loc[df['label'].str.contains("not-"),["labels"]] = '[0,0,0,0,0,0,1]'
+
+        # if threat
+        df.loc[df["label"] == "threat",["labels"]] = '[0,0,0,0,1,0,0]'
+
+        # if toxicity
+        df.loc[df["label"] == "toxicity",["labels"]] = '[0,0,0,0,0,1,0]'
+
+        #if severe_toxicity
+        df.loc[df["label"] == "severe_toxicity",["labels"]] = '[0,0,0,1,0,0,0]'
+
+        #if insult
+        df.loc[df["label"] == "insult",["labels"]] = '[0,1,0,0,0,0,0]'
+
+        #if identity_attack
+        df.loc[df["label"] == "identity_attack",["labels"]] = '[1,0,0,0,0,0,0]'
+
+        #if obscene
+        df.loc[df["label"] == "obscene",["labels"]] = '[0,0,1,0,0,0,0]'
+
+        import ast
+        df['labels'] = df['labels'].apply(lambda row: ast.literal_eval(row)) 
+        df.rename(columns = {'ID':'id'}, inplace = True)
 
 labels = df['labels'].values.tolist()
 texts = df['text'].values.tolist()
 
 df = df[['text', 'id', 'labels']]
 pprint(df)
-
 
 
 # instantiate model, this is pretty simple
@@ -124,8 +155,6 @@ def tokenize(example):
         max_length=512,
         truncation=True,
     )
-
-
 
 
 def optimize_threshold(predictions, labels):
@@ -341,21 +370,21 @@ print(preds[2000:2050])
 
 # if args.new_test == True: #WHY DOES THIS NOT WORK? HUH?
 #     print("doing the changes!")
-    for i in range(len(preds)):
-        if labels[i][0] == 1 and preds[i][0] == 1:
-            preds[i] = [1,0,0,0,0,0,0]
-        if labels[i][5] == 1 and preds[i][5] == 1:
-            preds[i] = [0,0,0,0,0,1,0]
-        if labels[i][3] == 1 and preds[i][3] == 1:
-            preds[i] = [0,0,0,1,0,0,0]
-        if labels[i][1] == 1 and preds[i][1] == 1:
-            preds[i] = [0,1,0,0,0,0,0]
-        if labels[i][2] == 1 and preds[i][2] == 1:
-            preds[i] = [0,0,1,0,0,0,0]
-        if labels[i][4] == 1 and preds[i][4] == 1:
-            preds[i] = [0,0,0,0,1,0,0]
-        else:
-            preds[i] = [0,0,0,0,0,0,1]
+for i in range(len(preds)):
+    if labels[i][0] == 1 and preds[i][0] == 1:
+        preds[i] = [1,0,0,0,0,0,0]
+    if labels[i][5] == 1 and preds[i][5] == 1:
+        preds[i] = [0,0,0,0,0,1,0]
+    if labels[i][3] == 1 and preds[i][3] == 1:
+        preds[i] = [0,0,0,1,0,0,0]
+    if labels[i][1] == 1 and preds[i][1] == 1:
+        preds[i] = [0,1,0,0,0,0,0]
+    if labels[i][2] == 1 and preds[i][2] == 1:
+        preds[i] = [0,0,1,0,0,0,0]
+    if labels[i][4] == 1 and preds[i][4] == 1:
+        preds[i] = [0,0,0,0,1,0,0]
+    else:
+        preds[i] = [0,0,0,0,0,0,1]
 
 # change to only take 6 labels from the 7
 if len(preds[0]) == 7:

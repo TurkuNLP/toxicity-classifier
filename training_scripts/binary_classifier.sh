@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
 #SBATCH --gres=gpu:v100:1
-#SBATCH --output=logs/binary/%j.out
-#SBATCH --error=../logs/%j.err
+#SBATCH --output=../logs/binary/%j.out
+#SBATCH --error=../../logs/%j.err
 
 module load pytorch 
 
@@ -20,11 +20,11 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, model: $MODEL "
 
 #TRANSLATED
 echo "Translated train and test"
-srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev
+srun python3 toxic_classifier-binary.py --train ../data/train_fi_deepl.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev
 
 # TRANSFER
 # echo "transfer from english train to translated finnish test"
-# srun python3 toxic_classifier-binary.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
+# srun python3 toxic_classifier-binary.py --train ../data/train_en.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
 
 
 
@@ -33,7 +33,7 @@ srun python3 toxic_classifier-binary.py --train data/train_fi_deepl.jsonl --test
 
 
 # echo "Translated train and test"
-# srun python3 true-binary-classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
+# srun python3 true-binary-classifier.py --train ../data/train_fi_deepl.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss #--dev
 
 
 

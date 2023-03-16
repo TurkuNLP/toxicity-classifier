@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=1 # from 10 to 1
 #SBATCH --mem-per-cpu=8000
 #SBATCH --gres=gpu:v100:1
-#SBATCH --output=grid_logs/%j.out
-#SBATCH --error=../logs/%j.err
+#SBATCH --output=../grid_logs/%j.out
+#SBATCH --error=../../logs/%j.err
 
 
 # export COMET_API_KEY="ARr02oZjXsfNYlAeIFROYSj7O"
@@ -87,25 +87,25 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 
 # #original english
 # echo "original english"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --clean_as_label --save "og-bert-large3" #--threshold $TR
+# srun python3 toxic_classifier.py --train ../data/train_en.jsonl --test ../data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --clean_as_label --save "og-bert-large3" #--threshold $TR
 
 # # translated deepl
-# echo "Translated train and test deepl"
-# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --save "finbert-large-deepl2" #--clean_as_label #--threshold $TR
+echo "Translated train and test deepl"
+srun python3 toxic_classifier.py --train ../data/train_fi_deepl.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --save "finbert_max_len_256" #--clean_as_label #--threshold $TR
 
 # translated opus-mt
-echo "opus-mt translated train and test"
-srun python3 toxic_classifier.py --train data/train-opus-mt-translated.csv --test data/test-opus-mt-translated3.csv --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev --save "opus-mt-finbert-base" #--threshold $TR
+# echo "opus-mt translated train and test"
+# srun python3 toxic_classifier.py --train ../data/train-opus-mt-translated.csv --test ../data/test-opus-mt-translated3.csv --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev --save "opus-mt-finbert-base" #--threshold $TR
 
 
 # backtranslation
 # echo "backtranslation using original english test set"
-# srun python3 toxic_classifier.py --train data/train_en_backtr_deepl.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev #--threshold $TR
+# srun python3 toxic_classifier.py --train ../data/train_en_backtr_deepl.jsonl --test ../data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev #--threshold $TR
 
 
 # transfer
 # echo "transfer with xlmr"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev #--threshold $TR
+# srun python3 toxic_classifier.py --train ../data/train_en.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --clean_as_label --loss --dev #--threshold $TR
 
 
 
@@ -115,11 +115,11 @@ srun python3 toxic_classifier.py --train data/train-opus-mt-translated.csv --tes
 
 #original
 # echo "original train and test data"
-# srun python3 toxic_classifier.py --train data/train_en.jsonl --test data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --binary --loss --clean_as_label #--dev --threshold $TR
+# srun python3 toxic_classifier.py --train ../data/train_en.jsonl --test ../data/test_en.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --binary --loss --clean_as_label #--dev --threshold $TR
 
 # multilingual
 # echo "multilingual with english and finnish train files"
-# srun python3 toxic_classifier.py --train data/train_fi_deepl.jsonl data/train_en.jsonl --test data/test_fi_deepl.jsonl --model xlm-roberta-base --batch $BATCH --epochs $EPOCHS --learning $LR --loss --clean_as_label --dev --save "multilingual-xlmr" #--binary  #--threshold $TR #
+# srun python3 toxic_classifier.py --train ../data/train_fi_deepl.jsonl ../data/train_en.jsonl --test ../data/test_fi_deepl.jsonl --model xlm-roberta-base --batch $BATCH --epochs $EPOCHS --learning $LR --loss --clean_as_label --dev --save "multilingual-xlmr" #--binary  #--threshold $TR #
 
 
 echo "END: $(date)"
