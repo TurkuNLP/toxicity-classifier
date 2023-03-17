@@ -110,7 +110,7 @@ if args.new_test == True:
         df['labels'] = df['labels'].apply(lambda row: ast.literal_eval(row)) 
         df.rename(columns = {'ID':'id'}, inplace = True)
 
-    else if len(config_json["id2label"]) == 7:
+    elif len(config_json["id2label"]) == 7:
         # if the label includes not- something
         df.loc[df['label'].str.contains("not-"),["labels"]] = '[0,0,0,0,0,0,1]'
 

@@ -484,3 +484,74 @@ label_severe_toxicity       0.43      0.45      0.44       312
 {'eval_loss': 1.9487730264663696, 'eval_f1': 0.7597357919361497, 'eval_f1_macro': 0.6402972637154186, 'eval_precision': 0.7311614355714475, 'eval_recall': 0.7906343978232852, 'eval_probs_roc_auc': 0.9787812950840102, 'eval_micro_roc_auc': 0.8898160526136701, 'eval_macro_roc_auc': 0.8356442008457718, 'eval_accuracy': 0.9181576061413128, 'eval_hamming loss': 0.018235939213535956, 'eval_runtime': 203.4717, 'eval_samples_per_second': 156.852, 'eval_steps_per_second': 9.805, 'epoch': 3.92}
 {'train_runtime': 13959.2483, 'train_samples_per_second': 36.58, 'train_steps_per_second': 4.572, 'train_loss': 1.0628591959298819, 'epoch': 4.0}
 saved
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.52      0.67      0.59       712
+         label_insult       0.59      0.74      0.66      3427
+        label_obscene       0.60      0.75      0.66      3691
+label_severe_toxicity       0.27      0.66      0.38       367
+         label_threat       0.51      0.65      0.57       211
+       label_toxicity       0.53      0.87      0.66      6090
+
+            micro avg       0.55      0.79      0.64     14498
+            macro avg       0.50      0.72      0.59     14498
+         weighted avg       0.55      0.79      0.65     14498
+          samples avg       0.07      0.07      0.07     14498
+
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'epoch': 4.0,
+ 'eval_accuracy': 0.8675169589546406,
+ 'eval_f1': 0.6446206371152056,
+ 'eval_f1_macro': 0.5866745409272003,
+ 'eval_hamming loss': 0.032810757864682655,
+ 'eval_loss': 1.7919025421142578,
+ 'eval_macro_roc_auc': 0.8478988240547675,
+ 'eval_micro_roc_auc': 0.8810640825114737,
+ 'eval_precision': 0.545432841522227,
+ 'eval_probs_roc_auc': 0.972872143517324,
+ 'eval_recall': 0.7879017795558008,
+ 'eval_runtime': 415.7217,
+ 'eval_samples_per_second': 153.896,
+ 'eval_steps_per_second': 9.619}
+F1: 0.6446206371152056
+Best threshold: 0.6499999999999999
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.52      0.67      0.59       712
+         label_insult       0.59      0.74      0.66      3427
+        label_obscene       0.60      0.75      0.66      3691
+label_severe_toxicity       0.27      0.66      0.38       367
+         label_threat       0.51      0.65      0.57       211
+       label_toxicity       0.53      0.87      0.66      6090
+
+            micro avg       0.55      0.79      0.64     14498
+            macro avg       0.50      0.72      0.59     14498
+         weighted avg       0.55      0.79      0.65     14498
+          samples avg       0.07      0.07      0.07     14498
+
+Best threshold: 0.3
+                       precision    recall  f1-score   support
+
+label_identity_attack       0.47      0.72      0.57       712
+         label_insult       0.56      0.76      0.64      3427
+        label_obscene       0.56      0.78      0.66      3691
+label_severe_toxicity       0.24      0.72      0.36       367
+         label_threat       0.47      0.69      0.56       211
+       label_toxicity       0.52      0.88      0.65      6090
+
+            micro avg       0.52      0.81      0.63     14498
+            macro avg       0.47      0.76      0.57     14498
+         weighted avg       0.53      0.81      0.64     14498
+          samples avg       0.07      0.08      0.07     14498
+
+{0: 'label_identity_attack', 1: 'label_insult', 2: 'label_obscene', 3: 'label_severe_toxicity', 4: 'label_threat', 5: 'label_toxicity'}
+63978 63978 63978
+END: Fri Mar 17 13:28:26 EET 2023
