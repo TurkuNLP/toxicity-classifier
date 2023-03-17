@@ -8,3 +8,5 @@
 /tmp
 /files
 /new_cache_dir
+/training_scripts/mlruns
+/miscallenous_stuff/udpipe

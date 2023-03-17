@@ -620,7 +620,7 @@ def main():
     def tokenize(example):
         return tokenizer(
             example["text"],
-            max_length=128, # try different ones: 512 (used always before), 256, 128
+            max_length=512, # try different ones: 512 (used always before), 256, 128
             truncation=True
         )
         

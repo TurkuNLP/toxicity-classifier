@@ -1,91 +1,40 @@
 import json
-import pandas as pd
+import jsonlines
 import sys
-import requests
-import re
-import datetime
-
-thusfar = 48861 # 2 less than the line count is in the csv file
+import datasets
 
 data = sys.argv[1]
 
-df = pd.read_csv(data)
-print(df[:5])
+dataset = datasets.load_dataset("json", data_files=data)
+print(dataset)
 
-# if text begins with & I should remove that character, it messes with the url but does not throw an error
-import re
-chars_to_remove = ['&', ';', '#']
-regular_expression = '[' + re.escape (''. join (chars_to_remove)) + ']'
+texts = dataset["train"]['text'] # automatically loads as train split in the above
+ids = dataset["train"]['id']
+final = []
 
-df["text"] = df['text'].str.replace(regular_expression, '', regex=True)
+thusfar = 0 # the line number where to continue if the pipe fails or something
 
+# TODO make this work :D remove everything related the url stuff
+import ufal.udpipe
+udpipemodel=ufal.udpipe.Model.load("udpipe/english-ewt.udpipe") # change to a finnish model for backtranslation
+tokenizer=ufal.udpipe.Pipeline(udpipemodel,"tokenizer=ranges","none","none","conllu")
+for i in range(len(texts)):
+    parsed = tokenizer.process(texts[i]) # for some reason when testing interactive python this fails? what is wrong with this process thing
+    #print(parsed)
+    sents=[line.replace("# text = ","") for line in parsed.split("\n") if line.startswith("# text = ")]
+    #print(sents)
+    dictionary = ({"id": f"{ids[i]}", "text": f"{sents}"})
+    final.append(dictionary)
+    if i % 100 == 0:
+        save(final)
+        final = []
 
-# TODO this I need to update to use the python library, example in that one colab notebook for tda course, don't remember why I had problems and did not use it last time?
-# import ufal.udpipe
-# udpipemodel=ufal.udpipe.Model.load("english-ewt.udpipe")
-# tokenizer=ufal.udpipe.Pipeline(udpipemodel,"tokenizer=ranges","none","none","conllu")
-# print(tokenizer.process("I have a dog. The dog is cute. And brown at that.")) # example
-# sents=[line.replace("# text = ","") for line in parsed.split("\n") if line.startswith("# text = ")]
+# def save(final):
+#     with open("data.json", 'a') as f: # a is for appending
+#         for item in final:
+#             f.write(json.dumps(item) + "\n")
 
-#text=False
-for i in range(len(df[thusfar:])):
-    resultlist = []
-    ip = str(df["text"][i+thusfar])
-    ip = f"{ip}" # was this necessary? I add quote marks to everything
-    #print(ip, i)
-
-    api_url = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={ip}"
-    if len(api_url) > 1000: #2048
-        print("too long", i + thusfar)
-
-        # get the strings to lists
-        import math
-        amount = len(ip) / 1000
-        amount = int(math.ceil(amount))
-        chunk = int(len(ip) / amount)
-        parts = [ip[i:i+chunk] for i in range(0, len(ip), chunk)]
-        for new_ip in parts:
-            api_url = f"http://lindat.mff.cuni.cz/services/udpipe/api/process?model=eng&tokenizer&tagger&parser&data={new_ip}"
-            # print(len(api_url))
-            # print(api_url)
-            response = requests.get(api_url)
-            response = response.json()
-            result = response["result"]
-            resultlist = resultlist + result.split("\n") # get the results in one list (list + list)
-        
-    else:
-        response = requests.get(api_url)
-        response = response.json()
-        result = response["result"]
-        resultlist = result.split("\n")
-    #resultlist = re.split("\n|\t", result)
-
-    textlist = []
-    for one in resultlist:
-        if "# text " in one:
-            #text=True
-            newstr = one.replace("# text = ", "") # get just the sentence
-        # if "SpacesAfter=" in one:
-        #     # could get all spaces from spacesafter thing in the text
-
-            #print("----")
-            #print(newstr)   
-            textlist.append(newstr)
-    
-    #print(i+26700)
-    # update the dataframe to have the split texts
-    df.at[i+thusfar, 'text'] = textlist 
-
-    num = i + thusfar
-    # save sometimes just in case
-    if num % 10 == 0:
-        now = datetime.datetime.now()
-        print(now)
-        print(i+thusfar, "rows split")
-        # save to csv
-        print(df[thusfar:num])
-        df.to_csv("data/test-sentence-split.csv", index = False)
-
-
-# save to csv
-df.to_csv('data/test-sentence-split.csv', index=False)
+# OR
+with jsonlines.open('output.jsonl', mode='w') as writer:
+    for item in final:
+        writer.write(item)

@@ -91,7 +91,7 @@ echo "epochs: $EPOCHS, learning rate: $LR, batch size: $BATCH, prediction tresho
 
 # # translated deepl
 echo "Translated train and test deepl"
-srun python3 toxic_classifier.py --train ../data/train_fi_deepl.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --save "finbert_max_len_256" #--clean_as_label #--threshold $TR
+srun python3 toxic_classifier.py --train ../data/train_fi_deepl.jsonl --test ../data/test_fi_deepl.jsonl --model $MODEL --batch $BATCH --epochs $EPOCHS --learning $LR --loss --dev --save "model_name" #--clean_as_label #--threshold $TR
 
 # translated opus-mt
 # echo "opus-mt translated train and test"
