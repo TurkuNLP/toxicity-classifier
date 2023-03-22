@@ -14,6 +14,6 @@ module load pytorch
 
 echo "START: $(date)"
 
-srun python3 miscallenous_stuff/translator.py data/split_output_en.jsonl #data/test-sentence-split.csv
+srun python3 miscallenous_stuff/translator.py data/split_output_en.jsonl data/train_en.jsonl #data/test-sentence-split.csv
 
 echo "END: $(date)"

@@ -2,14 +2,18 @@ from transformers import pipeline
 import tqdm
 import datetime
 from transformers import MarianMTModel, MarianTokenizer
+from transformers.pipelines.pt_utils import KeyDataset
 import sys
 import pandas as pd
 import json
+import jsonlines
+import ast
 
 print("start translation script")
 
 begin = 0 # the number of rows translated previously
 data = sys.argv[1]
+og = sys.argv[2]
 
 # if using the csv files done previously!
 
@@ -23,12 +27,12 @@ data = sys.argv[1]
 # texts = texts.values
 #print(texts[:5])
 
-# else just use this
-import datasets
-dataset = dataset = datasets.load_dataset("json", data_files=data)
-print(dataset)
+#get the split texts for translation
+split_texts = []
+with open(data, 'r', encoding='utf-8') as f:
+    for line in f:
+        split_texts.append(json.loads(line))
 
-texts = dataset["train"]['text'] # automatically loads as train split in the above
 
 # instantiate the pipeline
 tokenizer = MarianTokenizer.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi", model_max_length=460) # added model max length
@@ -36,53 +40,58 @@ model = MarianMTModel.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi")
 pipe = pipeline("translation", model=model, tokenizer=tokenizer, device=0) # , device=0
 # go through every example (list of lists, so pipe gets list of sentences from one example)
 
-def save_data(comments, current):
+# get the original file for processing the data for saving # TODO check that this works and change if not
+all_jsonlines = []
+with jsonlines.open(og) as reader:
+    for obj in reader:
+        all_jsonlines.append(obj)
+
+def save_data(comments, current, previous):
     # here take the original data file train_en.jsonl and only change the text fields in each and save them
     all_dictionaries = []
-    previous = current - 100
+    num = previous
+    for obj in all_jsonlines[previous:]:
+        dictionary = obj
+        # change the text in each to new one
+        dictionary["text"] = comments[num] 
+        #print(comments[num])
+        all_dictionaries.append(dictionary)
+        num += 1
+        if num > current:
+            break
 
-    with jsonlines.open('data/split_output_en.jsonl') as reader:
-        for obj in reader:
-            num = previous
-            print(obj)
-            dictionary = obj
-            # change the text in each to new one
-            dictionary["text"] = comments[num] 
-            all_dictionaries.append(dictionary)
-            if num + 1 > current:
-                break
-            else:
-                num += 1
-
-    with jsonlines.open('data/translated_en-fi.jsonl', mode='a') as writer:
+    with jsonlines.open('data/new_opus_translations/translated_en-fi.jsonl', mode='a') as writer:
         for item in all_dictionaries:
             writer.write(item)
 
 
 print("beginning translation")
 comments = []
+previous = begin
 
-for i in tqdm.tqdm(range(len(texts[begin:]))):
-    # what was my reason for max_length 460?
-    tr = pipe(texts, truncation=True, max_length=460) # this should only do the texts for translation, can also just use 'texts' instead if this does not work for some reason
+for i in tqdm.tqdm(range(len(split_texts[begin:]))): 
+    text = ast.literal_eval(split_texts[i+begin]["text"]) # this should now be a real list
+    tr = pipe(text, truncation='only_first', max_length=460) # what was my reason for max_length 460?
     #print(tr)
-    translations = [t["translation_text"] for t in tr]
+    translations = [t["translation_text"] for t in tr] # tr[0]["translation_text"] 
     # print("--")
-    # print(translations)
+    #print(translations)
     final = ' '.join(translations)
+    #print(final)
     #print(final)
     #print(i)
     
     # make list of final texts
     comments.append(final)
 
-    # save every 1000 rows
+    # save every 100 rows
     if i % 100 == 0 and i != 0:
         print(datetime.datetime.now())
         print(i+begin+1, "rows translated")
-        current = 1
-        save_data(comments, current)
+        current = i + begin
+        save_data(comments, current, previous)
+        previous = i + begin
 
 
 print("all translated")
-save_data(final)
+save_data(comments, len(split_texts) - 1, previous) # this goes through all the comments and the texts to make the final file

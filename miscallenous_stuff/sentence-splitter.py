@@ -24,7 +24,7 @@ thusfar = 0 # the line number where to continue if the pipe fails or something
 
 # OR
 def save(final):
-    with jsonlines.open(data, mode='a') as writer:
+    with jsonlines.open("data/new_opus_translations/split_output_en.jsonl", mode='a') as writer:
         for item in final:
             writer.write(item)
 
