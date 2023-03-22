@@ -8,7 +8,7 @@ import json
 
 print("start translation script")
 
-num = 0 # the number of rows translated previously
+begin = 0 # the number of rows translated previously
 data = sys.argv[1]
 
 # if using the csv files done previously!
@@ -36,22 +36,25 @@ model = MarianMTModel.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi")
 pipe = pipeline("translation", model=model, tokenizer=tokenizer, device=0) # , device=0
 # go through every example (list of lists, so pipe gets list of sentences from one example)
 
-def save_data(comments):
-    print()
+def save_data(comments, current):
     # here take the original data file train_en.jsonl and only change the text fields in each and save them
     all_dictionaries = []
+    previous = current - 100
 
-    with jsonlines.open('input.jsonl') as reader:
+    with jsonlines.open('data/split_output_en.jsonl') as reader:
         for obj in reader:
-            num = 0
+            num = previous
             print(obj)
             dictionary = obj
             # change the text in each to new one
             dictionary["text"] = comments[num] 
-            num += 1
             all_dictionaries.append(dictionary)
+            if num + 1 > current:
+                break
+            else:
+                num += 1
 
-    with jsonlines.open('output.jsonl', mode='w') as writer:
+    with jsonlines.open('data/translated_en-fi.jsonl', mode='a') as writer:
         for item in all_dictionaries:
             writer.write(item)
 
@@ -59,9 +62,9 @@ def save_data(comments):
 print("beginning translation")
 comments = []
 
-for i in tqdm.tqdm(range(len(texts[num:]))):
+for i in tqdm.tqdm(range(len(texts[begin:]))):
     # what was my reason for max_length 460?
-    tr = pipe(dataset["train"], truncation=True, max_length=460) # this should only do the texts for translation, can also just use 'texts' instead if this does not work for some reason
+    tr = pipe(texts, truncation=True, max_length=460) # this should only do the texts for translation, can also just use 'texts' instead if this does not work for some reason
     #print(tr)
     translations = [t["translation_text"] for t in tr]
     # print("--")
@@ -74,12 +77,11 @@ for i in tqdm.tqdm(range(len(texts[num:]))):
     comments.append(final)
 
     # save every 1000 rows
-    if current % 1000 == 0:
-        now = datetime.datetime.now()
-        print(now)
-        print(i+num+1, "rows translated")
-
-        save_data()
+    if i % 100 == 0 and i != 0:
+        print(datetime.datetime.now())
+        print(i+begin+1, "rows translated")
+        current = 1
+        save_data(comments, current)
 
 
 print("all translated")
