@@ -129,7 +129,7 @@ toxicity
     116 1.0
 
     unanimous: 58 %
-    atleast 2/3: 64 %
+    atleast 2/3: 93 %
 
 
 100 comments:
