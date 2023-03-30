@@ -343,7 +343,7 @@ def multi_label_metrics(predictions, labels, threshold):
             'recall': recall
         }
     else:
-        precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro')
+        precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro') # note also micro precision and recall
         f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
         
         probs_roc_auc = roc_auc_score(y_true=y_true, y_score=probs)

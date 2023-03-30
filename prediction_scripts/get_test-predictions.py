@@ -220,6 +220,8 @@ def multi_label_metrics(predictions, labels, threshold):
     print("before change")
     print(y_pred[:30])
     if args.new_test == True:
+
+        # TODO add here the check for 6 or 7 labels
         # for testing the new test set, set probabilities for labels other than the true label to 0.
         for i in range(len(y_pred)):
             if y_true[i][0] == 1 and y_pred[i][0] == 1:

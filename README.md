@@ -7,3 +7,10 @@ New annotated data for Finnish based on a sample from Suomi24 is available in th
 ## Examples of mistakes the model makes
 
 Error analysis is coming later.
+
+
+## Add explanations of the labels here? would make sense and people could use them maybe
+
+The labels used for the Jigsaw toxicity data are: INSERT LIST
+
+The explanations for the labels are --- and can be found on .
