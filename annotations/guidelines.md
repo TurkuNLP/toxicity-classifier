@@ -72,7 +72,7 @@ The final sample includes texts where the inter-annotator agreement was 1.0 or t
 | insult | 47,5 %   |  49,6 % |  94,5 % | 95,6 %  |
 | severe toxicity | 63 %   | 66 %  |  92 % |   96,6 %   |
 | threat |  82 %   | 80,3 %   |  98 % |  97,3 %   |
-| toxicity | 58 %   | 54 %   |  64 %  |  89,6 %  |
+| toxicity | 58 %   | 54 %   |  93 %  |  89,6 %  |
 | obscene | 69 %   | 62 %  |  97 %  | 96 % |
 
 
