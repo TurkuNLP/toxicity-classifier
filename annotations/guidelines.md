@@ -32,12 +32,12 @@ counterfactuals statements <!--- as in "if I was there I would have..." --->
 
 ### Insult
 
-terms that are insulting towards groups of people (also in identity attack)
-expletives with political group words such as "vitun demari/suvakki/persu"
+terms that are insulting towards groups of people (also in identity attack) 
+insults against political groups, e.g. "vitun demari/suvakki/persu" -> "fucking liberal/conservative etc." <!--- I made this decision here.. --->
 
 negative insulting comments towards oneself, things other than people and hypothetical situations NOT included
 
-PROBLEM: use of racist or rapist if true, target not clear
+<!--- PROBLEM: use of racist or rapist if true, target not clear --->
 
 ### Identity attack
 

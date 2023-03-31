@@ -70,7 +70,6 @@ if args.new_test == True:
     for i in range(len(data)):
         data[i] = data[i].replace("\n", "")
         data[i] = data[i].split("\t")
-        #now in 5 columns, id, text, label, agreement, annotations
         assert len(data[i]) == 3
 
     df = pd.DataFrame(data, columns =['ID', 'label', 'text'])
