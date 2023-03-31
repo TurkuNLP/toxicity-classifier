@@ -5,3 +5,9 @@ obscene	861056	14598	8286	6395	5605	5513	5676	6924	9741	22073
 severe_toxicity	928207	7332	3093	1821	1145	898	776	680	793	1122
 threat	941343	2062	710	334	187	153	128	136	170	644
 toxicity	778336	24683	10464	8144	8052	8840	10814	15548	25042	55944
+
+
+
+use these with annotation batches to give some sort of weights???? Need to ask Sampo specifically for help
+
+Is this even possible to do with automated metrics? and if so how would I go about doing that manually
