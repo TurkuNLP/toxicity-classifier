@@ -17,5 +17,6 @@ New annotated data for Finnish based on a sample from Suomi24 is available in th
 | eb79c0092ce7ec64 | "== Ok == \n\n Testasin vain, kuinka nopeasti typeriin muokkauksiin reagoidaan... \n\n  Se tyyppi, jonka juuri hoidit. | toxicity | - |
 | 3d9d62c203b619ed | == One for you == \n\n En tiedä, ylläpidätkö vielä muokkausluetteloasi, mutta tämä muokkaus - ja sitä seurannut selitys - on varmasti aivan Wikipedian typeryyksien listalla. | insult, toxicity | toxicity |
 | ec2f87887d66f638 | kukko liha hiekka joka mdjdht | - | insult, obscene, toxicity |
+| 6adbbabff7afbb5d | homo, joka tykkää mulkusta perseessään. Hän juoksi niin paljon kiristääkseen persettään | insult, obscene, toxicity | identity_attack, insult, obscene, severe_toxicity, toxicity |
 
 As the recall is better than precision for the trained model, the model mostly predicts more labels than there should be according to the gold labels. Sometimes though the model does not predict any label although there should be at least one. We have to note that the original Jigsaw data is not without flaws in itself and there might be mistakes in the labeling which might affect the model.
