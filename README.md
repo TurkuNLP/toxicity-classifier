@@ -4,6 +4,11 @@ This repository includes code for classifying toxic data as multi-label classifi
 
 New annotated data for Finnish based on a sample from Suomi24 is available in the folder annotations in the file all_annotations.tsv and in [huggingface](https://huggingface.co/datasets/TurkuNLP/Suomi24-toxicity-annotated). The script for evaluating that data is in the folder predictions.
 
+
+## NOTE THAT THERE ARE EXPLICIT EXAMPLES FROM THE TEST DATA BELOW
+
+
+
 ## Examples of mistakes the model makes for the test set
 
 | ID | Text | Gold label | predicted label |

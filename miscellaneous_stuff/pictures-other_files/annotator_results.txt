@@ -1,0 +1,64 @@
+identity_attack
+
+tail -n +2 identity_attack.tsv | head -n 200 | cut -f 7 | sort | uniq -c # beginning of file
+
+annotator 1:
+    67 identity_attack
+    121 not-identity_attack
+      3 REJECT
+      9 unsure
+
+annotator 2:
+    25 identity_attack
+    148 not-identity_attack
+      5 REJECT
+     22 unsure
+
+annotator 3:
+    60 identity_attack
+    100 not-identity_attack
+      5 REJECT
+     35 unsure
+
+tail -300 identity_attack.tsv | cut -f 5 | sort | uniq -c
+
+annotator 1:
+98 identity_attack
+    196 not-identity_attack
+      1 REJECT
+      5 unsure
+
+annotator 2:
+ 117 identity_attack
+    161 not-identity_attack
+      1 REJECT
+     21 unsure
+
+annotator 3:
+106 identity_attack
+    145 not-identity_attack
+      2 REJECT
+     47 unsure
+
+
+
+overall:
+
+annotator 1:
+ 165 identity_attack
+    317 not-identity_attack
+      4 REJECT
+     14 unsure
+
+annotator 2:
+142 identity_attack
+    309 not-identity_attack
+      6 REJECT
+     43 unsure
+
+annotator 3:
+166 identity_attack
+    245 not-identity_attack
+      7 REJECT
+     82 unsure
+
