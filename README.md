@@ -5,14 +5,34 @@ This repository includes code for classifying toxic data as multi-label classifi
 New annotated data for Finnish based on a sample from Suomi24 is available in the folder annotations in the file all_annotations.tsv and in [huggingface](https://huggingface.co/datasets/TurkuNLP/Suomi24-toxicity-annotated). The script for evaluating that data is in the folder predictions.
 
 
-## NOTE THAT THERE ARE EXPLICIT EXAMPLES FROM THE TEST DATA BELOW
+## CITING
+if you want to cite our work, use the bibtex below:
+
+```
+@inproceedings{
+eskelinen2023toxicity,
+title={Toxicity Detection in Finnish Using Machine Translation},
+author={Anni Eskelinen and Laura Silvala and Filip Ginter and Sampo Pyysalo and Veronika Laippala},
+booktitle={The 24rd Nordic Conference on Computational Linguistics},
+year={2023},
+url={https://openreview.net/forum?id=X5DCw7mXz4}
+}
+```
+
+
+## DISCLAIMER: THERE ARE EXPLICIT EXAMPLES FROM THE TEST DATA BELOW
 
 
 
-## Examples of mistakes the model makes for the test set
+## Error analysis
 
 | ID | Text | Gold label | predicted label |
 | -- | ---- | ---------- | --------------- |
+| 9ddfac62e6bd6e09 | Älä valehtele.  Olet tyhmä. slavicmanifestdestiny194 | insult, obscene, toxicity | insult, obscene, toxicity |
+| e62a2528247f06d3 | Mitä helvettiä kritiikkiä kaikesta paskasta, josta voisit syyttää häntä, tämä on parasta, mitä voit keksiä? | obscene, toxicity | obscene, toxicity |
+| a069aa3a2019c4a0 | Brundage oli rasistinen sika mätänee helvetissä natsien kanssa - | identity_attack, insult, obscene, toxicity | identity_attack, insult, obscene, toxicity | 
+| 9e175930f5d94034 | leikkaan sinut ja tapan sinut!!! HANKI ELÄMÄ, VITUN LUUSERI!!!! \n  leikkaan sinut ja tapan sinut!!! HANKI ELÄMÄ, VITUN LUUSERI!!!! \n  leikkaan sinut ja tapan sinut!!! HANKI ELÄMÄ, VITUN LUUSERI!!!! *--//-- (this continues for a while)* | insult, obscene, severe_toxicity, threat, label_toxicity | insult, obscene, severe_toxicity, threat, label_toxicity |
+| 4312dfcc5da8adb9 | Obama on neekeri, eikä hänen pitäisi olla presidentti. | identity_attack, insult, toxicity | identity_attack, insult, toxicity |
 | 166f8512c037f17a | HELVETTIIN, PUTIN, SENKIN MURHAAVA PSYKOPAATTI! | insult, toxicity | insult, obscene, severe_toxicity, toxicity |
 | e4d80d9fa7e13eed | \" \n ::::::Kiitos ajastanne.  Tämän käyttäjän ensimmäinen muokkaus on yhtä kuin jättimäinen \"\"Haista vittu Wikipedia, trollaan sinua niin kovaa, että tarkistat tarkistajat, kun olen valmis.\"\". Banskyn kuvan lisääminen käyttäjäsivulle ja käyttäjänimen valinta puhuvat kirjaimellisesti asiaa.   \" | - | obscene, toxicity |
 | 4d27b01205fd3dc7 | চাপিতলা গ্রামটি একটি প্রাচীন গ্রাম। এই গ্রামটির বয়স প্রায় ৫০০ বছর হবে। এই গ্রামে অনেক কৃতি সন্তানের জন্ম হয়েছে। তাদের মদ্দে অন্নতম হল আলহাজ আব্দুল হাসেম সাব। এই গ্রামটি। এই গ্রামটি। বর্তমানে মুরাদ নাগার থানার একটি বড় ইউনিয়ন এই ইউনিয়ন এর লক সংখ্যা প্রায় ৫০০০০ এর বেশী। এই গ্রামে গ্রামে ১ টি মাদ্দমিক বিদ্যালয় ১ টি কলেজ এবং ৫ টি প্রাইমারী বিদ্যালয় আছে। | - | toxicity |
