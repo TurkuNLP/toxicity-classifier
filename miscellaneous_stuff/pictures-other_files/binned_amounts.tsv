@@ -1,0 +1,29 @@
+label	0.0-0.1	0.1-0.2	0.2-0.3	0.3-0.4	0.4-0.5	0.5-0.6	0.6-0.7	0.7-0.8	0.8-0.9	0.9-1.0
+identity_attack	918724	9310	3860	2372	1623	1427	1224	1315	1439	4573
+insult	854306	23713	11669	7996	6358	5980	5801	6580	9427	14037
+obscene	861056	14598	8286	6395	5605	5513	5676	6924	9741	22073
+severe_toxicity	928207	7332	3093	1821	1145	898	776	680	793	1122
+threat	941343	2062	710	334	187	153	128	136	170	644
+toxicity	778336	24683	10464	8144	8052	8840	10814	15548	25042	55944
+
+
+
+these are the "weights"
+sampo:  but I was thinking of just applying weights relative
+ to the bin size to the TP, FP, and FN counts for each bin
+  and then summing to take prec, rec, and F.
+  
+  "True positives. This is when a classifier correctly predicts the existence of a label."
+
+  I have to manually count TP,FP,TN for each bin
+  6 x 10 = 60 bins to count 
+
+  To make this work almost "automatically" I could do the same bins
+   I have now but also take the predictions
+    and add to the same file -> DONE
+
+    now I just have to do some calculations
+    make if clause where it checks the annotation and the probability (if probability above or below threshold e.g., 0.5)
+    -> then check whether they match and which it is and assign it to a list (the four possibilities)
+    -> then save the numbers somewhere or read the bin weights and already do some calculations :D 
+    all in all: does not sound too bad? unless I run into some random issues of course.
