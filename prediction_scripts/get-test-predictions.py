@@ -10,7 +10,6 @@ from transformers import EvalPrediction
 from sklearn.metrics import classification_report, f1_score, roc_auc_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve
 from sklearn.metrics import hamming_loss
 
-#python3 miscallenous_stuff/get_test-predictions.py --model "../models/finbert-large-deepl" --data "../data/test_fi_deepl.jsonl" --tokenizer "TurkuNLP/bert-base-finnish-cased-v1" --filename "test.tsv"
 
 # this should prevent any caching problems I might have because caching does not happen anymore
 datasets.disable_caching()
@@ -64,7 +63,7 @@ if args.new_test == False:
 if args.new_test == True:
 # FOR OUR NEW TEST SET
 
-    with open("../annotations/all_annotations.tsv", "rt", encoding="utf-8") as f:
+    with open(args.data, "rt", encoding="utf-8") as f:
         data = f.readlines()
     data = data[1:]
     for i in range(len(data)):
@@ -258,8 +257,8 @@ def multi_label_metrics(predictions, labels, threshold):
         probs = new_probs
 
 
-    precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro')
-    f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
+    precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='samples')
+    f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='samples')
     
     probs_roc_auc = roc_auc_score(y_true=y_true, y_score=probs)
     micro_roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro') # micro or macro orr?
