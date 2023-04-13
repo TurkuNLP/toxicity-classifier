@@ -1,0 +1,15 @@
+results for all labels:
+
+
+unweighted:
+precision: 0.41379310344827586
+recall: 0.671850699844479
+f1 0.5121517486662714
+
+weighted:
+precision: 0.55503912115786
+recall: 0.6553809459627764
+f1 0.6010509477690806
+
+
+
