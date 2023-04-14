@@ -16,6 +16,7 @@ module purge
 module load pytorch
 # 0.6499999999999999 
 # "../models/finbert-large-deepl"
+# "../models/finbert-multi/multi-toxic-tr-optimized"
 
 srun python3 get-test-predictions.py --new_test --threshold 0.5 --model "../models/finbert-multi/multi-toxic-tr-optimized" --data "../annotations/all_annotations.tsv" --tokenizer "TurkuNLP/bert-base-finnish-cased-v1" --filename "tested.tsv"
 

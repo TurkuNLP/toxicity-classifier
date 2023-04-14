@@ -59,6 +59,9 @@ if args.new_test == False:
     df=pd.DataFrame(lines)
     df['labels'] = df[label_names[:-1]].values.tolist()
 
+     # read the config.json file to see how many labels the model uses
+    with open(f"{args.model}/config.json", 'r') as config_file:
+        config_json = json.load(config_file)
 
 if args.new_test == True:
 # FOR OUR NEW TEST SET
@@ -219,32 +222,83 @@ def multi_label_metrics(predictions, labels, threshold):
     print(y_pred[:30])
     if args.new_test == True:
 
-        # TODO add here the check for 6 or 7 labels
-        # for testing the new test set, set probabilities for labels other than the true label to 0.
-        for i in range(len(y_pred)):
-            if y_true[i][0] == 1 and y_pred[i][0] == 1:
-                y_pred[i] = [1,0,0,0,0,0,0]
-            if y_true[i][5] == 1 and y_pred[i][5] == 1:
-                y_pred[i] = [0,0,0,0,0,1,0]
-            if y_true[i][3] == 1 and y_pred[i][3] == 1:
-                y_pred[i] = [0,0,0,1,0,0,0]
-            if y_true[i][1] == 1 and y_pred[i][1] == 1:
-                y_pred[i] = [0,1,0,0,0,0,0]
-            if y_true[i][2] == 1 and y_pred[i][2] == 1:
-                y_pred[i] = [0,0,1,0,0,0,0]
-            if y_true[i][4] == 1 and y_pred[i][4] == 1:
-                y_pred[i] = [0,0,0,0,1,0,0]
-            else:
-                y_pred[i] = [0,0,0,0,0,0,1]
+        if len(config_json["id2label"]) == 6:
+            # THIS NEEDS TO BE DONE THIS WAY BECAUSE OTHERWISE IT IS IMPOSSIBLE TO KNOW WHICH LABEL THERE IS SUPPOSED TO BE
+            for i in range(len(y_pred)):
+                if i >= 704 and i < 1056:
+                    if y_pred[i][0] == 1:
+                        y_pred[i] = [1,0,0,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0]
+                elif i >= 0 and i < 351:
+                    if y_pred[i][5] == 1:
+                        y_pred[i] = [0,0,0,0,0,1]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0]
+                elif i >= 351 and i < 704:
+                    if y_pred[i][3] == 1:
+                        y_pred[i] = [0,0,0,1,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0]
+                elif i >= 1056 and i < 1420:
+                    if y_pred[i][1] == 1:
+                        y_pred[i] = [0,1,0,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0]
+                elif i >= 1420 and i < 1829:
+                    if y_pred[i][2] == 1:
+                        y_pred[i] = [0,0,1,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0]
+                elif i >= 1829 and i < 2260:
+                    if y_pred[i][4] == 1:
+                        y_pred[i] = [0,0,0,0,1,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0]
 
+        elif len(config_json["id2label"]) == 7:
+            # for testing the new test set, set probabilities for labels other than the true label to 0.
+           for i in range(len(y_pred)):
+                if i >= 704 and i < 1056:
+                    if y_pred[i][0] == 1:
+                        y_pred[i] = [1,0,0,0,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0,1]
+                elif i >= 0 and i < 351:
+                    if y_pred[i][5] == 1:
+                        y_pred[i] = [0,0,0,0,0,1,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0,1]
+                elif i >= 351 and i < 704:
+                    if y_pred[i][3] == 1:
+                        y_pred[i] = [0,0,0,1,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0,1]
+                elif i >= 1056 and i < 1420:
+                    if y_pred[i][1] == 1:
+                        y_pred[i] = [0,1,0,0,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0,1]
+                elif i >= 1420 and i < 1829:
+                    if y_pred[i][2] == 1:
+                        y_pred[i] = [0,0,1,0,0,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0,1]
+                elif i >= 1829 and i < 2260:
+                    if y_pred[i][4] == 1:
+                        y_pred[i] = [0,0,0,0,1,0,0]
+                    else:
+                        y_pred[i] = [0,0,0,0,0,0,1]
+                
 
-        print(probs[:10])
-        print(y_pred)
+        print("after change")
+        #print(probs[:10])
+        print(y_pred[:30])
 
 
     # change to not take clean label into account when computing metrics (delete last prediction)
     # technically there can be a clean label and a toxic label at the same time but this just takes the toxic labels
-    if len(y_pred[0]) == 7:
+    if len(config_json["id2label"]) == 7:
         new_pred, new_true, new_probs = [], [], []
         for i in range(len(y_pred)):
             new_pred.append(y_pred[i][:-1])
@@ -257,8 +311,8 @@ def multi_label_metrics(predictions, labels, threshold):
         probs = new_probs
 
 
-    precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='samples')
-    f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='samples')
+    precision, recall, f1, _ = precision_recall_fscore_support(y_true=y_true, y_pred=y_pred, average='micro')
+    f1_macro = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
     
     probs_roc_auc = roc_auc_score(y_true=y_true, y_score=probs)
     micro_roc_auc = roc_auc_score(y_true=y_true, y_score=y_pred, average = 'micro') # micro or macro orr?
@@ -367,24 +421,6 @@ preds[np.where(probs >= threshold)] = 1
 
 print("before change")
 print(preds[2000:2050])
-
-# if args.new_test == True: #WHY DOES THIS NOT WORK? HUH?
-#     print("doing the changes!")
-for i in range(len(preds)):
-    if labels[i][0] == 1 and preds[i][0] == 1:
-        preds[i] = [1,0,0,0,0,0,0]
-    if labels[i][5] == 1 and preds[i][5] == 1:
-        preds[i] = [0,0,0,0,0,1,0]
-    if labels[i][3] == 1 and preds[i][3] == 1:
-        preds[i] = [0,0,0,1,0,0,0]
-    if labels[i][1] == 1 and preds[i][1] == 1:
-        preds[i] = [0,1,0,0,0,0,0]
-    if labels[i][2] == 1 and preds[i][2] == 1:
-        preds[i] = [0,0,1,0,0,0,0]
-    if labels[i][4] == 1 and preds[i][4] == 1:
-        preds[i] = [0,0,0,0,1,0,0]
-    else:
-        preds[i] = [0,0,0,0,0,0,1]
 
 # change to only take 6 labels from the 7
 if len(preds[0]) == 7:
