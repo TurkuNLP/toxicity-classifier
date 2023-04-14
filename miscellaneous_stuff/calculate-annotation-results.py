@@ -21,7 +21,7 @@
 
 # IF i want everything at once I would have to do a double loop but doable actually?
 # cd miscellaneous_stuff/new_batches/sample-01-LABEL
-# echo -e "TP \t TN \t FP \t FN" >> ../weighted-results.tsv | for f in * ; do python3 ../../calculate-weighted-annotation-results.py ../../pictures_and_other_files/binned_amounts.tsv $f insult >> ../weighted-results.tsv; done
+# echo -e "TP \t TN \t FP \t FN" >> ../weighted-results.tsv | for f in * ; do python3 ../../calculate-annotation-results.py ../../pictures_and_other_files/binned_amounts.tsv $f insult >> ../weighted-results.tsv; done
 # append to file
 
 
@@ -69,18 +69,50 @@ def calculate():
     recall = TP / (TP + FN)
     f1 = 2 * TP / (2 * TP + FP + FN)
 
-    return precision, recall, f1
+    print("precision:", precision)
+    print("recall:", recall)
+    print("f1", f1)
 
-    # these give biiig numbers... I probably should adjust the weight numbers
-    #  by dividing them by the number of comments in the file where the sampling was made because these raw numbers make it impossible
-    # results are still??
+def calculate_labels():
+    # read file
+    with open("weighted-results.tsv") as f:
+        data = f.readlines()
+        data = data[1:]
+        for i in range(len(data)):
+            data[i] = data[i].replace("\n", "")
+            data[i] = data[i].split("\t")
+
+    # loop and sum columns to a new list
+    int_data = []
+    for i in range(len(data)):
+        lista = [eval(i) for i in data[i]]
+        int_data.append(lista)
+    
+    label_count = 0
+    for i in range(0, len(int_data), 10): # steps by ten to get numbers for each label
+        summed = [sum(i) for i in zip(*int_data[i:i+10])]
+        #print(int_data[i:i+10])
+        TP = summed[0]
+        TN = summed[1]
+        FP = summed[2]
+        FN = summed[3]
+        #print(TP, TN, FP, FN)
+
+        # these will be MICRO
+        precision = TP / (TP + FP)
+        recall = TP / (TP + FN)
+        f1 = 2 * TP / (2 * TP + FP + FN)
+        print("label", label_count)
+        label_count += 1
+        print("precision:", precision)
+        print("recall:", recall)
+        print("f1", f1)
+        print("-----------")
 
 
 def main(argv):
-    prec, rec, f1 = calculate()
-    print("precision:", prec)
-    print("recall:", rec)
-    print("f1", f1)
+    calculate()
+    calculate_labels()
 
 
     # args = argparser().parse_args(argv[1:])
@@ -136,8 +168,8 @@ def main(argv):
     #         weighted_FN = FN * int(weights[index][i])
 
     # # here print the stuff lol
-    # print(TP,"\t", TN, "\t", FP,"\t", FN) # unweighted
-    # #print(weighted_TP, "\t", weighted_TN, "\t", weighted_FP, "\t", weighted_FN)
+    # #print(TP,"\t", TN, "\t", FP,"\t", FN) # unweighted
+    # print(weighted_TP, "\t", weighted_TN, "\t", weighted_FP, "\t", weighted_FN)
     # # by default the results tsv looks funny because it is split like that due to the bins anyway
 
 

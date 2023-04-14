@@ -24,4 +24,4 @@ srun python3 get-test-predictions.py --new_test --threshold 0.5 --model "../mode
 
 #srun python3 get-test-predictions.py --new_test --threshold 0.6499999999999999 --model "../models/opus-mt-finbert-base" --data "../data/test_fi_deepl.jsonl" --tokenizer "TurkuNLP/bert-base-finnish-cased-v1" --filename "test-opus.tsv"
 
-echo "END: $(date)
+echo "END: $(date)"

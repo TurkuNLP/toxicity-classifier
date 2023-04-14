@@ -15,6 +15,7 @@ from argparse import ArgumentParser
 def argparser():
     ap = ArgumentParser()
     ap.add_argument('comments', help='jsonl')
+    ap.add_argument('og_predictions', help='tsv')
     ap.add_argument('predictions', help='tsv')
     ap.add_argument('label', help='e.g. "obscene"')
     ap.add_argument('low', type=float, help='e.g. 0.0')
@@ -24,6 +25,10 @@ def argparser():
 
 def main(argv):
     args = argparser().parse_args(argv[1:])
+
+    with open(args.og_predictions) as f:
+        header = next(f).rstrip('\n')
+        og_predicted_data = f.readlines()
 
     ids = []
     with open(args.predictions) as f:
@@ -48,7 +53,7 @@ def main(argv):
             error(f'label "{args.label}" not found in header "{header}"')
             return 1
 
-        for ln, line in enumerate(predicted_data, start=2): # changed from f to predicted_data now that they are in a variable
+        for ln, line in enumerate(og_predicted_data, start=2): # changed from f to predicted_data now that they are in a variable
             fields = line.rstrip('\n').split('\t')
             id_, value = fields[0], fields[index]
             value = float(value)
@@ -63,7 +68,7 @@ def main(argv):
         data[i] = data[i].replace("\n", "")
         data[i] = data[i].split("\t")
         if data[i][0] in ids:
-           if "toxicity" == data[i][1] or "not-toxicity" == data[i][1]: #if args.label in data[i][1]: # if "toxicity" == data[i][1] or "not-toxicity" == data[i][1]: # this only because severe_toxicity has the word toxicity as well
+           if args.label in data[i][1]: #if args.label in data[i][1]: # if "toxicity" == data[i][1] or "not-toxicity" == data[i][1]: # this only because severe_toxicity has the word toxicity as well
                 for j in range(len(columns)):
                     # find id from predictions and take the probability
                     if data[i][0] == columns[j][0]:

@@ -28,7 +28,7 @@ LINES=2000
 
 #srun python3 toxicity_predictions.py --model ../models/xlmr-nocleanlabel-tr --type multi-base --threshold 0.75 --data ../data/SampoData/reddit-Suomi.jsonl --tokenizer xlm-roberta-base --lines $LINES
 
-python3 toxicity_predictions.py --model ../models/multi-toxic-tr-optimized --type multi --threshold 0.76 --data ../data/SampoData/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 #--lines $LINES
+srun python3 toxicity_predictions.py --model ../models/multi-toxic-tr-optimized --type multi --threshold 0.76 --data ../data/SampoData/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 #--lines $LINES
 
 #srun python3 toxicity_predictions.py --model ../models/multi-toxic-large-tr --type multi --threshold 0.76 --data ../data/SampoData/reddit-Suomi.jsonl --tokenizer TurkuNLP/bert-base-finnish-cased-v1 --lines $LINES # finbert-large 
 

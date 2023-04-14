@@ -38,16 +38,30 @@ pprint = PrettyPrinter(compact=True).pprint
 # read the data in
 data = args.data
 
-with open(data, 'r') as json_file:
-        json_list = list(json_file)
-lines = [json.loads(jline) for jline in json_list]
+if ".json" in data:
+    with open(data, 'r') as json_file:
+            json_list = list(json_file)
+    lines = [json.loads(jline) for jline in json_list]
+
+    # use pandas to look at each column
+    df=pd.DataFrame(lines)
+
+elif ".tsv" in data:
+    with open(data, "rt", encoding="utf-8") as f:
+        lines = f.readlines()
+    lines = lines[1:]
+    for i in range(len(lines)):
+        lines[i] = lines[i].replace("\n", "")
+        lines[i] = lines[i].split("\t")
+        assert len(lines[i]) == 3
+
+    df=pd.DataFrame(lines, columns = ['id', 'label', 'text'])
 
 # line_amount = args.lines
 # print("number of lines in the file", len(lines))
 # lines = lines[:line_amount] 
 
-# use pandas to look at each column
-df=pd.DataFrame(lines)
+
 
 # If I want the reddit data to use this I need to do these changes
 if "reddit" in data:
