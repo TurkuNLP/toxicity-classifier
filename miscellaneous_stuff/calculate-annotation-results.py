@@ -21,7 +21,7 @@
 
 # IF i want everything at once I would have to do a double loop but doable actually?
 # cd miscellaneous_stuff/new_batches/sample-01-LABEL
-# echo -e "TP \t TN \t FP \t FN" >> ../weighted-results.tsv | for f in * ; do python3 ../../calculate-annotation-results.py ../../pictures_and_other_files/binned_amounts.tsv $f insult >> ../weighted-results.tsv; done
+# echo -e "TP \t TN \t FP \t FN" >> ../weighted-results.tsv | for f in * ; do python3 ../../calculate-annotation-results.py ../../pictures_and_other_files/binned_amounts.tsv $f insult 0.5 >> ../weighted-results.tsv; done
 # append to file
 
 
@@ -35,6 +35,8 @@ def argparser():
     ap.add_argument('weights', help='binned_amounts.tsv')
     ap.add_argument('annotations', help='tsv')
     ap.add_argument('label', help='e.g. "obscene"')
+    ap.add_argument('threshold', help='e.g. 0.5')
+    ap.add_argument('--calculate', action="store_true", default=False)
     return ap
 
 
@@ -46,7 +48,7 @@ def argparser():
 
 def calculate():
     # read file
-    with open("weighted-results.tsv") as f:
+    with open("unweighted3-results.tsv") as f:
         data = f.readlines()
         data = data[1:]
         for i in range(len(data)):
@@ -75,7 +77,7 @@ def calculate():
 
 def calculate_labels():
     # read file
-    with open("weighted-results.tsv") as f:
+    with open("unweighted3-results.tsv") as f:
         data = f.readlines()
         data = data[1:]
         for i in range(len(data)):
@@ -111,66 +113,68 @@ def calculate_labels():
 
 
 def main(argv):
-    calculate()
-    calculate_labels()
+    args = argparser().parse_args(argv[1:])
+
+    if args.calculate:
+        calculate()
+        calculate_labels()
+
+    else:
+
+        # this has the data from one bin file of the specified label
+        # format is [id, label, text, probability]
+        with open(args.annotations) as f:
+            data = f.readlines()
+            data = data[1:]
+            for i in range(len(data)):
+                data[i] = data[i].replace("\n", "")
+                data[i] = data[i].split("\t")
+        
+        # after this weights has [label, bin1, bin2, etc. ]
+        # so when doing this I just need to find the correct row (index) and then loop the rest of the "columns" in that
+        with open(args.weights) as f:
+            weights = f.readlines()
+            weights = weights[1:]
+            for i in range(len(weights)):
+                weights[i] = weights[i].replace("\n", "")
+                weights[i] = weights[i].split("\t")
 
 
-    # args = argparser().parse_args(argv[1:])
+        # here is where the magic happens lol
+        TP = 0
+        TN = 0
+        FP = 0
+        FN = 0
+        for i in range(len(data)):
+            if "not" in data[i][1] and float(data[i][3]) >= float(args.threshold):
+                FP += 1
+            elif "not" in data[i][1] and float(data[i][3]) < float(args.threshold):
+                TN += 1
+            elif not "not" in data[i][1] and float(data[i][3]) < float(args.threshold):
+                FN += 1
+            elif not "not" in data[i][1] and float(data[i][3]) >= float(args.threshold):
+                TP += 1
 
-    # # this has the data from one bin file of the specified label
-    # # format is [id, label, text, probability]
-    # with open(args.annotations) as f:
-    #     data = f.readlines()
-    #     data = data[1:]
-    #     for i in range(len(data)):
-    #         data[i] = data[i].replace("\n", "")
-    #         data[i] = data[i].split("\t")
-    
-    # # after this weights has [label, bin1, bin2, etc. ]
-    # # so when doing this I just need to find the correct row (index) and then loop the rest of the "columns" in that
-    # with open(args.weights) as f:
-    #     weights = f.readlines()
-    #     weights = weights[1:]
-    #     for i in range(len(weights)):
-    #         weights[i] = weights[i].replace("\n", "")
-    #         weights[i] = weights[i].split("\t")
+        # get index of the current label that is used
+        for i in range(len(weights)):
+            if args.label == weights[i][0]:
+                index = i
+                break
 
+        # multiply the counts with the weights
+        for i in range(len(weights[index])):
+            if i == 0:
+                continue
+            else:
+                weighted_TP = TP * int(weights[index][i])
+                weighted_TN = TN * int(weights[index][i])
+                weighted_FP = FP * int(weights[index][i])
+                weighted_FN = FN * int(weights[index][i])
 
-    # # here is where the magic happens lol
-    # TP = 0
-    # TN = 0
-    # FP = 0
-    # FN = 0
-    # for i in range(len(data)):
-    #     if "not" in data[i][1] and float(data[i][3]) >= 0.5:
-    #         FP += 1
-    #     elif "not" in data[i][1] and float(data[i][3]) < 0.5:
-    #         TN += 1
-    #     elif not "not" in data[i][1] and float(data[i][3]) < 0.5:
-    #         FN += 1
-    #     elif not "not" in data[i][1] and float(data[i][3]) >= 0.5:
-    #         TP += 1
-
-    # # get index of the current label that is used
-    # for i in range(len(weights)):
-    #     if args.label == weights[i][0]:
-    #         index = i
-    #         break
-
-    # # multiply the counts with the weights
-    # for i in range(len(weights[index])):
-    #     if i == 0:
-    #         continue
-    #     else:
-    #         weighted_TP = TP * int(weights[index][i])
-    #         weighted_TN = TN * int(weights[index][i])
-    #         weighted_FP = FP * int(weights[index][i])
-    #         weighted_FN = FN * int(weights[index][i])
-
-    # # here print the stuff lol
-    # #print(TP,"\t", TN, "\t", FP,"\t", FN) # unweighted
-    # print(weighted_TP, "\t", weighted_TN, "\t", weighted_FP, "\t", weighted_FN)
-    # # by default the results tsv looks funny because it is split like that due to the bins anyway
+        # here print the stuff lol
+        #print(TP,"\t", TN, "\t", FP,"\t", FN) # unweighted
+        print(weighted_TP, "\t", weighted_TN, "\t", weighted_FP, "\t", weighted_FN)
+        # by default the results tsv looks funny because it is split like that due to the bins anyway
 
 
 if __name__ == '__main__':

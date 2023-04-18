@@ -4,6 +4,7 @@
 # for l in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9; do h=$(python -c 'print('$l'+0.1)'); python3 sample_comments.py suomi24-2001-2020-1p-sample.jsonl s24predictions.tsv obscene $l $h 10 > sample-01-obscene/comments_${l}-${h}.jsonl; done
 
 #for l in 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9; do h=$(python3 -c 'print('$l'+0.1)'); python3 bin_comments.py ../annotations/all_annotations.tsv ../predictions/s24predictions.tsv insult $l $h > annotation-batches/sample-01-insult/comments_${l}-${h}.tsv; done
+# here might need to add e.g. predictions/annotated-transfer
 
 import sys
 import json
@@ -16,7 +17,7 @@ def argparser():
     ap = ArgumentParser()
     ap.add_argument('comments', help='jsonl')
     ap.add_argument('og_predictions', help='tsv')
-    ap.add_argument('predictions', help='tsv')
+    ap.add_argument('predictions', help='tsv') # can take sometimes out
     ap.add_argument('label', help='e.g. "obscene"')
     ap.add_argument('low', type=float, help='e.g. 0.0')
     ap.add_argument('high', type=float, help='e.g. 0.1')
