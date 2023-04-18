@@ -24,7 +24,7 @@ import seaborn as sns
 corr = df.corr()
 
 # set font scale
-sns.set(font_scale=1.2)
+#sns.set(font_scale=1.2)
 
 #
 # Set up the matplotlib plot configuration
@@ -35,7 +35,7 @@ f, ax = plt.subplots(figsize=(12, 10))
 #
 mask = np.triu(np.ones_like(corr, dtype=bool))
 #
-# Configure a custom diverging colormap
+# Configure a custom colormap
 #
 
 cmap = sns.color_palette("rocket_r", as_cmap=True) # DO NOT USE DIVERGING COLOR PALETTE!
@@ -43,12 +43,15 @@ cmap = sns.color_palette("rocket_r", as_cmap=True) # DO NOT USE DIVERGING COLOR 
 #
 # Draw the heatmap
 #
-heatmap = sns.heatmap(corr, annot=True, annot_kws={ 'fontsize': 16}, mask = mask, cmap=cmap) 
+heatmap = sns.heatmap(corr, annot=True, annot_kws={ 'fontsize': 16, 'weight':'bold'}, mask = mask, cmap=cmap) 
+
+heatmap.set_xticklabels(heatmap.get_xmajorticklabels(), fontsize = 13, weight='bold')
+heatmap.set_yticklabels(heatmap.get_ymajorticklabels(), fontsize = 13, weight='bold')
 
 # adjust colorbar font
 cbar = heatmap.collections[0].colorbar
-cbar.ax.tick_params(labelsize=16)
+cbar.ax.tick_params(labelsize=18)
 
 # save heatmap as an image
 fig = heatmap.get_figure()
-fig.savefig("corr_matrix_test.png") 
+fig.savefig("corr_matrix_test_2.png") 
