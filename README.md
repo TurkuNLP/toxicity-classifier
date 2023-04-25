@@ -26,7 +26,7 @@ url={https://openreview.net/forum?id=X5DCw7mXz4}
 
 ## Error analysis
 
-| ID | Text | Gold label | predicted label |
+| ID | Text | Gold label | Predicted label |
 | -- | ---- | ---------- | --------------- |
 | 9ddfac62e6bd6e09 | Älä valehtele.  Olet tyhmä. slavicmanifestdestiny194 | insult, obscene, toxicity | insult, obscene, toxicity |
 | e62a2528247f06d3 | Mitä helvettiä kritiikkiä kaikesta paskasta, josta voisit syyttää häntä, tämä on parasta, mitä voit keksiä? | obscene, toxicity | obscene, toxicity |
