@@ -1,4 +1,4 @@
-# toxicity-classifier
+# Toxicity-classifier
 
 This repository includes code for classifying toxic data as multi-label classification (6 labels + no label), multiclass/binary classification (toxic or not) and binary evaluation based on the multi-label classification. The goal is to make a decent classifier for Finnish using translated data. The data used is available in [huggingface](https://huggingface.co/datasets/TurkuNLP/wikipedia-toxicity-data-fi) and a model trained on this data is available [here](https://huggingface.co/TurkuNLP/bert-large-finnish-cased-toxicity). 
 
