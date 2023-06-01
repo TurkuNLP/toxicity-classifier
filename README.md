@@ -8,6 +8,9 @@ Raw annotations are also included in the folder `annotations` in the subfolder `
 ## Demo
 A demo can be found [here](https://github.com/TurkuNLP/toxicity-classifier/blob/main/prediction_scripts/Toxicity_Demo.ipynb)
 
+## Presentations
+A powerpoint file of the presentation held at NoDaLiDa 2023 can be found in the repository root.
+
 ## Citing
 if you want to cite our work, use the bibtex below:
 
@@ -35,7 +38,7 @@ if you want to cite our work, use the bibtex below:
 
 
 
-## Error analysis
+## Examples of errors
 
 | ID | Text | Gold label | Predicted label |
 | -- | ---- | ---------- | --------------- |
