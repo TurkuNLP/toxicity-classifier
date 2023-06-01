@@ -2,7 +2,8 @@
 
 This repository includes code for classifying toxic data as multi-label classification (6 labels + no label), multiclass/binary classification (toxic or not) and binary evaluation based on the multi-label classification. The goal is to make a decent classifier for Finnish using translated data. The data used is available in [huggingface](https://huggingface.co/datasets/TurkuNLP/wikipedia-toxicity-data-fi) and a model trained on this data is available [here](https://huggingface.co/TurkuNLP/bert-large-finnish-cased-toxicity). 
 
-New annotated data for Finnish based on a sample from Suomi24 is available in the folder annotations in the file all_annotations.tsv and in [huggingface](https://huggingface.co/datasets/TurkuNLP/Suomi24-toxicity-annotated). The script for evaluating that data is in the folder predictions.
+New annotated data for Finnish based on a sample from Suomi24 is available in the folder `annotations` in the file `all_annotations.tsv` and in [huggingface](https://huggingface.co/datasets/TurkuNLP/Suomi24-toxicity-annotated). The script for evaluating that data is in the folder predictions.
+Raw annotations are also included in the folder `annotations` in the subfolder `raw_annotations`.
 
 ## Demo
 A demo can be found [here](https://github.com/TurkuNLP/toxicity-classifier/blob/main/prediction_scripts/Toxicity_Demo.ipynb)
@@ -11,13 +12,21 @@ A demo can be found [here](https://github.com/TurkuNLP/toxicity-classifier/blob/
 if you want to cite our work, use the bibtex below:
 
 ```
-@inproceedings{
-eskelinen2023toxicity,
-title={Toxicity Detection in Finnish Using Machine Translation},
-author={Anni Eskelinen and Laura Silvala and Filip Ginter and Sampo Pyysalo and Veronika Laippala},
-booktitle={The 24rd Nordic Conference on Computational Linguistics},
-year={2023},
-url={https://openreview.net/forum?id=X5DCw7mXz4}
+@inproceedings{eskelinen-etal-2023-toxicity,
+    title = "Toxicity Detection in {F}innish Using Machine Translation",
+    author = "Eskelinen, Anni  and
+      Silvala, Laura  and
+      Ginter, Filip  and
+      Pyysalo, Sampo  and
+      Laippala, Veronika",
+    booktitle = "Proceedings of the 24th Nordic Conference on Computational Linguistics (NoDaLiDa)",
+    month = may,
+    year = "2023",
+    address = "T{\'o}rshavn, Faroe Islands",
+    publisher = "University of Tartu Library",
+    url = "https://aclanthology.org/2023.nodalida-1.68",
+    pages = "685--697",
+    abstract = "Due to the popularity of social media platforms and the sheer amount of user-generated content online, the automatic detection of toxic language has become crucial in the creation of a friendly and safe digital space. Previous work has been mostly focusing on English leaving many lower-resource languages behind. In this paper, we present novel resources for toxicity detection in Finnish by introducing two new datasets, a machine translated toxicity dataset for Finnish based on the widely used English Jigsaw dataset and a smaller test set of Suomi24 discussion forum comments originally written in Finnish and manually annotated following the definitions of the labels that were used to annotate the Jigsaw dataset. We show that machine translating the training data to Finnish provides better toxicity detection results than using the original English training data and zero-shot cross-lingual transfer with XLM-R, even with our newly annotated dataset from Suomi24.",
 }
 ```
 
