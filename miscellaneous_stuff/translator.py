@@ -6,8 +6,6 @@ from transformers.pipelines.pt_utils import KeyDataset
 import sys
 import pandas as pd
 import json
-import jsonlines
-import ast
 
 print("start translation script")
 
@@ -40,11 +38,10 @@ model = MarianMTModel.from_pretrained("Helsinki-NLP/opus-mt-tc-big-en-fi")
 pipe = pipeline("translation", model=model, tokenizer=tokenizer, device=0) # , device=0
 # go through every example (list of lists, so pipe gets list of sentences from one example)
 
-# get the original file for processing the data for saving # TODO check that this works and change if not
-all_jsonlines = []
-with jsonlines.open(og) as reader:
-    for obj in reader:
-        all_jsonlines.append(obj)
+# get the original file with eng text and labels for processing the data for saving 
+with open(og, 'r') as json_file:
+    json_list = list(json_file)
+    all_jsonlines = [json.loads(jline) for jline in json_list] # list of dictionaries
 
 def save_data(comments, current, previous):
     # here take the original data file train_en.jsonl and only change the text fields in each and save them
@@ -70,7 +67,7 @@ comments = []
 previous = begin
 
 for i in tqdm.tqdm(range(len(split_texts[begin:]))): 
-    text = ast.literal_eval(split_texts[i+begin]["text"]) # this should now be a real list
+    text = split_texts[i+begin]["text"]
     tr = pipe(text, truncation='only_first', max_length=460) # what was my reason for max_length 460?
     #print(tr)
     translations = [t["translation_text"] for t in tr] # tr[0]["translation_text"] 

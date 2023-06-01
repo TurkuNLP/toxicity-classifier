@@ -37,7 +37,7 @@ for i in range(len(texts)):
     #print(parsed)
     sents=[line.replace("# text = ","") for line in parsed.split("\n") if line.startswith("# text = ")]
     #print(sents)
-    dictionary = ({"id": f"{ids[i]}", "text": f"{sents}"})
+    dictionary = ({"id": f"{ids[i]}", "text": sents})
     print(dictionary)
     final.append(dictionary)
     if i % 1000 == 0 and i != 0:
