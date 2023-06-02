@@ -1,9 +1,0 @@
-Namespace(test='data/test_en.jsonl', train='data/train_en.jsonl')
-all lines: 223549
-all toxic percent: 0.11173606656024189
-toxic train:  16225
-clean train:  143346
-train toxic percent: 0.1131876717871444
-toxic test:  6243
-clean test:  57735
-test toxic percent: 0.10813198233307353

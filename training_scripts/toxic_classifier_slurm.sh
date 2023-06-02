@@ -11,8 +11,6 @@
 #SBATCH --error=../../logs/%j.err
 
 
-# export COMET_API_KEY="ARr02oZjXsfNYlAeIFROYSj7O"
-
 # remove output and job marker on exit
 # function on_exit {
 #     rm -f out-$SLURM_JOBID.tsv
@@ -75,8 +73,6 @@ echo "START $(date)"
 
 module purge
 module load pytorch 
-
-export COMET_API_KEY="ARr02oZjXsfNYlAeIFROYSj7O"
 
 EPOCHS=4 # 
 LR=2e-5    # "1e-5 4e-6 5e-6 7e-5 8e-6"

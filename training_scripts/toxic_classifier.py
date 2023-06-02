@@ -1,7 +1,5 @@
 import datasets
 import os
-import comet_ml
-from comet_ml import Experiment
 import transformers
 from pprint import PrettyPrinter
 import logging
@@ -106,14 +104,6 @@ label_names = [
     'label_toxicity',
     'label_clean' # added new label for clean examples (no label previously) because the no label ones were not taken into account in the class weights
 ]
-
-# COMET-ML STUFF
-experiment = Experiment(
-    project_name="toxicity-classification",
-    workspace="anniesk",
-)
-
-os.environ['COMET_LOG_ASSETS'] = 'True'
 
 def json_to_dataset(data, label_names):
     """ Reads the data from .jsonl format and turns it into a dataset using pandas.
@@ -370,14 +360,6 @@ def multi_label_metrics(predictions, labels, threshold):
                     'hamming loss': hamming}
 
     print(classification_report(y_true, y_pred, target_names=label_names[:-1], labels=list(range(6))))
-
-    #experiment = comet_ml.get_global_experiment()
-    if experiment:
-        epoch = int(experiment.curr_epoch) if experiment.curr_epoch is not None else 0
-        experiment.set_epoch(epoch)
-        experiment.log_metrics(metrics)
-    else:
-        print("metrics not loaded to comet-ml")
     
     return metrics
 
@@ -506,56 +488,6 @@ def get_classification_report(trainer, label_names, dataset, pprint):
     return trues, probs, preds
 
 
-def predictions_to_csv(trues, preds, dataset, label_names):
-    """ Saves a dataframe to .csv with texts, correct labels and predicted labels to see what went right and what went wrong.
-    
-    Modified from https://gist.github.com/rap12391/ce872764fb927581e9d435e0decdc2df#file-output_df-ipynb
-
-    Parameters
-    ---------
-    trues: list
-        list of correct labels
-    preds: list
-        list of predicted labels
-    dataset: Dataset
-        the dataset from which to get the texts
-    label_names: list
-        list of the labels used in the data
-    """
-
-    idx2label = dict(zip(range(6), label_names[:-1]))   
-    print(idx2label)
-
-    # Getting indices of where boolean one hot vector true_bools is True so we can use idx2label to gather label names
-    true_label_idxs, pred_label_idxs=[],[]
-    for vals in trues:
-        true_label_idxs.append(np.where(vals)[0].flatten().tolist())
-    for vals in preds:
-        pred_label_idxs.append(np.where(vals)[0].flatten().tolist())
-
-    # Gathering vectors of label names using idx2label
-    true_label_texts, pred_label_texts = [], []
-    for vals in true_label_idxs:
-        if vals:
-            true_label_texts.append([idx2label[val] for val in vals])
-        else:
-            true_label_texts.append(vals)
-
-    for vals in pred_label_idxs:
-        if vals:
-            pred_label_texts.append([idx2label[val] for val in vals])
-        else:
-            pred_label_texts.append(vals)
-
-    #get the test texts to a list of their own 
-    texts = dataset["test"]["text"]
-    print(len(texts), len(true_label_texts), len(pred_label_texts))
-
-    # Converting lists to df
-    comparisons_df = pd.DataFrame({'text': texts, 'true_labels': true_label_texts, 'pred_labels':pred_label_texts})
-    comparisons_df.to_csv('comparisons/comparisons.csv')
-    #print(comparisons_df.head())
-
 def print_confusion_matrix(confusion_matrix, axes, class_label, class_names, fontsize=14):
 
     df_cm = pd.DataFrame(
@@ -573,21 +505,10 @@ def print_confusion_matrix(confusion_matrix, axes, class_label, class_names, fon
     axes.set_title(class_label)
 
 def main():
-    # this should prevent any caching problems I might have because caching does not happen anymore
     datasets.disable_caching()
 
     pprint = PrettyPrinter(compact=True).pprint
     logging.disable(logging.INFO)
-
-    label_names = [
-        'label_identity_attack',
-        'label_insult',
-        'label_obscene',
-        'label_severe_toxicity',
-        'label_threat',
-        'label_toxicity',
-        'label_clean' # added new label for clean examples (no label previously) because the no label ones were not taken into account in the class weights
-    ]
 
     # data to dataset format
     train= json_to_dataset(args.train, label_names)
@@ -695,18 +616,6 @@ def main():
 
     trues, probs, preds = get_classification_report(trainer, label_names, dataset, pprint)
 
-    if args.binary == False:
-        predictions_to_csv(trues, preds, dataset, label_names)
-
-        # do roc-auc plot TEST :( (after holiday get plots, yellowbrick?)
-        # probs = probs.tolist()
-        # if args.clean_as_label == True:
-        #     new_probs = []
-        #     for i in range(len(probs)):
-        #         new_probs.append(probs[i][:-1])
-        #     probs = new_probs
-
-
     #     # get confusion matrix for multi-label
     #     import sklearn.metrics as skm
     #     cm = skm.multilabel_confusion_matrix(trues, preds)
@@ -721,8 +630,6 @@ def main():
     #     fig.tight_layout()
     #     plt.show()
     #     fig.savefig("multi-label-test.png")
-
-    #     experiment.log_figure("multi-label-confusion", fig)
 
 
 
