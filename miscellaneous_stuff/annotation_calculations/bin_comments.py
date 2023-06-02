@@ -13,6 +13,9 @@ from logging import error
 from argparse import ArgumentParser
 
 
+"""Put comments into bins where they originally were. Example results are in "new_large_batch_annotations/sample-01-identity-attack". """
+
+
 def argparser():
     ap = ArgumentParser()
     ap.add_argument('comments', help='jsonl')

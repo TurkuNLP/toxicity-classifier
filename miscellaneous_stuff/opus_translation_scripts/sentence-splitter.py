@@ -3,6 +3,8 @@ import jsonlines
 import sys
 import datasets
 
+"""Script for splitting text into sentences and saving to jsonl."""
+
 #srun python3 miscallenous_stuff/sentence-splitter.py data/train_en.jsonl #data/test_en.jsonl
 
 data = sys.argv[1]

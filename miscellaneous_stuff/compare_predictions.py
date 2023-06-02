@@ -1,6 +1,9 @@
 import sys
 import pandas as pd
 
+"""See what texts have different labels predicted by different models."""
+
+
 # python3 miscallenous_stuff/compare_predictions.py predictions/toxic_predicted-multilang.tsv predictions/toxic_predicted-tr.tsv
 
 

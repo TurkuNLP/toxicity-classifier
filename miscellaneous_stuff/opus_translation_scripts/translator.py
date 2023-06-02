@@ -7,6 +7,9 @@ import sys
 import pandas as pd
 import json
 
+"""Script for translating text using opus-mt, the text has been previously split to sentences. Save as jsonl. """
+
+
 print("start translation script")
 
 begin = 0 # the number of rows translated previously

@@ -10,9 +10,7 @@
 # echo -e "TP \t TN \t FP \t FN" >> ../weighted-results.tsv | for f in * ; do python3 ../../calculate-annotation-results.py ../../pictures_and_other_files/binned_amounts.tsv $f insult 0.5 >> ../weighted-results.tsv; done
 # append to file
 
-
-# this script both counts the TP, FP, TN, FN numbers, weighted or not
-#  and if --calculate is used it calculates the precision, recall and f1 from the results file
+"""This script has multiple uses. It both counts the TP, FP, TN, FN numbers, weighted or not and if --calculate is used it calculates the precision, recall and f1 from the specified results file. """
 
 
 import sys # is this used?
@@ -30,7 +28,6 @@ def argparser():
 
 
 # final calculations, read the weighted-results.tsv file and sum up each column and then do the regular prec, rec, f1 calculations
-# either use the formulas and do it "manually" or look at if the ready made stuff can use these numbers
 
 # https://towardsdatascience.com/evaluating-multi-label-classifiers-a31be83da6ea here the micro-avg for precision really helped me understand how to do this
 # just sum like I mentioned and do that

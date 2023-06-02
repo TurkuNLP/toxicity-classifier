@@ -6,6 +6,8 @@ from collections import Counter, defaultdict
 from argparse import ArgumentParser
 
 
+"""Script for getting the histogram of the probability distributions for the suomi24 data. Not made by me originally."""
+
 def argparser():
     ap = ArgumentParser()
     ap.add_argument('-i', '--interval', type=float, default=0.1)

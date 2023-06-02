@@ -4,6 +4,9 @@ import sys
 import json
 import pandas as pd
 
+"""Script to see what languages are predicted to exist in the test data (or any data). Not the best language detector but does for this simple test."""
+
+
 DetectorFactory.seed = 0
 
 # get the data to dataframe

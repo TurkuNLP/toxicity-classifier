@@ -11,6 +11,9 @@ from sklearn.metrics import classification_report, f1_score, roc_auc_score, accu
 from sklearn.metrics import hamming_loss
 
 
+"""A script to get metrics for test sets as well as save the predicted labels to files for error analysis. Saves text, id, and gold label to a tsv file. Can be used with the annotated test set as well jsonl files (e.g. the translated test set)."""
+
+
 # this should prevent any caching problems I might have because caching does not happen anymore
 datasets.disable_caching()
 
@@ -88,22 +91,16 @@ if args.new_test == True:
     if len(config_json["id2label"]) == 6:
         # if the label includes not- something
         df.loc[df['label'].str.contains("not-"),["labels"]] = '[0,0,0,0,0,0]'
-
         # if threat
         df.loc[df["label"] == "threat",["labels"]] = '[0,0,0,0,1,0]'
-
         # if toxicity
         df.loc[df["label"] == "toxicity",["labels"]] = '[0,0,0,0,0,1]'
-
         #if severe_toxicity
         df.loc[df["label"] == "severe_toxicity",["labels"]] = '[0,0,0,1,0,0]'
-
         #if insult
         df.loc[df["label"] == "insult",["labels"]] = '[0,1,0,0,0,0]'
-
         #if identity_attack
         df.loc[df["label"] == "identity_attack",["labels"]] = '[1,0,0,0,0,0]'
-
         #if obscene
         df.loc[df["label"] == "obscene",["labels"]] = '[0,0,1,0,0,0]'
 
@@ -114,22 +111,16 @@ if args.new_test == True:
     elif len(config_json["id2label"]) == 7:
         # if the label includes not- something
         df.loc[df['label'].str.contains("not-"),["labels"]] = '[0,0,0,0,0,0,1]'
-
         # if threat
         df.loc[df["label"] == "threat",["labels"]] = '[0,0,0,0,1,0,0]'
-
         # if toxicity
         df.loc[df["label"] == "toxicity",["labels"]] = '[0,0,0,0,0,1,0]'
-
         #if severe_toxicity
         df.loc[df["label"] == "severe_toxicity",["labels"]] = '[0,0,0,1,0,0,0]'
-
         #if insult
         df.loc[df["label"] == "insult",["labels"]] = '[0,1,0,0,0,0,0]'
-
         #if identity_attack
         df.loc[df["label"] == "identity_attack",["labels"]] = '[1,0,0,0,0,0,0]'
-
         #if obscene
         df.loc[df["label"] == "obscene",["labels"]] = '[0,0,1,0,0,0,0]'
 
@@ -400,7 +391,9 @@ pprint(eval_results)
 
 
 
-# # see how the labels are predicted
+# start the process of saving predicted labels for analysis
+
+# see how the labels are predicted
 test_pred = trainer.predict(dataset)
 predictions = test_pred.predictions
 
@@ -435,10 +428,6 @@ if len(labels[0]) == 7:
         new_labels.append(labels[i][:-1])
     labels = new_labels
 
-print(probs[2000:2050])
-print(labels[2000:2050])
-print(preds[2000:2050])
-
 
 temp_list = []
 all_labels = []
@@ -457,15 +446,6 @@ for i in range(len(labels)):
     gold_labels.append(temp_list)
     temp_list = [] # empty the list before next round
 
-# all_labels = []
-# # set list to have label if the prob is bigger than the threshold
-# temp_list = []
-# for i in range(len(probs)):
-#     for j in range(len(probs[i])):
-#         if probs[i][j] > threshold:
-#             temp_list.append(label_names[j])
-#     all_labels.append(temp_list)
-#     temp_list = [] # empty the list before next round
 
 all = tuple(zip(ids, gold_labels, all_labels, texts))
 #pprint(all[:10])
