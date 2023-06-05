@@ -1,13 +1,2 @@
-/mlruns
 /data
-/checkpoints
-/models
-/tmp_trainer
-/predictions
-/raw
-/tmp
-/files
-/new_cache_dir
-/training_scripts/mlruns
-/miscellaneous_stuff/udpipe
-/toxic_comment_collection_stuff
+/predictions/reddit.tsv.gz
