@@ -4,7 +4,7 @@ Predictions for new texts can be made with different scripts. `Toxicity_predicti
 
 Results for the annotated test set can be gotten through the script `get_test-predictions.py` and it can be used for jsonl and the annotated test set to get thresholded labels with id (and text) for error analysis.
 
-A demo for testing predictions easily is in the file ``Toxicity_Demo.ipynb`.
+A demo for testing predictions easily is in the file `Toxicity_Demo.ipynb`.
 
 
 
