@@ -80,6 +80,8 @@ for i in tqdm.tqdm(range(len(split_texts[begin:]))):
     #print(final)
     #print(final)
     #print(i)
+    if len(final) == 0:
+        final == "EMPTY"
     
     # make list of final texts
     comments.append(final)
