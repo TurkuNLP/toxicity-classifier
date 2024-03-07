@@ -59,3 +59,9 @@ if you want to cite our work, use the bibtex below:
 | 6adbbabff7afbb5d | homo, joka tykkää mulkusta perseessään. Hän juoksi niin paljon kiristääkseen persettään | insult, obscene, toxicity | identity_attack, insult, obscene, severe_toxicity, toxicity |
 
 As the recall is better than precision for the trained model, the model mostly predicts more labels than there should be according to the gold labels. Sometimes though the model does not predict any label although there should be at least one. We have to note that the original Jigsaw data is not without flaws in itself and there might be mistakes in the labeling which might affect the model.
+
+
+![image](https://github.com/TurkuNLP/toxicity-classifier/assets/92675015/f5878b69-da5c-49a7-9083-5fa70c041638)
+
+![image](https://github.com/TurkuNLP/toxicity-classifier/assets/92675015/b23fce8b-7d5a-49bb-afa1-36e23b189830)
+
